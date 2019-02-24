@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Verse;
 
-namespace EliteBionicsFramework.Hediffs
+namespace EBF.Hediffs
 {
     public class HediffCompProperties_MaxHPAdjust : HediffCompProperties
     {

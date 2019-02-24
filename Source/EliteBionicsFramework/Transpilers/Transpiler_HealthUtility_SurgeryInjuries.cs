@@ -7,7 +7,7 @@ using System.Reflection.Emit;
 using System.Text;
 using Verse;
 
-namespace EliteBionicsFramework.Transpilations
+namespace EBF.Transpilations
 {
     [HarmonyPatch(typeof(HealthUtility))]
     [HarmonyPatch("GiveRandomSurgeryInjuries")]

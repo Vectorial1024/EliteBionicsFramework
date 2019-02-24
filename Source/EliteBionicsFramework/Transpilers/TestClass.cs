@@ -5,7 +5,7 @@ using System.Text;
 using Verse;
 using static Verse.DamageWorker;
 
-namespace EliteBionicsFramework.Transpilations
+namespace EBF.Transpilations
 {
     class TestClass
     {

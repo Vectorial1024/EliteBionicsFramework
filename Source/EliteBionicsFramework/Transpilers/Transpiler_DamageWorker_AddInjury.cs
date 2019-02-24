@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection.Emit;
 using Verse;
 
-namespace EliteBionicsFramework.Transpilations
+namespace EBF.Transpilations
 {
     [HarmonyPatch(typeof(DamageWorker_AddInjury))]
     [HarmonyPatch("ReduceDamageToPreserveOutsideParts")]

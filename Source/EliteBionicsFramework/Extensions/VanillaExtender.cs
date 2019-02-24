@@ -1,4 +1,4 @@
-﻿using EliteBionicsFramework.Hediffs;
+﻿using EBF.Hediffs;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,7 +7,7 @@ using System.Text;
 using UnityEngine;
 using Verse;
 
-namespace EliteBionicsFramework
+namespace EBF
 {
     public static class VanillaExtender
     {

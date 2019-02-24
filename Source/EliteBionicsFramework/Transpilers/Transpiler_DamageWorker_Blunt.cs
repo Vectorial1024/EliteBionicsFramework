@@ -9,7 +9,7 @@ using System.Text;
 using Verse;
 using static Verse.DamageWorker;
 
-namespace EliteBionicsFramework.Transpilations
+namespace EBF.Transpilations
 {
     [HarmonyPatch(typeof(DamageWorker_Blunt))]
     [HarmonyPatch("ApplySpecialEffectsToPart")]

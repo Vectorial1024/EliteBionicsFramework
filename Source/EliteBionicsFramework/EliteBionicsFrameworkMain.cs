@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using Verse;
 
-namespace EliteBionicsFramework
+namespace EBF
 {
     public class EliteBionicsFrameworkMain: ModBase
     {

@@ -6,7 +6,7 @@ using System.Reflection.Emit;
 using System.Text;
 using Verse;
 
-namespace EliteBionicsFramework.Transpilations
+namespace EBF.Transpilations
 {
     // This does not seem necessary.
     [HarmonyPatch(typeof(PawnCapacityUtility.CapacityImpactorBodyPartHealth))]

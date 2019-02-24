@@ -6,7 +6,7 @@ using System.Text;
 using Verse;
 using static Verse.PawnCapacityUtility;
 
-namespace EliteBionicsFramework.Patches
+namespace EBF.Patches
 {
     [HarmonyPatch(typeof(CapacityImpactorBodyPartHealth))]
     [HarmonyPatch("Readable", MethodType.Normal)]

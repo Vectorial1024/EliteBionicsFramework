@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using Verse;
 
-namespace EliteBionicsFramework.Patches
+namespace EBF.Patches
 {
     [HarmonyPatch(typeof(BodyPartDef))]
     [HarmonyPatch("GetMaxHealth", MethodType.Normal)]
