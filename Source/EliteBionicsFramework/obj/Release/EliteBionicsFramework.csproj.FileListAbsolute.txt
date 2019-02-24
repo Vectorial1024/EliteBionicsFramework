@@ -1,0 +1,4 @@
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\EliteBionicsFramework\Source\EliteBionicsFramework\obj\Release\EliteBionicsFramework.csprojAssemblyReference.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\EliteBionicsFramework\Source\EliteBionicsFramework\obj\Release\EliteBionicsFramework.csproj.CoreCompileInputs.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\EliteBionicsFramework\Assemblies\EliteBionicsFramework.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\EliteBionicsFramework\Source\EliteBionicsFramework\obj\Release\EliteBionicsFramework.dll

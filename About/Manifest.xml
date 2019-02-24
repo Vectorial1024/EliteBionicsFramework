@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest>
+    <identifier>EliteBionicsFramework</identifier>
+    <version>1.0.0.0</version>
+    <dependencies>
+        <li>HugsLib</li>
+        <!--
+        <li>ModThatDoesntExist</li>
+        <li>SomeMod &gt;= 4.0</li>
+        <li>SomeOtherMod &lt;= 2.0</li>
+        <li>YetAnotherMod == 4.3.0.0</li>
+        <li>SpecificRangeMod &gt;= 2.0</li>
+        <li>SpecificRangeMod &lt;= 2.999.999.999</li>
+        -->
+    </dependencies>
+    <!--
+    <incompatibleWith>
+        <li>SomeOtherMod</li>
+    </incompatibleWith>
+    <loadBefore>
+        <li>HowManyModsDoesOneNeed &gt;= 9000.1</li>
+    </loadBefore>
+    -->
+    <loadAfter>
+        <li>HugsLib</li>
+    </loadAfter>
+    <!--
+    <suggests>
+        <li>ExpansionMod &gt;= 1.5</li>
+        <li>OtherCoolMod</li>
+    </suggests>
+    -->
+    <showCrossPromotions>false</showCrossPromotions>
+    <!--
+    <manifestUri>https://rawgit.com/Vectorial1024/Desynchronized/master/About/Manifest.xml</manifestUri>
+    <downloadUri>https://github.com/FluffierThanThou/ModManager/releases/latest</downloadUri>
+    -->
+</Manifest>
