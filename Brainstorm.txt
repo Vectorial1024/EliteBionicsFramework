@@ -1,0 +1,6 @@
+Bionic Eye +5HP
+Bionic Arm/Bionic Leg +10HP
+Bionic Spine +5HP
+
+Archotech Eye +10HP
+Archotech Arm/Archotech Leg +25HP

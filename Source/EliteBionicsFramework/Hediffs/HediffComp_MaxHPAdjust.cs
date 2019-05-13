@@ -11,7 +11,7 @@ namespace EBF.Hediffs
     {
         public HediffCompProperties_MaxHPAdjust Props => (HediffCompProperties_MaxHPAdjust)props;
 
-        private static readonly Texture2D IconMaxHPStrengthened = ContentFinder<Texture2D>.Get("UI/Icons/Medical/EBF_MHP_Strengthen", true);
+        // private static readonly Texture2D IconMaxHPStrengthened = ContentFinder<Texture2D>.Get("UI/Icons/Medical/EBF_MHP_Strengthen", true);
 
         public override string CompTipStringExtra
         {

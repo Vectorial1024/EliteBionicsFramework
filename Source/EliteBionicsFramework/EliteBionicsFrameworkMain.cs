@@ -18,6 +18,10 @@ namespace EBF
 
         public override string ModIdentifier => MODID;
 
+        internal static bool HasAttemptedToFindMoody = false;
+
+        internal static bool MoodyIsRunning = false;
+
         public static void LogError(string message, bool ignoreLogLimit = false)
         {
             Log.Error(MODPREFIX + " " + message, ignoreLogLimit);

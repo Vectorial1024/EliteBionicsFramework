@@ -1,0 +1,23 @@
+A common framework to change body part max HP.
+[h1]Quick Info and Compatibility[/h1]
+[list]
+[*]Requires HugsLib (warning should be given if you don't have HugsLib); place this mod below HugsLib
+[*]Place this mod above other mods that require this mod
+[*]Safe to add to existing saves
+[*]Depending on whether there are any dependencies loaded, safe to be removed
+[*]Should have no problems with most other mods, see below for more info
+GitHub repo link is here: https://github.com/Vectorial1024/EliteBionicsFramework
+[/list]
+[h1]Framework Description[/h1]
+This framework allows other modders to let their bionic parts or implants to change the max HP of body parts.
+
+Note that when body part max HP is increased, the pain and bleeding rate will also increase.
+[h1]Known Issues[/h1]
+[list]
+[*]This framework will throw errors if it detects any mod that tries to get the max HP of body parts without using this framework.
+[*]This framework will continuously throw errors when Moody is also loaded. I am technically unable to fix this problem. Ask the guys developing Moody to have a look, and let them decide if they want to support this framework.
+[/list]
+[h1]The GitHub Repo[/h1]
+Many things, including changelogs, non-Steam downloads, are on the GitHub repo of this mod. Link: https://github.com/Vectorial1024/EliteBionicsFramework
+[h1]Conclusion[/h1]
+Please report bugs and error messages below!

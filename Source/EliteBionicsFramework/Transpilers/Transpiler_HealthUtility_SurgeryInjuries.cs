@@ -26,11 +26,11 @@ namespace EBF.Transpilations
             short occurencesCallvirt = 0;
             short suppressCount = 0;
             bool patchComplete = false;
-            FileLog.Log("Analyzing nested types under HealthUtility...");
+            // FileLog.Log("Analyzing nested types under HealthUtility...");
             Type typeSelfAnon = null;
             foreach (Type type in typeof(HealthUtility).GetNestedTypes(BindingFlags.NonPublic))
             {
-                FileLog.Log("Type is " + type.Name);
+                // FileLog.Log("Type is " + type.Name);
                 if (type.Name.Contains("<GiveRandomSurgeryInjuries>c__AnonStorey1"))
                 {
                     typeSelfAnon = type;
