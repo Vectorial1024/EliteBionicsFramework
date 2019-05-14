@@ -59,6 +59,8 @@
     <Compile Include="Extensions\VanillaExtender.cs" />
     <Compile Include="Hediffs\HediffCompProperties_MaxHPAdjust.cs" />
     <Compile Include="Hediffs\HediffComp_MaxHPAdjust.cs" />
+    <Compile Include="Patches\PostFix_HediffInjury_BleedRate.cs" />
+    <Compile Include="Patches\PostFix_HediffMissingPart_BleedRate.cs" />
     <Compile Include="Patches\Prefix_BodyPart_GetMaxHealth.cs" />
     <Compile Include="Patches\PreFix_PawnCapUtil_BodyPartHealth.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

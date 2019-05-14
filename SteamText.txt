@@ -11,7 +11,8 @@ GitHub repo link is here: https://github.com/Vectorial1024/EliteBionicsFramework
 [h1]Framework Description[/h1]
 This framework allows other modders to let their bionic parts or implants to change the max HP of body parts.
 
-Note that when body part max HP is increased, the pain and bleeding rate will also increase.
+Note that, normally, when body part max HP is increased, the pain and bleeding rate will both also increase. This mod scales down the bleeding rate in order to avoid nonsensical instant-death sithations due to instant-bleed-out. However, pain levels are not touched to maintain balance.
+
 [h1]Known Issues[/h1]
 [list]
 [*]This framework will throw errors if it detects any mod that tries to get the max HP of body parts without using this framework.

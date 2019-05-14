@@ -1,0 +1,25 @@
+For those who want to know how this mod works but have no programming knowledge, here's my attempt to break things down for you.
+
+The Hediff system in RimWorld is wonderful but complex. Here's a graph showing how the different components of the Hediff system work together. The graph also shows some examples of where the left arm and the right arm of a pawn will appear in the entire Hediff system.
+
+https://imgur.com/ZkgbtnI
+
+To determine the max HP of a body part, RimWorld needs to call a function named "GetMaxHealth()". In vanilla, the whole process would look something like this:
+
+https://imgur.com/aOfVIU4
+
+Now, I want to change the result (the return value) of the function, so that the body part max HP can be changed. I can do something like this:
+
+https://imgur.com/78dZBZW
+
+However, we have a problem. Let's say we have to change the return value for the arms. One of the arms has an EBF-enabled bionic arm, another does not. From the perspective of BodyPartDef, it does not know which arm we are talking about when the function is called, because both BodyPartRecords behave just the same when calling the function. It's just like this:
+
+https://imgur.com/MYiIvrG
+
+The way I approached this problem is to make a new version of the function that requires an additional parameter, which is basically the BodyPartDef asking the BodyPartRecord caller "who are you", before searching the list of Hediffs.
+
+https://imgur.com/3ZIsH3H
+
+This way, BodyPartDef knows which of the (multiple) BodyPartRecord is calling the function. It can check if the EBF Hediffs are installed on a specific BodyPartRecord, and give the correct max HP.
+
+The problem of "symmetric modification" is therefore solved.
