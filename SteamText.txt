@@ -1,4 +1,4 @@
-A common framework to change body part max HP.
+A common framework to change body part max HP. Currently at v1.0.2.
 [h1]Quick Info and Compatibility[/h1]
 [list]
 [*]Requires HugsLib (warning should be given if you don't have HugsLib); place this mod below HugsLib
@@ -11,7 +11,9 @@ GitHub repo link is here: https://github.com/Vectorial1024/EliteBionicsFramework
 [h1]Framework Description[/h1]
 This framework allows other modders to let their bionic parts or implants to change the max HP of body parts.
 
-Note that, normally, when body part max HP is increased, the pain and bleeding rate will both also increase. This mod scales down the bleeding rate in order to avoid nonsensical instant-death sithations due to instant-bleed-out. However, pain levels are not touched to maintain balance.
+Note that, normally, when body part max HP is increased, the pain and bleeding rate will both also increase. This mod scales down the bleeding rate in order to avoid nonsensical instant-death sithations due to instant-bleed-out.
+
+However, pain levels are not touched to maintain balance. End users should aim for drugs, implants, or armor to reduce the pain of your soldiers/workers before and during battle.
 
 [h1]Known Issues[/h1]
 [list]

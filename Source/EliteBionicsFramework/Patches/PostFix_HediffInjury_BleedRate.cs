@@ -18,7 +18,7 @@ namespace EliteBionicsFramework.Patches
             if (__result > 0)
             {
                 // Scales it down by (Real HP : Displayed HP)
-                __result = __result * __instance.Part.def.GetRawMaxHealth(__instance.pawn) / __instance.Part.def.GetMaxHealth(__instance.pawn);
+                __result = __result * __instance.Part.def.GetRawMaxHealth(__instance.pawn) / __instance.Part.def.GetMaxHealth(__instance.pawn, __instance.Part);
             }
         }
     }

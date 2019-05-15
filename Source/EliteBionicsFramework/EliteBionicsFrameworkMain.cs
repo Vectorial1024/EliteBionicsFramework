@@ -26,5 +26,10 @@ namespace EBF
         {
             Log.Error(MODPREFIX + " " + message, ignoreLogLimit);
         }
+
+        public static void LogWarning(string message, bool ignoreLogLimit = false)
+        {
+            Log.Warning(MODPREFIX + " " + message, ignoreLogLimit);
+        }
     }
 }

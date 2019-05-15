@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-	<name>Elite Bionics Framework (v1.0.2)</name>
+	<name>Elite Bionics Framework</name>
 	<author>Vectorial1024</author>
 	<supportedVersions>
 		<li>1.0</li>
 	</supportedVersions>
-	<description>A common framework to change body part max HP.</description>
+	<description>A common framework to change body part max HP. Currently at v1.0.3.</description>
 </ModMetaData>

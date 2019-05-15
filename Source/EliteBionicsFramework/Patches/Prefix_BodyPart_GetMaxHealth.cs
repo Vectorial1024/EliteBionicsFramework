@@ -12,41 +12,27 @@ namespace EBF.Patches
     [HarmonyPatch("GetMaxHealth", MethodType.Normal)]
     public class Prefix_BodyPart_GetMaxHealth
     {
+        private static List<string> reportedNamespaces = new List<string>();
+
         [HarmonyPrefix]
         public static bool PreFix(BodyPartDef __instance, float __result, Pawn pawn)
         {
-            if (!EliteBionicsFrameworkMain.MoodyIsRunning)
+            StackFrame investigateFrame = new StackFrame(2);
+            string namespaceString = investigateFrame.GetMethod().ReflectedType.Namespace;
+            
+            if (!reportedNamespaces.Contains(namespaceString))
             {
-                // The StackTrace looks something like this:
-                // (this method)
-                // BodyPartDef GetMaxHealth(...)
-                // Moody.* *
-                // So it is at frame 2
-                StackFrame determinantFrame = new StackFrame(2);
-                if (determinantFrame.GetMethod().ReflectedType.Namespace.Contains("Moody"))
-                {
-                    EliteBionicsFrameworkMain.MoodyIsRunning = true;
-                    string message = "Elite Bionics Framework has detected Moody using the vanilla " +
-                        "method of BodyPartDef.GetMaxHealth(). While this violation will not cause " +
-                        "the game to crash, it will cause Moody to print out negative HP for some " +
-                        "body parts.\n" +
-                        "Due to technical limitations, EBF is unable to resolve this error. Contact " +
-                        "the author(s) of Moody to see if they are willing to resolve this violation.";
-                    EliteBionicsFrameworkMain.LogError(message);
-                }
+                reportedNamespaces.Add(namespaceString);
+                string errorMessage = "Elite Bionics Framework has detected some mods" +
+                " using the unmodified GetMaxHealth() method, which violates the" +
+                " EBF protocol. The author(s) of the involved mod(s) should " +
+                "adopt the EBF to clarify their intentions.\n" +
+                "For now, the unmodified max HP is returned.\n" +
+                "The detected mod comes from: " + namespaceString;
+                EliteBionicsFrameworkMain.LogError(errorMessage);
             }
-            if (!EliteBionicsFrameworkMain.MoodyIsRunning)
-            {
-                string message = "Elite Bionics Framework has detected some other mod(s) " +
-                    "using the vanilla method of BodyPartDef.GetMaxHealth(). While this " +
-                    "violation will not cause the game to crash, it will cause those other " +
-                    "mod(s) to behave unexpectedly.\n" +
-                    "Report to Vectorial1024 and the author(s) of those mod(s) to see " +
-                    "if those violations can be solved.\n";
-                EliteBionicsFrameworkMain.LogError(message + Environment.StackTrace, true);
-            }
-            __result = __instance.GetRawMaxHealth(pawn);
-            return false;
+            
+            return true;
         }
     }
 }
