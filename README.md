@@ -1,5 +1,11 @@
 # Elite Bionics Framework (EBF)
 A common framework to change body part max HP.
+
+# Downloading this Mod (Normal Users)
+1. Go back to https://github.com/Vectorial1024/EliteBionicsFramework
+2. Notice the "Clone or Download" button on the top right hand corner (under the "1 Contributor" area). Click on it and click "Download as ZIP"
+3. The ZIP should conain 1 folder. Unpack the ZIP, and place the folder in the /Mods directory of your RimWorld installation.
+
 # Usage and Other Related Info
 The EBF introduces `HediffCompProperties_MaxHPAdjust` as a common `HediffCompProperties` for other modders to designate body part max HP changes for their `Hediff`s. Please refer to the appendix below for learning how to add `HediffCompProperties` to your `Hediff` in general.
 

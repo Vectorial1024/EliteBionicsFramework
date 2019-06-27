@@ -1,4 +1,4 @@
-A common framework to change body part max HP. Currently at v1.0.2.
+A common framework to change body part max HP. Currently at v1.0.4.
 [h1]Quick Info and Compatibility[/h1]
 [list]
 [*]Requires HugsLib (warning should be given if you don't have HugsLib); place this mod below HugsLib

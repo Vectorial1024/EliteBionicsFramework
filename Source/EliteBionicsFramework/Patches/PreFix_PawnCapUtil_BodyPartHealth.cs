@@ -13,7 +13,7 @@ namespace EBF.Patches
     public class PreFix_PawnCapUtil_BodyPartHealth
     {
         [HarmonyPrefix]
-        public static bool PreFix(CapacityImpactorBodyPartHealth __instance, string __result, Pawn pawn)
+        public static bool PreFix(CapacityImpactorBodyPartHealth __instance, ref string __result, Pawn pawn)
         {
             HediffSet hediffSet = pawn.health.hediffSet;
             BodyPartRecord record = __instance.bodyPart;
