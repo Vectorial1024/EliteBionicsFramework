@@ -1,4 +1,5 @@
 ﻿using HugsLib;
+using HugsLib.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,15 @@ namespace EBF
         internal static bool HasAttemptedToFindMoody = false;
 
         internal static bool MoodyIsRunning = false;
+
+        // Settings 
+
+        public static SettingHandle<bool> SettingHandle_DisplayHpDiffInHediffName { get; private set; }
+
+        public override void DefsLoaded()
+        {
+            SettingHandle_DisplayHpDiffInHediffName = Settings.GetHandle("displayHpDiffInHediffName", "Display HP Diff in Hediff Name", "If enabled, hediffs powered by EBF will display how the max HP of the affected body part is affected by EBF.\n\nEnabled by default.", true);
+        }
 
         public static void LogError(string message, bool ignoreLogLimit = false)
         {

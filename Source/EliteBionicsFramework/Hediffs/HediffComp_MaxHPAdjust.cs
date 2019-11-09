@@ -25,7 +25,7 @@ namespace EBF.Hediffs
         {
             get
             {
-                return "+" + Props.linearAdjustment.ToStringCached() + " HP";
+                return EliteBionicsFrameworkMain.SettingHandle_DisplayHpDiffInHediffName.Value? "+" + Props.linearAdjustment.ToStringCached() + " HP" : "";
             }
         }
     }
