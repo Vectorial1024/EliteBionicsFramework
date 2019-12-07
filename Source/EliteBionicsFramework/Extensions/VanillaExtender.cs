@@ -59,7 +59,8 @@ namespace EBF
                 }
             }
 
-            return record.def.GetRawMaxHealth(hediffSet.pawn) + linearAdjustment;
+            // We can't allow max health to drop to 0, that would be problematic.
+            return Mathf.Max(record.def.GetRawMaxHealth(hediffSet.pawn) + linearAdjustment, 0);
         }
 
         /// <summary>
