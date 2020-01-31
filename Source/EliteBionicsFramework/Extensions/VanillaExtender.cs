@@ -46,6 +46,7 @@ namespace EBF
         /// <returns></returns>
         public static float GetPartMaxHealth(this HediffSet hediffSet, BodyPartRecord record)
         {
+            float totalScaledAdjustment = 1;
             float linearAdjustment = 0;
             foreach (Hediff hediff in hediffSet.hediffs)
             {
@@ -55,12 +56,22 @@ namespace EBF
                     if (adjustorComp != null)
                     {
                         linearAdjustment += adjustorComp.linearAdjustment;
+                        if (adjustorComp.scaleAdjustment + 1 > 0)
+                        {
+                            // Negative values are denied.
+                            totalScaledAdjustment *= (adjustorComp.scaleAdjustment + 1);
+                        }
                     }
                 }
             }
 
             // We can't allow max health to drop to 0, that would be problematic.
-            return Mathf.Max(record.def.GetRawMaxHealth(hediffSet.pawn) + linearAdjustment, 0);
+            float processedMaxHP = record.def.GetRawMaxHealth(hediffSet.pawn);
+            // Guaranteed to be at least positive.
+            processedMaxHP = Mathf.RoundToInt(processedMaxHP * totalScaledAdjustment);
+            processedMaxHP += linearAdjustment;
+            // Must be at least 1
+            return Mathf.Max(processedMaxHP, 1);
         }
 
         /// <summary>

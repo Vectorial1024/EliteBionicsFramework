@@ -17,7 +17,16 @@ namespace EBF.Hediffs
         {
             get
             {
-                return "Max HP: +" + Props.linearAdjustment.ToStringCached() + " HP";
+                StringBuilder builder = new StringBuilder("");
+                if (Props.scaleAdjustment != 0)
+                {
+                    builder.AppendLine("Max HP: ×" + ((int) ((Props.scaleAdjustment + 1) * 100)).ToStringCached() + "%");
+                }
+                if (Props.linearAdjustment != 0)
+                {
+                    builder.AppendLine("Max HP: +" + Props.linearAdjustment.ToStringCached() + " HP");
+                }
+                return builder.ToString();
             }
         }
         
@@ -25,7 +34,14 @@ namespace EBF.Hediffs
         {
             get
             {
-                return EliteBionicsFrameworkMain.SettingHandle_DisplayHpDiffInHediffName.Value? "+" + Props.linearAdjustment.ToStringCached() + " HP" : "";
+                if (EliteBionicsFrameworkMain.SettingHandle_DisplayHpDiffInHediffName.Value)
+                {
+                    return "adjusts max HP";
+                }
+                else
+                {
+                    return "";
+                }
             }
         }
     }

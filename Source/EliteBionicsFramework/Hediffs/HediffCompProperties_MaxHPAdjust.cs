@@ -9,6 +9,7 @@ namespace EBF.Hediffs
     public class HediffCompProperties_MaxHPAdjust : HediffCompProperties
     {
         public int linearAdjustment;
+        public float scaleAdjustment;
 
         public HediffCompProperties_MaxHPAdjust()
         {
