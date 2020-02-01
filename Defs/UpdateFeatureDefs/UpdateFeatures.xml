@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!-- Use either "\n" or XML whitespace return to make linebreaks; both method works -->
+
+	<HugsLib.UpdateFeatureDef Abstract="true" Name="UpdateFeatureBase">
+		<modNameReadable>Elite Bionics Framework</modNameReadable>
+		<modIdentifier>com.vectorial1024.rimworld.ebf</modIdentifier>
+		<linkUrl>https://github.com/Vectorial1024/EliteBionicsFramework</linkUrl>
+	</HugsLib.UpdateFeatureDef>
+	
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
+		<defName>EBF_v1_0_0</defName>
+		<assemblyVersion>1.0.0</assemblyVersion>
+		<content>Thank you for using Elite Bionics Framework, a framework to enable hediffs to modify body part max HP.|- Added "linear adjustment" parameter for EBF Hediffs; refer to documentation on how they work, and how body part max HP are calculated</content>
+	</HugsLib.UpdateFeatureDef>
+
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
+		<defName>EBF_v1_1_0</defName>
+		<assemblyVersion>1.1.0</assemblyVersion>
+		<content>- Added "scaling adjustment" parameter for EBF Hediffs; refer to documentation on how they work, and how body part max HP are calculated</content>
+	</HugsLib.UpdateFeatureDef>
+	
+    <!--
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
+		<defName>Desync_1_2_0</defName>
+		<assemblyVersion>1.2.0</assemblyVersion>
+		<content>First paragraph.|img:Things/Item/Meal/Fine,Things/Item/Meal/Lavish,Things/Item/Meal/Simple|caption:This is a caption.|Another paragraph with &lt;b&gt;rich text&lt;/b&gt;.</content>
+	</HugsLib.UpdateFeatureDef>
+    -->
+</Defs>

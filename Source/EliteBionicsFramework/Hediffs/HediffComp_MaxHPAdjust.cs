@@ -18,13 +18,26 @@ namespace EBF.Hediffs
             get
             {
                 StringBuilder builder = new StringBuilder("");
+
+                // Base HP tooltip
+                float rawMaxHP = parent.Part.def.GetRawMaxHealth(parent.pawn);
+                builder.Append("Base HP: ");
+                builder.Append(rawMaxHP);
+
+                // Scale adjustment tooltip
                 if (Props.scaleAdjustment != 0)
                 {
-                    builder.AppendLine("Max HP: ×" + ((int) ((Props.scaleAdjustment + 1) * 100)).ToStringCached() + "%");
+                    builder.AppendLine();
+                    builder.Append("Max HP: ");
+                    builder.Append(Props.ScaledAdjustmentDisplayString);
                 }
+
+                // Linear adjustment tooltip
                 if (Props.linearAdjustment != 0)
                 {
-                    builder.AppendLine("Max HP: +" + Props.linearAdjustment.ToStringCached() + " HP");
+                    builder.AppendLine();
+                    builder.Append("Max HP: ");
+                    builder.Append(Props.LinearAdjustmentDisplayString);
                 }
                 return builder.ToString();
             }
@@ -36,7 +49,21 @@ namespace EBF.Hediffs
             {
                 if (EliteBionicsFrameworkMain.SettingHandle_DisplayHpDiffInHediffName.Value)
                 {
-                    return "adjusts max HP";
+                    StringBuilder builder = new StringBuilder("HP: ");
+                    if (Props.scaleAdjustment != 0)
+                    {
+                        builder.Append(Props.ScaledAdjustmentDisplayString);
+                    }
+                    if (Props.linearAdjustment != 0)
+                    {
+                        if (builder.Length > 0)
+                        {
+                            builder.Append(", ");
+                        }
+                        builder.Append(Props.LinearAdjustmentDisplayString);
+                    }
+
+                    return builder.ToString();
                 }
                 else
                 {

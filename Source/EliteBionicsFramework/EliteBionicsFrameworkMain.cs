@@ -29,7 +29,7 @@ namespace EBF
 
         public override void DefsLoaded()
         {
-            SettingHandle_DisplayHpDiffInHediffName = Settings.GetHandle("displayHpDiffInHediffName", "Display HP Diff in Hediff Name", "If enabled, hediffs powered by EBF will display how the max HP of the affected body part is affected by EBF.\n\nEnabled by default.", true);
+            SettingHandle_DisplayHpDiffInHediffName = Settings.GetHandle("displayHpDiffInHediffName", "Display HP diff in hediff name", "If enabled, EBF will display how the max HP of body parts is affected by EBF-enabled hediffs.\n\nEnabled by default.", true);
         }
 
         public static void LogError(string message, bool ignoreLogLimit = false)
