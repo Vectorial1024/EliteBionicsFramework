@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +31,9 @@ namespace EBF.Transpilations
             foreach (Type type in typeof(HealthUtility).GetNestedTypes(BindingFlags.NonPublic))
             {
                 // FileLog.Log("Type is " + type.Name);
-                if (type.Name.Contains("<GiveRandomSurgeryInjuries>c__AnonStorey1"))
+                // They changed the compiler-generated class name from <GiveRandomSurgeryInjuries>c__AnonStorey1
+                // to <>c__DisplayClass13_0
+                if (type.Name.Contains("DisplayClass13_0"))
                 {
                     typeSelfAnon = type;
                     // break;

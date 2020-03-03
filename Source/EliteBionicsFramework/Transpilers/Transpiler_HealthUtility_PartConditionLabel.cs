@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +12,18 @@ namespace EBF.Transpilations
     [HarmonyPatch("GetPartConditionLabel")]
     public static class Transpiler_HealthUtility_PartConditionLabel
     {
+        /*
+         * Keeping this here until Harmony Library becomes stable again.
+         * Note: Chaos ensued after Harmony failed to patch some RimWorld methods that returns structs.
+         * This patch file is dealing with a method tha returns structs...
+        [HarmonyPrefix]
+        public static bool PreFix(Pawn pawn, BodyPartRecord part)
+        {
+            EliteBionicsFrameworkMain.LogError("Pawn, part: " + pawn.Name + ", " + part.def.defName);
+            return true;
+        }
+        */
+
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             // Patch things up at the 2nd occurence of callvirt

@@ -1,4 +1,7 @@
 A common framework to change body part max HP. Please check the changelog tab for the latest version.
+
+Package ID: V1024.EBFramework
+
 [h1]Quick Info and Compatibility[/h1]
 [list]
 [*]Requires HugsLib (warning should be given if you don't have HugsLib); place this mod below HugsLib
@@ -21,8 +24,10 @@ Modders (and perhaps end users too) may refer and subscribe to Elite Archotech (
 [list]
 [*]This framework will throw errors if it detects any mod that tries to get the max HP of body parts without using this framework.
 [*]This framework will continuously throw errors when Moody is also loaded. I am technically unable to fix this problem. Ask the guys developing Moody to have a look, and let them decide if they want to support this framework.
+[*]Uninstalling this mod may have problems: if, after uninstallation, your colonists have body parts where the injury magnitude is larger than the max HP (e.g. injury at 26, EBF part gives max HP = 35, but vanilla only gives max HP = 20), those body parts will very likely become destroyed. This is vanilla behavior.
 [/list]
 [h1]The GitHub Repo[/h1]
 Many things, including changelogs, non-Steam downloads, are on the GitHub repo of this mod. Link: https://github.com/Vectorial1024/EliteBionicsFramework
+
 [h1]Conclusion[/h1]
 Please report bugs and error messages below!

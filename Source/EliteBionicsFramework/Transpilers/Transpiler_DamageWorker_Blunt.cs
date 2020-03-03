@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -31,9 +31,11 @@ namespace EBF.Transpilations
                     if (occurencesCallvirt == 11)
                     {
                         Type targetType = null;
+                        // There is a compiler-generated class, and it is named as <>c__DisplayClass1_0
+                        // Perhaps previously it was named something like ApplySpecialEffectsToPart, IDK
                         foreach (var info in typeof(DamageWorker_Blunt).GetNestedTypes(BindingFlags.NonPublic))
                         {   
-                            if (info.Name.Contains("ApplySpecialEffectsToPart"))
+                            if (info.Name.Contains("DisplayClass1_0"))
                             {
                                 targetType = info;
                             }

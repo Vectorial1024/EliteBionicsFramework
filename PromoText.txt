@@ -1,0 +1,28 @@
+Greetings, colonists!
+
+Do you know that installing conventional bionic parts to pawns actually reduce their total health?
+
+Do you want something fresh with your OP Bionic setup?
+
+Well, say no more!
+
+Our top scientists have discovered a way to make bionic parts more durable on pawns. They dubbed it the "Elite Bionics Framework".
+
+Working together with the engineers down the university alley, the team successfully completed the "Elite Archotech" project and reconfigured the Archotech Bionics to be more durable.
+
+Both the Framework and the Archotech are now available for all to use. Get them here:
+
+Elite Bionics Framework: https://steamcommunity.com/sharedfiles/filedetails/?id=1665403571
+Elite Archotech: https://steamcommunity.com/sharedfiles/filedetails/?id=1744648077
+
+Note to general users: Elite Archotech depends on Elite Bionics Framework. The mod order auto-sort should be able to help you out on this.
+
+Other known mods that make use of Elite Bionics Framework (not guaranteed to be a complete list):
+
+[FSF] Vanilla Bionics Expansion: https://steamcommunity.com/sharedfiles/filedetails/?id=1419675146
+[FSF] Advanced Bionics Expansion: https://steamcommunity.com/sharedfiles/filedetails/?id=2006925330
+Medical System Expansion: https://steamcommunity.com/sharedfiles/filedetails/?id=1749027802
+
+Note to modders: you may apply a flat buff or a percentage buff to body part max HP through hediffs that use the Elite Bionics Framework.
+
+Good luck in real life and on the Rim!

@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +30,7 @@ namespace EBF.Transpilations
 
                     if (occurencesCallvirt == 11)
                     {
-                        yield return new CodeInstruction(OpCodes.Ldloc_3);
+                        yield return new CodeInstruction(OpCodes.Ldloc_2);
                         yield return new CodeInstruction(OpCodes.Ldloc_S, 4);
                         yield return new CodeInstruction(OpCodes.Callvirt, typeof(List<Hediff_MissingPart>).GetProperty("Item").GetGetMethod());
                         yield return new CodeInstruction(OpCodes.Callvirt, typeof(Hediff).GetProperty("Part").GetGetMethod());
