@@ -28,7 +28,7 @@ namespace EBF.Transpilations
                 {
                     occurencesCallvirt++;
 
-                    if (occurencesCallvirt == 5)
+                    if (occurencesCallvirt == 4)
                     {
                         /*
                         writer.WriteLine("Patching!");
