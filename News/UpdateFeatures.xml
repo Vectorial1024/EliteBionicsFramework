@@ -24,6 +24,13 @@
 		<assemblyVersion>2.0.0</assemblyVersion>
 		<content>Updated mod for RimWorld v1.1.</content>
 	</HugsLib.UpdateFeatureDef>
+
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v2_1_0_B01</defName>
+		<assemblyVersion>2.1.0</assemblyVersion>
+		<content>Beta 1.|
+Framework addition: now possible to adjust melee attack damage for Hediffs and Hediff_Implants; refer to GitHub documentation for more info.</content>
+	</HugsLib.UpdateFeatureDef>
 	
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">

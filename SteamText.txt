@@ -12,13 +12,18 @@ Package ID: V1024.EBFramework
 GitHub repo link is here: https://github.com/Vectorial1024/EliteBionicsFramework
 [/list]
 [h1]Framework Description[/h1]
-Other modders may manipulate max HP of body parts afflicted by hediffs through this framework.
-
+Other modders may manipulate body parts through this framework. Currently, these manipulations are supported:
+[list]
+[*]Changing max HP of body part (v1.0.0)
+[*]Changing melee attack damage of bionics (v2.1.0)
+[/list]
 Note that, normally, when body part max HP is increased, the pain and bleeding rate will both also increase. This mod scales down the bleeding rate in order to avoid nonsensical instant-death sithations due to instant-bleed-out.
 
 However, pain levels are not touched to maintain balance. End users should aim for drugs, implants, or armor to reduce the pain of your soldiers/workers before and during battle.
 
 Modders (and perhaps end users too) may refer and subscribe to Elite Archotech ( https://steamcommunity.com/sharedfiles/filedetails/?id=1744648077 ), another mod under my name, for inspiartion and immediate usage.
+
+There are some documentation on GitHub for modders too.
 
 [h1]Known Issues[/h1]
 [list]
@@ -28,6 +33,17 @@ Modders (and perhaps end users too) may refer and subscribe to Elite Archotech (
 [/list]
 [h1]The GitHub Repo[/h1]
 Many things, including changelogs, non-Steam downloads, are on the GitHub repo of this mod. Link: https://github.com/Vectorial1024/EliteBionicsFramework
+
+[h1]Credits and Legal Stuff[/h1]
+[list]
+[*]RimWorld belongs to Ludeon Studio. Some textures used as illustration above are from RimWorld assets.
+[*]Harmony is provided by pardeike.
+[*]HugsLib is made by UnlimitedHugs.
+[/list]
+
+[h1]Support and Donation[/h1]
+You are welcome to buy me some coffee at Ko-Fi to support my work!
+https://ko-fi.com/vectorial1024
 
 [h1]Conclusion[/h1]
 Please report bugs and error messages below!

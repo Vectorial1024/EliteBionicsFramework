@@ -2,19 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 
-namespace EBF.Hediffs
+namespace EliteBionicsFramework.Hediffs
 {
-    public class HediffCompProperties_MaxHPAdjust : HediffCompProperties
+    class HediffCompProperties_ToolPowerAdjust : HediffCompProperties
     {
+        /*
+         * Self-note: base pawn DPS/tool is defined at Core/Defs/ThingDefs_Races/*
+         */
+
         public int linearAdjustment;
         public float scaleAdjustment;
 
-        public HediffCompProperties_MaxHPAdjust()
+        public HediffCompProperties_ToolPowerAdjust()
         {
-            compClass = typeof(HediffComp_MaxHPAdjust);
+            compClass = typeof(HediffComp_ToolPowerAdjust);
         }
 
         /// <summary>
@@ -40,8 +45,9 @@ namespace EBF.Hediffs
         }
 
         /// <summary>
-        /// Returns the actual scaling factor given by the scale-adjustment;
-        /// this value is to be directly multiplied to the max HP.
+        /// Returns the actual scaling factor given by the scale-adjustment.
+        /// <para/>
+        /// This value is validated before returning, and may be directly used in multiplication.
         /// </summary>
         public float ActualScalingFactor
         {
