@@ -30,11 +30,12 @@ namespace EBF.Transpilations
             Type typeSelfAnon = null;
             foreach (Type type in typeof(HealthUtility).GetNestedTypes(BindingFlags.NonPublic))
             {
-                // FileLog.Log("Type is " + type.Name);
-                // They changed the compiler-generated class name from <GiveRandomSurgeryInjuries>c__AnonStorey1
-                // to <>c__DisplayClass13_0
-                if (type.Name.Contains("DisplayClass13_0"))
-                {
+                /* TEMPORARY FIX:
+                 * This really needs to be rewritten to search for those types in the "brain" field, rather than rely on the specific name.  
+                 * That way it will be more resilient to future updates changing the type name again
+                 */
+                if (type.Name.Contains("DisplayClass14_0"))
+        {
                     typeSelfAnon = type;
                     // break;
                 }
