@@ -27,48 +27,65 @@ namespace EBF.Transpilations
             short suppressCount = 0;
             bool patchComplete = false;
             // FileLog.Log("Analyzing nested types under HealthUtility...");
-            Type typeSelfAnon = null;
-            foreach (Type type in typeof(HealthUtility).GetNestedTypes(BindingFlags.NonPublic))
+            /*
+             * This is to patch for "brain def max health" in the function GiveRandomSurgeryInjuries(...).
+             * From what we know, RW generates a lot of nested compiler-generated class,
+             * and among them, there is one under HealthUtility that stores info related to "brain def max health".
+             * 
+             * This generated class may have different names, but from what we know, this class:
+             * - has a field named "brain"
+             * - such field has type BodyPartRecord (this should be less important, since we can't have two fields with the same name but with different types)
+             * 
+             * I am assuming there is only one such class among all the nested classes under HealthUtility.
+             */
+            /*
+             * Credits to Neceros on GitHub for pointing out this bug at the code base,
+             * and credits to Bar0th (I think they are on Steam) for suggesting the following approach of finding the currect self-anon type.
+             * (Back in B18 and B19, these generated nested types were usually named like "_AnonStorey" so I referred to them as self-anon types)
+             */
+            Type typeSelfAnon = typeof(HealthUtility).GetNestedTypes(BindingFlags.NonPublic).Where((Type type) => type.GetField("brain") != null).First();
+            if (typeSelfAnon != null)
             {
-                /* TEMPORARY FIX:
-                 * This really needs to be rewritten to search for those types in the "brain" field, rather than rely on the specific name.  
-                 * That way it will be more resilient to future updates changing the type name again
-                 */
-                if (type.Name.Contains("DisplayClass14_0"))
-        {
-                    typeSelfAnon = type;
-                    // break;
-                }
-            }
-
-            foreach (CodeInstruction instruction in instructions)
-            {
-                if (!patchComplete && instruction.opcode == OpCodes.Callvirt)
+                // Successfully found the anon type
+                foreach (CodeInstruction instruction in instructions)
                 {
-                    occurencesCallvirt++;
-
-                    if (occurencesCallvirt == 4 || occurencesCallvirt == 6 || occurencesCallvirt == 7)
+                    if (!patchComplete && instruction.opcode == OpCodes.Callvirt)
                     {
-                        yield return new CodeInstruction(OpCodes.Ldloc_0);
-                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeSelfAnon, "brain"));
-                        yield return new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth"));
+                        occurencesCallvirt++;
 
-                        suppressCount = 1;
-
-                        if (occurencesCallvirt == 7)
+                        if (occurencesCallvirt == 4 || occurencesCallvirt == 6 || occurencesCallvirt == 7)
                         {
-                            patchComplete = true;
+                            yield return new CodeInstruction(OpCodes.Ldloc_0);
+                            yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeSelfAnon, "brain"));
+                            yield return new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth"));
+
+                            suppressCount = 1;
+
+                            if (occurencesCallvirt == 7)
+                            {
+                                patchComplete = true;
+                            }
                         }
                     }
-                }
 
-                if (suppressCount > 0)
-                {
-                    instruction.opcode = OpCodes.Nop;
-                    suppressCount--;
+                    if (suppressCount > 0)
+                    {
+                        instruction.opcode = OpCodes.Nop;
+                        suppressCount--;
+                    }
+
+                    yield return instruction;
                 }
-                
-                yield return instruction;
+                yield break;
+            }
+            else
+            {
+                // In the unlikely case where the search failed, change nothing and return.
+                foreach (CodeInstruction instruction in instructions)
+                {
+                    yield return instruction;
+                }
+                yield break;
             }
         }
     }

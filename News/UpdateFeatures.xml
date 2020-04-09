@@ -29,7 +29,14 @@
 		<defName>EBF_v2_1_0_B01</defName>
 		<assemblyVersion>2.1.0</assemblyVersion>
 		<content>Beta 1.|
-Framework addition: now possible to adjust melee attack damage for Hediffs and Hediff_Implants; refer to GitHub documentation for more info.</content>
+- Framework addition: now possible to adjust melee attack damage for Hediffs and Hediff_Implants; refer to GitHub documentation for more info.</content>
+	</HugsLib.UpdateFeatureDef>
+
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v2_1_0_B02</defName>
+		<assemblyVersion>2.1.0.2</assemblyVersion>
+		<content>Beta 2.|
+- Fixed unexpected, critical "failed to apply Harmony patches" bug due to RimWorld update v1.1.2598</content>
 	</HugsLib.UpdateFeatureDef>
 	
     <!--
