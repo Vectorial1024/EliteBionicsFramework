@@ -38,6 +38,13 @@
 		<content>Beta 2.|
 - Fixed unexpected, critical "failed to apply Harmony patches" bug due to RimWorld update v1.1.2598</content>
 	</HugsLib.UpdateFeatureDef>
+
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v2_1_0_B03</defName>
+		<assemblyVersion>2.1.0.3</assemblyVersion>
+		<content>Beta 3.|
+- Fixed a NullReferenceException related to social fights.</content>
+	</HugsLib.UpdateFeatureDef>
 	
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">

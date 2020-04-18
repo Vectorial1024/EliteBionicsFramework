@@ -35,6 +35,11 @@ namespace EliteBionicsFramework.Util
 
         public static bool ToolIsOriginalToolOfPawn(Tool tool, Pawn pawn)
         {
+            if (pawn == null || tool == null)
+            {
+                // This normally shouldn't happen, but we better be prepared.
+                return false;
+            }
             return pawn.def.tools.Contains(tool);
         }
 
