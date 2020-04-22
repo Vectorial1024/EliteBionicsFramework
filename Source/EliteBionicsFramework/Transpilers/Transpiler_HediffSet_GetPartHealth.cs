@@ -8,6 +8,9 @@ using Verse;
 
 namespace EBF.Transpilations
 {
+    // It should be possible to convert this into a standard prefix-postfix patch with high modularity.
+    // TODO
+    [HarmonyPriority(Priority.First)]
     [HarmonyPatch(typeof(HediffSet))]
     [HarmonyPatch("GetPartHealth", MethodType.Normal)]
     public static class Transpiler_HediffSet_GetPartHealth

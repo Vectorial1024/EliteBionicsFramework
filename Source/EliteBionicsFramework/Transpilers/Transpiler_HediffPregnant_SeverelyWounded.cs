@@ -8,6 +8,7 @@ using Verse;
 
 namespace EBF.Transpilations
 {
+    [HarmonyPriority(Priority.First)]
     [HarmonyPatch(typeof(Hediff_Pregnant))]
     [HarmonyPatch("IsSeverelyWounded", MethodType.Getter)]
     public static class Transpiler_HediffPregnant_SeverelyWounded

@@ -8,6 +8,7 @@ using Verse;
 
 namespace EBF.Transpilations
 {
+    [HarmonyPriority(Priority.First)]
     [HarmonyPatch(typeof(PawnCapacityUtility))]
     [HarmonyPatch("CalculatePartEfficiency", MethodType.Normal)]
     public static class Transpiler_PawnCapacity_Calculate

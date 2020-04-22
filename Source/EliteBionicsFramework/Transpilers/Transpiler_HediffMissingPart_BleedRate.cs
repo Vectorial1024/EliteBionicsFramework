@@ -8,6 +8,8 @@ using Verse;
 
 namespace EBF.Transpilations
 {
+    // TODO
+    [HarmonyPriority(Priority.First)]
     [HarmonyPatch(typeof(Hediff_MissingPart))]
     [HarmonyPatch("BleedRate", MethodType.Getter)]
     public static class Transpiler_HediffMissingPart_BleedRate

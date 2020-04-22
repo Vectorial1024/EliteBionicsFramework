@@ -10,6 +10,7 @@ using Verse;
 
 namespace EBF.Transpilations
 {
+    [HarmonyPriority(Priority.First)]
     [HarmonyPatch(typeof(HealthCardUtility))]
     [HarmonyPatch("GetTooltip")]
     public static class Transpiler_HealthCardUtility

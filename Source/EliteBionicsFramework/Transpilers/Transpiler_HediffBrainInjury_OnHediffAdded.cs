@@ -8,6 +8,7 @@ using Verse;
 
 namespace EBF.Transpilations
 {
+    [HarmonyPriority(Priority.First)]
     [HarmonyPatch(typeof(HediffGiver_BrainInjury))]
     [HarmonyPatch("OnHediffAdded", MethodType.Normal)]
     public static class Transpiler_HediffBrainInjury_OnHediffAdded

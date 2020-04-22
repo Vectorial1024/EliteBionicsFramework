@@ -8,6 +8,11 @@ using Verse;
 
 namespace EBF.Transpilations
 {
+    /*
+     * We should be able to convert this into some prefix-postfix patch with high modularity.
+     * TODO
+     */
+    [HarmonyPriority(Priority.First)]
     [HarmonyPatch(typeof(Hediff_MissingPart))]
     [HarmonyPatch("PainOffset", MethodType.Getter)]
     public static class Transpiler_HediffMissingPart_PainOffset

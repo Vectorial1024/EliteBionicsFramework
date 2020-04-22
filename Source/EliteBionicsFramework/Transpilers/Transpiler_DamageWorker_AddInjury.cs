@@ -5,6 +5,7 @@ using Verse;
 
 namespace EBF.Transpilations
 {
+    [HarmonyPriority(Priority.First)]
     [HarmonyPatch(typeof(DamageWorker_AddInjury))]
     [HarmonyPatch("ReduceDamageToPreserveOutsideParts")]
     public static class Transpiler_DamageWorker_AddInjury

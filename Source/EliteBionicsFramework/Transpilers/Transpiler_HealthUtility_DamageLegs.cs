@@ -8,6 +8,7 @@ using Verse;
 
 namespace EBF.Transpilations
 {
+    [HarmonyPriority(Priority.First)]
     [HarmonyPatch(typeof(HealthUtility))]
     [HarmonyPatch("DamageLegsUntilIncapableOfMoving")]
     public static class Transpiler_HealthUtility_DamageLegs

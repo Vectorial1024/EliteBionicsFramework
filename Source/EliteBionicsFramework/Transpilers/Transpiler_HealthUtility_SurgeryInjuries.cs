@@ -9,6 +9,7 @@ using Verse;
 
 namespace EBF.Transpilations
 {
+    [HarmonyPriority(Priority.First)]
     [HarmonyPatch(typeof(HealthUtility))]
     [HarmonyPatch("GiveRandomSurgeryInjuries")]
     public static class Transpiler_HealthUtility_SurgeryInjuries

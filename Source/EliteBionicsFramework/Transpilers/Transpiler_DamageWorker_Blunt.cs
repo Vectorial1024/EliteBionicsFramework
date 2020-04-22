@@ -11,6 +11,7 @@ using static Verse.DamageWorker;
 
 namespace EBF.Transpilations
 {
+    [HarmonyPriority(Priority.First)]
     [HarmonyPatch(typeof(DamageWorker_Blunt))]
     [HarmonyPatch("ApplySpecialEffectsToPart")]
     public static class Transpiler_DamageWorker_Blunt_SpecialEffects

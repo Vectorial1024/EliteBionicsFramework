@@ -6,7 +6,7 @@
 		<modNameReadable>Elite Bionics Framework</modNameReadable>
 		<linkUrl>https://github.com/Vectorial1024/EliteBionicsFramework</linkUrl>
 	</HugsLib.UpdateFeatureDef>
-	
+
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
 		<defName>EBF_v1_0_0</defName>
 		<assemblyVersion>1.0.0</assemblyVersion>
@@ -45,7 +45,14 @@
 		<content>Beta 3.|
 - Fixed a NullReferenceException related to social fights.</content>
 	</HugsLib.UpdateFeatureDef>
-	
+
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v2_1_0_B04</defName>
+		<assemblyVersion>2.1.0.4</assemblyVersion>
+		<content>Beta 4.|
+- Technical update: Max-HP-related transpilers now at priority = Priority.First .</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
