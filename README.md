@@ -6,6 +6,20 @@ A common framework to change body part max HP.
 2. Notice the "Clone or Download" button on the top right hand corner (under the "1 Contributor" area). Click on it and click "Download as ZIP"
 3. The ZIP should conain 1 folder. Unpack the ZIP, and place the folder in the /Mods directory of your RimWorld installation.
 
+# Downloading this Mod (Advanced Users)
+The main idea is to git-clone the repo to local so that you could git-pull regularly to apply updates (if exists)
+1. To "build", do:
+```
+# cd to RimWorld root directory first
+mkdir Mods
+cd Mods
+git clone https://github.com/Vectorial1024/EliteBionicsFramework.git
+```
+2. To update to latest, do:
+```
+git pull
+```
+
 # Usage and Other Related Info
 Please refer to individual md files under `/Docs` for detailed information of each available component.
 
