@@ -14,13 +14,28 @@ namespace EBF.Patches
     {
         private static List<string> reportedNamespaces = new List<string>();
 
+        internal static bool shouldSupressNextWarning = false;
+
+        /// <summary>
+        /// Suppresses the next "EBF Protocol violation" error message.
+        /// Because RimWorld is only single-threaded, we can do crazy things like this.
+        /// </summary>
+        internal static void SuppressNextWarning()
+        {
+            shouldSupressNextWarning = true;
+        }
+
         [HarmonyPrefix]
         public static bool PreFix(BodyPartDef __instance, float __result, Pawn pawn)
         {
             StackFrame investigateFrame = new StackFrame(2);
             string namespaceString = investigateFrame.GetMethod().ReflectedType.Namespace;
             
-            if (!reportedNamespaces.Contains(namespaceString))
+            if (shouldSupressNextWarning)
+            {
+                shouldSupressNextWarning = false;
+            }
+            else if (!reportedNamespaces.Contains(namespaceString))
             {
                 reportedNamespaces.Add(namespaceString);
                 string errorMessage = "Elite Bionics Framework has detected some mods" +
