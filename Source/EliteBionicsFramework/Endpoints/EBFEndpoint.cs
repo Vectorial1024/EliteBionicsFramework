@@ -57,7 +57,7 @@ namespace EBF
                         totalLinearAdjustment += adjustorComp.linearAdjustment;
                         if (adjustorComp.scaleAdjustment + 1 > 0)
                         {
-                            // Negative values are denied.
+                            // Only allow positive scaling values.
                             totalScaledAdjustment *= (adjustorComp.scaleAdjustment + 1);
                         }
                     }
