@@ -22,9 +22,7 @@ namespace EBF
         /// <returns></returns>
         public static float GetMaxHealth(this BodyPartDef def, Pawn pawn, BodyPartRecord record)
         {
-            // Log.Message("Who dareth disturb my slumber???");
-            // return def.GetRawMaxHealth(pawn);
-            return record.GetMaxHealthForBodyPart(pawn);
+            return EBFEndpoints.GetMaxHealthWithEBF(record, pawn);
         }
 
         /// <summary>
@@ -35,43 +33,18 @@ namespace EBF
         /// <returns></returns>
         public static float GetRawMaxHealth(this BodyPartDef def, Pawn pawn)
         {
-            return Mathf.CeilToInt(def.hitPoints * pawn.HealthScale);
+            return EBFEndpoints.GetMaxHealthUnmodified(def, pawn);
         }
 
         /// <summary>
-        /// Returns the max HP of the given BodyPartRecord.
+        /// Returns the max HP of the given BodyPartRecord with EBF effects considered.
         /// </summary>
         /// <param name="hediffSet"></param>
         /// <param name="record"></param>
         /// <returns></returns>
         public static float GetPartMaxHealth(this HediffSet hediffSet, BodyPartRecord record)
         {
-            float totalScaledAdjustment = 1;
-            float linearAdjustment = 0;
-            foreach (Hediff hediff in hediffSet.hediffs)
-            {
-                if (hediff.Part == record)
-                {
-                    HediffCompProperties_MaxHPAdjust adjustorComp = hediff.def.CompProps<HediffCompProperties_MaxHPAdjust>();
-                    if (adjustorComp != null)
-                    {
-                        linearAdjustment += adjustorComp.linearAdjustment;
-                        if (adjustorComp.scaleAdjustment + 1 > 0)
-                        {
-                            // Negative values are denied.
-                            totalScaledAdjustment *= (adjustorComp.scaleAdjustment + 1);
-                        }
-                    }
-                }
-            }
-
-            // We can't allow max health to drop to 0, that would be problematic.
-            float processedMaxHP = record.def.GetRawMaxHealth(hediffSet.pawn);
-            // Guaranteed to be at least positive.
-            processedMaxHP = Mathf.RoundToInt(processedMaxHP * totalScaledAdjustment);
-            processedMaxHP += linearAdjustment;
-            // Must be at least 1
-            return Mathf.Max(processedMaxHP, 1);
+            return EBFEndpoints.GetBodyPartMaxHealthWithEBF(hediffSet, record);
         }
 
         /// <summary>
@@ -82,7 +55,7 @@ namespace EBF
         /// <returns></returns>
         public static float GetMaxHealthForBodyPart(this BodyPartRecord record, Pawn pawn)
         {
-            return pawn.health.hediffSet.GetPartMaxHealth(record);
+            return EBFEndpoints.GetMaxHealthWithEBF(record, pawn);
         }
 
         /// <summary>
@@ -92,7 +65,8 @@ namespace EBF
         /// <returns></returns>
         public static float GetCorePartMaxHealth(this Pawn pawn)
         {
-            return pawn.health.hediffSet.GetPartMaxHealth(pawn.def.race.body.corePart);
+            BodyPartRecord corePart = pawn.def.race.body.corePart;
+            return EBFEndpoints.GetMaxHealthWithEBF(corePart, pawn);
         }
     }
 }
