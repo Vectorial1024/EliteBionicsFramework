@@ -4,10 +4,11 @@
 	<name>Elite Bionics Framework</name>
 	<author>Vectorial1024</author>
 	<supportedVersions>
+		<li>1.2</li>
 		<li>1.1</li>
 		<li>1.0</li>
 	</supportedVersions>
-	<description>A common framework to change body part max HP. Now at v2.1.0.</description>
+	<description>A common framework to change body part max HP. Now at v3.0.0.</description>
 	<url>https://github.com/Vectorial1024/EliteBionicsFramework</url>
 	<modDependencies>
 		<li>
