@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EBF.Hediffs;
 using EBF.Patches;
+using UnityEngine;
 using Verse;
 
 namespace EBF
@@ -63,8 +64,9 @@ namespace EBF
                 }
             }
 
-            float realMaxHP = baseMaxHP * totalScaledAdjustment + totalLinearAdjustment;
-            return realMaxHP;
+            float realMaxHP = Mathf.RoundToInt(baseMaxHP * totalScaledAdjustment) + totalLinearAdjustment;
+            // must be at least 1
+            return Mathf.Max(realMaxHP, 1);
         }
 
         /// <summary>
