@@ -35,7 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\..\..\workshop\content\294100\2009463077\v1.1\Assemblies\0Harmony.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\workshop\content\294100\2009463077\Current\Assemblies\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EliteBionicsFrameworkMain.cs" />
+    <Compile Include="Endpoints\EBFEndpoint.cs" />
     <Compile Include="Extensions\VanillaExtender.cs" />
     <Compile Include="Hediffs\HediffCompProperties_MaxHPAdjust.cs" />
     <Compile Include="Hediffs\HediffCompProperties_ToolPowerAdjust.cs" />
