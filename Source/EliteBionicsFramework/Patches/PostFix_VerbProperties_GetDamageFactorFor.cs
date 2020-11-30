@@ -1,6 +1,6 @@
 ﻿using EBF;
-using EliteBionicsFramework.Hediffs;
-using EliteBionicsFramework.Util;
+using EBF.Hediffs;
+using EBF.Util;
 using HarmonyLib;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 
-namespace EliteBionicsFramework.Patches
+namespace EBF.Patches
 {
     [HarmonyPatch(typeof(VerbProperties))]
     [HarmonyPatch("GetDamageFactorFor", MethodType.Normal)]

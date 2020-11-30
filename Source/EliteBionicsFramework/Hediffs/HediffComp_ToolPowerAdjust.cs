@@ -1,12 +1,11 @@
-﻿using EBF;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
 
-namespace EliteBionicsFramework.Hediffs
+namespace EBF.Hediffs
 {
     class HediffComp_ToolPowerAdjust: HediffComp
     {

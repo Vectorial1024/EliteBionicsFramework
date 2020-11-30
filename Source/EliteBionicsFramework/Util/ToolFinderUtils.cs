@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 
-namespace EliteBionicsFramework.Util
+namespace EBF.Util
 {
     public class ToolFinderUtils
     {

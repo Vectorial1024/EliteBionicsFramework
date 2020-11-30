@@ -60,6 +60,12 @@
 - Notice to C# modders: a new C# class EBFEndpoints is available to read the max HP of body parts under the effects of EBF; more details at the GitHub repo</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v4_0_0</defName>
+		<assemblyVersion>4.0.0.0</assemblyVersion>
+		<content>Standardize entire mod to use namespace "EBF" to reduce confusion.</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>

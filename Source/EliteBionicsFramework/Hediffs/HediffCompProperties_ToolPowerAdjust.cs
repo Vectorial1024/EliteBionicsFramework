@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 
-namespace EliteBionicsFramework.Hediffs
+namespace EBF.Hediffs
 {
     class HediffCompProperties_ToolPowerAdjust : HediffCompProperties
     {
