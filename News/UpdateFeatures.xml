@@ -66,6 +66,13 @@
 		<content>Standardize entire mod to use namespace "EBF" to reduce confusion.</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v4_0_1</defName>
+		<assemblyVersion>4.0.1.0</assemblyVersion>
+		<content>- Fixed potential tool-related null-reference error with Save Our Ships 2
+- Improved tool comparison logic to reduce occurence of null-reference errors with various other bionic mods (please see if those errors are fixed!)</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>

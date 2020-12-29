@@ -11,6 +11,11 @@ namespace EBF.Util
     {
         public static bool ToolsAreComparable(Tool a, Tool b)
         {
+            if (a == null || b == null)
+            {
+                // it seems sometimes some of them are null; in that case, do not compare.
+                return false;
+            }
             if (a == b)
             {
                 // Trivial.
@@ -40,7 +45,8 @@ namespace EBF.Util
                 // This normally shouldn't happen, but we better be prepared.
                 return false;
             }
-            return pawn.def.tools.Contains(tool);
+            // stronger null-safe for other mods e.g. Save Our Ships 2
+            return pawn.def.tools?.Contains(tool) ?? false;
         }
 
         public static List<Tool> FindAllOriginalToolsUnderBodyPart(Pawn pawn, BodyPartRecord part)
