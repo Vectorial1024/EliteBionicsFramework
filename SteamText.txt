@@ -32,7 +32,7 @@ There are some documentation on GitHub for modders too.
 [*]Uninstalling this mod may have problems: if, after uninstallation, your colonists have body parts where the injury magnitude is larger than the max HP (e.g. injury at 26, EBF part gives max HP = 35, but vanilla only gives max HP = 20), those body parts will very likely become destroyed. This is vanilla behavior.
 [/list]
 [h1]The GitHub Repo[/h1]
-Many things, including changelogs, non-Steam downloads, are on the GitHub repo of this mod. Link: https://github.com/Vectorial1024/EliteBionicsFramework
+Many things, including changelogs, non-Steam downloads, and issues, are on the GitHub repo of this mod. Link: https://github.com/Vectorial1024/EliteBionicsFramework
 
 [h1]Credits and Legal Stuff[/h1]
 [list]
