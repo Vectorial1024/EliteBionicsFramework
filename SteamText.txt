@@ -12,7 +12,7 @@ Package ID: V1024.EBFramework
 GitHub repo link is here: https://github.com/Vectorial1024/EliteBionicsFramework
 [/list]
 [h1]Background, Overview, and Motto[/h1]
-Elite Bionics Framework is the child of the abandoned, never-released mod Elite Bionics (ELTE). In Fall 2018, the ELTE mod was drafted to bring competition into the bionics mod duopoly at that time: EPOE and RBSE. The selling point was that, while the ELTE bionics offer less body part efficiency, they instead provide max HP bonuses to them.
+Elite Bionics Framework is the child of the abandoned, never-released mod Elite Bionics (ELTE). In Fall 2018, the ELTE mod was drafted to bring competition into the bionics mod duopoly at that time: EPOE and RBSE. The selling point was that, while the ELTE bionics offer less body part efficiency, they instead provide max HP bonuses to them, mitigating the loss of HP caused by the usage of bionics (see https://ludeon.com/forums/index.php?topic=15704.0 for more details).
 
 Unfortunately, with the lack of both drawing skills and the confidence of finding cooperation, the ELTE mod was scrapped; but to not let the programming effort go to vain, I have decided to refactor ELTE and release this mod instead as a tribute to the ambitions that went unfulfilled: to shape the Big Three of the bionics mod "market", and to become one of them.
 
