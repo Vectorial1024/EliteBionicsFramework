@@ -76,7 +76,7 @@
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
 		<defName>EBF_v4_0_2</defName>
 		<assemblyVersion>4.0.2.0</assemblyVersion>
-		<content>- Attack Power Adjustors now skips whole-body hediffs when checking applicability; should result in even less NullReferenceException</content>
+		<content>- Attack Power Adjustors now skips some problematic hediffs when checking applicability; should result in even less NullReferenceException</content>
 	</HugsLib.UpdateFeatureDef>
 
     <!--
