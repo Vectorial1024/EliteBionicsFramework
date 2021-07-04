@@ -38,7 +38,8 @@ namespace EBF.Patches
                             // Normal hediff only.
                             continue;
                         }
-                        if (candidateHediff.Part.IsInGroup(hostGroup))
+                        // I think in some cases the Part can be null, especially when for whole-body hediffs.
+                        if ((bool)(candidateHediff.Part?.IsInGroup(hostGroup)))
                         {
                             // Relevant.
                             HediffComp_ToolPowerAdjust adjustmentComps = candidateHediff.TryGetComp<HediffComp_ToolPowerAdjust>();

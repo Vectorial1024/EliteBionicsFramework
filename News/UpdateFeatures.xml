@@ -73,6 +73,12 @@
 - Improved tool comparison logic to reduce occurence of null-reference errors with various other bionic mods (please see if those errors are fixed!)</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v4_0_2</defName>
+		<assemblyVersion>4.0.2.0</assemblyVersion>
+		<content>- Attack Power Adjustors now skips whole-body hediffs when checking applicability; should result in even less NullReferenceException</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
