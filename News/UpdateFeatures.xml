@@ -79,6 +79,13 @@
 		<content>- Attack Power Adjustors now skips some problematic hediffs when checking applicability; should result in even less NullReferenceException</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v4_0_3</defName>
+		<assemblyVersion>4.0.3.0</assemblyVersion>
+		<content>- Recalibrated this mod to be compatible with RW v1.3
+- Pre-RW v1.3 compatibility is not affected; this is making use of the multi-version feature of RW</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
