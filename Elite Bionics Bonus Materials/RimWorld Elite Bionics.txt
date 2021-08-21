@@ -1,0 +1,152 @@
+Elite Bionics; Durability is Strength
+
+RimWorld Human Anatomy and Stats
+1 fully-operational Arm Total HP: 130
+1 fully-operational Leg Total HP: 150
+1 Torso -> Neck HP: 30 (no organs included)
+
+New "Craftable" Soldier type: Bionic
+
+Research:
+Forbidden Science: Some sciences are better not pursued lest they lead to unpredictable and uncontrollable outcomes.
+	Cloning: [Unlocks Bionic Cloning Facility; Unlocks feature: Cloning (Colonist Doppelgangers)]
+		Bionic Cloning Theory: Bonus to "military" skills, but loses any non-combat ability.
+		Elite Bionic Cloning Studies (EBCS): [Unlocks Elite Bionic Assembly Panel]
+			EBCS (Movement and Manipulation): [Unlocks Elite Bionic Arms, Legs, and Pelvis]
+			EBCS (Core): [Unlocks Elite Bionic Torso]
+			EBCS (Nervous Systems): [Unlocks Elite Bionic Spines, Necks (Implant) and Skulls (Implant)]
+			Bionic Clones: [Allows assembly of Bionic Clones at the Cloning Facility by consuming the different required EBCS parts.]
+			
+			Superconductive Materials: Elite Bionic Skulls gains +
+		Domestic Cloning Theory: Bonus to "civ" skills, but loses any combat ability.
+	
+EB Arm has +35 HP (+15 HP)
+EB Leg has +45 HP (+15 HP)
+EB Eye has +5 HP (+5 HP)
+EB Jaw has +5 HP (+5 HP)
+EB Pelvis provides +5% movement and +10 HP (+5 HP)
+EB Spine has +10 HP (+10 HP)
+
+EB Neck +10 (+5)
+EB Torso +20 (+10)
+
+Head Reinforcement: Skull, Neck
+Sensory Reinforcement: Eye, Ear, Jaw
+Limb Compensation (1):
+Limb Reinforcement (2): Arm, Leg
+Core Reinforcement: Torso, Spine, Pelvis
+Greater Hardening: Torst, Spine, Pelvis
+
+Additional implants etc.
+Nerve Dampener (-15%), when HP is increased, pawns are more likely to be in shock instead of straight out killed; this mitigates that; Go-Juice is still stronger when it comes to pain reduction, though.
+Reinforcement Platings: (Part +10 HP), the main point of this mod: durability is strength
+
+RPP made from machining table after research has been completed.
+Costs: 2 plasteel, 5 steel
+Work: 9030
+Result: 1 RPP
+
+RPP recycled at Electric Smelter after research has been completed.
+Costs: 1 RPP
+Work: 9030
+Results: 2 plasteel, 5 steel
+
+RPP has 2.5 mass and $70 market value.
+
+RPP is considered as a "stuff"
+
+Bionic crafting:
+Bionic parts generally require steel, gold, plasteel, uranium, components, and advanced components
+Elite Bionic Core: The basic resource required in any EB manufacturing. At least 1 Core is required in a EB part.
+EBC is made from 90 steel, 100 gold, 60 uranium , 30 plasteel, 20 components, and 5 advanced components
+The Core is the "coordinator" of the EB part.
+Other bionic parts require the EBC and some additional steel, gold, plasteel, uranium, components and advanced components to manufacture.
+Also the manufacturing requires a high crafting and a low medical skill level.
+Bionic Platings have a stronger preference on steel and plasteel, where elite bionics have a stronger preference on gold, uranium and advanced components
+
+Elite Bionic Brain
++50% Consciousness
+Permanent +5 modd buff
+Disables social for Pawn
+
+Improved Motor Joints
+Part efficiency +15%
+
+Structural Reinforcement
+Part HP +10
+
+Nanobot Command
+Part Auto-Heal
+
+
+
+ITEMS
+Elite Bionics Power Core
+[Uses its own texture]
+The must-have for all Elite Bionics. Bought from exotic traders.
+Crafted from a mix of materials, including plasteel, uranium and advanced components.
+Crafted from:
+Plasteel 50
+Uranium 60
+Advanced Components 10
+Components 15
+
+Reinforcement Gels
+[Uses Elite Bionics texture]/[Blue Shade]
+Each gel provides +5 HP to the body part installed. Bought from exotic traders.
+Some Elite Bionics require multiple of them to be assembled.
+UPDATE: Reinforced Material Plating
+Each RMP provides +5HP to the body part installed. Bought from exotic traders. 1 can be manufactured from 2 Plasteel and 5 Steel at a smithy.
+Is a basic ingredient to manufacture Elite BIonics in addition to other "conventional" ingredients.
+UPDATE: Ferroplastic
+Each Ferroplastic Plasteel can provide +1HP bonus. 1 of this can be manufactured from 2 Plasteel and 5 Steel at a smithy.
+Ferroplastic is brown to account for its different internal structure compared to plasteel. Its bonds vibrate at a different wavelength than plasteel.
+UPDATE::: Reinforcement Nano-particles
+Ground from Plasteel and the like, these nano-particles fill in the gaps in-between cells that are found within biological body parts, binding them together, thus strengthening the body part overall. They are able to ajdust themselves to work functionaly the same when injected into bionic or mechanical body parts.
+Crafted from:
+Plasteel 2
+Steel 5
+Silver 10
+{
+That is, if you are to make a Elite BIonic Arm [+35HP], you need at least:
+Plasteel 70
+Steel 175
+Silver 350
+}
+
+Bionic Motors
+[Uses Elite Bionics texture]/[Green Shade]
+At least one is required for some Elite Bionics. Bought from exotic traders.
+Can also be installed separately to provide some minor bonuses.
+Crafted from:
+Plasteel 25
+Uranium 24
+Gold 25
+Advanced Components 7
+Components 3
+
+Nanobot Quarters
+[Uses Elite Bionics texture]/[Red Shade]
+Assembled from 1 Luciferium and 1 (2? 3?) Advanced Component, it reprograms the Luciferium nanobots, restricting them to only a part of the body.
+Thus, effects of discoherence is greatly reduced.
+Can be bought from exotic traders.
+UPDATE: This is on hold; I am unable to determine the proper way of producing them locally.
+UPDATE:::
+Crafted from:
+Healer mech serum 1
+Plasteel 15
+Steel 10
+Components 2
+Advanced Components 5
+
+Elite Bionic Parts
+Each EBP requires at least 1 EB Power Core (power to run the bionic part), 1 Bionic Joint (connection to the body/other parts) and 1 Nanobot Quarters (regenerative properties of such bionics).
+Additionally Reinforcement Gels, Bionic Joints and Nanobot Quarters can be installed individually to provide minor bonuses.
+
+WARNING:
+Pure Bionics (Pawns) dropped in respect of a cloner mod.
+
+For now, these can only be bought from exotic traders.
+
+"Stat-wise not the best, but different from the rest."
+"儘管表現非前矛，彼與己間可相較"
