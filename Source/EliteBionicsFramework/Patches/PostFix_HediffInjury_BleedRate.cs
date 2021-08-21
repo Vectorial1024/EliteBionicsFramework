@@ -15,7 +15,7 @@ namespace EBF.Patches
         [HarmonyPostfix]
         public static void PostFix(Hediff_Injury __instance, ref float __result)
         {
-            if (__result > 0)
+            if (__result > 0 && __instance.Part != null)
             {
                 // Scales it down by (Real HP : Displayed HP)
                 __result = __result * __instance.Part.def.GetRawMaxHealth(__instance.pawn) / __instance.Part.def.GetMaxHealth(__instance.pawn, __instance.Part);

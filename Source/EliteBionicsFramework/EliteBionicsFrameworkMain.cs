@@ -32,14 +32,14 @@ namespace EBF
             SettingHandle_DisplayHpDiffInHediffName = Settings.GetHandle("displayHpDiffInHediffName", "Display HP diff in hediff name", "If enabled, EBF will display how the max HP of body parts is affected by EBF-enabled hediffs.\n\nEnabled by default.", true);
         }
 
-        public static void LogError(string message, bool ignoreLogLimit = false)
+        public static void LogError(string message)
         {
-            Log.Error(MODPREFIX + " " + message, ignoreLogLimit);
+            Log.Error(MODPREFIX + " " + message);
         }
 
-        public static void LogWarning(string message, bool ignoreLogLimit = false)
+        public static void LogWarning(string message)
         {
-            Log.Warning(MODPREFIX + " " + message, ignoreLogLimit);
+            Log.Warning(MODPREFIX + " " + message);
         }
     }
 }

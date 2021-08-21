@@ -36,7 +36,7 @@ namespace EBF.Transpilations
                         writer.WriteLine(new CodeInstruction(OpCodes.Ldarg_2));
                         writer.WriteLine(new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth")));
                         */
-                        yield return new CodeInstruction(OpCodes.Ldarg_2);
+                        yield return new CodeInstruction(OpCodes.Ldarg_1);
                         yield return new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth"));
                         suppressCount = 1;
                         patchIsComplete = true;
