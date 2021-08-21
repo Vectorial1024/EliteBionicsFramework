@@ -11,7 +11,7 @@
 	</supportedVersions>
 	<description>A common framework to change body part max HP. Now at v4.0.3.
 
-This mod made use of the multi-version feature of RW, and therefore has compatibility with RW &lt; v1.3 in the same mod.
+This mod made use of the multi-version feature of RW, and therefore has compatibility with RW &lt; v1.3 in the same mod file.
 
 As a rule of thumb, if Ludeon did not change much about the health system, then this mod should still continue to work even though it may say "the version number does not match".</description>
 	<url>https://github.com/Vectorial1024/EliteBionicsFramework</url>
