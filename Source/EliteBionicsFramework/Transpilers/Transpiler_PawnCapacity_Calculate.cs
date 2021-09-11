@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using EBF.Util;
+using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,13 @@ namespace EBF.Transpilations
     [HarmonyPatch("CalculatePartEfficiency", MethodType.Normal)]
     public static class Transpiler_PawnCapacity_Calculate
     {
+        public static bool Prepare()
+        {
+            // dont do this patch if Pawnmorpher is detected; there are race conditions
+            // if Pawnmorpher is loaded then we use PostFix_Pawnmorpher_HealthUtil instead.
+            return !ModDetector.PawnmorpherIsLoaded;
+        }
+
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             /*
