@@ -86,6 +86,12 @@
 - Pre-RW v1.3 compatibility is not affected; this is making use of the multi-version feature of RW</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v4_0_4</defName>
+		<assemblyVersion>4.0.4.0</assemblyVersion>
+		<content>- Fixed Harmony patching conflicts with Pawnmorpher (not backported)</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
