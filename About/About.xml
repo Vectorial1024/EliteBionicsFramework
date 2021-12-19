@@ -26,4 +26,7 @@ As a rule of thumb, if Ludeon did not change much about the health system, then 
 	<loadAfter>
 		<li>UnlimitedHugs.HugsLib</li>
 	</loadAfter>
+	<loadBefore>
+		<li>erdelf.HumanoidAlienRaces</li>
+	</loadBefore>
 </ModMetaData>

@@ -11,11 +11,25 @@ using static Verse.DamageWorker;
 
 namespace EBF.Transpilations
 {
-    [HarmonyPriority(Priority.First)]
-    [HarmonyPatch(typeof(DamageWorker_Blunt))]
-    [HarmonyPatch("ApplySpecialEffectsToPart")]
+    [StaticConstructorOnStartup]
     public static class Transpiler_DamageWorker_Blunt_SpecialEffects
     {
+        /* Fix transpiler conflict with Humanoid Alien Races
+         * HAR's HarmonyPatches.BodyReferenceTranspiler method patches DamageWorker_Blunt.ApplySpecialeffectsToPart method also.
+         * Fortunately both transpilers will work if EBF's transpiler is applied first, but this requires that EBF is loaded
+         * before HAR, and that EBF's harmony patch is done in the static constructor because HAR's harmony patch is done
+         * in a static constructor.
+         */
+        static Transpiler_DamageWorker_Blunt_SpecialEffects()
+		{
+            Harmony harmony = new Harmony("rimworld.vectorial1024.ebf.damageworker_blunt");
+            harmony.Patch(
+                AccessTools.Method(typeof(DamageWorker_Blunt), "ApplySpecialEffectsToPart"), 
+                null,
+                null,
+                new HarmonyMethod(typeof(Transpiler_DamageWorker_Blunt_SpecialEffects), nameof(Transpiler)));
+		}
+
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             // Patch things up at the 11th occurence of callvirt
