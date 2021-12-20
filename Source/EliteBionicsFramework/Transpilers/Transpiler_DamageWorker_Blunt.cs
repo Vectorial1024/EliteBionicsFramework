@@ -11,9 +11,10 @@ using static Verse.DamageWorker;
 
 namespace EBF.Transpilations
 {
-    [HarmonyPriority(Priority.First)]
-    [HarmonyPatch(typeof(DamageWorker_Blunt))]
-    [HarmonyPatch("ApplySpecialEffectsToPart")]
+    // disabled due to unexplainable ("magical") incompatibility with Humanoid Alien Races
+    //[HarmonyPriority(Priority.First)]
+    //[HarmonyPatch(typeof(DamageWorker_Blunt))]
+    //[HarmonyPatch("ApplySpecialEffectsToPart")]
     public static class Transpiler_DamageWorker_Blunt_SpecialEffects
     {
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
