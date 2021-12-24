@@ -40,7 +40,7 @@ namespace EBF.Transpilations
                     if (occurencesCallvirt == 19)
                     {
                         yield return new CodeInstruction(OpCodes.Ldarg_1);
-                        yield return new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth")); ;
+                        yield return new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth"));
 
                         suppressCount = 1;
                         patchComplete = true;
