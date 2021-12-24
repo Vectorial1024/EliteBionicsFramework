@@ -45,6 +45,7 @@ namespace EBF.Transpilations
                 if (suppressCount > 0)
                 {
                     instruction.opcode = OpCodes.Nop;
+                    suppressCount--;
                 }
 
                 //writer.WriteLine(instruction);
