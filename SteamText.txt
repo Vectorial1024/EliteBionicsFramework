@@ -24,7 +24,7 @@ Other modders may manipulate body parts through this framework. Currently, these
 [*]Changing max HP of body part (v1.0.0)
 [*]Changing melee attack damage of bionics (v2.1.0)
 [/list]
-Note that, normally, when body part max HP is increased, the pain and bleeding rate will both also increase. This mod scales down the bleeding rate in order to avoid nonsensical instant-death sithations due to instant-bleed-out.
+Note that, normally, when body part max HP is increased, the pain and bleeding rate will both also increase. This mod scales down the bleeding rate in order to avoid nonsensical instant-death situations due to instant-bleed-out.
 
 However, pain levels are not touched to maintain balance. End users should aim for drugs, implants, or armor to reduce the pain of your soldiers/workers before and during battle.
 
