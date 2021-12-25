@@ -23,8 +23,7 @@ namespace EBF.Transpilations.PrepareCarefully
 
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            //StreamWriter writer = new StreamWriter(new FileStream("C:\\Users\\Vincent Wong\\Desktop\\output.txt", FileMode.Create));
-            // Patch things up at the 2nd occurence of callvirt
+            // Patch things up at the 4th occurence of callvirt
             short occurencesCallvirt = 0;
             short suppressCount = 0;
             bool patchComplete = false;
@@ -51,16 +50,8 @@ namespace EBF.Transpilations.PrepareCarefully
                     suppressCount--;
                 }
 
-                //writer.WriteLine(instruction);
                 yield return instruction;
             }
-
-            //writer.Close();
-        }
-
-        private static void testMethod(float postArmorDamage, DamageInfo dinfo, Pawn pawn)
-        {
-            float maxHealth = dinfo.HitPart.def.GetMaxHealth(pawn, dinfo.HitPart);
         }
     }
 }

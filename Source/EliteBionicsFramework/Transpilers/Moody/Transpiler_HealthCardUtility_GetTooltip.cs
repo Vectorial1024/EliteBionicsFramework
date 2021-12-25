@@ -27,7 +27,6 @@ namespace EBF.Transpilations.Moody
 
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            //StreamWriter writer = new StreamWriter(new FileStream("C:\\Users\\Vincent Wong\\Desktop\\output.txt", FileMode.Create));
             // Patch things up at the 13th occurence of callvirt
             short occurencesCallvirt = 0;
             short suppressCount = 0;
@@ -56,11 +55,8 @@ namespace EBF.Transpilations.Moody
                     suppressCount--;
                 }
 
-                //writer.WriteLine(instruction);
                 yield return instruction;
             }
-
-            //writer.Close();
         }
     }
 }
