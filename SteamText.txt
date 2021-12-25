@@ -49,7 +49,7 @@ Many things, including changelogs, non-Steam downloads, and issues, are on the G
 [*]Harmony is provided by pardeike.
 [*]HugsLib is made by UnlimitedHugs.
 [*]Thanks to Neceros and Bar0th for finding a patching bug and suggesting a more resilient solution to how this mod patches vanilla code
-[*]Thanks to RocketDelivery for solving the seemingly magical incompatibility with Pawnmorpher
+[*]Thanks to RocketDelivery for solving the seemingly magical incompatibility with Humanoid Alien Races
 [/list]
 
 [h1]Support and Donation[/h1]
