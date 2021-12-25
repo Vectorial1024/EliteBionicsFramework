@@ -35,7 +35,7 @@ namespace EBF.Transpilations
                         yield return new CodeInstruction(OpCodes.Ldloc_S, 4);
                         yield return new CodeInstruction(OpCodes.Callvirt, typeof(List<Hediff_MissingPart>).GetProperty("Item").GetGetMethod());
                         yield return new CodeInstruction(OpCodes.Callvirt, typeof(Hediff).GetProperty("Part").GetGetMethod());
-                        yield return new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth")); ;
+                        yield return new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth"));
 
                         suppressCount = 1;
                         patchComplete = true;
