@@ -111,6 +111,14 @@
 +-------------|Special thanks to GitHub user RocketDelivery for this fix!</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v4_0_7</defName>
+		<assemblyVersion>4.0.7.0</assemblyVersion>
+		<content>Merry Christmas!|
+- Added compatibility with EdB Prepare Carefully: you can now see correct body part max HP without errors
+- Added compatibility with CM Callouts: you can now see correct motes (based on body part max HP) when a body part is destroyed</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
