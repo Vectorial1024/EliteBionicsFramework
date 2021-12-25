@@ -78,6 +78,7 @@
     <Compile Include="Patches\PreFix_PawnCapUtil_BodyPartHealth.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transpilers\Callouts\Transpiler_DamageResult_ThrowMotes.cs" />
+    <Compile Include="Transpilers\Moody\Transpiler_HealthCardUtility_GetTooltip.cs" />
     <Compile Include="Transpilers\PrepareCarefully\Transpiler_Injury_InitializeTooltip.cs" />
     <Compile Include="Transpilers\PrepareCarefully\Transpiler_PanelHealth_GetTooltipForPart.cs" />
     <Compile Include="Transpilers\TestClass.cs" />

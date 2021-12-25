@@ -14,5 +14,7 @@ namespace EBF.Util
         public static bool PrepareCarefullyIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Prepare Carefully"));
 
         public static bool CalloutsIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Callouts"));
+
+        public static bool MoodyIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Moody"));
     }
 }
