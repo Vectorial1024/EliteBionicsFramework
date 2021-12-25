@@ -77,7 +77,9 @@
     <Compile Include="Patches\Prefix_BodyPart_GetMaxHealth.cs" />
     <Compile Include="Patches\PreFix_PawnCapUtil_BodyPartHealth.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Transpilers\PrepareCarefully\Transpiler_PanelHealth_GetTooltipForPart.cs" />
     <Compile Include="Transpilers\TestClass.cs" />
+    <Compile Include="Transpilers\PrepareCarefully\Transpiler_Injury_InitializeTooltip.cs" />
     <Compile Include="Transpilers\Transpiler_DamageWorker_AddInjury.cs" />
     <Compile Include="Transpilers\Transpiler_DamageWorker_Blunt.cs" />
     <Compile Include="Transpilers\Transpiler_HealthCardUtility.cs" />
