@@ -22,7 +22,24 @@ git clone https://github.com/Vectorial1024/EliteBionicsFramework.git
 git pull
 ```
 
+# Built-In Integration with Other Mods
+
+This mod has built-in integration with some other third-party mods, and such integrations are in place to ensure that those other mods can read the correct body part max HP as calculated by this framework mod.
+
+The third-party mods are chosen because they are deemed stable enough that the IL-code patching technique utilized by this mod can easily survive long without problems; or, they are chosen because not doing so would break some features.
+
+Currently, the following mods are supported, in no particular order:
+
+- Humanoid Alien Races
+- Pawnmorpher
+- EdB Prepare Carefully
+- CM Callouts
+- Moody
+
+Note that this list does not include the mods that are using this framework to provide actual body part max HP manipulation.
+
 # Usage and Other Related Info
+
 Please refer to individual md files under `/Docs` for detailed information of each available component.
 
 Currently, these components are available:
