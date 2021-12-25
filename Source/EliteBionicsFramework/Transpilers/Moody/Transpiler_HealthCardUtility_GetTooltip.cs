@@ -40,7 +40,7 @@ namespace EBF.Transpilations.Moody
 
                     if (occurencesCallvirt == 13)
                     {
-                        yield return new CodeInstruction(OpCodes.Ldarg_3);
+                        yield return new CodeInstruction(OpCodes.Ldloc_3);
                         yield return new CodeInstruction(OpCodes.Callvirt, typeof(Hediff).GetProperty("Part").GetGetMethod());
                         yield return new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth"));
 
