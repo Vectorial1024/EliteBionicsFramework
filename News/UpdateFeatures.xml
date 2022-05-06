@@ -120,6 +120,13 @@
 - Added compatibility with Moody: you can now see correct body part max HP calculated by EBF without errors</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v4_0_8</defName>
+		<assemblyVersion>4.0.8.0</assemblyVersion>
+		<content>Not much going on.|
+- Improved accuracy of detecting EdB Prepare Carefully: hopefully there are less false positives that leads to patching errors</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
