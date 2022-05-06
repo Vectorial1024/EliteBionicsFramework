@@ -11,7 +11,7 @@ namespace EBF.Util
     {
         public static bool PawnmorpherIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Pawnmorpher"));
 
-        public static bool PrepareCarefullyIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Prepare Carefully"));
+        public static bool PrepareCarefullyIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("EdB Prepare Carefully"));
 
         public static bool CalloutsIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Callouts"));
 
