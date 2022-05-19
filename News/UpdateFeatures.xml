@@ -124,8 +124,8 @@
 		<defName>EBF_v4_0_8</defName>
 		<assemblyVersion>4.0.8.0</assemblyVersion>
 		<content>Not much going on.|
-- Fixed HP modification display formatting
-- Fixed verb power modification showing as HP modification
+- Fixed max HP modification display formatting
+- Fixed verb power modification showing as max HP modification
 - Improved accuracy of detecting EdB Prepare Carefully: hopefully there are less false positives that leads to patching errors</content>
 	</HugsLib.UpdateFeatureDef>
 
