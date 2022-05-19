@@ -49,21 +49,28 @@ namespace EBF.Hediffs
             {
                 if (EliteBionicsFrameworkMain.SettingHandle_DisplayHpDiffInHediffName.Value)
                 {
-                    StringBuilder builder = new StringBuilder("HP: ");
+                    StringBuilder builder = new StringBuilder("Verb power: ");
+                    StringBuilder innerBuilder = new StringBuilder();
                     if (Props.scaleAdjustment != 0)
                     {
-                        builder.Append(Props.ScaledAdjustmentDisplayString);
+                        innerBuilder.Append(Props.ScaledAdjustmentDisplayString);
                     }
                     if (Props.linearAdjustment != 0)
                     {
-                        if (builder.Length > 0)
+                        if (innerBuilder.Length > 0)
                         {
-                            builder.Append(", ");
+                            innerBuilder.Append(", ");
                         }
-                        builder.Append(Props.LinearAdjustmentDisplayString);
+                        innerBuilder.Append(Props.LinearAdjustmentDisplayString);
                     }
 
-                    return builder.ToString();
+                    if (innerBuilder.Length > 0)
+                    {
+                        builder.Append(innerBuilder.ToString());
+                        return builder.ToString();
+                    }
+                    // nothing to display
+                    return "";
                 }
                 else
                 {
