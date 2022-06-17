@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using EBF.Util;
+using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,6 @@ using Verse;
 
 namespace EBF.Transpilations
 {
-    [HarmonyPriority(Priority.First)]
     [HarmonyPatch(typeof(HealthUtility))]
     [HarmonyPatch("GetPartConditionLabel")]
     public static class Transpiler_HealthUtility_PartConditionLabel
@@ -24,6 +24,12 @@ namespace EBF.Transpilations
             return true;
         }
         */
+
+        public static bool Prepare()
+        {
+            // dont do it if Pawnmorpher is laoded; apparently they are doing exactly the same thing, and our decision is to embed our logic to their code via patches
+            return !ModDetector.PawnmorpherIsLoaded;
+        }
 
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
