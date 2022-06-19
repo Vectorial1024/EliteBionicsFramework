@@ -129,6 +129,15 @@
 - Improved accuracy of detecting EdB Prepare Carefully: hopefully there are less false positives that leads to patching errors</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v4_0_9</defName>
+		<assemblyVersion>4.0.9.0</assemblyVersion>
+		<content>Housekeeping, and some deeper thoughts.|
+- Fixed error wth Pawnmorpher; fundamentally, both mods tried to modify the same thing at the same time
+- Notice: EBF has detected a rare 3-mod conflict: using EBF + Pawnmorpher + CompactHediff together is discouraged until we figure out what is going on, and meanwhile if you only use at most 2 of them from that combo, you won't see any problems
+- Notice: EBF has noticed more and more 3rd party mods creating custom HP-increasing bionics without using EBF, which may cause confusion and incorrectness; EBF is currently thinking of a solution to this</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
