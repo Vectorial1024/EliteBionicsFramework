@@ -17,7 +17,7 @@ namespace EBF.Hediffs
             compClass = null;
         }
 
-        public new string ProviderNamespaceString
+        public override string ProviderNamespaceString
         {
             get
             {

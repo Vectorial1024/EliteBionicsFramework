@@ -80,7 +80,7 @@ namespace EBF.Hediffs
             }
         }
 
-        public string ProviderNamespaceString
+        public virtual string ProviderNamespaceString
         {
             get
             {
