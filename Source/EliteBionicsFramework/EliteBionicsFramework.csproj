@@ -96,6 +96,7 @@
     <Compile Include="Transpilers\Transpiler_HediffSet_GetPartHealth.cs" />
     <Compile Include="Transpilers\Transpiler_PawnCapacityImpactor_BP.cs" />
     <Compile Include="Transpilers\Transpiler_PawnCapacity_Calculate.cs" />
+    <Compile Include="Util\CommunityUnificationUtil.cs" />
     <Compile Include="Util\ModDetector.cs" />
     <Compile Include="Util\ToolFinderUtils.cs" />
     <Compile Include="Util\ToolPowerAdjuster.cs" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EBF.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace EBF.Hediffs
         {
             get
             {
-                return VanillaExtender.GetCompTipStringExtraDueToMaxHpAdjust(Pawn, parent.Part.def, Props);
+                return CommunityUnificationUtil.GetCompTipStringExtraDueToMaxHpAdjust(Pawn, parent.Part.def, Props);
             }
         }
         
