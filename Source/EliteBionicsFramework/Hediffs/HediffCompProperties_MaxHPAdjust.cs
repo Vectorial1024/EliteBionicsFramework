@@ -79,5 +79,14 @@ namespace EBF.Hediffs
                 return builder.ToString();
             }
         }
+
+        public string ProviderNamespaceString
+        {
+            get
+            {
+                // master class, added by EBF
+                return "Elite Bionics Framework";
+            }
+        }
     }
 }

@@ -17,29 +17,7 @@ namespace EBF.Hediffs
         {
             get
             {
-                StringBuilder builder = new StringBuilder("");
-
-                // Base HP tooltip
-                float rawMaxHP = parent.Part.def.GetRawMaxHealth(parent.pawn);
-                builder.Append("Base HP: ");
-                builder.Append(rawMaxHP);
-
-                // Scale adjustment tooltip
-                if (Props.scaleAdjustment != 0)
-                {
-                    builder.AppendLine();
-                    builder.Append("Max HP: ");
-                    builder.Append(Props.ScaledAdjustmentDisplayString);
-                }
-
-                // Linear adjustment tooltip
-                if (Props.linearAdjustment != 0)
-                {
-                    builder.AppendLine();
-                    builder.Append("Max HP: ");
-                    builder.Append(Props.LinearAdjustmentDisplayString);
-                }
-                return builder.ToString();
+                return VanillaExtender.GetCompTipStringExtraDueToMaxHpAdjust(Pawn, parent.Part.def, Props);
             }
         }
         
