@@ -77,6 +77,12 @@
     <Compile Include="Patches\PostFix_VerbProperties_GetDamageFactorFor.cs" />
     <Compile Include="Patches\Prefix_BodyPart_GetMaxHealth.cs" />
     <Compile Include="Patches\PreFix_PawnCapUtil_BodyPartHealth.cs" />
+    <Compile Include="Patches\Prefix_Pawnmorpher_ModCompat_CompactHediff_GetPartMaxHealth.cs" />
+    <Compile Include="Patches\Prefix_Pawnmorpher_PatchMaxHealthReference.cs" />
+    <Compile Include="Patches\Prefix_Pawnmorpher_GetTooltip.cs" />
+    <Compile Include="Patches\Prefix_Pawnmorpher_GetPartHealth.cs" />
+    <Compile Include="Patches\Prefix_Pawnmorpher_GetPartConditionLabel.cs" />
+    <Compile Include="Patches\Reverse_Pawnmorpher_GetPartMaxHealth.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transpilers\Callouts\Transpiler_DamageResult_ThrowMotes.cs" />
     <Compile Include="Transpilers\Moody\Transpiler_HealthCardUtility_GetTooltip.cs" />
