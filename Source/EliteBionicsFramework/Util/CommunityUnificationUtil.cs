@@ -79,7 +79,7 @@ namespace EBF.Util
             HediffCompProperties_MaxHPAdjust_Fake fakeComps = new HediffCompProperties_MaxHPAdjust_Fake()
             {
                 linearAdjustment = totalLinearAdjustment,
-                scaleAdjustment = totalScaledAdjustment,
+                scaleAdjustment = totalScaledAdjustment - 1,
                 providerNamespace = null,
             };
             builder.AppendLine();
