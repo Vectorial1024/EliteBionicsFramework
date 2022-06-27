@@ -10,6 +10,7 @@ namespace EBF.Hediffs
     public class HediffCompProperties_MaxHPAdjust_Fake : HediffCompProperties_MaxHPAdjust
     {
         public String providerNamespace;
+        public bool isPriiority;
 
         public HediffCompProperties_MaxHPAdjust_Fake()
         {
@@ -22,6 +23,14 @@ namespace EBF.Hediffs
             get
             {
                 return providerNamespace;
+            }
+        }
+
+        public override bool IsPriority
+        {
+            get
+            {
+                return isPriiority;
             }
         }
     }

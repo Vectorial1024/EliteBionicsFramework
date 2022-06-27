@@ -141,6 +141,14 @@ namespace EBF.Util
                 builder.Append(props.LinearAdjustmentDisplayString);
             }
 
+            // Priority status
+            if (props.IsPriority)
+            {
+                builder.AppendLine();
+                builder.Append(IndentationSpace);
+                builder.Append("The effects of this comp is prioritized before other comps.");
+            }
+
             return builder.ToString();
         }
 

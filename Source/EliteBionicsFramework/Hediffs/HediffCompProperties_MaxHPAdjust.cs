@@ -88,5 +88,14 @@ namespace EBF.Hediffs
                 return "Elite Bionics Framework";
             }
         }
+
+        public virtual bool IsPriority
+        {
+            get
+            {
+                // tihis is for PawnMorpher: we need to allow them to calculate things first
+                return false;
+            }
+        }
     }
 }
