@@ -18,7 +18,10 @@ namespace EBF.Patches.Unification
             List<HediffCompProperties_MaxHPAdjust> realAndFakeProps = CommunityUnificationUtil.GetRealAndFakeHpPropsForUnification(__instance);
             if (realAndFakeProps.Count > 0)
             {
-                builder.Append(" ");
+                if (builder.Length > 0)
+                {
+                    builder.Append(", ");
+                }
                 builder.Append(CommunityUnificationUtil.GetCompLabelInBracketsDueToMaxHpAdjust(__instance.pawn, __instance));
                 __result = builder.ToString();
             }

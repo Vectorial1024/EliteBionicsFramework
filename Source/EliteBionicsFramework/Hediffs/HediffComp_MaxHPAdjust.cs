@@ -26,7 +26,9 @@ namespace EBF.Hediffs
         {
             get
             {
-                return CommunityUnificationUtil.GetCompLabelInBracketsDueToMaxHpAdjust(Pawn, parent);
+                return null;
+                // handled at hediff label level; need notpint indiviual labels like this 
+                // return CommunityUnificationUtil.GetCompLabelInBracketsDueToMaxHpAdjust(Pawn, parent);
             }
         }
     }
