@@ -53,6 +53,46 @@ namespace EBF.Util
             }
         }
 
+        public static string GetBodyPartSummaryTooltipStringDueToMaxHpAdjust(Pawn pawn, BodyPartRecord record)
+        {
+            List<HediffCompProperties_MaxHPAdjust> listHpProps = GetRealAndFakeHpPropsForUnification(pawn, record);
+            if (listHpProps.Count == 0)
+            {
+                return null;
+            }
+
+            // summarize and print the stuff!
+            int totalLinearAdjustment = 0;
+            float totalScaledAdjustment = 1;
+            foreach (HediffCompProperties_MaxHPAdjust props in listHpProps)
+            {
+                totalLinearAdjustment += props.linearAdjustment;
+                if (props.scaleAdjustment + 1 > 0)
+                {
+                    // Only allow positive scaling values.
+                    totalScaledAdjustment *= (props.scaleAdjustment + 1);
+                }
+            }
+
+            // print
+            StringBuilder builder = new StringBuilder("Body Part Max HP:");
+            HediffCompProperties_MaxHPAdjust_Fake fakeComps = new HediffCompProperties_MaxHPAdjust_Fake()
+            {
+                linearAdjustment = totalLinearAdjustment,
+                scaleAdjustment = totalScaledAdjustment,
+                providerNamespace = null,
+            };
+            builder.AppendLine();
+            builder.Append(IndentationSpace);
+            builder.Append("\u220F ");
+            builder.AppendLine(fakeComps.ScaledAdjustmentDisplayString);
+            builder.Append(IndentationSpace);
+            builder.Append("\u2211 ");
+            builder.AppendLine(fakeComps.LinearAdjustmentDisplayString);
+
+            return builder.ToString();
+        }
+
         public static String GetCompTipStringExtraDueToMaxHpAdjust(Pawn pawn, BodyPartDef def, HediffCompProperties_MaxHPAdjust props)
         {
             StringBuilder builder = new StringBuilder("");
@@ -114,9 +154,54 @@ namespace EBF.Util
             */
         }
 
+        public static List<HediffCompProperties_MaxHPAdjust> GetRealAndFakeHpPropsForUnification(Pawn pawn, BodyPartRecord record)
+        {
+            List<HediffCompProperties_MaxHPAdjust> realAndFakeProps = new List<HediffCompProperties_MaxHPAdjust>();
+            HediffSet hediffSet = pawn.health.hediffSet;
+
+            foreach (HediffWithComps hediffWithComp in hediffSet.GetHediffs<HediffWithComps>())
+            {
+                foreach (HediffComp hediffComp in hediffWithComp.comps)
+                {
+                    if (hediffComp is HediffComp_MaxHPAdjust)
+                    {
+                        realAndFakeProps.Add((HediffCompProperties_MaxHPAdjust) hediffComp.props);
+                        // read the next comp
+                        continue;
+                    }
+                    // try if we can convert them into our own types
+                    var hediffCompQualityBionics = TryConvertQualityBionicsCompToFakeHpComp(hediffComp);
+                    if (hediffCompQualityBionics != null)
+                    {
+                        realAndFakeProps.Add(hediffCompQualityBionics);
+                        continue;
+                    }
+                }
+            }
+
+            return realAndFakeProps;
+        }
+
+        public static List<HediffCompProperties_MaxHPAdjust> GetRealAndFakeHpPropsForUnification(Hediff hediff)
+        {
+            List<HediffCompProperties_MaxHPAdjust> preppingList = new List<HediffCompProperties_MaxHPAdjust> { hediff.TryGetComp<HediffComp_MaxHPAdjust>()?.Props };
+            preppingList.AddRange(GetFakeHpPropsForUnification(hediff));
+            preppingList.RemoveAll(item => item == null);
+            return preppingList;
+        }
+
         public static List<HediffCompProperties_MaxHPAdjust> GetFakeHpPropsForUnification(Hediff hediff)
         {
             List<HediffCompProperties_MaxHPAdjust> list = new List<HediffCompProperties_MaxHPAdjust>();
+            HediffWithComps hediffWithComps = hediff as HediffWithComps;
+            if (hediffWithComps == null)
+            {
+                return list;
+            }
+            foreach (HediffComp comp in hediffWithComps.comps)
+            {
+
+            }
             HediffCompProperties_MaxHPAdjust_Fake temp = TryMakeFakePropsOfQualityBionics(hediff);
             if (temp != null)
             {
