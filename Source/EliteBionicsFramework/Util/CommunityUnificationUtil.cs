@@ -28,6 +28,9 @@ namespace EBF.Util
         private static Type QualityBionics_Type_CompQualityBionics = null;
         private static MethodInfo QualityBionics_TryGetRelevantComp = null;
 
+        // hmmm... would we allow for others to modify the indentation strength?
+        private static string IndentationSpace = "    ";
+
         static CommunityUnificationUtil()
         {
             Method_PawnmorpherGetPartMaxHealth = Traverse.CreateWithType("Pawnmorph.BodyUtilities")?.Method("GetPartMaxHealth", new Type[2]
@@ -54,8 +57,14 @@ namespace EBF.Util
         {
             StringBuilder builder = new StringBuilder("");
 
+            // Provider first: we want to tidy uu the display and avoid UI confusion
+            builder.Append("From: ");
+            builder.Append(props.ProviderNamespaceString);
+
             // Base HP tooltip
             float rawMaxHP = def.GetRawMaxHealth(pawn);
+            builder.AppendLine();
+            builder.Append(IndentationSpace);
             builder.Append("Base HP: ");
             builder.Append(rawMaxHP);
 
@@ -63,6 +72,7 @@ namespace EBF.Util
             if (props.scaleAdjustment != 0)
             {
                 builder.AppendLine();
+                builder.Append(IndentationSpace);
                 builder.Append("Max HP: ");
                 builder.Append(props.ScaledAdjustmentDisplayString);
             }
@@ -71,14 +81,10 @@ namespace EBF.Util
             if (props.linearAdjustment != 0)
             {
                 builder.AppendLine();
+                builder.Append(IndentationSpace);
                 builder.Append("Max HP: ");
                 builder.Append(props.LinearAdjustmentDisplayString);
             }
-
-            // Provider tooltip
-            builder.AppendLine();
-            builder.Append("Provided via: ");
-            builder.Append(props.ProviderNamespaceString);
 
             return builder.ToString();
         }
