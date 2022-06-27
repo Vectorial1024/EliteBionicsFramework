@@ -84,9 +84,11 @@ namespace EBF.Util
             };
             builder.AppendLine();
             builder.Append(IndentationSpace);
+            // products symbol
             builder.Append("\u220F ");
             builder.AppendLine(fakeComps.ScaledAdjustmentDisplayString);
             builder.Append(IndentationSpace);
+            // summation symbol
             builder.Append("\u2211 ");
             builder.AppendLine(fakeComps.LinearAdjustmentDisplayString);
 
