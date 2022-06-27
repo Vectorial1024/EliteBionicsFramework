@@ -144,6 +144,63 @@ namespace EBF.Util
             return builder.ToString();
         }
 
+        public static string GetCompLabelInBracketsDueToMaxHpAdjust(Pawn pawn, HediffWithComps hediffWithComps)
+        {
+            if (EliteBionicsFrameworkMain.SettingHandle_DisplayHpDiffInHediffName.Value)
+            {
+                StringBuilder builder = new StringBuilder("HP: ");
+                StringBuilder innerBuilder = new StringBuilder();
+                BodyPartRecord record = hediffWithComps.Part;
+                List<HediffCompProperties_MaxHPAdjust> listHpProps = GetRealAndFakeHpPropsForUnification(pawn, record);
+
+                // summarize and print the stuff!
+                int totalLinearAdjustment = 0;
+                float totalScaledAdjustment = 1;
+                foreach (HediffCompProperties_MaxHPAdjust props in listHpProps)
+                {
+                    totalLinearAdjustment += props.linearAdjustment;
+                    if (props.scaleAdjustment + 1 > 0)
+                    {
+                        // Only allow positive scaling values.
+                        totalScaledAdjustment *= (props.scaleAdjustment + 1);
+                    }
+                }
+
+                // can print.
+                HediffCompProperties_MaxHPAdjust_Fake fakeProps = new HediffCompProperties_MaxHPAdjust_Fake()
+                {
+                    linearAdjustment = totalLinearAdjustment,
+                    scaleAdjustment = totalScaledAdjustment - 1,
+                    providerNamespace = null,
+                };
+                if (fakeProps.scaleAdjustment != 0)
+                {
+                    innerBuilder.Append(fakeProps.ScaledAdjustmentDisplayString);
+                }
+                if (fakeProps.linearAdjustment != 0)
+                {
+                    if (innerBuilder.Length > 0)
+                    {
+                        innerBuilder.Append(", ");
+                    }
+                    innerBuilder.Append(fakeProps.LinearAdjustmentDisplayString);
+                }
+
+                if (innerBuilder.Length > 0)
+                {
+                    builder.Append(innerBuilder.ToString());
+                    return builder.ToString();
+                }
+                // nothing to display
+                return "";
+            }
+            else
+            {
+                return "";
+            }
+            return "";
+        }
+
         public static float GetPartMaxHealthFromPawnmorpher(BodyPartRecord record, Pawn p)
         {
             // we assert that Pawnmorpher is loaded; dont call without checking that Pawnmorpher exists
