@@ -163,6 +163,11 @@ namespace EBF.Util
 
             foreach (HediffWithComps hediffWithComp in hediffSet.GetHediffs<HediffWithComps>())
             {
+                if (hediffWithComp.Part != record)
+                {
+                    // wrong body part; skip
+                    continue;
+                }
                 foreach (HediffComp hediffComp in hediffWithComp.comps)
                 {
                     if (hediffComp is HediffComp_MaxHPAdjust)
