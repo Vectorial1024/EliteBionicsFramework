@@ -82,6 +82,12 @@ namespace EBF.Util
                 scaleAdjustment = totalScaledAdjustment - 1,
                 providerNamespace = null,
             };
+            int rawMaxHealth = (int) EBFEndpoints.GetMaxHealthUnmodified(record.def, pawn);
+            builder.AppendLine();
+            builder.Append(IndentationSpace);
+            builder.Append("Base: ");
+            builder.Append(rawMaxHealth);
+            builder.Append(" HP");
             if (fakeComps.ScaledAdjustmentDisplayString.Length > 0)
             {
                 builder.AppendLine();
