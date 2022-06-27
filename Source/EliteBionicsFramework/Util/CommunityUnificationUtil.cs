@@ -108,7 +108,7 @@ namespace EBF.Util
             return builder.ToString();
         }
 
-        public static String GetCompTipStringExtraDueToMaxHpAdjust(Pawn pawn, BodyPartDef def, HediffCompProperties_MaxHPAdjust props)
+        public static string GetCompTipStringExtraDueToMaxHpAdjust(Pawn pawn, BodyPartDef def, HediffCompProperties_MaxHPAdjust props)
         {
             StringBuilder builder = new StringBuilder("");
 
