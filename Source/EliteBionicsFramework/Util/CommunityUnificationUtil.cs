@@ -201,6 +201,43 @@ namespace EBF.Util
             return "";
         }
 
+        public static string GetCompLabelInBracketsDueToMaxHpAdjust(HediffCompProperties_MaxHPAdjust props)
+        {
+            if (EliteBionicsFrameworkMain.SettingHandle_DisplayHpDiffInHediffName.Value)
+            {
+                StringBuilder builder = new StringBuilder("HP: ");
+                StringBuilder innerBuilder = new StringBuilder();
+
+                // we can print directly
+                if (props.scaleAdjustment != 0)
+                {
+                    innerBuilder.Append(props.ScaledAdjustmentDisplayString);
+                }
+                if (props.linearAdjustment != 0)
+                {
+                    if (innerBuilder.Length > 0)
+                    {
+                        innerBuilder.Append(", ");
+                    }
+                    innerBuilder.Append(props.LinearAdjustmentDisplayString);
+                }
+
+                if (innerBuilder.Length > 0)
+                {
+                    builder.Append(innerBuilder.ToString());
+                    return builder.ToString();
+                }
+
+                // nothing to display
+                return "";
+            }
+            else
+            {
+                return "";
+            }
+            return "";
+        }
+
         public static float GetPartMaxHealthFromPawnmorpher(BodyPartRecord record, Pawn p)
         {
             // we assert that Pawnmorpher is loaded; dont call without checking that Pawnmorpher exists

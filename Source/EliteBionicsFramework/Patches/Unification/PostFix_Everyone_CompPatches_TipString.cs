@@ -14,7 +14,7 @@ namespace EBF.Patches.Unification
     /// </summary>
     [HarmonyPatch(typeof(HediffComp))]
     [HarmonyPatch("CompTipStringExtra", MethodType.Getter)]
-    public class PostFix_Everyone_CompPatches
+    public class PostFix_Everyone_CompPatches_TipString
     {
         [HarmonyPostfix]
         public static void PostFix(HediffComp __instance, ref string __result)
