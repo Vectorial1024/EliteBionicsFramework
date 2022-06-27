@@ -20,7 +20,7 @@ namespace EBF.Patches.Unification
             {
                 if (builder.Length > 0)
                 {
-                    builder.Append(", ");
+                    builder.Append("; ");
                 }
                 builder.Append(CommunityUnificationUtil.GetCompLabelInBracketsDueToMaxHpAdjust(__instance.pawn, __instance));
                 __result = builder.ToString();
