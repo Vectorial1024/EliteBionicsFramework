@@ -24,6 +24,14 @@ namespace EBF.Patches.Unification
             {
                 // they are supposed to only have null __result, so we can just set it and finish
                 __result = CommunityUnificationUtil.GetCompTipStringExtraDueToMaxHpAdjust(__instance.Pawn, __instance.parent.Part.def, fakeCompsQualityBionics);
+                return;
+            }
+            HediffCompProperties_MaxHPAdjust_Fake fakeCompsCONN = CommunityUnificationUtil.TryConvertConnCompToFakeHpComp(__instance);
+            if (fakeCompsCONN != null)
+            {
+                // they have their custom "Health points added" string, and we will still override it
+                __result = CommunityUnificationUtil.GetCompTipStringExtraDueToMaxHpAdjust(__instance.Pawn, __instance.parent.Part.def, fakeCompsCONN);
+                return;
             }
             // check other types as needed
         }
