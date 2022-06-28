@@ -160,7 +160,7 @@ namespace EBF.Util
                 StringBuilder builder = new StringBuilder("HP: ");
                 StringBuilder innerBuilder = new StringBuilder();
                 BodyPartRecord record = hediffWithComps.Part;
-                List<HediffCompProperties_MaxHPAdjust> listHpProps = GetRealAndFakeHpPropsForUnification(pawn, record);
+                List<HediffCompProperties_MaxHPAdjust> listHpProps = GetRealAndFakeHpPropsForUnification(pawn, record, hediffWithComps);
 
                 // summarize and print the stuff!
                 int totalLinearAdjustment = 0;
@@ -272,7 +272,7 @@ namespace EBF.Util
             */
         }
 
-        public static List<HediffCompProperties_MaxHPAdjust> GetRealAndFakeHpPropsForUnification(Pawn pawn, BodyPartRecord record)
+        public static List<HediffCompProperties_MaxHPAdjust> GetRealAndFakeHpPropsForUnification(Pawn pawn, BodyPartRecord record, HediffWithComps constraintComps = null)
         {
             List<HediffCompProperties_MaxHPAdjust> realAndFakeProps = new List<HediffCompProperties_MaxHPAdjust>();
             HediffSet hediffSet = pawn.health.hediffSet;
@@ -282,6 +282,11 @@ namespace EBF.Util
                 if (hediffWithComp.Part != record)
                 {
                     // wrong body part; skip
+                    continue;
+                }
+                if (constraintComps != null && hediffWithComp != constraintComps)
+                {
+                    // wrong hediff; skip
                     continue;
                 }
                 foreach (HediffComp hediffComp in hediffWithComp.comps)
