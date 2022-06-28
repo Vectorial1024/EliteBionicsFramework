@@ -322,14 +322,14 @@ namespace EBF.Util
             }
             foreach (HediffComp comp in hediffWithComps.comps)
             {
-
+                HediffCompProperties_MaxHPAdjust_Fake tempCheck = null;
+                tempCheck = TryConvertQualityBionicsCompToFakeHpComp(comp);
+                if (tempCheck != null)
+                {
+                    list.Add(tempCheck);
+                    continue;
+                }
             }
-            HediffCompProperties_MaxHPAdjust_Fake temp = TryMakeFakePropsOfQualityBionics(hediff);
-            if (temp != null)
-            {
-                list.Add(temp);
-            }
-            // TryAddFakePropsOfQualityBionics(hediff, list);
             return list;
         }
 
@@ -360,64 +360,6 @@ namespace EBF.Util
                 return fakeComp;
             }
             return null;
-        }
-
-        public static HediffCompProperties_MaxHPAdjust_Fake TryMakeFakePropsOfQualityBionics(Hediff hediff)
-        {
-            if (QualityBionics_Type_Main == null)
-            {
-                // not loaded
-                return null;
-            }
-            // todo why does this return null?
-            object hediffCompQualityBionics = QualityBionics_TryGetRelevantComp.Invoke(null, new object[] { hediff });
-            // EliteBionicsFrameworkMain.LogError("hediff " + hediffCompQualityBionics.ToStringSafe());
-            if (hediffCompQualityBionics != null)
-            {
-                QualityCategory quality = (QualityCategory)QualityBionics_Type_CompQualityBionics.GetField("quality").GetValue(hediffCompQualityBionics);
-                // EliteBionicsFrameworkMain.LogError("quality " + quality.ToStringSafe());
-                object qualityBionicsSettings = QualityBionics_Type_Main.GetField("settings").GetValue(null);
-                // EliteBionicsFrameworkMain.LogError("settings " + qualityBionicsSettings.ToStringSafe());
-                float scalingMultiplier = Reverse_QualityBionics_GetQualityMultiplier.GetQualityMultipliersForHP(qualityBionicsSettings, quality);
-                // float scalingMultiplier = (float) QualityBionics_Method_GetQualityMultiplier.Invoke(qualityBionicsSettings, new object[] { quality });
-                // EliteBionicsFrameworkMain.LogError("scaler " + scalingMultiplier.ToStringSafe());
-                HediffCompProperties_MaxHPAdjust_Fake fakeComp = new HediffCompProperties_MaxHPAdjust_Fake
-                {
-                    linearAdjustment = 0,
-                    scaleAdjustment = scalingMultiplier - 1,
-                    providerNamespace = QualityBionics_Type_Main.Namespace
-                };
-                // EliteBionicsFrameworkMain.LogError("fakeComp " + fakeComp.ToStringSafe());
-                return fakeComp;
-            }
-            return null;
-        }
-
-        private static void TryAddFakePropsOfQualityBionics(Hediff hediff, List<HediffCompProperties_MaxHPAdjust> list)
-        {
-            return;
-            if (QualityBionics_Type_Main == null)
-            {
-                // not loaded
-                return;
-            }
-            object hediffCompQualityBionics = QualityBionics_TryGetRelevantComp.Invoke(null, new object[] { hediff });
-            EliteBionicsFrameworkMain.LogError("hediff " + hediffCompQualityBionics?.ToStringSafe());
-            if (hediffCompQualityBionics != null)
-            {
-                QualityCategory quality = (QualityCategory) QualityBionics_Type_CompQualityBionics.GetField("quality").GetValue(hediffCompQualityBionics);
-                EliteBionicsFrameworkMain.LogError("quality " + quality.ToStringSafe());
-                object qualityBionicsSettings = QualityBionics_Type_Main.GetField("settings").GetValue(null);
-                EliteBionicsFrameworkMain.LogError("settings " + qualityBionicsSettings.ToStringSafe());
-                float scalingMultiplier = Reverse_QualityBionics_GetQualityMultiplier.GetQualityMultipliersForHP(qualityBionicsSettings, quality);
-                //float scalingMultiplier = (float)QualityBionics_Method_GetQualityMultiplier.Invoke(qualityBionicsSettings, new object[] { quality });
-                HediffCompProperties_MaxHPAdjust_Fake fakeComp = new HediffCompProperties_MaxHPAdjust_Fake
-                {
-                    linearAdjustment = 0,
-                    scaleAdjustment = scalingMultiplier - 1
-                };
-                list.Add(fakeComp);
-            }
         }
     }
 }
