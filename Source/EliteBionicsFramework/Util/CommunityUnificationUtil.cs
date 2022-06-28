@@ -1,6 +1,7 @@
 ﻿using EBF.Hediffs;
 using EBF.Patches;
 using EBF.Patches.Unification;
+using EBF.Patches.Unification.QualityBionics;
 using HarmonyLib;
 using RimWorld;
 using System;
