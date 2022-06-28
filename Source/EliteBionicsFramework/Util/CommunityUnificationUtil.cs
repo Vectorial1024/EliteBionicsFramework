@@ -29,6 +29,10 @@ namespace EBF.Util
         private static Type QualityBionics_Type_CompQualityBionics = null;
         private static MethodInfo QualityBionics_TryGetRelevantComp = null;
 
+        private static Type CONN_Type_CompHealthIncrease = null;
+        private static Type CONN_Type_CompPropsHealthIncrease = null;
+        private static MethodInfo CONN_TryGetRelevantComp = null;
+
         // hmmm... would we allow for others to modify the indentation strength?
         private static string IndentationSpace = "    ";
 
@@ -51,6 +55,12 @@ namespace EBF.Util
 
                 QualityBionics_Type_CompQualityBionics = Type.GetType("QualityBionics.HediffCompQualityBionics, QualityBionics");
                 QualityBionics_TryGetRelevantComp = RW_Hediff_TryGetComp.MakeGenericMethod(new[] { QualityBionics_Type_CompQualityBionics });
+            }
+            if (ModDetector.CONNIsLoaded)
+            {
+                CONN_Type_CompHealthIncrease = Type.GetType("CONN.HealthIncreaseComp, CONN");
+                CONN_Type_CompPropsHealthIncrease = Type.GetType("CONN.CompProperties_HealthIncrease, CONN");
+                CONN_TryGetRelevantComp = RW_Hediff_TryGetComp.MakeGenericMethod(new[] { CONN_Type_CompHealthIncrease });
             }
         }
 
@@ -304,6 +314,12 @@ namespace EBF.Util
                         realAndFakeProps.Add(hediffCompQualityBionics);
                         continue;
                     }
+                    var hediffCompConn = TryConvertConnCompToFakeHpComp(hediffComp);
+                    if (hediffCompConn != null)
+                    {
+                        realAndFakeProps.Add(hediffCompConn);
+                        continue;
+                    }
                 }
             }
 
@@ -330,6 +346,12 @@ namespace EBF.Util
             {
                 HediffCompProperties_MaxHPAdjust_Fake tempCheck = null;
                 tempCheck = TryConvertQualityBionicsCompToFakeHpComp(comp);
+                if (tempCheck != null)
+                {
+                    list.Add(tempCheck);
+                    continue;
+                }
+                tempCheck = TryConvertConnCompToFakeHpComp(comp);
                 if (tempCheck != null)
                 {
                     list.Add(tempCheck);
@@ -363,6 +385,30 @@ namespace EBF.Util
                     providerNamespace = QualityBionics_Type_Main.Namespace
                 };
                 // EliteBionicsFrameworkMain.LogError("fakeComp " + fakeComp.ToStringSafe());
+                return fakeComp;
+            }
+            return null;
+        }
+
+        public static HediffCompProperties_MaxHPAdjust_Fake TryConvertConnCompToFakeHpComp(HediffComp comp)
+        {
+            if (CONN_Type_CompHealthIncrease == null)
+            {
+                // not loaded
+                return null;
+            }
+            if (CONN_Type_CompHealthIncrease.IsInstanceOfType(comp))
+            {
+                // is instance of comp
+                object temp = CONN_Type_CompHealthIncrease.GetProperty("Props").GetGetMethod().Invoke(comp, null);
+                float deltaHp = (float)CONN_Type_CompPropsHealthIncrease.GetField("healthPointToAdd").GetValue(temp);
+                HediffCompProperties_MaxHPAdjust_Fake fakeComp = new HediffCompProperties_MaxHPAdjust_Fake
+                {
+                    linearAdjustment = (int)deltaHp,
+                    scaleAdjustment = 0,
+                    providerNamespace = CONN_Type_CompHealthIncrease.Namespace
+                };
+
                 return fakeComp;
             }
             return null;

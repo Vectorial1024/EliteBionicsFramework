@@ -18,5 +18,7 @@ namespace EBF.Util
         public static bool MoodyIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Moody"));
 
         public static bool QualityBionicsIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Quality Bionics"));
+
+        public static bool CONNIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Cybernetic Organism"));
     }
 }
