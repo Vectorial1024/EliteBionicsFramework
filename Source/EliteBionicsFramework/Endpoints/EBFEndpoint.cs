@@ -65,6 +65,11 @@ namespace EBF
                     List<HediffCompProperties_MaxHPAdjust> propsList = CommunityUnificationUtil.GetFakeHpPropsForUnification(hediff);
                     foreach (HediffCompProperties_MaxHPAdjust fakeProps in propsList)
                     {
+                        if (fakeProps.IsPriority)
+                        {
+                            // priority currently is expected for pawnmorpher only, and we have already handled it above.
+                            continue;
+                        }
                         totalLinearAdjustment += fakeProps.linearAdjustment;
                         if (fakeProps.scaleAdjustment + 1 > 0)
                         {
