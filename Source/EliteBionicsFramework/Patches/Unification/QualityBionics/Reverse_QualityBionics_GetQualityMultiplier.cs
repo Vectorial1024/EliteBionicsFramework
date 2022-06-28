@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EBF.Patches.Unification
+namespace EBF.Patches.Unification.QualityBionics
 {
     [HarmonyPatch]
     public class Reverse_QualityBionics_GetQualityMultiplier

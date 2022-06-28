@@ -85,9 +85,9 @@
     <Compile Include="Patches\Reverse_Pawnmorpher_GetPartMaxHealth.cs" />
     <Compile Include="Patches\Unification\PostFix_Everyone_HediffWithComps_LabelBracket.cs" />
     <Compile Include="Patches\Unification\PostFix_Everyone_BodyPartTooltip.cs" />
-    <Compile Include="Patches\Unification\PreFix_QualityBionics_GetMaxHealth.cs" />
+    <Compile Include="Patches\Unification\QualityBionics\PreFix_QualityBionics_GetMaxHealth.cs" />
     <Compile Include="Patches\Unification\PostFix_Everyone_CompPatches_TipString.cs" />
-    <Compile Include="Patches\Unification\Reverse_QualityBionics_GetQualityMultiplier.cs" />
+    <Compile Include="Patches\Unification\QualityBionics\Reverse_QualityBionics_GetQualityMultiplier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transpilers\Callouts\Transpiler_DamageResult_ThrowMotes.cs" />
     <Compile Include="Transpilers\Moody\Transpiler_HealthCardUtility_GetTooltip.cs" />

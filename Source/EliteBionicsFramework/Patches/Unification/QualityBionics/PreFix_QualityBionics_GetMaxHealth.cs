@@ -2,7 +2,7 @@
 using HarmonyLib;
 using System.Reflection;
 
-namespace EBF.Patches.Unification
+namespace EBF.Patches.Unification.QualityBionics
 {
     [HarmonyPatch]
     public class PreFix_QualityBionics_GetMaxHealth
