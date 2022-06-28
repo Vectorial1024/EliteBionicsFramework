@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EBF.Hediffs;
 using EBF.Patches;
+using EBF.Util;
 using UnityEngine;
 using Verse;
 
@@ -59,6 +60,16 @@ namespace EBF
                         {
                             // Only allow positive scaling values.
                             totalScaledAdjustment *= (adjustorComp.scaleAdjustment + 1);
+                        }
+                    }
+                    List<HediffCompProperties_MaxHPAdjust> propsList = CommunityUnificationUtil.GetFakeHpPropsForUnification(hediff);
+                    foreach (HediffCompProperties_MaxHPAdjust fakeProps in propsList)
+                    {
+                        totalLinearAdjustment += fakeProps.linearAdjustment;
+                        if (fakeProps.scaleAdjustment + 1 > 0)
+                        {
+                            // Only allow positive scaling values.
+                            totalScaledAdjustment *= (fakeProps.scaleAdjustment + 1);
                         }
                     }
                 }
