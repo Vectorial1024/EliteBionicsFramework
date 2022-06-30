@@ -107,7 +107,7 @@ namespace EBF.Util
             builder.AppendLine();
             builder.Append(IndentationSpace);
             builder.Append("Base: ");
-            builder.Append(rawMaxHealth);
+            builder.Append(rawMaxHealth.ToStringCached());
             builder.Append(" HP");
             if (fakeComps.ScaledAdjustmentDisplayString.Length > 0)
             {
