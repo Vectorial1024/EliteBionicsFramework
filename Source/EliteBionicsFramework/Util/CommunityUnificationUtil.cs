@@ -109,6 +109,16 @@ namespace EBF.Util
             builder.Append("Base: ");
             builder.Append(rawMaxHealth.ToStringCached());
             builder.Append(" HP");
+            if (pawn.HealthScale != Reverse_Pawn_HealthScale.GetOriginalHealthScale(pawn))
+            {
+                // we got some other mods modifying the health scale
+                float healthScaleMultipler = pawn.HealthScale / Reverse_Pawn_HealthScale.GetOriginalHealthScale(pawn);
+                builder.AppendLine();
+                builder.Append(IndentationSpace);
+                // products symbol
+                builder.Append("Health scale: x");
+                builder.Append(healthScaleMultipler);
+            }
             if (fakeComps.ScaledAdjustmentDisplayString.Length > 0)
             {
                 builder.AppendLine();
