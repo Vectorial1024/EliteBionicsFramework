@@ -33,6 +33,13 @@ namespace EBF.Patches.Unification
                 __result = CommunityUnificationUtil.GetCompTipStringExtraDueToMaxHpAdjust(__instance.Pawn, __instance.parent.Part.def, fakeCompsCONN);
                 return;
             }
+            HediffCompProperties_MaxHPAdjust_Fake fakeCompsCyberFauna = CommunityUnificationUtil.TryConvertCyberFaunaCompToFakeHpComp(__instance);
+            if (fakeCompsCyberFauna != null)
+            {
+                // they do not have any special printing so we can just  ee an finish
+                __result = CommunityUnificationUtil.GetCompTipStringExtraDueToMaxHpAdjust(__instance.Pawn, __instance.parent.Part.def, fakeCompsCyberFauna);
+                return;
+            }
             // check other types as needed
         }
     }

@@ -33,6 +33,10 @@ namespace EBF.Util
         private static Type CONN_Type_CompPropsHealthIncrease = null;
         private static MethodInfo CONN_TryGetRelevantComp = null;
 
+        private static Type CyberFauna_Type_CompPartHitPoints = null;
+        private static Type CyberFauna_Type_CompPropsPartHitPoints = null;
+        private static MethodInfo CyberFauna_TryGetRelevantComp = null;
+
         // hmmm... would we allow for others to modify the indentation strength?
         private static string IndentationSpace = "    ";
 
@@ -61,6 +65,12 @@ namespace EBF.Util
                 CONN_Type_CompHealthIncrease = Type.GetType("CONN.HealthIncreaseComp, CONN");
                 CONN_Type_CompPropsHealthIncrease = Type.GetType("CONN.CompProperties_HealthIncrease, CONN");
                 CONN_TryGetRelevantComp = RW_Hediff_TryGetComp.MakeGenericMethod(new[] { CONN_Type_CompHealthIncrease });
+            }
+            if (ModDetector.CyberFaunaIsLoaded)
+            {
+                CyberFauna_Type_CompPartHitPoints = AccessTools.TypeByName("ProthesisHealth.HediffComp_PartHitPoints");
+                CyberFauna_Type_CompPropsPartHitPoints = AccessTools.TypeByName("ProthesisHealth.HediffCompProperties_PartHitPoints");
+                CyberFauna_TryGetRelevantComp = RW_Hediff_TryGetComp.MakeGenericMethod(new[] { CyberFauna_Type_CompPartHitPoints });
             }
         }
 
@@ -320,6 +330,12 @@ namespace EBF.Util
                         realAndFakeProps.Add(hediffCompConn);
                         continue;
                     }
+                    var hediffCompCyberFauna = TryConvertCyberFaunaCompToFakeHpComp(hediffComp);
+                    if (hediffCompCyberFauna != null)
+                    {
+                        realAndFakeProps.Add(hediffCompCyberFauna);
+                        continue;
+                    }
                 }
             }
 
@@ -352,6 +368,12 @@ namespace EBF.Util
                     continue;
                 }
                 tempCheck = TryConvertConnCompToFakeHpComp(comp);
+                if (tempCheck != null)
+                {
+                    list.Add(tempCheck);
+                    continue;
+                }
+                tempCheck = TryConvertCyberFaunaCompToFakeHpComp(comp);
                 if (tempCheck != null)
                 {
                     list.Add(tempCheck);
@@ -407,6 +429,30 @@ namespace EBF.Util
                     linearAdjustment = (int)deltaHp,
                     scaleAdjustment = 0,
                     providerNamespace = CONN_Type_CompHealthIncrease.Namespace
+                };
+
+                return fakeComp;
+            }
+            return null;
+        }
+
+        public static HediffCompProperties_MaxHPAdjust_Fake TryConvertCyberFaunaCompToFakeHpComp(HediffComp comp)
+        {
+            if (CyberFauna_Type_CompPartHitPoints == null)
+            {
+                // not loaded
+                return null;
+            }
+            if (CyberFauna_Type_CompPartHitPoints.IsInstanceOfType(comp))
+            {
+                // is instance of comp
+                object temp = CyberFauna_Type_CompPartHitPoints.GetProperty("Props").GetGetMethod().Invoke(comp, null);
+                float multiplier = (float)CyberFauna_Type_CompPropsPartHitPoints.GetField("multiplier").GetValue(temp);
+                HediffCompProperties_MaxHPAdjust_Fake fakeComp = new HediffCompProperties_MaxHPAdjust_Fake
+                {
+                    linearAdjustment = 0,
+                    scaleAdjustment = multiplier - 1,
+                    providerNamespace = CyberFauna_Type_CompPartHitPoints.Namespace
                 };
 
                 return fakeComp;
