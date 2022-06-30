@@ -20,5 +20,7 @@ namespace EBF.Util
         public static bool QualityBionicsIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Quality Bionics"));
 
         public static bool CONNIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Cybernetic Organism"));
+
+        public static bool CyberFaunaIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Cyber Fauna"));
     }
 }
