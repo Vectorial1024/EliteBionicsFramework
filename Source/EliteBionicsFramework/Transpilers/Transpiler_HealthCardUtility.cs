@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using EBF.Util;
+using HarmonyLib;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,14 @@ namespace EBF.Transpilations
     [HarmonyPatch("GetTooltip")]
     public static class Transpiler_HealthCardUtility
     {
+        public static bool Prepare()
+        {
+            // it turns out Pawnmorpher also overrides the function, so we need to plain against that
+            // the idea is to let pawnmorpher take control of a few functions, but they do so at the cost of letting us tell them the body part max HP
+            // we then look at Pawnmorpher values and add our values on top of them
+            return !ModDetector.PawnmorpherIsLoaded;
+        }
+
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             // StreamWriter writer = new StreamWriter(new FileStream("C:\\Users\\Vincent Wong\\Desktop\\output.txt", FileMode.Create));
