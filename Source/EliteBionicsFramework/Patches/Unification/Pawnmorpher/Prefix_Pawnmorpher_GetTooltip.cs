@@ -7,25 +7,27 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EBF.Patches
+namespace EBF.Patches.Unification.Pawnmorpher
 {
     [HarmonyPatch]
-    public class Prefix_Pawnmorpher_GetPartConditionLabel
+    [HarmonyPriority(Priority.HigherThanNormal)]
+    public class Prefix_Pawnmorpher_GetTooltip
     {
         public static bool Prepare()
         {
-            return ModDetector.PawnmorpherIsLoaded;
+            return ModDetector.PawnmorpherIsLoaded && false;
         }
 
         public static MethodBase TargetMethod()
         {
-            return AccessTools.Method("Pawnmorph.HPatches.HealthUtilityPatchs.GetPartConditionLabel:Transpiler");
+            return AccessTools.Method("Pawnmorph.GetTooltip:Transpiler");
         }
 
         [HarmonyPrefix]
-        public static bool PreFix()
+        public static bool PreFix(ref IEnumerable<CodeInstruction> __result, IEnumerable<CodeInstruction> insts)
         {
             // dont let pawnmorpher do it; we will read their values and print them out by ourselves
+            __result = insts;
             return false;
         }
     }
