@@ -11,7 +11,7 @@ using Verse;
 namespace EBF.Patches.Unification.Pawnmorpher
 {
     [HarmonyPatch]
-    public class Reverse_Pawnmorpher_GetPartMaxHealth
+    public class Mixed_Pawnmorpher_GetPartMaxHealth
     {
         public static bool Prepare()
         {
@@ -26,7 +26,16 @@ namespace EBF.Patches.Unification.Pawnmorpher
         [HarmonyReversePatch]
         public static float GetPartMaxHealthDueToPawnmorpher(BodyPartRecord record, Pawn p)
         {
+            // this gets the original Pawnmorpher GetPartMaxHealth...
             throw new NotImplementedException("Called a stub before reverse patching is complete.");
+        }
+
+        [HarmonyPrefix]
+        public static bool ManuallyPatchTheMethod(ref float __result, BodyPartRecord record, Pawn p)
+        {
+            // ...so that in this method, we can reference the original method + apply a few of our own logic
+            __result = EBFEndpoints.GetMaxHealthWithEBF(record, p);
+            return false;
         }
     }
 }
