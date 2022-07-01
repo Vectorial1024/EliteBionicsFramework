@@ -15,7 +15,7 @@ namespace EBF.Patches.Unification.Pawnmorpher
     {
         public static bool Prepare()
         {
-            return ModDetector.PawnmorpherIsLoaded && false;
+            return ModDetector.PawnmorpherIsLoaded;
         }
 
         public static MethodBase TargetMethod()
