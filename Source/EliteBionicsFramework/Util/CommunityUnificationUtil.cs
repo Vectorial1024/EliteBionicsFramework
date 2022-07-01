@@ -112,12 +112,13 @@ namespace EBF.Util
             if (pawn.HealthScale != Reverse_Pawn_HealthScale.GetOriginalHealthScale(pawn))
             {
                 // we got some other mods modifying the health scale
-                float healthScaleMultipler = pawn.HealthScale / Reverse_Pawn_HealthScale.GetOriginalHealthScale(pawn);
+                int healthScaleMultiplerPercentage = (int) (pawn.HealthScale / Reverse_Pawn_HealthScale.GetOriginalHealthScale(pawn) * 100);
                 builder.AppendLine();
                 builder.Append(IndentationSpace);
                 // products symbol
-                builder.Append("Health scale: x");
-                builder.Append(healthScaleMultipler);
+                builder.Append("Health scale: ×");
+                builder.Append(healthScaleMultiplerPercentage.ToStringCached());
+                builder.Append("%");
             }
             if (fakeComps.ScaledAdjustmentDisplayString.Length > 0)
             {
