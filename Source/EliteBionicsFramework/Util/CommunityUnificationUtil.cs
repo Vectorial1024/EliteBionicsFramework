@@ -129,7 +129,7 @@ namespace EBF.Util
             {
                 builder.AppendLine();
                 builder.Append(IndentationSpace);
-                builder.Append("Pawnmorpher: ");
+                builder.Append("Pawn-Morphing: ");
                 builder.Append(pawnmorpherComps.ScaledAdjustmentDisplayString);
             }
             if (fakeComps.ScaledAdjustmentDisplayString.Length > 0)
