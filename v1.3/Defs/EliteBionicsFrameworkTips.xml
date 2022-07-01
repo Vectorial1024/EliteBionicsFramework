@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <TipSetDef>
+    <defName>EBF_Tips</defName>
+    <tips>
+      <!-- Notice on Community Unification -->
+      <li TKey="GeneralUnification">Some bionic mods will now behave as if they are using the Elite Bionics Framework. However, their underlying numbers remain unchanged.</li>
+      <li TKey="HealthScale">The health scale of a pawn can be affected by multipliers given by other mods through the Elite Bionics Framework.</li>
+      <li TKey="CalculationOrder">The Elite Bionics Framework always considers HP-increasing multipliers first before considering HP-increasing offsets.</li>
+    </tips>
+  </TipSetDef>
+</Defs>
