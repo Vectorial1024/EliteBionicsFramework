@@ -47,12 +47,10 @@ namespace EBF
             if (ModDetector.PawnmorpherIsLoaded)
             {
                 baseMaxHP = CommunityUnificationUtil.GetPartMaxHealthFromPawnmorpher(record, pawn);
-                EliteBionicsFrameworkMain.LogError("Pawnmorpher says max health should be " + baseMaxHP);
             }
             else
             {
                 baseMaxHP = GetMaxHealthUnmodified(record.def, pawn);
-                EliteBionicsFrameworkMain.LogError("EBF (unmodded) says max health should be " + baseMaxHP);
             }
             HediffSet hediffSet = pawn.health.hediffSet;
             float totalLinearAdjustment = 0;
