@@ -82,7 +82,7 @@
     <Compile Include="Patches\Prefix_Pawnmorpher_GetTooltip.cs" />
     <Compile Include="Patches\Prefix_Pawnmorpher_GetPartHealth.cs" />
     <Compile Include="Patches\Prefix_Pawnmorpher_GetPartConditionLabel.cs" />
-    <Compile Include="Patches\Reverse_Pawnmorpher_GetPartMaxHealth.cs" />
+    <Compile Include="Patches\Unification\Pawnmorpher\Reverse_Pawnmorpher_GetPartMaxHealth.cs" />
     <Compile Include="Patches\Unification\CONN\PreFix_CONN_HealthStat.cs" />
     <Compile Include="Patches\Unification\CONN\PreFix_CONN_GetMaxHealth.cs" />
     <Compile Include="Patches\Unification\CyberFauna\Transpiler_CyberFauna_CalcPartEfficiency.cs" />

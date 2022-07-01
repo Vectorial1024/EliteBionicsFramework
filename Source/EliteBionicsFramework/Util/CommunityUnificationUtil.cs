@@ -1,6 +1,7 @@
 ﻿using EBF.Hediffs;
 using EBF.Patches;
 using EBF.Patches.Unification;
+using EBF.Patches.Unification.Pawnmorpher;
 using EBF.Patches.Unification.QualityBionics;
 using HarmonyLib;
 using RimWorld;
@@ -281,7 +282,8 @@ namespace EBF.Util
         public static float GetPartMaxHealthFromPawnmorpher(BodyPartRecord record, Pawn p)
         {
             // we assert that Pawnmorpher is loaded; dont call without checking that Pawnmorpher exists
-            return Reverse_Pawnmorpher_GetPartMaxHealth.GetPartMaxHealth(record, p);
+            Prefix_BodyPart_GetMaxHealth.SuppressNextWarning();
+            return Reverse_Pawnmorpher_GetPartMaxHealth.GetPartMaxHealthDueToPawnmorpher(record, p);
             /*
             if (!hasCheckedPawnmorpherGetPartMaxHealth)
             {

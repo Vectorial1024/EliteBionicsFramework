@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 
-namespace EBF.Patches
+namespace EBF.Patches.Unification.Pawnmorpher
 {
     [HarmonyPatch]
     public class Reverse_Pawnmorpher_GetPartMaxHealth
@@ -24,7 +24,7 @@ namespace EBF.Patches
         }
 
         [HarmonyReversePatch]
-        public static float GetPartMaxHealth(BodyPartRecord record, Pawn p)
+        public static float GetPartMaxHealthDueToPawnmorpher(BodyPartRecord record, Pawn p)
         {
             throw new NotImplementedException("Called a stub before reverse patching is complete.");
         }
