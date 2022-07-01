@@ -43,7 +43,17 @@ namespace EBF
         /// <returns>The appropriate max HP of the BodyPartRecord under the effects of EBF-enabled hediffs</returns>
         public static float GetMaxHealthWithEBF(BodyPartRecord record, Pawn pawn)
         {
-            float baseMaxHP = GetMaxHealthUnmodified(record.def, pawn);
+            float baseMaxHP;
+            if (ModDetector.PawnmorpherIsLoaded)
+            {
+                baseMaxHP = CommunityUnificationUtil.GetPartMaxHealthFromPawnmorpher(record, pawn);
+                EliteBionicsFrameworkMain.LogError("Pawnmorpher says max health should be " + baseMaxHP);
+            }
+            else
+            {
+                baseMaxHP = GetMaxHealthUnmodified(record.def, pawn);
+                EliteBionicsFrameworkMain.LogError("EBF (unmodded) says max health should be " + baseMaxHP);
+            }
             HediffSet hediffSet = pawn.health.hediffSet;
             float totalLinearAdjustment = 0;
             float totalScaledAdjustment = 1;
