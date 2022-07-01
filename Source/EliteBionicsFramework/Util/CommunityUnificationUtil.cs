@@ -34,6 +34,11 @@ namespace EBF.Util
         private static Type CyberFauna_Type_CompPropsPartHitPoints = null;
         private static MethodInfo CyberFauna_TryGetRelevantComp = null;
 
+        private static Type Pawnmorpher_Type_MutationUtilities = null;
+        private static Type Pawnmorpher_Type_MutationTracker = null;
+        private static Type Pawnmorpher_Type_HediffAddedMutation = null;
+        private static Type Pawnmorpher_Type_MutationStage = null;
+
         // hmmm... would we allow for others to modify the indentation strength?
         private static string IndentationSpace = "    ";
 
@@ -62,6 +67,13 @@ namespace EBF.Util
                 CyberFauna_Type_CompPartHitPoints = AccessTools.TypeByName("ProthesisHealth.HediffComp_PartHitPoints");
                 CyberFauna_Type_CompPropsPartHitPoints = AccessTools.TypeByName("ProthesisHealth.HediffCompProperties_PartHitPoints");
                 CyberFauna_TryGetRelevantComp = RW_Hediff_TryGetComp.MakeGenericMethod(new[] { CyberFauna_Type_CompPartHitPoints });
+            }
+            if (ModDetector.PawnmorpherIsLoaded)
+            {
+                Pawnmorpher_Type_MutationUtilities = AccessTools.TypeByName("Pawnmorph.MutationUtilities");
+                Pawnmorpher_Type_MutationTracker = AccessTools.TypeByName("Pawnmorph.MutationTracker");
+                Pawnmorpher_Type_HediffAddedMutation = AccessTools.TypeByName("Pawnmorph.Hediff_AddedMutation");
+                Pawnmorpher_Type_MutationStage = AccessTools.TypeByName("Pawnmorph.Hediffs.MutationStage");
             }
         }
 
@@ -110,6 +122,15 @@ namespace EBF.Util
                 builder.Append("Extra health scale: ×");
                 builder.Append(healthScaleMultiplerPercentage.ToStringCached());
                 builder.Append("%");
+            }
+            // pawnmorpher stuff
+            HediffCompProperties_MaxHPAdjust_Fake pawnmorpherComps = TryExtractPawnmorpherHediffToFakeHpComp(pawn, record);
+            if (pawnmorpherComps != null)
+            {
+                builder.AppendLine();
+                builder.Append(IndentationSpace);
+                builder.Append("Pawnmorpher: ");
+                builder.Append(pawnmorpherComps.ScaledAdjustmentDisplayString);
             }
             if (fakeComps.ScaledAdjustmentDisplayString.Length > 0)
             {
@@ -442,6 +463,54 @@ namespace EBF.Util
                 return fakeComp;
             }
             return null;
+        }
+
+        public static HediffCompProperties_MaxHPAdjust_Fake TryExtractPawnmorpherHediffToFakeHpComp(Pawn pawn, BodyPartRecord record)
+        {
+            if (Pawnmorpher_Type_MutationUtilities == null)
+            {
+                // not loaded
+                return null;
+            }
+            object mutationTracker = Pawnmorpher_Type_MutationUtilities.GetMethod("GetMutationTracker").Invoke(null, new[] { pawn });
+            if (mutationTracker == null) 
+            { 
+                return null; 
+            }
+            IEnumerable<object> allMutations = (IEnumerable<object>)Pawnmorpher_Type_MutationTracker.GetProperty("AllMutations").GetGetMethod().Invoke(mutationTracker, null);
+            float pmMultiplier = 0;
+            float pmOffset = 0;
+            foreach (object mutationHediff in allMutations)
+            {
+                object mutationStage = Pawnmorpher_Type_HediffAddedMutation.GetProperty("CurrentMutationStage").GetGetMethod().Invoke(mutationHediff, null);
+                if (mutationStage != null)
+                {
+                    float tempVal = (float)Pawnmorpher_Type_MutationStage.GetField("globalHealthMultiplier").GetValue(mutationStage);
+                    if (tempVal != 0)
+                    {
+                        pmMultiplier += tempVal;
+                    }
+                    BodyPartRecord tempObj = (BodyPartRecord)Pawnmorpher_Type_MutationStage.GetProperty("Part").GetGetMethod().Invoke(mutationStage, null);
+                    if (tempObj == record)
+                    {
+                        pmOffset += (float)Pawnmorpher_Type_MutationStage.GetField("healthOffset").GetValue(mutationStage);
+                    }
+                }
+            }
+            if (pmMultiplier == 0 && pmOffset == 0)
+            {
+                // nothing here
+                return null;
+            }
+            float properMultiplier = (pmMultiplier > 0 ? pmMultiplier : 1);
+            // both are essentially multipliers
+            HediffCompProperties_MaxHPAdjust_Fake fakeComp = new HediffCompProperties_MaxHPAdjust_Fake
+            {
+                linearAdjustment = 0,
+                scaleAdjustment = (pmOffset + 1) * properMultiplier,
+                providerNamespace = Pawnmorpher_Type_MutationUtilities.Namespace
+            };
+            return fakeComp;
         }
     }
 }
