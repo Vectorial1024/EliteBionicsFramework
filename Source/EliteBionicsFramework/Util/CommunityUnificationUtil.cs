@@ -17,10 +17,6 @@ namespace EBF.Util
     [StaticConstructorOnStartup]
     public class CommunityUnificationUtil
     {
-        private static bool hasCheckedPawnmorpherGetPartMaxHealth = false;
-        private static MethodInfo PawnmorpherGetPartMaxHealth = null;
-        private static Traverse Method_PawnmorpherGetPartMaxHealth = null;
-
         private static MethodInfo RW_Hediff_TryGetComp = null;
 
         private static Type QualityBionics_Type_Main = null;
@@ -43,12 +39,6 @@ namespace EBF.Util
 
         static CommunityUnificationUtil()
         {
-            Method_PawnmorpherGetPartMaxHealth = Traverse.CreateWithType("Pawnmorph.BodyUtilities")?.Method("GetPartMaxHealth", new Type[2]
-            {
-                typeof(BodyPartRecord),
-                typeof(Pawn),
-            }, null);
-
             RW_Hediff_TryGetComp = typeof(HediffUtility).GetMethod(nameof(HediffUtility.TryGetComp));
             if (ModDetector.QualityBionicsIsLoaded)
             {
@@ -283,26 +273,7 @@ namespace EBF.Util
         {
             // we assert that Pawnmorpher is loaded; dont call without checking that Pawnmorpher exists
             Prefix_BodyPart_GetMaxHealth.SuppressNextWarning();
-            return Reverse_Pawnmorpher_GetPartMaxHealth.GetPartMaxHealthDueToPawnmorpher(record, p);
-            /*
-            if (!hasCheckedPawnmorpherGetPartMaxHealth)
-            {
-                EliteBionicsFrameworkMain.LogError("1");
-                PawnmorpherGetPartMaxHealth = AccessTools.Method(Type.GetType("Pawnmorph.BodyUtilities, Pawnmorph"), "GetPartMaxHealth");
-                EliteBionicsFrameworkMain.LogError("2");
-                EliteBionicsFrameworkMain.LogError(PawnmorpherGetPartMaxHealth?.ToString());
-                hasCheckedPawnmorpherGetPartMaxHealth = true;
-            }
-            EliteBionicsFrameworkMain.LogError("3");
-            if (PawnmorpherGetPartMaxHealth == null)
-            {
-                EliteBionicsFrameworkMain.LogError("Failed to reflect into Pawnmorpher->GetPartMaxHealth");
-                return 0;
-            }
-            float testValue = (float) PawnmorpherGetPartMaxHealth.Invoke(null, new object[] { record, p });
-            EliteBionicsFrameworkMain.LogError("" + testValue);
-            return testValue;
-            */
+            return Mixed_Pawnmorpher_GetPartMaxHealth.GetPartMaxHealthDueToPawnmorpher(record, p);
         }
 
         public static List<HediffCompProperties_MaxHPAdjust> GetRealAndFakeHpPropsForUnification(Pawn pawn, BodyPartRecord record, HediffWithComps constraintComps = null)
