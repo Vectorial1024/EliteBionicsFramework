@@ -116,7 +116,7 @@ namespace EBF.Util
                 builder.AppendLine();
                 builder.Append(IndentationSpace);
                 // products symbol
-                builder.Append("Health scale: ×");
+                builder.Append("Extra health scale: ×");
                 builder.Append(healthScaleMultiplerPercentage.ToStringCached());
                 builder.Append("%");
             }
