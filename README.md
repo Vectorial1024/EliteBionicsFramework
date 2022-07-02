@@ -1,8 +1,6 @@
 # Elite Bionics Framework (EBF)
 A common framework to change body part max HP.
 
-Special Note: due to an unexplainable incompatibility with Humanoid Alien Races, I have made the following changes: EBF hediffs will no longer influence the chance of pawns getting stunned after taking blunt damage; i.e., the chance of getting stunned from blunt damage is now the same as vanilla calculation.
-
 # Downloading this Mod (Normal Users)
 1. Go back to https://github.com/Vectorial1024/EliteBionicsFramework
 2. Notice the "Clone or Download" button on the top right hand corner (under the "1 Contributor" area). Click on it and click "Download as ZIP"
@@ -37,6 +35,12 @@ Currently, the following mods are supported, in no particular order:
 - Moody
 
 Note that this list does not include the mods that are using this framework to provide actual body part max HP manipulation.
+
+# Community Unification
+
+This mod has built-in unification with some other third-party mods that also provides body part HP changing effects. This is only to allow those mods to work with EBF without issues, and I do not claim ownership to those mods.
+
+For more info and an updated list of mods, check out the relevant Steam Collection here: https://steamcommunity.com/workshop/filedetails/?id=2828792658
 
 # Usage and Other Related Info
 
