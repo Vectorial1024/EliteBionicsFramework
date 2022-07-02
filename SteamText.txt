@@ -6,6 +6,7 @@ Package ID: V1024.EBFramework
 [list]
 [*]Requires HugsLib (warning should be given if you don't have HugsLib); place this mod below HugsLib
 [*]Place this mod above other mods that require this mod
+[*]Using auto-sort, place this mod above Humanoid Alien Races
 [*]Safe to add to existing saves
 [*]Depending on whether there are any dependencies loaded, safe to be removed
 [*]Should have no problems with most other mods, see below for more info
@@ -28,17 +29,16 @@ Note that, normally, when body part max HP is increased, the pain and bleeding r
 
 However, pain levels are not touched to maintain balance. End users should aim for drugs, implants, or armor to reduce the pain of your soldiers/workers before and during battle.
 
-Modders (and perhaps end users too) may refer and subscribe to Elite Archotech ( https://steamcommunity.com/sharedfiles/filedetails/?id=1744648077 ), another mod under my name, for inspiartion and immediate usage.
+Modders (and perhaps end users too) may refer and subscribe to Elite Archotech ( https://steamcommunity.com/sharedfiles/filedetails/?id=1744648077 ), another mod under my name, for inspiration and immediate usage.
 
 There are some documentation on GitHub for modders too.
 
-[h1]Known Issues[/h1]
+[h1]Known Issues and Latest News[/h1]
 [list]
 [*]This framework will throw errors if it detects any mod that tries to get the max HP of body parts without using this framework.
-[*]This framework will continuously throw errors when Moody is also loaded. I am technically unable to fix this problem. Ask the guys developing Moody to have a look, and let them decide if they want to support this framework.
 [*]Uninstalling this mod may have problems: if, after uninstallation, your colonists have body parts where the injury magnitude is larger than the max HP (e.g. injury at 26, EBF part gives max HP = 35, but vanilla only gives max HP = 20), those body parts will very likely become destroyed. This is vanilla behavior.
-[*][b]12 Sept 2021: Compatibility with Pawnmorpher now fixed (only for RW >= v1.3)[/b]
 [*][b]24 Dec 2021: Compatibility with Humanoid Alien Races now fixed (only for RW >= 1.3); Special thanks to RocketDelivery![/b]
+[*][b]2 July 2022: Compatibility with a whole bunch of other mods (e.g. Qaulity Bionics, Pawnmorpher) now fixed via Community Unification; refer to the Community Unification collection for more details[/b]
 [/list]
 [h1]The GitHub Repo[/h1]
 Many things, including changelogs, non-Steam downloads, and issues, are on the GitHub repo of this mod. Link: https://github.com/Vectorial1024/EliteBionicsFramework
@@ -48,6 +48,7 @@ Many things, including changelogs, non-Steam downloads, and issues, are on the G
 [*]RimWorld belongs to Ludeon Studio. Some textures used as illustration above are from RimWorld assets.
 [*]Harmony is provided by pardeike.
 [*]HugsLib is made by UnlimitedHugs.
+[*]Mods in the Community Unification list are all made by someone else (except EBF, of course, EBF is made by me).
 [*]Thanks to Neceros and Bar0th for finding a patching bug and suggesting a more resilient solution to how this mod patches vanilla code
 [*]Thanks to RocketDelivery for solving the seemingly magical incompatibility with Humanoid Alien Races
 [/list]
