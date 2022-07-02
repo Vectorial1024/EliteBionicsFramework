@@ -19,10 +19,6 @@ namespace EBF
         /// </summary>
         public static string MODPREFIX => "[" + MODSHORTID + "] ";
 
-        internal static bool HasAttemptedToFindMoody = false;
-
-        internal static bool MoodyIsRunning = false;
-
         // Settings 
 
         public static SettingHandle<bool> SettingHandle_DisplayHpDiffInHediffName { get; private set; }
