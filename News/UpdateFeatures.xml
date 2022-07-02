@@ -138,6 +138,38 @@
 - Notice: EBF has noticed more and more 3rd party mods creating custom HP-increasing bionics without using EBF, which may cause confusion, incompatibilities, and incorrectness; EBF is currently thinking of a solution to this</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_0_0</defName>
+		<assemblyVersion>5.0.0.0</assemblyVersion>
+		<content>Hi all! Elite Bionics Framework v5.0.|
+It has been about 4 years since the initial conception of Elite Bionics, and Elite Bionics Framework has grown so much. Thank you all for the continued support!|
+For a long time, I noticed that there are several mods out there that provides HP-increasing effects by themselves. I generally leave them be, but some of them are causing incompatibilities with EBF and with each other, which is problematic.|
+This is why I have decided to evolve EBF a bit more by letting it be a unifying bridge between the various mods that provide body part HP modification. I call this Community Unification.|
+Note that this mod only allows them to work with each other together; the individual effects are not modified in any way. You will still be seeing effects and numbers of the individual mods themselves.|
+And of course, disclaimers: I am not affiliated with any of the mod authors out there. I do not claim ownership on any of the mods out there. All I do is simply to ensure that all mods can run smoothly alongside each other.|
+- The Community Unification: a decision has been made to unify the many mods out there that modify body part max HP but may potentially conflict with each other
+- To XML modders depending on EBF: no update is needed
+- The inner code of EBF has been changed somewhat; C# modders be aware (even though I believe there aren't too many breaking changes)
+- I am unaffiliated to any of the mods below
+- I claim no ownerships of any of the mods below|
+- If QualityBionics is installed: QualityBionics will behave as if they are using EBF
+- If QualityBionics is installed: fixed the wrong implementation of QualityBionics causing HP modification to double-count for eg arms and legs
+- Numbers used by QualityBionics is unchanged
+- If CONN is installed: CONN will behave as if they are using EBF
+- Numbers used by CONN is unchanged
+- If Cyber Fauna is installed: Cyber Fauna will behave as if they are using EBF
+- Numbers used by Cyber Fauna is unchanged|
+- Technical Info: we will now show UI text for effects of mods that modify the health scale of pawns, which means:
+- If GeneticRim/Vanilla Genetics Expanded is installed: we will now show their effects under a new UI text
+- If Level This is installed: we will now show their effects under a new UI text
+- End of Technical Info|
+- If Pawnmorpher is installed: we standardized the patches with Pawnmorpher, so that we also show additional UI text dedicated to Pawnmorpher
+- Also fixed error with Pawnmorpher regarding "error setting up text" when reading body part summary 
+- Added some tips to the in-game tips library|
+- No update needed for Compact Hediffs, unless they would like to readjust their UI using the latest EBF functions and methods
+</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
