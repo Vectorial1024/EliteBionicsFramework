@@ -152,20 +152,17 @@ And of course, disclaimers: I am not affiliated with any of the mod authors out 
 - The inner code of EBF has been changed somewhat; C# modders be aware (even though I believe there aren't too many breaking changes)
 - I am unaffiliated to any of the mods below
 - I claim no ownerships of any of the mods below|
-- If QualityBionics is installed: QualityBionics will behave as if they are using EBF
+- The following mods are unified:
+  - Quality Bionics
+  - CONN
+  - Cyber Fauna
+  - Pawnmorpher
+  - GeneticRim/Vanilla Genetics Expanded
+  - Level This
 - If QualityBionics is installed: fixed the wrong implementation of QualityBionics causing HP modification to double-count for eg arms and legs
-- Numbers used by QualityBionics is unchanged
-- If CONN is installed: CONN will behave as if they are using EBF
-- Numbers used by CONN is unchanged
-- If Cyber Fauna is installed: Cyber Fauna will behave as if they are using EBF
-- Numbers used by Cyber Fauna is unchanged|
-- Technical Info: we will now show UI text for effects of mods that modify the health scale of pawns, which means:
-- If GeneticRim/Vanilla Genetics Expanded is installed: we will now show their effects under a new UI text
-- If Level This is installed: we will now show their effects under a new UI text
-- End of Technical Info|
 - If Pawnmorpher is installed: we standardized the patches with Pawnmorpher, so that we also show additional UI text dedicated to Pawnmorpher
-- Also fixed error with Pawnmorpher regarding "error setting up text" when reading body part summary 
-- Added some tips to the in-game tips library|
+- Also fixed error with Pawnmorpher regarding "error setting up text" when reading body part summary|
+- Added some tips to the in-game tips library
 - No update needed for Compact Hediffs, unless they would like to readjust their UI using the latest EBF functions and methods
 </content>
 	</HugsLib.UpdateFeatureDef>
