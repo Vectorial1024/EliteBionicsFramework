@@ -507,7 +507,7 @@ namespace EBF.Util
             HediffCompProperties_MaxHPAdjust_Fake fakeComp = new HediffCompProperties_MaxHPAdjust_Fake
             {
                 linearAdjustment = 0,
-                scaleAdjustment = (pmOffset + 1) * properMultiplier,
+                scaleAdjustment = (pmOffset + 1) * properMultiplier - 1,
                 providerNamespace = Pawnmorpher_Type_MutationUtilities.Namespace
             };
             return fakeComp;
