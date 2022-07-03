@@ -47,20 +47,36 @@ namespace EBF.Util
             RW_Hediff_TryGetComp = typeof(HediffUtility).GetMethod(nameof(HediffUtility.TryGetComp));
             if (ModDetector.QualityBionicsIsLoaded)
             {
-                QualityBionics_Type_Main = Type.GetType("QualityBionics.QualityBionicsMod, QualityBionics");
-                QualityBionics_Field_MainSettings = QualityBionics_Type_Main.GetField("settings");
+                try
+                {
+                    QualityBionics_Type_Main = Type.GetType("QualityBionics.QualityBionicsMod, QualityBionics");
+                    QualityBionics_Field_MainSettings = QualityBionics_Type_Main.GetField("settings");
 
-                QualityBionics_Type_QualityBionicsSettings = Type.GetType("QualityBionics.QualityBionicsSettings, QualityBionics");
-                QualityBionics_Method_GetQualityMultiplier = QualityBionics_Type_QualityBionicsSettings.GetMethod("GetQualityMultipliersForHP");
+                    QualityBionics_Type_QualityBionicsSettings = Type.GetType("QualityBionics.QualityBionicsSettings, QualityBionics");
+                    QualityBionics_Method_GetQualityMultiplier = QualityBionics_Type_QualityBionicsSettings.GetMethod("GetQualityMultipliersForHP");
 
-                QualityBionics_Type_CompQualityBionics = Type.GetType("QualityBionics.HediffCompQualityBionics, QualityBionics");
-                QualityBionics_TryGetRelevantComp = RW_Hediff_TryGetComp.MakeGenericMethod(new[] { QualityBionics_Type_CompQualityBionics });
+                    QualityBionics_Type_CompQualityBionics = Type.GetType("QualityBionics.HediffCompQualityBionics, QualityBionics");
+                    QualityBionics_TryGetRelevantComp = RW_Hediff_TryGetComp.MakeGenericMethod(new[] { QualityBionics_Type_CompQualityBionics });
+                }
+                catch (ArgumentNullException ex)
+                {
+                    // we failed to make a generic method
+                    EliteBionicsFrameworkMain.LogError("Something about Quality Bionics changed; please report this to us.");
+                }
             }
             if (ModDetector.CONNIsLoaded)
             {
-                CONN_Type_CompHealthIncrease = Type.GetType("CONN.HealthIncreaseComp, CONN");
-                CONN_Type_CompPropsHealthIncrease = Type.GetType("CONN.CompProperties_HealthIncrease, CONN");
-                CONN_TryGetRelevantComp = RW_Hediff_TryGetComp.MakeGenericMethod(new[] { CONN_Type_CompHealthIncrease });
+                try
+                {
+                    CONN_Type_CompHealthIncrease = Type.GetType("CONN.HealthIncreaseComp, CONN");
+                    CONN_Type_CompPropsHealthIncrease = Type.GetType("CONN.CompProperties_HealthIncrease, CONN");
+                    CONN_TryGetRelevantComp = RW_Hediff_TryGetComp.MakeGenericMethod(new[] { CONN_Type_CompHealthIncrease });
+                }
+                catch (ArgumentNullException ex)
+                {
+                    // we failed to make a generic method
+                    EliteBionicsFrameworkMain.LogError("Something about CONN changed; please report this to us.");
+                }
             }
             if (ModDetector.CyberFaunaIsLoaded)
             {
@@ -78,15 +94,23 @@ namespace EBF.Util
                 catch (ArgumentNullException ex)
                 {
                     // we failed to make a generic method
-                    EliteBionicsFrameworkMain.LogError("Something about CyberFauna changed; please report this.");
+                    EliteBionicsFrameworkMain.LogError("Something about CyberFauna changed; please report this to us.");
                 }
             }
             if (ModDetector.PawnmorpherIsLoaded)
             {
-                Pawnmorpher_Type_MutationUtilities = AccessTools.TypeByName("Pawnmorph.MutationUtilities");
-                Pawnmorpher_Type_MutationTracker = AccessTools.TypeByName("Pawnmorph.MutationTracker");
-                Pawnmorpher_Type_HediffAddedMutation = AccessTools.TypeByName("Pawnmorph.Hediff_AddedMutation");
-                Pawnmorpher_Type_MutationStage = AccessTools.TypeByName("Pawnmorph.Hediffs.MutationStage");
+                try
+                {
+                    Pawnmorpher_Type_MutationUtilities = AccessTools.TypeByName("Pawnmorph.MutationUtilities");
+                    Pawnmorpher_Type_MutationTracker = AccessTools.TypeByName("Pawnmorph.MutationTracker");
+                    Pawnmorpher_Type_HediffAddedMutation = AccessTools.TypeByName("Pawnmorph.Hediff_AddedMutation");
+                    Pawnmorpher_Type_MutationStage = AccessTools.TypeByName("Pawnmorph.Hediffs.MutationStage");
+                }
+                catch (ArgumentNullException ex)
+                {
+                    // we failed to make a generic method
+                    EliteBionicsFrameworkMain.LogError("Something about Pawnmorpher changed; please report this to us.");
+                }
             }
         }
 
