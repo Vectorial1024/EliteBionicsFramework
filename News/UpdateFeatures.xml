@@ -167,7 +167,7 @@ And of course, disclaimers: I am not affiliated with any of the mod authors out 
 </content>
 	</HugsLib.UpdateFeatureDef>
 	
-	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
 		<defName>EBF_v5_0_1</defName>
 		<assemblyVersion>5.0.1.0</assemblyVersion>
 		<content>@everyone|
