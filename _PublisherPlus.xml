@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+  <Excluded>
+    <exclude>.git</exclude>
+    <exclude>.vs</exclude>
+    <exclude>Brainstorm.txt</exclude>
+    <exclude>Defs</exclude>
+    <exclude>Docs</exclude>
+    <exclude>EBF_Formula.png</exclude>
+    <exclude>Elite Bionics Bonus Materials</exclude>
+    <exclude>ExampleUsage.png</exclude>
+    <exclude>Explanation.txt</exclude>
+    <exclude>Graphs</exclude>
+    <exclude>Pics</exclude>
+    <exclude>PromoText.txt</exclude>
+    <exclude>README.md</exclude>
+    <exclude>Source</exclude>
+    <exclude>SteamText.txt</exclude>
+    <exclude>WipNewsDraft.txt</exclude>
+  </Excluded>
+</Configuration>
