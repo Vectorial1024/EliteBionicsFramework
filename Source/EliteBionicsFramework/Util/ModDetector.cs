@@ -9,6 +9,8 @@ namespace EBF.Util
 {
     public class ModDetector
     {
+        internal static string PackageIdCyberFaunaOfficial = "Daniledman.CyberFauna";
+
         public static bool PawnmorpherIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Pawnmorpher"));
 
         public static bool PrepareCarefullyIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("EdB Prepare Carefully"));
@@ -22,5 +24,7 @@ namespace EBF.Util
         public static bool CONNIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Cybernetic Organism"));
 
         public static bool CyberFaunaIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Cyber Fauna"));
+
+        public static bool CyberFaunaOfficialIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.PackageId.Equals(PackageIdCyberFaunaOfficial));
     }
 }

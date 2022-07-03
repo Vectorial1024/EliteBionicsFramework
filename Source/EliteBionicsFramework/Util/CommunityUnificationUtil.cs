@@ -64,9 +64,22 @@ namespace EBF.Util
             }
             if (ModDetector.CyberFaunaIsLoaded)
             {
-                CyberFauna_Type_CompPartHitPoints = AccessTools.TypeByName("ProthesisHealth.HediffComp_PartHitPoints");
-                CyberFauna_Type_CompPropsPartHitPoints = AccessTools.TypeByName("ProthesisHealth.HediffCompProperties_PartHitPoints");
-                CyberFauna_TryGetRelevantComp = RW_Hediff_TryGetComp.MakeGenericMethod(new[] { CyberFauna_Type_CompPartHitPoints });
+                // test
+                if (!ModDetector.CyberFaunaOfficialIsLoaded)
+                {
+                    throw new NotSupportedException(EliteBionicsFrameworkMain.MODPREFIX + "We do not support your version of Cyber Fauna.");
+                }
+                try
+                {
+                    CyberFauna_Type_CompPartHitPoints = AccessTools.TypeByName("ProthesisHealth.HediffComp_PartHitPoints");
+                    CyberFauna_Type_CompPropsPartHitPoints = AccessTools.TypeByName("ProthesisHealth.HediffCompProperties_PartHitPoints");
+                    CyberFauna_TryGetRelevantComp = RW_Hediff_TryGetComp.MakeGenericMethod(new[] { CyberFauna_Type_CompPartHitPoints });
+                }
+                catch (ArgumentNullException ex)
+                {
+                    // we failed to make a generic method
+                    EliteBionicsFrameworkMain.LogError("Something about CyberFauna changed; please report this.");
+                }
             }
             if (ModDetector.PawnmorpherIsLoaded)
             {
