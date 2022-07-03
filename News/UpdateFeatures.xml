@@ -166,6 +166,13 @@ And of course, disclaimers: I am not affiliated with any of the mod authors out 
 - No update needed for Compact Hediffs, unless they would like to readjust their UI using the latest EBF functions and methods
 </content>
 	</HugsLib.UpdateFeatureDef>
+	
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
+		<defName>EBF_v5_0_1</defName>
+		<assemblyVersion>5.0.1.0</assemblyVersion>
+		<content>@everyone|
+Please check that you are using the correct version of Cyber Fauna, thanks!</content>
+	</HugsLib.UpdateFeatureDef>
 
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
