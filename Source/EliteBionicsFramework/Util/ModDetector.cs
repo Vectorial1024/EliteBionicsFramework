@@ -25,6 +25,6 @@ namespace EBF.Util
 
         public static bool CyberFaunaIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Cyber Fauna"));
 
-        public static bool CyberFaunaOfficialIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.PackageId.Equals(PackageIdCyberFaunaOfficial));
+        public static bool CyberFaunaOfficialIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.PackageId == PackageIdCyberFaunaOfficial.ToLower());
     }
 }
