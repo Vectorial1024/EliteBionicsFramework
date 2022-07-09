@@ -11,6 +11,8 @@ namespace EBF.Util
     {
         internal static string PackageIdCyberFaunaOfficial = "Daniledman.CyberFauna";
 
+        internal static string PackageIdMechalitCoreOfficial = "Daniledman.CyberFauna";
+
         public static bool PawnmorpherIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Pawnmorpher"));
 
         public static bool PrepareCarefullyIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("EdB Prepare Carefully"));
@@ -26,5 +28,9 @@ namespace EBF.Util
         public static bool CyberFaunaIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Cyber Fauna"));
 
         public static bool CyberFaunaOfficialIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.PackageId == PackageIdCyberFaunaOfficial.ToLower());
+
+        public static bool MechalitCoreIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Mechalit Core"));
+
+        public static bool MechalitCoreOfficialIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.PackageId == PackageIdMechalitCoreOfficial.ToLower());
     }
 }

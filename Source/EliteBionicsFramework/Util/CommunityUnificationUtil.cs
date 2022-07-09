@@ -78,7 +78,7 @@ namespace EBF.Util
                     EliteBionicsFrameworkMain.LogError("Something about CONN changed; please report this to us.");
                 }
             }
-            if (ModDetector.CyberFaunaIsLoaded)
+            if (ModDetector.CyberFaunaIsLoaded || ModDetector.MechalitCoreIsLoaded)
             {
                 // test
                 if (!ModDetector.CyberFaunaOfficialIsLoaded)
@@ -95,6 +95,25 @@ namespace EBF.Util
                 {
                     // we failed to make a generic method
                     EliteBionicsFrameworkMain.LogError("Something about CyberFauna changed; please report this to us.");
+                }
+            }
+            if (ModDetector.MechalitCoreIsLoaded && !ModDetector.CyberFaunaIsLoaded)
+            {
+                // it is infuriating that both cyber fauna and mechalit core is using the same dll for stuff yet there are two copies of it in total
+                if (!ModDetector.MechalitCoreOfficialIsLoaded)
+                {
+                    throw new NotSupportedException(EliteBionicsFrameworkMain.MODPREFIX + "We do not support your version of Mechalit Core.");
+                }
+                try
+                {
+                    CyberFauna_Type_CompPartHitPoints = AccessTools.TypeByName("ProthesisHealth.HediffComp_PartHitPoints");
+                    CyberFauna_Type_CompPropsPartHitPoints = AccessTools.TypeByName("ProthesisHealth.HediffCompProperties_PartHitPoints");
+                    CyberFauna_TryGetRelevantComp = RW_Hediff_TryGetComp.MakeGenericMethod(new[] { CyberFauna_Type_CompPartHitPoints });
+                }
+                catch (ArgumentNullException ex)
+                {
+                    // we failed to make a generic method
+                    EliteBionicsFrameworkMain.LogError("Something about MechalitCore changed; please report this to us.");
                 }
             }
             if (ModDetector.PawnmorpherIsLoaded)
