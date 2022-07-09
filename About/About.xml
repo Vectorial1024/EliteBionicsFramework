@@ -32,5 +32,6 @@ As a rule of thumb, if Ludeon did not change much about the health system, then 
 	<incompatibleWith>
 		<!-- This one is the unlisted early-update version of CyberFauna; I had to use a Steam Downloader to get its content ID for testing. -->
         <li>Scherub.CyberFauna</li>
+		<!-- We are unable to find the mod ID of the intermediate version of Mechalit Core -->
     </incompatibleWith>
 </ModMetaData>
