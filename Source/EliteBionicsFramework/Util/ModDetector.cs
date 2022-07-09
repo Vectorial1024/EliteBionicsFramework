@@ -11,7 +11,7 @@ namespace EBF.Util
     {
         internal static string PackageIdCyberFaunaOfficial = "Daniledman.CyberFauna";
 
-        internal static string PackageIdMechalitCoreOfficial = "Daniledman.CyberFauna";
+        internal static string PackageIdMechalitCoreOfficial = "Daniledman.MechalitCore";
 
         public static bool PawnmorpherIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Pawnmorpher"));
 
