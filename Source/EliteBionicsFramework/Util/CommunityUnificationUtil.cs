@@ -42,6 +42,9 @@ namespace EBF.Util
         // hmmm... would we allow for others to modify the indentation strength?
         private static string IndentationSpace = "    ";
 
+        // special handling for ProthesisHealth which powers CyberFauna and MechalitCore
+        private static bool HasLoadedProthesisHealth = false;
+
         static CommunityUnificationUtil()
         {
             RW_Hediff_TryGetComp = typeof(HediffUtility).GetMethod(nameof(HediffUtility.TryGetComp));
@@ -78,7 +81,7 @@ namespace EBF.Util
                     EliteBionicsFrameworkMain.LogError("Something about CONN changed; please report this to us.");
                 }
             }
-            if (ModDetector.CyberFaunaIsLoaded || ModDetector.MechalitCoreIsLoaded)
+            if (ModDetector.CyberFaunaIsLoaded)
             {
                 // test
                 if (!ModDetector.CyberFaunaOfficialIsLoaded)
@@ -90,6 +93,7 @@ namespace EBF.Util
                     CyberFauna_Type_CompPartHitPoints = AccessTools.TypeByName("ProthesisHealth.HediffComp_PartHitPoints");
                     CyberFauna_Type_CompPropsPartHitPoints = AccessTools.TypeByName("ProthesisHealth.HediffCompProperties_PartHitPoints");
                     CyberFauna_TryGetRelevantComp = RW_Hediff_TryGetComp.MakeGenericMethod(new[] { CyberFauna_Type_CompPartHitPoints });
+                    HasLoadedProthesisHealth = true;
                 }
                 catch (ArgumentNullException ex)
                 {
@@ -97,7 +101,7 @@ namespace EBF.Util
                     EliteBionicsFrameworkMain.LogError("Something about CyberFauna changed; please report this to us.");
                 }
             }
-            if (ModDetector.MechalitCoreIsLoaded && !ModDetector.CyberFaunaIsLoaded)
+            if (ModDetector.MechalitCoreIsLoaded)
             {
                 // it is infuriating that both cyber fauna and mechalit core is using the same dll for stuff yet there are two copies of it in total
                 if (!ModDetector.MechalitCoreOfficialIsLoaded)
@@ -106,9 +110,13 @@ namespace EBF.Util
                 }
                 try
                 {
-                    CyberFauna_Type_CompPartHitPoints = AccessTools.TypeByName("ProthesisHealth.HediffComp_PartHitPoints");
-                    CyberFauna_Type_CompPropsPartHitPoints = AccessTools.TypeByName("ProthesisHealth.HediffCompProperties_PartHitPoints");
-                    CyberFauna_TryGetRelevantComp = RW_Hediff_TryGetComp.MakeGenericMethod(new[] { CyberFauna_Type_CompPartHitPoints });
+                    if (!HasLoadedProthesisHealth)
+                    {
+                        CyberFauna_Type_CompPartHitPoints = AccessTools.TypeByName("ProthesisHealth.HediffComp_PartHitPoints");
+                        CyberFauna_Type_CompPropsPartHitPoints = AccessTools.TypeByName("ProthesisHealth.HediffCompProperties_PartHitPoints");
+                        CyberFauna_TryGetRelevantComp = RW_Hediff_TryGetComp.MakeGenericMethod(new[] { CyberFauna_Type_CompPartHitPoints });
+                        HasLoadedProthesisHealth = true;
+                    }
                 }
                 catch (ArgumentNullException ex)
                 {
