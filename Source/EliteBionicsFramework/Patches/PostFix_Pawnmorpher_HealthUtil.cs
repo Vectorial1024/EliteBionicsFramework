@@ -15,7 +15,7 @@ namespace EBF.Patches
     {
         public static bool Prepare()
         {
-            return ModDetector.PawnmorpherIsLoaded && false;
+            return ModDetector.PawnmorpherIsLoaded;
         }
 
         public static MethodBase TargetMethod()
@@ -23,14 +23,11 @@ namespace EBF.Patches
             return AccessTools.Method("Pawnmorph.BodyUtilities:GetPartMaxHealth");
         }
 
-        [HarmonyPostfix]
-        public static void PostFix(ref float __result, BodyPartRecord record, Pawn p)
+        public static void PreFix()
         {
-            // we need to deduce what their OFFSET value is, and then use that OFFSET value to recalculate the correct value
-            // this will cause a little bit of inaccuracy but oh well. it cant be avoided.
-            // the original formula was: offset * pawn.healthScale + record.GetPartMaxHealth(p)
-            float pawnmorpherOffsetValue = __result - record.def.GetRawMaxHealth(p);
-            __result = pawnmorpherOffsetValue + record.GetMaxHealthForBodyPart(p);
+            // the flow has changed
+            // we approve of Pawnmorpher reading the original values, and then we modify their value to become an EBF-accepted value
+            Prefix_BodyPart_GetMaxHealth.SuppressNextWarning();
         }
     }
 }

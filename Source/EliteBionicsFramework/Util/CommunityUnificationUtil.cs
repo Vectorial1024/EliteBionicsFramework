@@ -536,10 +536,11 @@ namespace EBF.Util
                 // not loaded
                 return null;
             }
-            object mutationTracker = Pawnmorpher_Type_MutationUtilities.GetMethod("GetMutationTracker").Invoke(null, new[] { pawn });
+            // in case this causes error: insert the 2nd parameter to meet the param count requirement
+            object mutationTracker = Pawnmorpher_Type_MutationUtilities.GetMethod("GetMutationTracker").Invoke(null, new object[] { pawn, true });
             if (mutationTracker == null) 
-            { 
-                return null; 
+            {
+                return null;
             }
             IEnumerable<object> allMutations = (IEnumerable<object>)Pawnmorpher_Type_MutationTracker.GetProperty("AllMutations").GetGetMethod().Invoke(mutationTracker, null);
             float pmMultiplier = 0;
