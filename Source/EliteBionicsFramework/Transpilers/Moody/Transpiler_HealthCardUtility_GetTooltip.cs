@@ -42,7 +42,7 @@ namespace EBF.Transpilations.Moody
                     {
                         yield return new CodeInstruction(OpCodes.Ldloc_3);
                         yield return new CodeInstruction(OpCodes.Callvirt, typeof(Hediff).GetProperty("Part").GetGetMethod());
-                        yield return new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth"));
+                        yield return new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth_Cached"));
 
                         suppressCount = 1;
                         patchComplete = true;

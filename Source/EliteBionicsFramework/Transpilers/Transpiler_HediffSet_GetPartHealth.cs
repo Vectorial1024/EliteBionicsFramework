@@ -37,7 +37,7 @@ namespace EBF.Transpilations
                 {
                     // Optimize yeah
                     yield return new CodeInstruction(OpCodes.Ldarg_1);
-                    yield return new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth"));
+                    yield return new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth_Cached"));
 
                     instruction.opcode = OpCodes.Nop;
                     patchComplete = true;

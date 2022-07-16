@@ -13,6 +13,7 @@ namespace EBF.Patches
         {
             LongEventHandler.ExecuteWhenFinished(delegate
             {
+                MaxHealthCache.ResetCache();
                 AssertionUtil.GameStartAssertion();
             });
         }

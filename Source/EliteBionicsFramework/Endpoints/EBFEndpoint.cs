@@ -40,9 +40,18 @@ namespace EBF
         /// </summary>
         /// <param name="record">The BodyPartRecord instance in question.</param>
         /// <param name="pawn">The pawn who is the owner of that BodyPartRecord instance.</param>
+        /// <param name="useCache">Whether to use the max-health cache, for cases where max-health is constantly queried but unlikely to change.</param>
         /// <returns>The appropriate max HP of the BodyPartRecord under the effects of EBF-enabled hediffs</returns>
-        public static float GetMaxHealthWithEBF(BodyPartRecord record, Pawn pawn)
+        public static float GetMaxHealthWithEBF(BodyPartRecord record, Pawn pawn, bool useCache = false)
         {
+            if (useCache)
+            {
+                float? cachedValue = MaxHealthCache.GetCachedBodyPartMaxHealth(record);
+                if (cachedValue != null)
+                {
+                    return cachedValue.Value;
+                }
+            }
             float baseMaxHP;
             if (ModDetector.PawnmorpherIsLoaded)
             {
@@ -90,7 +99,12 @@ namespace EBF
 
             float realMaxHP = Mathf.RoundToInt(baseMaxHP * totalScaledAdjustment) + totalLinearAdjustment;
             // must be at least 1
-            return Mathf.Max(realMaxHP, 1);
+            float calculatedValue = Mathf.Max(realMaxHP, 1);
+            if (useCache)
+            {
+                MaxHealthCache.SetCachedBodyPartMaxHealth(record, calculatedValue);
+            }
+            return calculatedValue;
         }
 
         /// <summary>

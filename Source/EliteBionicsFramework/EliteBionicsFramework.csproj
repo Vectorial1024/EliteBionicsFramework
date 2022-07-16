@@ -71,7 +71,9 @@
     <Compile Include="Hediffs\HediffComp_MaxHPAdjust.cs" />
     <Compile Include="Hediffs\HediffComp_ToolPowerAdjust.cs" />
     <Compile Include="Patches\PostFix_Game_LoadGame.cs" />
+    <Compile Include="Patches\PostFix_HealthTracker_RemoveHediff.cs" />
     <Compile Include="Patches\PostFix_HediffInjury_BleedRate.cs" />
+    <Compile Include="Patches\PostFix_HealthTracker_AddHediff.cs" />
     <Compile Include="Patches\PostFix_HediffMissingPart_BleedRate.cs" />
     <Compile Include="Patches\PostFix_Pawnmorpher_HealthUtil.cs" />
     <Compile Include="Patches\PostFix_VerbProperties_AdjustedMeleeDamageAmount.cs" />
@@ -112,6 +114,7 @@
     <Compile Include="Transpilers\Transpiler_PawnCapacity_Calculate.cs" />
     <Compile Include="Util\AssertionUtil.cs" />
     <Compile Include="Util\CommunityUnificationUtil.cs" />
+    <Compile Include="Util\MaxHealthCache.cs" />
     <Compile Include="Util\ModDetector.cs" />
     <Compile Include="Util\ToolFinderUtils.cs" />
     <Compile Include="Util\ToolPowerAdjuster.cs" />
