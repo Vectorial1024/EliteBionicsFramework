@@ -23,6 +23,7 @@ namespace EBF.Patches
             return AccessTools.Method("Pawnmorph.BodyUtilities:GetPartMaxHealth");
         }
 
+        [HarmonyPrefix]
         public static void PreFix()
         {
             // the flow has changed
