@@ -30,7 +30,7 @@ namespace EBF.Patches.Unification.Pawnmorpher
         public static bool ManuallyPatchTheMethod(ref float __result, BodyPartRecord record, Pawn p)
         {
             // ...so that in this method, we can reference the original method + apply a few of our own logic
-            __result = EBFEndpoints.GetMaxHealthWithEBF(record, p);
+            __result = EBFEndpoints.GetMaxHealthWithEBF(record, p, useCache: true);
             return false;
         }
     }
