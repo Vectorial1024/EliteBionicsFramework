@@ -189,6 +189,12 @@ Please check that you are using the correct version of Mechalit Core, thanks!</c
 		<content>- Fixed unreasonale version-check error messages for MechalitCore and CyberFauna users</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_0_4</defName>
+		<assemblyVersion>5.0.4.0</assemblyVersion>
+		<content>- Fixed extreme lag in the Form Caravan screen introduced in v5.0.0</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
