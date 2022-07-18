@@ -536,8 +536,8 @@ namespace EBF.Util
                 // not loaded
                 return null;
             }
-            // in case this causes error: insert the 2nd parameter to meet the param count requirement
-            object mutationTracker = Pawnmorpher_Type_MutationUtilities.GetMethod("GetMutationTracker").Invoke(null, new object[] { pawn, true });
+            // we truly did something wrong: for optional parameters, we must insert a special value in order to shut the game up about "param count mismatch"
+            object mutationTracker = Pawnmorpher_Type_MutationUtilities.GetMethod("GetMutationTracker").Invoke(null, new object[] { pawn, Type.Missing });
             if (mutationTracker == null) 
             {
                 return null;
