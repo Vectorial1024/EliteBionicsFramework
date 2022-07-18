@@ -195,6 +195,12 @@ Please check that you are using the correct version of Mechalit Core, thanks!</c
 		<content>- Fixed extreme lag in the Form Caravan screen introduced in v5.0.0</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_0_5</defName>
+		<assemblyVersion>5.0.5.0</assemblyVersion>
+		<content>- Fixed TargetParameterCountException while trying to read Pawnmorpher HP (fix was shipped in v5.0.4 as a random test but I was not aware of its effectiveness before this moment)</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
