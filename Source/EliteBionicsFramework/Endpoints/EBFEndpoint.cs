@@ -49,8 +49,7 @@ namespace EBF
                 float? cachedValue = MaxHealthCache.GetCachedBodyPartMaxHealth(record);
                 if (cachedValue != null)
                 {
-                    // try to fix the flickering HP problem
-                    return Mathf.Max(cachedValue.Value, 1);
+                    return cachedValue.Value;
                 }
             }
             float baseMaxHP;
