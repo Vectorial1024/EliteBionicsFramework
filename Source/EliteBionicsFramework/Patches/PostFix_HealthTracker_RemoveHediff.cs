@@ -9,11 +9,11 @@ namespace EBF.Patches
     public class PostFix_HealthTracker_RemoveHediff
     {
         [HarmonyPostfix]
-        public static void PostFix(Hediff hediff)
+        public static void PostFix(Pawn ___pawn, Hediff hediff)
         {
             if (hediff.Part != null)
             {
-                MaxHealthCache.ResetCacheSpecifically(hediff.Part);
+                MaxHealthCache.ResetCacheSpecifically(___pawn, hediff.Part);
             }
         }
     }

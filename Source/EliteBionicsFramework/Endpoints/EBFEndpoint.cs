@@ -46,7 +46,7 @@ namespace EBF
         {
             if (useCache)
             {
-                float? cachedValue = MaxHealthCache.GetCachedBodyPartMaxHealth(record);
+                float? cachedValue = MaxHealthCache.GetCachedBodyPartMaxHealth(pawn, record);
                 if (cachedValue != null)
                 {
                     return cachedValue.Value;
@@ -102,7 +102,7 @@ namespace EBF
             float calculatedValue = Mathf.Max(realMaxHP, 1);
             if (useCache)
             {
-                MaxHealthCache.SetCachedBodyPartMaxHealth(record, calculatedValue);
+                MaxHealthCache.SetCachedBodyPartMaxHealth(pawn, record, calculatedValue);
             }
             return calculatedValue;
         }

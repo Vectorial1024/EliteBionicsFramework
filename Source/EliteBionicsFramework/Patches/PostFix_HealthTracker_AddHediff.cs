@@ -12,9 +12,9 @@ namespace EBF.Patches
     public class PostFix_HealthTracker_AddHediff
     {
         [HarmonyPostfix]
-        public static void PostFix(BodyPartRecord part)
+        public static void PostFix(Pawn ___pawn, BodyPartRecord part)
         {
-            MaxHealthCache.ResetCacheSpecifically(part);
+            MaxHealthCache.ResetCacheSpecifically(___pawn, part);
         }
     }
 }

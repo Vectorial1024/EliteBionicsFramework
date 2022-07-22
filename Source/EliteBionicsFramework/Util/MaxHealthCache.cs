@@ -18,40 +18,63 @@ namespace EBF.Util
             }
         }
 
-        private static Dictionary<BodyPartRecord, MaxHealthCacheRecord> cache = new Dictionary<BodyPartRecord, MaxHealthCacheRecord>();
+        private static Dictionary<Pawn, Dictionary<BodyPartRecord, MaxHealthCacheRecord>> cache = new Dictionary<Pawn, Dictionary<BodyPartRecord, MaxHealthCacheRecord>>();
 
-        public static float? GetCachedBodyPartMaxHealth(BodyPartRecord record)
+        public static float? GetCachedBodyPartMaxHealth(Pawn pawn, BodyPartRecord record)
         {
-            MaxHealthCacheRecord cachedRecord;
-            if (cache.TryGetValue(record, out cachedRecord))
+            Dictionary<BodyPartRecord, MaxHealthCacheRecord> innerDictionary;
+            if (cache.TryGetValue(pawn, out innerDictionary))
             {
                 // value exists
-                if (cachedRecord.expiresAtTick < Find.TickManager.TicksGame)
+                MaxHealthCacheRecord cachedRecord;
+                if (innerDictionary == null)
                 {
                     return null;
                 }
-                return cachedRecord.maxHealth;
+                if (innerDictionary.TryGetValue(record, out cachedRecord))
+                {
+                    // value exists
+                    if (cachedRecord.expiresAtTick < Find.TickManager.TicksGame)
+                    {
+                        // expired
+                        return null;
+                    }
+                    return cachedRecord.maxHealth;
+                }
             }
             return null;
         }
 
-        public static void SetCachedBodyPartMaxHealth(BodyPartRecord record, float maxHealth)
+        public static void SetCachedBodyPartMaxHealth(Pawn pawn, BodyPartRecord record, float maxHealth)
         {
             // a random number, to smooth out the spike of calling the methods
             int expiryTicks = Rand.RangeInclusive(60, 180);
             MaxHealthCacheRecord cachedRecord = new MaxHealthCacheRecord(maxHealth, Find.TickManager.TicksGame + expiryTicks);
-            cache[record] = cachedRecord;
+            if (!cache.ContainsKey(pawn))
+            {
+                cache[pawn] = new Dictionary<BodyPartRecord, MaxHealthCacheRecord>();
+            }
+            cache[pawn][record] = cachedRecord;
         }
 
-        public static void ResetCacheSpecifically(BodyPartRecord record)
+        public static void ResetCacheSpecifically(Pawn pawn, BodyPartRecord record)
         {
             // this is for when a hediff is added or removed, so that we can force a recalculation of values
+            if (pawn == null)
+            {
+                // idk what you are talking about!
+                return;
+            }
             if (record == null)
             {
                 // idk what you are talking about!
                 return;
             }
-            cache.Remove(record);
+            if (!cache.ContainsKey(pawn))
+            {
+                return;
+            }
+            cache[pawn].Remove(record);
         }
 
         public static void ResetCache()
