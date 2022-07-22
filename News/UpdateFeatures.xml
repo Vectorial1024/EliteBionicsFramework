@@ -201,6 +201,13 @@ Please check that you are using the correct version of Mechalit Core, thanks!</c
 		<content>- Fixed TargetParameterCountException while trying to read Pawnmorpher HP (fix was shipped in v5.0.4 as a random test but I was not aware of its effectiveness before this moment)</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_0_6</defName>
+		<assemblyVersion>5.0.6.0</assemblyVersion>
+		<content>- Fixed body part max HP wrongly persisting over different pawns (error introduced in v5.0.4; the lag fix from v5.0.4 is still here)
+- (Version unknown) Pawnmorpher no longer gives harmless "Pawnmorpher violates the EBF Protocol" error message; protocol-checking is disabled for Pawnmorpher for compatibility reasons</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
