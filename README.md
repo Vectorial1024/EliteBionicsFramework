@@ -36,6 +36,12 @@ Currently, the following mods are supported, in no particular order:
 
 Note that this list does not include the mods that are using this framework to provide actual body part max HP manipulation.
 
+# Natural Compatibility:
+
+The following mods, because of technical reasons, are perfectly compatible with EBF, and no action is required from EBF's side unless they made a breaking update:
+
+- Vanilla Factions Expanded - Insectoids (? feels like previously certified but forgot where)
+
 # Community Unification
 
 This mod has built-in unification with some other third-party mods that also provides body part HP changing effects. This is only to allow those mods to work with EBF without issues, and I do not claim ownership to those mods.
