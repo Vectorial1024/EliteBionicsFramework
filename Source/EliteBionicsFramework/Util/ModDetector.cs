@@ -32,5 +32,7 @@ namespace EBF.Util
         public static bool MechalitCoreIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Mechalit Core"));
 
         public static bool MechalitCoreOfficialIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.PackageId == PackageIdMechalitCoreOfficial.ToLower());
+
+        public static bool HalfDragonsIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Half dragons"));
     }
 }
