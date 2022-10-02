@@ -215,6 +215,14 @@ Please check that you are using the correct version of Mechalit Core, thanks!</c
   - Half dragons (v1.3 ver; mod ID Monti.HalfDragons, Steam ID 2556121262)</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_0_7_1</defName>
+		<assemblyVersion>5.0.7.1</assemblyVersion>
+		<content>No new features, only an amendment to the v5.0.7 news: I wrote something wrong, so I intend to withdraw it and write it again.
+- Added compatibility with Half Dragons (v1.3 ver; mod ID Monti.HalfDragons, Steam ID 2556121262)
+- Half Dragons is NOT unified in any way! (tbh their mod does not boost body part HP, so there is nothing to unify)</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
