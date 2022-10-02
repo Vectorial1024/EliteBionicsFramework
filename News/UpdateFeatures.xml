@@ -208,6 +208,13 @@ Please check that you are using the correct version of Mechalit Core, thanks!</c
 - (Version unknown) Pawnmorpher no longer gives harmless "Pawnmorpher violates the EBF Protocol" error message; protocol-checking is disabled for Pawnmorpher for compatibility reasons</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_0_7</defName>
+		<assemblyVersion>5.0.7.0</assemblyVersion>
+		<content>- The following mods are unified:
+  - Half dragons (v1.3 ver; mod ID Monti.HalfDragons)</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
