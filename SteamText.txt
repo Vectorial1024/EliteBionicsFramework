@@ -11,6 +11,8 @@ Package ID: V1024.EBFramework
 [*]Depending on whether there are any dependencies loaded, safe to be removed
 [*]Should have no problems with most other mods, see below for more info
 GitHub repo link is here: https://github.com/Vectorial1024/EliteBionicsFramework
+[*]A mod for modders: modders can read adjusted max HP values for their calculations
+[*]A mod for all: unifies HP-boosting effects from various community bionics mods for compatibility reasons
 [/list]
 [h1]Background, Overview, and Motto[/h1]
 Elite Bionics Framework is the child of the abandoned, never-released mod Elite Bionics (ELTE). In Fall 2018, the ELTE mod was drafted to bring competition into the bionics mod duopoly at that time: EPOE and RBSE. The selling point was that, while the ELTE bionics offer less body part efficiency, they instead provide max HP bonuses to them, mitigating the loss of HP caused by the usage of bionics (see https://ludeon.com/forums/index.php?topic=15704.0 for more details).
