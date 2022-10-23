@@ -27,7 +27,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\v1.3\Assemblies\</OutputPath>
+    <OutputPath>..\..\v1.4\Assemblies\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -43,7 +43,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="HugsLib">
-      <HintPath>..\..\..\..\..\..\workshop\content\294100\818773962\v1.1\Assemblies\HugsLib.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\workshop\content\294100\818773962\v1.4\Assemblies\HugsLib.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -104,6 +104,7 @@
     <Compile Include="Transpilers\Transpiler_DamageWorker_AddInjury.cs" />
     <Compile Include="Transpilers\Transpiler_DamageWorker_Blunt.cs" />
     <Compile Include="Transpilers\Transpiler_HealthCardUtility.cs" />
+    <Compile Include="Transpilers\Transpiler_HealthUtility_DamageLimbs.cs" />
     <Compile Include="Transpilers\Transpiler_HealthUtility_DamageLegs.cs" />
     <Compile Include="Transpilers\Transpiler_HealthUtility_PartConditionLabel.cs" />
     <Compile Include="Transpilers\Transpiler_HealthUtility_SurgeryInjuries.cs" />

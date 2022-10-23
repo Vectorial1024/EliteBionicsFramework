@@ -62,7 +62,7 @@ namespace EBF.Transpilations
                     {
                         occurencesCallvirt++;
 
-                        if (occurencesCallvirt == 11)
+                        if (occurencesCallvirt == 9)
                         {
 
                             List<CodeInstruction> insert = new List<CodeInstruction>()

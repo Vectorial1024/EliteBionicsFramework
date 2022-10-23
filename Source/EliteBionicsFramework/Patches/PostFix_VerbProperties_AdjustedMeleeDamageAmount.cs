@@ -29,7 +29,9 @@ namespace EBF.Patches
                     // Attacks by bare-hand; no hediff source.
                     // May have implant or no implant...
                     BodyPartGroupDef hostGroup = tool.linkedBodyPartsGroup;
-                    foreach (HediffWithComps candidateHediff in attacker.health.hediffSet.GetHediffs<HediffWithComps>())
+                    List<HediffWithComps> hediffList = new List<HediffWithComps>();
+                    attacker.health.hediffSet.GetHediffs(ref hediffList);
+                    foreach (HediffWithComps candidateHediff in hediffList)
                     {
                         if (!(candidateHediff is Hediff_Implant))
                         {

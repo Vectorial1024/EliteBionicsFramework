@@ -366,7 +366,9 @@ namespace EBF.Util
             List<HediffCompProperties_MaxHPAdjust> realAndFakeProps = new List<HediffCompProperties_MaxHPAdjust>();
             HediffSet hediffSet = pawn.health.hediffSet;
 
-            foreach (HediffWithComps hediffWithComp in hediffSet.GetHediffs<HediffWithComps>())
+            List<HediffWithComps> hediffList = new List<HediffWithComps>();
+            hediffSet.GetHediffs(ref hediffList);
+            foreach (HediffWithComps hediffWithComp in hediffList)
             {
                 if (hediffWithComp.Part != record)
                 {
