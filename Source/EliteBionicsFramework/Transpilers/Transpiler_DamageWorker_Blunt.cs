@@ -97,6 +97,7 @@ namespace EBF.Transpilations
             }
             else
             {
+                EliteBionicsFrameworkMain.LogError("Patch failed: blunt special effects, failed to find relevant self-anon type!");
                 // In the unlikely case of failing the search, modify nothing and return.
                 foreach (CodeInstruction instruction in instructions)
                 {
