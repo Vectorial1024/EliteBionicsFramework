@@ -101,6 +101,7 @@
     <Compile Include="Transpilers\PrepareCarefully\Transpiler_Injury_InitializeTooltip.cs" />
     <Compile Include="Transpilers\PrepareCarefully\Transpiler_PanelHealth_GetTooltipForPart.cs" />
     <Compile Include="Transpilers\TestClass.cs" />
+    <Compile Include="Transpilers\Transpiler_DamageWorker_Blunt_LambdaTwo.cs" />
     <Compile Include="Transpilers\Transpiler_DamageWorker_Blunt_LambdaOne.cs" />
     <Compile Include="Transpilers\Transpiler_DamageWorker_AddInjury.cs" />
     <Compile Include="Transpilers\Transpiler_DamageWorker_Blunt.cs" />
