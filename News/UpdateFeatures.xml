@@ -223,6 +223,22 @@ Please check that you are using the correct version of Mechalit Core, thanks!</c
 - Half Dragons is NOT unified in any way! (tbh their mod does not boost body part HP, so there is nothing to unify)</content>
 	</HugsLib.UpdateFeatureDef>
 
+	
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_0_8</defName>
+		<assemblyVersion>5.0.8.0</assemblyVersion>
+		<content>Partially updated to RW v1.4; please see explanation below:|
+Seeing how a lot of extra features got added to this mod during RW v1.3, I will do the RW v1.4 update by stages:
+- Stage 0: wait for Ludeon to release RW v1.4 (done)
+- Stage 1: wait for UnlimitedHugs to release HugsLib for v1.4 (done)
+- Stage 2: release EBF for v1.4 (we are here)
+- Stage 3: wait for others to release their mod updates for v1.4
+- Stage 4: reconfirm compatibility with related 3rd party mods|
+This will take a while. If you don't use too many related 3rd party mods, then perhaps this update is already sufficient; but if you are relying on the Community Unification features, I would suggest putting this on hold for a while until I complete rechecking everything.|
+Or, alternatively, you could go ahead and see if this update works with the related 3rd-party mods, saving me some time for rechecking.|
+This is something I came up with for RW 1.4/BioTech, which touches bionics. Perhaps this is the procedures going forward if any more (relevant) RimWorld update is released in the future.</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
