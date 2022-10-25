@@ -71,8 +71,8 @@ namespace EBF.Util
             {
                 try
                 {
-                    CONN_Type_CompHealthIncrease = Type.GetType("CONN.HealthIncreaseComp, CONN");
-                    CONN_Type_CompPropsHealthIncrease = Type.GetType("CONN.CompProperties_HealthIncrease, CONN");
+                    CONN_Type_CompHealthIncrease = Type.GetType("CONN.HediffCompHealthIncrease, CONN");
+                    CONN_Type_CompPropsHealthIncrease = Type.GetType("CONN.HediffCompProperties_HealthIncrease, CONN");
                     CONN_TryGetRelevantComp = RW_Hediff_TryGetComp.MakeGenericMethod(new[] { CONN_Type_CompHealthIncrease });
                 }
                 catch (ArgumentNullException ex)
