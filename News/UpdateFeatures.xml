@@ -251,6 +251,13 @@ This is something I came up with for RW 1.4/BioTech, which touches bionics. Perh
 A number of other mods were reviewed, and they were either not yet updated to match RW v1.4, or they worked fine with this version of EBF.</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_0_8_3</defName>
+		<assemblyVersion>5.0.8.3</assemblyVersion>
+		<content>Fixed unexpected inompatibiity with Yayo's Animations (failed to patch [...]: invalid IL code) by moving one of EBF's patches even earlier in the execution order.
+Please use auto-sort to put this mod above Yayo's Animations!</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
