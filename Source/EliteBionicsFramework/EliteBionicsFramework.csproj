@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EliteBionicsFrameworkMain.cs" />
+    <Compile Include="EliteBionicsFrameworkMod.cs" />
     <Compile Include="Endpoints\EBFEndpoint.cs" />
     <Compile Include="Extensions\VanillaExtender.cs" />
     <Compile Include="Hediffs\HediffCompProperties_MaxHPAdjust_Fake.cs" />

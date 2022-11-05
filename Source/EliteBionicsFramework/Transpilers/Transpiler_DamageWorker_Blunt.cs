@@ -22,6 +22,16 @@ namespace EBF.Transpilations
          * in a static constructor.
          * 
          * Special thanks to GitHub user RocketDelivery for this fix
+         * 
+         * ------
+         * 
+         * Update 2022-Nov:
+         * 
+         * The fix by RocketDelivery works when used with HAR, but we eventually discovered Yayo Animations doing their patches super-early,
+         * and therefore summonned Humanoid Alien Races too early without our consent. This therefore breaks our compatiility with HAR.
+         * To maintain parity against Yayo Animations, we must therefore call this static constructor in the constructor of a child class of Verse.Mod.
+         * I have made a new fitting child class that, innu, touches this class, so that this static constructor is called.
+         * And obviously, the [StaticConstructorOnStartup] becomes a decoration, but I am keeping that annotation to avoid confusion.
          */
         static Transpiler_DamageWorker_Blunt_SpecialEffects()
 		{
