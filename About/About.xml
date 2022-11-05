@@ -29,6 +29,8 @@ As a rule of thumb, if Ludeon did not change much about the health system, then 
 	</loadAfter>
 	<loadBefore>
 		<li>erdelf.HumanoidAlienRaces</li>
+		<!-- Incompatibility with unknown cause, therefore I am making this load after us. -->
+		<li>com.yayo.yayoAni</li>
 	</loadBefore>
 	<incompatibleWith>
 		<!-- This one is the unlisted early-update version of CyberFauna; I had to use a Steam Downloader to get its content ID for testing. -->
