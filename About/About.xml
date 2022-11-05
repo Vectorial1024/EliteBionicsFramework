@@ -29,7 +29,6 @@ As a rule of thumb, if Ludeon did not change much about the health system, then 
 	</loadAfter>
 	<loadBefore>
 		<li>erdelf.HumanoidAlienRaces</li>
-		<!-- Incompatibility with unknown cause, therefore I am making this load after us. -->
 		<li>com.yayo.yayoAni</li>
 	</loadBefore>
 	<incompatibleWith>
