@@ -38,7 +38,7 @@ namespace EBF.Transpilations.PrepareCarefully
                     {
                         yield return new CodeInstruction(OpCodes.Ldarg_0);
                         // full name is required!!!
-                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(Type.GetType("EdB.PrepareCarefully.Injury, EdBPrepareCarefully"), "hediff"));
+                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(AccessTools.TypeByName("EdB.PrepareCarefully.Injury"), "hediff"));
                         yield return new CodeInstruction(OpCodes.Callvirt, typeof(Hediff).GetProperty("Part").GetGetMethod());
                         yield return new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth"));
 
