@@ -258,6 +258,17 @@ A number of other mods were reviewed, and they were either not yet updated to ma
 Please use auto-sort to put this mod above Yayo's Animations!</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_0_8_4</defName>
+		<assemblyVersion>5.0.8.4</assemblyVersion>
+		<content>A few things:|
+- Confirmed compatibility with Prepare Carefully [1.4]
+- Confirmed compatibility with Pawnmorpher [1.4]
+- Fixed "nullable object must have a value" error when e.g. the game checks for social fights for pawns having EBF-provided verb power adjustment (special credits to Evono for finding this out during an unrelated auto-test!)
+- Compatibility with Callouts [1.4] delayed due to unexpected owner change on Callouts's side
+- Compatibility with Save Our Ships 2 [1.4] pending</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
