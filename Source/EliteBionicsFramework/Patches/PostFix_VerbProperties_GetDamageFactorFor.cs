@@ -43,7 +43,8 @@ namespace EBF.Patches
                             continue;
                         }
                         // I think in some cases the Part can be null, especially when for whole-body hediffs.
-                        if ((bool)(candidateHediff.Part?.IsInGroup(hostGroup)))
+                        // ps; the IDE played us for a damn fool! you cannot use "use explicit cast" when dealing with "bool?"!
+                        if (candidateHediff.Part?.IsInGroup(hostGroup) == true)
                         {
                             // Relevant.
                             HediffComp_ToolPowerAdjust adjustmentComps = candidateHediff.TryGetComp<HediffComp_ToolPowerAdjust>();
