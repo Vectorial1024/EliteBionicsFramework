@@ -14,6 +14,8 @@ namespace EBF.Patches
     [HarmonyPatch(typeof(VerbProperties))]
     [HarmonyPatch("GetDamageFactorFor", MethodType.Normal)]
     [HarmonyPatch(new Type[] { typeof(Tool), typeof(Pawn), typeof(HediffComp_VerbGiver) })]
+    // set a lower priority to let Vanilla Geentics Expanded patch first; let them affect the damage by hybrid quality first
+    [HarmonyPriority(Priority.LowerThanNormal)]
     public class PostFix_VerbProperties_GetDamageFactorFor
     {
         [HarmonyPostfix]
