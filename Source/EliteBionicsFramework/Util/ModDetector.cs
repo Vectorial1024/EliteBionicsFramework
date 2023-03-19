@@ -13,26 +13,28 @@ namespace EBF.Util
 
         internal static string PackageIdMechalitCoreOfficial = "Daniledman.MechalitCore";
 
-        public static bool PawnmorpherIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Pawnmorpher"));
+        internal static IEnumerable<ModContentPack> RunningValidMods = LoadedModManager.RunningMods.Where((ModContentPack pack) => pack != null && pack.AnyContentLoaded());
 
-        public static bool PrepareCarefullyIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("EdB Prepare Carefully"));
+        public static bool PawnmorpherIsLoaded => RunningValidMods.Any((ModContentPack pack) => pack.Name.Contains("Pawnmorpher"));
 
-        public static bool CalloutsIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Callouts"));
+        public static bool PrepareCarefullyIsLoaded => RunningValidMods.Any((ModContentPack pack) => pack.Name.Contains("EdB Prepare Carefully"));
 
-        public static bool MoodyIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Moody"));
+        public static bool CalloutsIsLoaded => RunningValidMods.Any((ModContentPack pack) => pack.Name.Contains("Callouts"));
 
-        public static bool QualityBionicsIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Quality Bionics"));
+        public static bool MoodyIsLoaded => RunningValidMods.Any((ModContentPack pack) => pack.Name.Contains("Moody"));
 
-        public static bool CONNIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Cybernetic Organism"));
+        public static bool QualityBionicsIsLoaded => RunningValidMods.Any((ModContentPack pack) => pack.Name.Contains("Quality Bionics"));
 
-        public static bool CyberFaunaIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Cyber Fauna"));
+        public static bool CONNIsLoaded => RunningValidMods.Any((ModContentPack pack) => pack.Name.Contains("Cybernetic Organism"));
 
-        public static bool CyberFaunaOfficialIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.PackageId == PackageIdCyberFaunaOfficial.ToLower());
+        public static bool CyberFaunaIsLoaded => RunningValidMods.Any((ModContentPack pack) => pack.Name.Contains("Cyber Fauna"));
 
-        public static bool MechalitCoreIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Mechalit Core"));
+        public static bool CyberFaunaOfficialIsLoaded => RunningValidMods.Any((ModContentPack pack) => pack.PackageId == PackageIdCyberFaunaOfficial.ToLower());
 
-        public static bool MechalitCoreOfficialIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.PackageId == PackageIdMechalitCoreOfficial.ToLower());
+        public static bool MechalitCoreIsLoaded => RunningValidMods.Any((ModContentPack pack) => pack.Name.Contains("Mechalit Core"));
 
-        public static bool HalfDragonsIsLoaded => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Half dragons"));
+        public static bool MechalitCoreOfficialIsLoaded => RunningValidMods.Any((ModContentPack pack) => pack.PackageId == PackageIdMechalitCoreOfficial.ToLower());
+
+        public static bool HalfDragonsIsLoaded => RunningValidMods.Any((ModContentPack pack) => pack.Name.Contains("Half dragons"));
     }
 }
