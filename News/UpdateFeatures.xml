@@ -272,7 +272,7 @@ Please use auto-sort to put this mod above Yayo's Animations!</content>
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
 		<defName>EBF_v5_0_8_5</defName>
 		<assemblyVersion>5.0.8.5</assemblyVersion>
-		<content>- Experimental: unloaded mods are no longer detected by this mod for Community Unification; should reduce confusing error messages</content>
+		<content>- Experimental: mods with no loaded contents (hopefully this means unloaded mods) are no longer detected by this mod for Community Unification; should reduce confusing error messages</content>
 	</HugsLib.UpdateFeatureDef>
 
     <!--
