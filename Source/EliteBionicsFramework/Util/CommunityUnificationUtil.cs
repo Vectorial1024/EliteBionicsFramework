@@ -67,20 +67,7 @@ namespace EBF.Util
                     EliteBionicsFrameworkMain.LogError("Something about Quality Bionics changed; please report this to us.");
                 }
             }
-            if (ModDetector.CONNIsLoaded)
-            {
-                try
-                {
-                    CONN_Type_CompHealthIncrease = Type.GetType("CONN.HediffCompHealthIncrease, CONN");
-                    CONN_Type_CompPropsHealthIncrease = Type.GetType("CONN.HediffCompProperties_HealthIncrease, CONN");
-                    CONN_TryGetRelevantComp = RW_Hediff_TryGetComp.MakeGenericMethod(new[] { CONN_Type_CompHealthIncrease });
-                }
-                catch (ArgumentNullException ex)
-                {
-                    // we failed to make a generic method
-                    EliteBionicsFrameworkMain.LogError("Something about CONN changed; please report this to us.");
-                }
-            }
+            // note: CONN has officially adopted EBF for the HP-increasing effects, so we no longer need to check for them.
             if (ModDetector.CyberFaunaIsLoaded)
             {
                 // test

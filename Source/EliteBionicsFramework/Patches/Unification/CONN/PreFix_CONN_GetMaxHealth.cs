@@ -1,27 +1,7 @@
-﻿using EBF.Util;
-using HarmonyLib;
-using System.Reflection;
-
-namespace EBF.Patches.Unification.CONN
+﻿namespace EBF.Patches.Unification.CONN
 {
-    [HarmonyPatch]
-    public class PreFix_CONN_GetMaxHealth
-    {
-        public static bool Prepare()
-        {
-            return ModDetector.CONNIsLoaded;
-        }
-
-        public static MethodBase TargetMethod()
-        {
-            return AccessTools.Method("CONN.BodyPartDef_GetMaxHealthPatch:BodyPartDef_GetMaxHealth_PostFix");
-        }
-
-        [HarmonyPrefix]
-        public static bool DoNotDoThePatch()
-        {
-            // we extend the generosity of fixing Quality Bionic's wrong implementation by unifying them under our management
-            return false;
-        }
-    }
+    /*
+     * note: CONN has officially changed to use EBF directly to provide HP-adjustment hediff effects.
+     * as a result, there is no need for us to patch CONN on our side for community unification.
+     */
 }
