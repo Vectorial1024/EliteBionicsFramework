@@ -279,7 +279,7 @@ Please use auto-sort to put this mod above Yayo's Animations!</content>
 		<defName>EBF_v5_0_8_6</defName>
 		<assemblyVersion>5.0.8.6</assemblyVersion>
 		<content>I have noticed that CONN has officially chosen the Elite Bionics Framework to provide HP-buffing effects. Welcome CONN! And thank you for choosing the EBF.|
-- Removed CONN from the Community Unification scheme (note: CONN is now a regular EBF mod)
+- Removed CONN from the Community Unification scheme (note: CONN is now a regular EBF mod instead)
 - Using CONN will no longer throw red errors on game startup</content>
 	</HugsLib.UpdateFeatureDef>
 
