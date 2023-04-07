@@ -275,6 +275,14 @@ Please use auto-sort to put this mod above Yayo's Animations!</content>
 		<content>- Experimental: mods with no loaded contents (hopefully this means unloaded mods) are no longer detected by this mod for Community Unification; should reduce confusing error messages</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_0_8_6</defName>
+		<assemblyVersion>5.0.8.6</assemblyVersion>
+		<content>I have noticed that CONN has officially chosen the Elite Bionics Framework to provide HP-buffing effects. Welcome CONN! And thank you for choosing the EBF.|
+- Removed CONN from the Community Unification scheme (note: CONN is now a regular EBF mod)
+- Using CONN will no longer throw red errors on game startup</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
