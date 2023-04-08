@@ -26,9 +26,7 @@ namespace EBF.Util
         private static Type QualityBionics_Type_CompQualityBionics = null;
         private static MethodInfo QualityBionics_TryGetRelevantComp = null;
 
-        private static Type CONN_Type_CompHealthIncrease = null;
-        private static Type CONN_Type_CompPropsHealthIncrease = null;
-        private static MethodInfo CONN_TryGetRelevantComp = null;
+        // note: due to CONN officially changing to use EBF directly, there is no longer any need to keep CONN-related fields
 
         private static Type CyberFauna_Type_CompPartHitPoints = null;
         private static Type CyberFauna_Type_CompPropsPartHitPoints = null;
@@ -382,12 +380,7 @@ namespace EBF.Util
                         realAndFakeProps.Add(hediffCompQualityBionics);
                         continue;
                     }
-                    var hediffCompConn = TryConvertConnCompToFakeHpComp(hediffComp);
-                    if (hediffCompConn != null)
-                    {
-                        realAndFakeProps.Add(hediffCompConn);
-                        continue;
-                    }
+                    // note: due to CONN officially changing to use EBF directly, we no longer need to check for CONN
                     var hediffCompCyberFauna = TryConvertCyberFaunaCompToFakeHpComp(hediffComp);
                     if (hediffCompCyberFauna != null)
                     {
@@ -425,12 +418,7 @@ namespace EBF.Util
                     list.Add(tempCheck);
                     continue;
                 }
-                tempCheck = TryConvertConnCompToFakeHpComp(comp);
-                if (tempCheck != null)
-                {
-                    list.Add(tempCheck);
-                    continue;
-                }
+                // note: due to CON officially changing to use EBF directly, we no longer need to check for CONN
                 tempCheck = TryConvertCyberFaunaCompToFakeHpComp(comp);
                 if (tempCheck != null)
                 {
@@ -465,30 +453,6 @@ namespace EBF.Util
                     providerNamespace = QualityBionics_Type_Main.Namespace
                 };
                 // EliteBionicsFrameworkMain.LogError("fakeComp " + fakeComp.ToStringSafe());
-                return fakeComp;
-            }
-            return null;
-        }
-
-        public static HediffCompProperties_MaxHPAdjust_Fake TryConvertConnCompToFakeHpComp(HediffComp comp)
-        {
-            if (CONN_Type_CompHealthIncrease == null)
-            {
-                // not loaded
-                return null;
-            }
-            if (CONN_Type_CompHealthIncrease.IsInstanceOfType(comp))
-            {
-                // is instance of comp
-                object temp = CONN_Type_CompHealthIncrease.GetProperty("Props").GetGetMethod().Invoke(comp, null);
-                float deltaHp = (float)CONN_Type_CompPropsHealthIncrease.GetField("healthPointToAdd").GetValue(temp);
-                HediffCompProperties_MaxHPAdjust_Fake fakeComp = new HediffCompProperties_MaxHPAdjust_Fake
-                {
-                    linearAdjustment = (int)deltaHp,
-                    scaleAdjustment = 0,
-                    providerNamespace = CONN_Type_CompHealthIncrease.Namespace
-                };
-
                 return fakeComp;
             }
             return null;
