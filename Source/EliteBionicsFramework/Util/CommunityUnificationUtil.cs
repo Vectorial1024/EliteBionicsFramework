@@ -418,7 +418,7 @@ namespace EBF.Util
                     list.Add(tempCheck);
                     continue;
                 }
-                // note: due to CON officially changing to use EBF directly, we no longer need to check for CONN
+                // note: due to CONN officially changing to use EBF directly, we no longer need to check for CONN
                 tempCheck = TryConvertCyberFaunaCompToFakeHpComp(comp);
                 if (tempCheck != null)
                 {
