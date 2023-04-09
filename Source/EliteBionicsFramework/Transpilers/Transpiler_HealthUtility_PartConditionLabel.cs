@@ -46,8 +46,10 @@ namespace EBF.Transpilations
 
                     if (occurencesCallvirt == 2)
                     {
+                        // Optimize yeah
+                        // special note: this might create confusion because this is the value being displayed, which may be different from the real value for a short time due to the cache
                         yield return new CodeInstruction(OpCodes.Ldarg_1);
-                        yield return new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth"));
+                        yield return new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth_Cached"));
 
                         suppressCount = 1;
                         patchComplete = true;
