@@ -289,6 +289,12 @@ Please use auto-sort to put this mod above Yayo's Animations!</content>
 		<content>- Removed CONN-related code from the DLL; maybe this fixes the performance drop?</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_0_8_8</defName>
+		<assemblyVersion>5.0.8.8</assemblyVersion>
+		<content>- Optimized performance drop when looking at the Health tab on pawns (side effect: max HP display text may update slightly later after installing/changing EBF bionics)</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
