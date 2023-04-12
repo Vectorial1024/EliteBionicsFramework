@@ -13,28 +13,47 @@ namespace EBF.Util
 
         internal static string PackageIdMechalitCoreOfficial = "Daniledman.MechalitCore";
 
-        internal static IEnumerable<ModContentPack> RunningValidMods = LoadedModManager.RunningMods.Where((ModContentPack pack) => pack != null && pack.AnyContentLoaded());
+        internal static IEnumerable<ModContentPack> RunningActiveMods = LoadedModManager.RunningMods.Where((ModContentPack pack) => pack != null && pack.ModMetaData.Active);
 
-        public static bool PawnmorpherIsLoaded => RunningValidMods.Any((ModContentPack pack) => pack.Name.Contains("Pawnmorpher"));
+        /// <summary>
+        /// Note: if need to call this repeatedly (eg during regular ticking), then please consider using the cached version instead.
+        /// <para/>
+        /// Users are now complaining about EBF lag spikes, and we don't want lag spikes to affect the user numbers.
+        /// </summary>
+        public static bool PawnmorpherIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Pawnmorpher"));
 
-        public static bool PrepareCarefullyIsLoaded => RunningValidMods.Any((ModContentPack pack) => pack.Name.Contains("EdB Prepare Carefully"));
+        private static bool? hasPawnmorpher = null;
 
-        public static bool CalloutsIsLoaded => RunningValidMods.Any((ModContentPack pack) => pack.Name.Contains("Callouts"));
+        public static bool PawnmorpherIsLoadedCached
+        {
+            get
+            {
+                if (hasPawnmorpher == null)
+                {
+                    hasPawnmorpher = PawnmorpherIsLoaded;
+                }
+                return hasPawnmorpher.Value;
+            }
+        }
 
-        public static bool MoodyIsLoaded => RunningValidMods.Any((ModContentPack pack) => pack.Name.Contains("Moody"));
+        public static bool PrepareCarefullyIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("EdB Prepare Carefully"));
 
-        public static bool QualityBionicsIsLoaded => RunningValidMods.Any((ModContentPack pack) => pack.Name.Contains("Quality Bionics"));
+        public static bool CalloutsIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Callouts"));
 
-        public static bool CONNIsLoaded => RunningValidMods.Any((ModContentPack pack) => pack.Name.Contains("Cybernetic Organism"));
+        public static bool MoodyIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Moody"));
 
-        public static bool CyberFaunaIsLoaded => RunningValidMods.Any((ModContentPack pack) => pack.Name.Contains("Cyber Fauna"));
+        public static bool QualityBionicsIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Quality Bionics"));
 
-        public static bool CyberFaunaOfficialIsLoaded => RunningValidMods.Any((ModContentPack pack) => pack.PackageId == PackageIdCyberFaunaOfficial.ToLower());
+        public static bool CONNIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Cybernetic Organism"));
 
-        public static bool MechalitCoreIsLoaded => RunningValidMods.Any((ModContentPack pack) => pack.Name.Contains("Mechalit Core"));
+        public static bool CyberFaunaIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Cyber Fauna"));
 
-        public static bool MechalitCoreOfficialIsLoaded => RunningValidMods.Any((ModContentPack pack) => pack.PackageId == PackageIdMechalitCoreOfficial.ToLower());
+        public static bool CyberFaunaOfficialIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.PackageId == PackageIdCyberFaunaOfficial.ToLower());
 
-        public static bool HalfDragonsIsLoaded => RunningValidMods.Any((ModContentPack pack) => pack.Name.Contains("Half dragons"));
+        public static bool MechalitCoreIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Mechalit Core"));
+
+        public static bool MechalitCoreOfficialIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.PackageId == PackageIdMechalitCoreOfficial.ToLower());
+
+        public static bool HalfDragonsIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Half dragons"));
     }
 }

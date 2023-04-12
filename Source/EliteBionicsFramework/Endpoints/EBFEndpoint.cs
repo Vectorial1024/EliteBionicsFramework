@@ -53,7 +53,7 @@ namespace EBF
                 }
             }
             float baseMaxHP;
-            if (ModDetector.PawnmorpherIsLoaded)
+            if (ModDetector.PawnmorpherIsLoadedCached)
             {
                 baseMaxHP = CommunityUnificationUtil.GetPartMaxHealthFromPawnmorpher(record, pawn);
             }
