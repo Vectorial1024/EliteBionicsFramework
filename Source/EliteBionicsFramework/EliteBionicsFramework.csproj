@@ -71,6 +71,7 @@
     <Compile Include="Hediffs\HediffCompProperties_ToolPowerAdjust.cs" />
     <Compile Include="Hediffs\HediffComp_MaxHPAdjust.cs" />
     <Compile Include="Hediffs\HediffComp_ToolPowerAdjust.cs" />
+    <Compile Include="Patches\PostFix_AgeTracker_PostResolveLifeStageChange.cs" />
     <Compile Include="Patches\PostFix_Game_LoadGame.cs" />
     <Compile Include="Patches\PostFix_HealthTracker_RemoveHediff.cs" />
     <Compile Include="Patches\PostFix_HediffInjury_BleedRate.cs" />

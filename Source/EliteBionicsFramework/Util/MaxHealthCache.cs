@@ -48,7 +48,10 @@ namespace EBF.Util
         public static void SetCachedBodyPartMaxHealth(Pawn pawn, BodyPartRecord record, float maxHealth)
         {
             // a random number, to smooth out the spike of calling the methods
-            int expiryTicks = Rand.RangeInclusive(60, 180);
+            // note: we are now using the update-on-delta paradigm, so the recalculation interval is now very long
+            // 60 ticks in 1 IRL second
+            // this means a guaranteed update in Rand(16.7 minutes, 50 minutes), which is practically very long
+            int expiryTicks = Rand.RangeInclusive(60000, 180000);
             MaxHealthCacheRecord cachedRecord = new MaxHealthCacheRecord(maxHealth, Find.TickManager.TicksGame + expiryTicks);
             if (!cache.ContainsKey(pawn))
             {

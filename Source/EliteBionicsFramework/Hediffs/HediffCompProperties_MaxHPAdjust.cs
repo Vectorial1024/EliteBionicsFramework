@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EBF.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,17 @@ namespace EBF.Hediffs
 {
     public class HediffCompProperties_MaxHPAdjust : HediffCompProperties
     {
+        /// <summary>
+        /// THe linear max HP adjustment.
+        /// <para/>
+        /// Note: remember to call MaxHealthCache.ResetCacheForPawn() when you are manually adjusting this value! We now no longer actively monitor the adjustment values!
+        /// </summary>
         public int linearAdjustment;
+        /// <summary>
+        /// THe scaling max HP adjustment.
+        /// <para/>
+        /// Note: remember to call MaxHealthCache.ResetCacheForPawn() when you are manually adjusting this value! We now no longer actively monitor the adjustment values!
+        /// </summary>
         public float scaleAdjustment;
 
         public HediffCompProperties_MaxHPAdjust()
