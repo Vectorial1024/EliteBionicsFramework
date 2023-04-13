@@ -57,6 +57,22 @@ namespace EBF.Util
             cache[pawn][record] = cachedRecord;
         }
 
+        public static void ResetCacheForPawn(Pawn pawn)
+        {
+            // this is for when the max HP value is changed due to eg life-stage is changed.
+            // this is applied to the entire pawn, so we can just forget everything and let the framework recalculate the values on-demand
+            if (pawn == null)
+            {
+                // idk what you are talking about!
+                return;
+            }
+            if (!cache.ContainsKey(pawn))
+            {
+                return;
+            }
+            cache.Remove(pawn);
+        }
+
         public static void ResetCacheSpecifically(Pawn pawn, BodyPartRecord record)
         {
             // this is for when a hediff is added or removed, so that we can force a recalculation of values
