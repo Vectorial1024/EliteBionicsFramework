@@ -76,6 +76,7 @@
     <Compile Include="Patches\PostFix_HediffInjury_BleedRate.cs" />
     <Compile Include="Patches\PostFix_HealthTracker_AddHediff.cs" />
     <Compile Include="Patches\PostFix_HediffMissingPart_BleedRate.cs" />
+    <Compile Include="Patches\PostFix_HediffSet_DirtyCache.cs" />
     <Compile Include="Patches\PostFix_Pawnmorpher_HealthUtil.cs" />
     <Compile Include="Patches\PostFix_VerbProperties_AdjustedMeleeDamageAmount.cs" />
     <Compile Include="Patches\PostFix_Game_InitNewGame.cs" />
