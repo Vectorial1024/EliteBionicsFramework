@@ -51,7 +51,10 @@ namespace EBF.Util
             // note: we are now using the update-on-delta paradigm, so the recalculation interval is now very long
             // 60 ticks in 1 IRL second
             // this means a guaranteed update in Rand(16.7 minutes, 50 minutes), which is practically very long
+            // also note: we push/pop rand states to implement multiplayer compatibility
+            Rand.PushState();
             int expiryTicks = Rand.RangeInclusive(60000, 180000);
+            Rand.PopState();
             MaxHealthCacheRecord cachedRecord = new MaxHealthCacheRecord(maxHealth, Find.TickManager.TicksGame + expiryTicks);
             if (!cache.ContainsKey(pawn))
             {
