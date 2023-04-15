@@ -304,7 +304,8 @@ Please use auto-sort to put this mod above Yayo's Animations!</content>
 - Thus, removed the "delayed update" side effects introduced in v5.0.8.8
 - Optimized detection of Pawnmorpher in calculating body part max HP
 - Fixed wrong detection of active mods in determining cross-mod unification (completes the feature in v5.0.8.5)
-- Confirmed compatibility with Callouts 1.4 (by Profligate)|
+- Confirmed compatibility with Callouts 1.4 (by Profligate)
+- Re-added missing loading screen tips (whoops...)|
 Note: Multiplayer compatibility was tested on a local-self-to-self setup. Hopefully, it indicates general Multiplayer compatibility.</content>
 	</HugsLib.UpdateFeatureDef>
 
