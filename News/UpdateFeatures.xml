@@ -295,6 +295,19 @@ Please use auto-sort to put this mod above Yayo's Animations!</content>
 		<content>- Optimized performance drop when looking at the Health tab on pawns (side effect: max HP display text may update slightly later after installing/changing EBF bionics)</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_1_0_0</defName>
+		<assemblyVersion>5.1.0.0</assemblyVersion>
+		<content>A big update to Elite Bionics Framework in recent months.|
+- Added Multiplayer compatibility
+- Greatly optimized performance by using a better caching system; no more lag spikes! (in fact, no more lag in general...)
+- Thus, removed the "delayed update" side effects introduced in v5.0.8.8
+- Optimized detection of Pawnmorpher in calculating body part max HP
+- Fixed wrong detection of active mods in determining cross-mod unification (completes the feature in v5.0.8.5)
+- Confirmed compatibility with Callouts 1.4 (by Profligate)|
+Go play multiplayer games with Elite Bionics Framework!</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
