@@ -309,6 +309,12 @@ Please use auto-sort to put this mod above Yayo's Animations!</content>
 Note: Multiplayer compatibility was tested on a local-self-to-self setup. Hopefully, it indicates general Multiplayer compatibility.</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_1_1_0</defName>
+		<assemblyVersion>5.1.1.0</assemblyVersion>
+		<content>- Improved compatibility with RimThreaded</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
