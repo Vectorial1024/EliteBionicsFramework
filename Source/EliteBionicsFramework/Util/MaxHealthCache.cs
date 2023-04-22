@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
+using System.Collections.Generic;
 using Verse;
 
 namespace EBF.Util
@@ -18,11 +19,11 @@ namespace EBF.Util
             }
         }
 
-        private static Dictionary<Pawn, Dictionary<BodyPartRecord, MaxHealthCacheRecord>> cache = new Dictionary<Pawn, Dictionary<BodyPartRecord, MaxHealthCacheRecord>>();
+        private static ConcurrentDictionary<Pawn, ConcurrentDictionary<BodyPartRecord, MaxHealthCacheRecord>> cache = new ConcurrentDictionary<Pawn, ConcurrentDictionary<BodyPartRecord, MaxHealthCacheRecord>>();
 
         public static float? GetCachedBodyPartMaxHealth(Pawn pawn, BodyPartRecord record)
         {
-            Dictionary<BodyPartRecord, MaxHealthCacheRecord> innerDictionary;
+            ConcurrentDictionary<BodyPartRecord, MaxHealthCacheRecord> innerDictionary;
             if (cache.TryGetValue(pawn, out innerDictionary))
             {
                 // value exists
@@ -58,7 +59,7 @@ namespace EBF.Util
             MaxHealthCacheRecord cachedRecord = new MaxHealthCacheRecord(maxHealth, Find.TickManager.TicksGame + expiryTicks);
             if (!cache.ContainsKey(pawn))
             {
-                cache[pawn] = new Dictionary<BodyPartRecord, MaxHealthCacheRecord>();
+                cache[pawn] = new ConcurrentDictionary<BodyPartRecord, MaxHealthCacheRecord>();
             }
             cache[pawn][record] = cachedRecord;
         }
@@ -76,7 +77,7 @@ namespace EBF.Util
             {
                 return;
             }
-            cache.Remove(pawn);
+            cache.TryRemove(pawn, out _);
         }
 
         public static void ResetCacheSpecifically(Pawn pawn, BodyPartRecord record)
@@ -96,7 +97,7 @@ namespace EBF.Util
             {
                 return;
             }
-            cache[pawn].Remove(record);
+            cache[pawn].TryRemove(record, out _);
         }
 
         public static void ResetCache()
