@@ -91,12 +91,7 @@ namespace EBF.Util
         public static void ResetCacheSpecifically(Pawn pawn, BodyPartRecord record)
         {
             // this is for when a hediff is added or removed, so that we can force a recalculation of values
-            if (pawn == null)
-            {
-                // idk what you are talking about!
-                return;
-            }
-            if (record == null)
+            if (pawn == null || record == null)
             {
                 // idk what you are talking about!
                 return;
