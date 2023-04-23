@@ -14,7 +14,7 @@ namespace EBF.Patches
         internal static HashSet<Pawn> dirtyCacheIgnoreSet = new HashSet<Pawn>();
 
         /// <summary>
-        /// Suppresses the next "EBF Protocol violation" error message.
+        /// Suppresses the next "hediff set cache is dirty" event.
         /// Because RimWorld is only single-threaded, we can do crazy things like this.
         /// </summary>
         internal static void SuppressNextDirtyCache(Pawn target)
