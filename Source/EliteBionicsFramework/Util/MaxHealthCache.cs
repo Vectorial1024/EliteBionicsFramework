@@ -83,7 +83,6 @@ namespace EBF.Util
                 {
                     return;
                 }
-                Log.Error("Resetting health cache for pawn " + pawn.ToStringSafe() + "; stack trace in details\n" + Environment.StackTrace);
                 cache.Remove(pawn);
             }
         }

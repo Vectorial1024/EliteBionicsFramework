@@ -15,7 +15,6 @@ namespace EBF.Patches
             {
                 // healing injuries will very often tick the health cache, but it is irrelevant to our operations
                 // therefore, ignore the next dirty cache call
-                Log.Error("Ricking Hediff_Injury for pawn " + ___pawn.ToStringSafe() + "; skipping it.");
                 PostFix_HediffSet_DirtyCache.SuppressNextDirtyCache(___pawn);
             }
         }
