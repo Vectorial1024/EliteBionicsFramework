@@ -15,6 +15,7 @@ namespace EBF.Patches
             {
                 MaxHealthCache.ResetCache();
                 AssertionUtil.GameStartAssertion();
+                PostFix_HediffSet_DirtyCache.InitOrResetSuppressionMemory();
             });
         }
     }

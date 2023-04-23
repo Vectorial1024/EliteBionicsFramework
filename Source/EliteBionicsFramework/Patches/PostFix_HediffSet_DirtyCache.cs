@@ -22,6 +22,16 @@ namespace EBF.Patches
             dirtyCacheIgnoreSet.Add(target);
         }
 
+        internal static void InitOrResetSuppressionMemory()
+        {
+            if (dirtyCacheIgnoreSet == null)
+            {
+                dirtyCacheIgnoreSet = new HashSet<Pawn>();
+                return;
+            }
+            dirtyCacheIgnoreSet.Clear();
+        }
+
         [HarmonyPostfix]
         public static void PostFix(HediffSet __instance)
         {
