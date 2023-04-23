@@ -83,6 +83,7 @@
     <Compile Include="Patches\PostFix_Game_InitNewGame.cs" />
     <Compile Include="Patches\PostFix_VerbProperties_GetDamageFactorFor.cs" />
     <Compile Include="Patches\Prefix_BodyPart_GetMaxHealth.cs" />
+    <Compile Include="Patches\Prefix_HealthTracker_NotifyHediffChanged.cs" />
     <Compile Include="Patches\PreFix_PawnCapUtil_BodyPartHealth.cs" />
     <Compile Include="Patches\Unification\HalfDragons\Transpiler_HalfDragons_DetermineHealing.cs" />
     <Compile Include="Patches\Unification\HalfDragons\Transpiler_HalfDragons_RemoveHealedParts.cs" />
