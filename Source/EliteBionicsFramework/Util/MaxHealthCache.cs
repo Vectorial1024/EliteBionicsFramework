@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using Verse;
 
@@ -77,6 +78,7 @@ namespace EBF.Util
             {
                 return;
             }
+            Log.Error("Resetting health cache for pawn " + pawn.ToStringSafe() + "; stack trace in details\n" + Environment.StackTrace);
             cache.TryRemove(pawn, out _);
         }
 
