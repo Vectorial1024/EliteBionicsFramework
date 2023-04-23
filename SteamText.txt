@@ -10,8 +10,8 @@ Package ID: V1024.EBFramework
 [*]Safe to add to existing saves
 [*]Depending on whether there are any dependencies loaded, safe to be removed
 [*]Should have no problems with most other mods, see below for more info
-[*]Multiplayer: YES
-[*]RimThreaded: YES
+[*]Multiplayer compatibility: YES
+[*]RimThreaded compatibility: YES
 [*]GitHub repo link is here: https://github.com/Vectorial1024/EliteBionicsFramework
 [*]A mod for modders: modders can read adjusted max HP values for their calculations
 [*]A mod for all: unifies HP-boosting effects from various community bionics mods for compatibility reasons
