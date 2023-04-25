@@ -10,6 +10,9 @@ namespace EBF.Patches
     [HarmonyPatch("DirtyCache", MethodType.Normal)]
     public class PostFix_HediffSet_DirtyCache
     {
+        /// <summary>
+        /// For null safety, please use the property with a similar name instead.
+        /// </summary>
         [ThreadStatic]
         internal static HashSet<Pawn> dirtyCacheIgnoreSet = new HashSet<Pawn>();
 
