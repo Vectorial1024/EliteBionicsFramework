@@ -315,6 +315,14 @@ Note: Multiplayer compatibility was tested on a local-self-to-self setup. Hopefu
 		<content>- Improved compatibility with RimThreaded</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_1_2_0</defName>
+		<assemblyVersion>5.1.2.0</assemblyVersion>
+		<content>- "Compatibility with RimThreaded" no longer impacts performance too much (problem introduced in v5.1.1)
+- Optimized performance (should see reduced slowdowns when pawns are healing)|
+Note: you will probably see some lag shortly after starting/loading a game, but the lag will reduce over time, and that is normal; when a game is started/loaded, EBF is probably busy calculating the max HP values for all the newly-loaded pawns.</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
