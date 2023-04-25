@@ -13,23 +13,30 @@ namespace EBF.Patches
         [ThreadStatic]
         internal static HashSet<Pawn> dirtyCacheIgnoreSet = new HashSet<Pawn>();
 
+        internal static HashSet<Pawn> DirtyCacheIgnoreSet
+        {
+            get
+            {
+                if (dirtyCacheIgnoreSet == null)
+                {
+                    dirtyCacheIgnoreSet = new HashSet<Pawn>();
+                }
+                return dirtyCacheIgnoreSet;
+            }
+        }
+
         /// <summary>
         /// Suppresses the next "hediff set cache is dirty" event.
         /// Because RimWorld is only single-threaded, we can do crazy things like this.
         /// </summary>
         internal static void SuppressNextDirtyCache(Pawn target)
         {
-            dirtyCacheIgnoreSet.Add(target);
+            DirtyCacheIgnoreSet.Add(target);
         }
 
         internal static void InitOrResetSuppressionMemory()
         {
-            if (dirtyCacheIgnoreSet == null)
-            {
-                dirtyCacheIgnoreSet = new HashSet<Pawn>();
-                return;
-            }
-            dirtyCacheIgnoreSet.Clear();
+            DirtyCacheIgnoreSet.Clear();
         }
 
         [HarmonyPostfix]
@@ -37,10 +44,10 @@ namespace EBF.Patches
         {
             // convenient place to keep track of hediff/alive changes
             Pawn pawn = __instance.pawn;
-            if (dirtyCacheIgnoreSet.Contains(pawn))
+            if (DirtyCacheIgnoreSet.Contains(pawn))
             {
                 // but dont do it if we are told to ignore it
-                dirtyCacheIgnoreSet.Remove(pawn);
+                DirtyCacheIgnoreSet.Remove(pawn);
                 return;
             }
             MaxHealthCache.ResetCacheForPawn(pawn);
