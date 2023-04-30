@@ -16,6 +16,11 @@ namespace EBF.Patches
             {
                 return;
             }
+            if (hediff is Hediff_Injury)
+            {
+                // normally, injuries are not supposed to influence the max HP stats of a body part, so we can safely ignore them
+                return;
+            }
             MaxHealthCache.ResetCacheSpecifically(___pawn, hediff.Part);
         }
     }
