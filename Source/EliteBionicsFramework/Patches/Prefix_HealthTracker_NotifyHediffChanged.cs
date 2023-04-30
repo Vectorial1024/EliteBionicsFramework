@@ -19,7 +19,7 @@ namespace EBF.Patches
                 // missing part hediffs may tick after 90k ticks, but ultimately they are irrelevant to our operations
                 // if someone lost a body part, then supposedly somewhere in the codebase, the game will call this function with a null parameter or something
 
-                PostFix_HediffSet_DirtyCache.SuppressNextDirtyCache(___pawn);
+                // PostFix_HediffSet_DirtyCache.SuppressNextDirtyCache(___pawn);
             }
         }
     }

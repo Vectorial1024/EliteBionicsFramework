@@ -96,6 +96,7 @@ namespace EBF.Util
                 // idk what you are talking about!
                 return;
             }
+            Log.Error("Partial reset " + pawn.ToString() + ", " + record.ToStringSafe() + "\n" + Environment.StackTrace);
             lock (cache)
             {
                 if (!cache.ContainsKey(pawn))

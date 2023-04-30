@@ -4,15 +4,14 @@ using Verse;
 
 namespace EBF.Patches
 {
-    // note: we are reverting to the add/remove dirtying method to help with perfomrnace
-    [HarmonyPatch(typeof(Pawn_HealthTracker))]
-    [HarmonyPatch("RemoveHediff", MethodType.Normal)]
-    public class PostFix_HealthTracker_RemoveHediff
+    [HarmonyPatch(typeof(HediffSet))]
+    [HarmonyPatch("AddDirect", MethodType.Normal)]
+    public class PostFix_HediffSet_AddDirect
     {
         [HarmonyPostfix]
         public static void ResetCacheSpecifically(Pawn ___pawn, Hediff hediff)
         {
-            if (hediff.Part == null)
+            if (hediff.Part != null)
             {
                 return;
             }
