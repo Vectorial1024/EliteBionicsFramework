@@ -77,6 +77,7 @@ namespace EBF.Util
                 // idk what you are talking about!
                 return;
             }
+            Log.Error("Resestting cache: " + pawn.ToStringSafe() + "\n" + Environment.StackTrace);
             lock (cache)
             {
                 if (!cache.ContainsKey(pawn))
