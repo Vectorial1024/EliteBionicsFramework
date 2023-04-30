@@ -37,12 +37,14 @@ namespace EBF
 
         /// <summary>
         /// Returns the actual max HP of this BodyPartRecord instance under the effects of EBF-enabled hediffs.
+        /// <para/>
+        /// Note: since EBF v5.1.3, the HP value returned is the cached value by default. To force EBF to calculate a fresh value, set useCache = false.
         /// </summary>
         /// <param name="record">The BodyPartRecord instance in question.</param>
         /// <param name="pawn">The pawn who is the owner of that BodyPartRecord instance.</param>
         /// <param name="useCache">Whether to use the max-health cache, for cases where max-health is constantly queried but unlikely to change.</param>
         /// <returns>The appropriate max HP of the BodyPartRecord under the effects of EBF-enabled hediffs</returns>
-        public static float GetMaxHealthWithEBF(BodyPartRecord record, Pawn pawn, bool useCache = false)
+        public static float GetMaxHealthWithEBF(BodyPartRecord record, Pawn pawn, bool useCache = true)
         {
             if (useCache)
             {
