@@ -54,7 +54,6 @@ namespace EBF
                     return cachedValue.Value;
                 }
             }
-            Log.Error("New calculation: " + pawn.ToStringSafe() + "\n" + Environment.StackTrace);
             float baseMaxHP;
             if (ModDetector.PawnmorpherIsLoadedCached)
             {
