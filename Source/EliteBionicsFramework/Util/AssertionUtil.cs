@@ -18,8 +18,8 @@ namespace EBF.Util
         {
             // check Cyber Fauna
             bool hasError = false;
-            hasError &= AssertCyberFauna();
-            hasError &= AssertMechalitCore();
+            hasError |= AssertCyberFauna();
+            hasError |= AssertMechalitCore();
             if (hasError)
             {
                 Find.TickManager.CurTimeSpeed = TimeSpeed.Paused;

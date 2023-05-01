@@ -334,7 +334,14 @@ Explanation/Examples:
 - Improved performance when looking at the health tab via Compact Hediff|
 Other changes:
 - Further optimized the caching; stuttering should be generally less frequent
-- Improved detection of Pawnmorpher hediff changes</content>
+- Improved detection of Pawnmorpher hediff changes|
+Still, remember: EBF will need time to warm up when the game loads new pawns, but after a while, EBF will just run in the background smoothly.</content>
+	</HugsLib.UpdateFeatureDef>
+
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_1_3_1</defName>
+		<assemblyVersion>5.1.3.1</assemblyVersion>
+		<content>Small bugfix with detection of incompatible mods.</content>
 	</HugsLib.UpdateFeatureDef>
 
     <!--
