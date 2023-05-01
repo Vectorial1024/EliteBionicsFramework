@@ -323,6 +323,20 @@ Note: Multiplayer compatibility was tested on a local-self-to-self setup. Hopefu
 Note: you will probably see some lag shortly after starting/loading a game, but the lag will reduce over time, and that is normal; when a game is started/loaded, EBF is probably busy calculating the max HP values for all the newly-loaded pawns.</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_1_3_0</defName>
+		<assemblyVersion>5.1.3.0</assemblyVersion>
+		<content>Technical update:
+- EBF.GetMaxHealthWithEBF will now return the cached max HP values by default|
+Explanation/Examples:
+- Generally reduced lag when things happen, such as:
+- Reduced lag when looking at the health tabs of untended bleeding pawns
+- Improved performance when looking at the health tab via Compact Hediff|
+Other changes:
+- Further optimized the caching; stuttering should be generally less frequent
+- Improved detection of Pawnmorpher hediff changes</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
