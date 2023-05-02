@@ -124,3 +124,41 @@ If you want to add in more `HediffCompProperties`, just add in additional `li` n
     <!-- Omitted code -->
 </HediffDef>
 ```
+
+# About "adopting the EBF protocol"
+Sometinmes, I am simply unavailable. And sometimes, some other mod gained enough popularity but I did not notice them. Such is the way of things, but this may result in broken compatibility. This may occur in the form of "EBF Protocol Violation" notices:
+
+```
+[V1024-EBF] Elite Bionics Framework has detected some mods using the unmodified GetMaxHealth() method, which violates the EBF protocol. 
+The author(s) of the involved mod(s) should adopt the EBF to clarify their intentions.
+For now, the unmodified max HP is returned.
+The detected mod comes from: [name]
+```
+
+This is mainly due to this mod adding extra information to body parts, so that only having a `BodyPartDef` is no longer enough to determine the max HP. You need to pass in a `BodyPartRecord` instance, so that EBF may know how to calculate the max HP.
+
+You should differentiate between the following:
+- Calculating the current max HP, which may be affected by EBF bionics (note: most use cases are this case)
+- Checking the base stats of the body part, which is never affected by EBF, and with which EBF bases its max HP calculation on
+
+EBF has provided compatiblity by transpiling various other mods' DLLs via Harmony to use the EBF-compliant methods, but the best way to do this would be to write the correct code at those DLLs instead, so that the intention is the clearest.
+
+In case you want to calculate the current max HP, I will not be providing exact code, but consider the following:
+
+1. Create a utility function that has the following signature to calculate the max HP of a body part: `function(BodyPartRecord, Pawn) -> float`
+2. Make the body of said function return the vanilla max HP: `return BodyPartRecord->def::GetMaxHealth(Pawn)`
+3. Make a Harmony prefix patch targetting said function:
+```
+Prepare:
+    EBF is loaded
+
+TargetMethod:
+    [your util function]
+
+bool PreFix(ref float __result):
+    (note: use reflection if needed)
+    __result = EBFEndpoints.GetMaxHealthWithEBF(BodyPartRecord, Pawn);
+    return false; // skip the original method
+```
+
+This will allow you to read the current max HP value while not triggering the "adopt the EBF protocol" error.
