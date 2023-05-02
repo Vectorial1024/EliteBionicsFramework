@@ -20,6 +20,12 @@ git clone https://github.com/Vectorial1024/EliteBionicsFramework.git
 git pull
 ```
 
+# Usage by Other Mods
+
+This mod is now being used by a few other mods to boost body part max HP values.
+
+For more info and an updated list of mods, check out the relevant Steam Collection here: https://steamcommunity.com/workshop/filedetails/?id=2016834921
+
 # Built-In Integration with Other Mods
 
 This mod has built-in integration with some other third-party mods, and such integrations are in place to ensure that those other mods can read the correct body part max HP as calculated by this framework mod.
@@ -35,6 +41,8 @@ Currently, the following mods are supported, in no particular order:
 - Moody
 
 Note that this list does not include the mods that are using this framework to provide actual body part max HP manipulation.
+
+For more info and an updated list of mods, check out the relevant Steam Collection here: https://steamcommunity.com/workshop/filedetails/?id=2693300854
 
 # Natural Compatibility:
 
