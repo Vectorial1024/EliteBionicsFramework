@@ -72,6 +72,7 @@
     <Compile Include="Hediffs\HediffComp_MaxHPAdjust.cs" />
     <Compile Include="Hediffs\HediffComp_ToolPowerAdjust.cs" />
     <Compile Include="Patches\PostFix_AgeTracker_PostResolveLifeStageChange.cs" />
+    <Compile Include="Patches\PostFix_Corpse_PostCorpseDestroy.cs" />
     <Compile Include="Patches\PostFix_Game_LoadGame.cs" />
     <Compile Include="Patches\PostFix_HealthTracker_RemoveHediff.cs" />
     <Compile Include="Patches\PostFix_HediffInjury_BleedRate.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Patches\PostFix_VerbProperties_AdjustedMeleeDamageAmount.cs" />
     <Compile Include="Patches\PostFix_Game_InitNewGame.cs" />
     <Compile Include="Patches\PostFix_VerbProperties_GetDamageFactorFor.cs" />
+    <Compile Include="Patches\PostFix_WorldPawns_PawnDestroyed.cs" />
     <Compile Include="Patches\Prefix_BodyPart_GetMaxHealth.cs" />
     <Compile Include="Patches\Prefix_HealthTracker_NotifyHediffChanged.cs" />
     <Compile Include="Patches\PreFix_PawnCapUtil_BodyPartHealth.cs" />
