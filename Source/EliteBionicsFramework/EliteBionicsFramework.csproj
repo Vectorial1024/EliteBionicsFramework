@@ -129,6 +129,7 @@
     <Compile Include="Transpilers\Transpiler_PawnCapacity_Calculate.cs" />
     <Compile Include="Util\AssertionUtil.cs" />
     <Compile Include="Util\CommunityUnificationUtil.cs" />
+    <Compile Include="Util\DebugActionsEBF.cs" />
     <Compile Include="Util\MaxHealthCache.cs" />
     <Compile Include="Util\ModDetector.cs" />
     <Compile Include="Util\ToolFinderUtils.cs" />
