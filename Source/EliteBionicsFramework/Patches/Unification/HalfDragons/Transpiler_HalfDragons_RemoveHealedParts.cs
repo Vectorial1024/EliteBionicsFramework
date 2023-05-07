@@ -16,7 +16,7 @@ namespace EBF.Patches.Unification.HalfDragons
 
         public static MethodBase TargetMethod()
         {
-            return AccessTools.Method("HalfDragons.Need_DragonBlood.RemoveHealedParts");
+            return AccessTools.Method("HalfDragons.Need_DragonBlood:RemoveHealedParts");
         }
 
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
