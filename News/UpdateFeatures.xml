@@ -344,6 +344,15 @@ Still, remember: EBF will need time to warm up when the game loads new pawns, bu
 		<content>Small bugfix with detection of incompatible mods.</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_1_4_0</defName>
+		<assemblyVersion>5.1.4.0</assemblyVersion>
+		<content>- Further optimized performance: will self-cleanup when pawns/corpses are destroyed
+- Fixed actually-broken Half Dragons compatibility|
+The performance improvements in this update will be helpful when, e.g., you are running a chicken farm and are now butchering the chickens, or when you are cleaning up after defending against a large raid.
+		</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
