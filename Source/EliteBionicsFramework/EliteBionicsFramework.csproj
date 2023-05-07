@@ -88,8 +88,8 @@
     <Compile Include="Patches\Prefix_BodyPart_GetMaxHealth.cs" />
     <Compile Include="Patches\Prefix_HealthTracker_NotifyHediffChanged.cs" />
     <Compile Include="Patches\PreFix_PawnCapUtil_BodyPartHealth.cs" />
-    <Compile Include="Patches\Unification\HalfDragons\Transpiler_HalfDragons_DetermineHealing.cs" />
     <Compile Include="Patches\Unification\HalfDragons\Transpiler_HalfDragons_RemoveHealedParts.cs" />
+    <Compile Include="Patches\Unification\HalfDragons\Transpiler_HalfDragons_DetermineHealing.cs" />
     <Compile Include="Patches\Unification\Pawnmorpher\PostFix_Pawnmorpher_HediffStageChanges_Recache.cs" />
     <Compile Include="Patches\Unification\Pawnmorpher\PreFix_Pawnmorpher_GetPartNormalizedHealth.cs" />
     <Compile Include="Patches\Unification\Pawnmorpher\Mixed_Pawnmorpher_GetPartMaxHealth.cs" />
