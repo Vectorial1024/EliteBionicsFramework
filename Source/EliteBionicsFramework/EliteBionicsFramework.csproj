@@ -95,9 +95,9 @@
     <Compile Include="Patches\Unification\Pawnmorpher\Mixed_Pawnmorpher_GetPartMaxHealth.cs" />
     <Compile Include="Patches\Unification\CONN\PreFix_CONN_HealthStat.cs" />
     <Compile Include="Patches\Unification\CONN\PreFix_CONN_GetMaxHealth.cs" />
-    <Compile Include="Patches\Unification\CyberFauna\Transpiler_CyberFauna_CalcPartEfficiency.cs" />
-    <Compile Include="Patches\Unification\CyberFauna\Transpiler_CyberFauna_GetPartHealth.cs" />
-    <Compile Include="Patches\Unification\CyberFauna\Transpiler_CyberFauna_PartHealthTooltip.cs" />
+    <Compile Include="Patches\Unification\DllProthesisHealth\Transpiler_DllProthesisHealth_CalcPartEfficiency.cs" />
+    <Compile Include="Patches\Unification\DllProthesisHealth\Transpiler_DllProthesisHealth_GetPartHealth.cs" />
+    <Compile Include="Patches\Unification\DllProthesisHealth\Transpiler_DllProthesisHealth_PartHealthTooltip.cs" />
     <Compile Include="Transpilers\Pawnmorpher\Transpiler_DamageWorker_MutagenicBlunt.cs" />
     <Compile Include="Patches\Unification\Reverse_Pawn_HealthScale.cs" />
     <Compile Include="Patches\Unification\PostFix_Everyone_HediffWithComps_LabelBracket.cs" />

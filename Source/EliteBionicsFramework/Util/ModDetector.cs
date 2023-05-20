@@ -55,5 +55,13 @@ namespace EBF.Util
         public static bool MechalitCoreOfficialIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.PackageId == PackageIdMechalitCoreOfficial.ToLower());
 
         public static bool HalfDragonsIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Half dragons"));
+
+        /// <summary>
+        /// Determines whether the DLL "ProthesisHealth" has been loaded.
+        /// <para/>
+        /// At this moment, both Cyber Fauna and Mechalit Core utilizes this dll, and a true value here indicates that at least one of the two mods are loaded. 
+        /// Whichever one is loaded, this you should ask in another query.
+        /// </summary>
+        public static bool DllProthesisHealthisLoaded => CyberFaunaOfficialIsLoaded || MechalitCoreOfficialIsLoaded;
     }
 }

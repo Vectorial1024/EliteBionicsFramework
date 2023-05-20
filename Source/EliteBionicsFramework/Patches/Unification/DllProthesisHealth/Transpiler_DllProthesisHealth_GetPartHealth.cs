@@ -4,19 +4,19 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Reflection.Emit;
 
-namespace EBF.Patches.Unification.CyberFauna
+namespace EBF.Patches.Unification.DllProthesisHealth
 {
     [HarmonyPatch]
-    public class Transpiler_CyberFauna_CalcPartEfficiency
+    public class Transpiler_DllProthesisHealth_GetPartHealth
     {
         public static bool Prepare()
         {
-            return ModDetector.CyberFaunaIsLoaded;
+            return ModDetector.DllProthesisHealthisLoaded;
         }
 
         public static MethodBase TargetMethod()
         {
-            return AccessTools.Method("ProthesisHealth.PawnCapacityUtility_CalculatePartEfficiency_ParagonPatch:Prefix");
+            return AccessTools.Method("ProthesisHealth.HediffSet_GetPartHealth_ParagonPatch:Prefix");
         }
 
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
