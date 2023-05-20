@@ -127,6 +127,7 @@
     <Compile Include="Transpilers\Transpiler_HediffSet_GetPartHealth.cs" />
     <Compile Include="Transpilers\Transpiler_PawnCapacityImpactor_BP.cs" />
     <Compile Include="Transpilers\Transpiler_PawnCapacity_Calculate.cs" />
+    <Compile Include="Transpilers\VanillaExtended\Transpiler_VPE_HediffRegrowLimbs_PostTick.cs" />
     <Compile Include="Util\AssertionUtil.cs" />
     <Compile Include="Util\CommunityUnificationUtil.cs" />
     <Compile Include="Util\DebugActionsEBF.cs" />

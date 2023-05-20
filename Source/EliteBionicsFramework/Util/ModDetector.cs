@@ -63,5 +63,7 @@ namespace EBF.Util
         /// Whichever one is loaded, this you should ask in another query.
         /// </summary>
         public static bool DllProthesisHealthisLoaded => CyberFaunaOfficialIsLoaded || MechalitCoreOfficialIsLoaded;
+
+        public static bool VanillaPsycastsExpandedIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Vanilla Psycasts Expanded"));
     }
 }
