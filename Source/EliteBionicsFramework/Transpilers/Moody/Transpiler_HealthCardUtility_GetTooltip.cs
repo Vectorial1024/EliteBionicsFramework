@@ -15,8 +15,6 @@ namespace EBF.Transpilations.Moody
     {
         public static bool Prepare()
         {
-            // dont do this patch if Pawnmorpher is detected; there are race conditions
-            // if Pawnmorpher is loaded then we use PostFix_Pawnmorpher_HealthUtil instead.
             return ModDetector.MoodyIsLoaded;
         }
 
