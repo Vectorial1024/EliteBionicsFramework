@@ -25,17 +25,17 @@ namespace EBF.Transpilers.VanillaExtended
             /*
              * This method intends to regrow limbs and give the regrown part a "regenerating" hediff.
              * The "regenerating" hediff one-off reads the max HP of the body part def.
-             * Thus, we only need to replace the (one and only) GetMaxHealth with our EBF-provided GetUnmodifiedMaxHealth.
+             * Thus, we only need to replace the (one and only) GetMaxHealth with our EBF-provided GetMaxHealthUnmodified.
              * (Disclaimer: I do not have Royalty DLC, and I do not intend to get it in any near future.)
              * ---
              * This is also a very good opportunity to demonstrate how CodeMatcher works in practice.
              * Special shoutout to GitHub user delmain for introducing the idea of CodeMatcher!
              */
-            return new CodeMatcher()
+            return new CodeMatcher(instructions)
                 .MatchStartForward(
                     new CodeMatch(OpCodes.Callvirt, AccessTools.Method(typeof(BodyPartDef), nameof(BodyPartDef.GetMaxHealth)))
                 ) // find the only occurence of .GetMaxHealth()
-                .Set(OpCodes.Call, AccessTools.Method(typeof(EBFEndpoints), nameof(EBFEndpoints.GetBodyPartMaxHealthUnmodified)))
+                .Set(OpCodes.Call, AccessTools.Method(typeof(EBFEndpoints), nameof(EBFEndpoints.GetMaxHealthUnmodified)))
                 // and replace with our safe GetMaxHealthUnmodified()
                 .InstructionEnumeration();
         }
