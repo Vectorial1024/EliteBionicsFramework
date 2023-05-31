@@ -48,11 +48,10 @@ namespace EBF.Transpilations.Pawnmorpher
 
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            // Patch things up at the 11th occurence of callvirt
-            short occurencesCallvirt = 0;
-            short suppressCount = 0;
-            bool patchComplete = false;
-            // Harmony.DEBUG = true;
+            /*
+             * A total of 1 GetMaxHealth occurences detected;
+             * Patch with CodeMatcher
+             */
 
             /*
              * This is to patch for "get core part max health" in the function ApplySpecialEffectsToPart(...)
@@ -69,44 +68,24 @@ namespace EBF.Transpilations.Pawnmorpher
             Type typeSelfAnon = AccessTools.TypeByName("Pawnmorph.Damage.Worker_MutagenicBlunt").GetNestedTypes(BindingFlags.NonPublic).Where((Type type) => type.GetField("pawn") != null).First();
             if (typeSelfAnon != null)
             {
-                // FileLog.Log("Lettuce begin");
-                // Search successful.
-                foreach (CodeInstruction instruction in instructions)
+                IEnumerable<CodeInstruction> patchedInstructions = new CodeMatcher(instructions)
+                    .MatchStartForward(
+                        new CodeMatch(OpCodes.Callvirt, AccessTools.Method(typeof(BodyPartDef), nameof(BodyPartDef.GetMaxHealth)))
+                    ) // find the only occurence of .GetMaxHealth()
+                    .InsertAndAdvance(
+                        new CodeInstruction(OpCodes.Ldloc_0),
+                        new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeSelfAnon, "pawn")),
+                        new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Thing), "def")),
+                        new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ThingDef), "race")),
+                        new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(RaceProperties), "body")),
+                        new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(BodyDef), "corePart")),
+                        new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth"))
+                    ) // insert extra code so that we use VanillaExtender.GetMaxHealth(); we do this out of convenience
+                    .Set(OpCodes.Nop, null)
+                    // and ignore the original instruction
+                    .InstructionEnumeration();
+                foreach (CodeInstruction instruction in patchedInstructions)
                 {
-                    if (!patchComplete && instruction.opcode == OpCodes.Callvirt)
-                    {
-                        occurencesCallvirt++;
-
-                        if (occurencesCallvirt == 9)
-                        {
-                            List<CodeInstruction> insert = new List<CodeInstruction>()
-                            {
-                                new CodeInstruction(OpCodes.Ldloc_0),
-                                new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeSelfAnon, "pawn")),
-                                new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Thing), "def")),
-                                new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ThingDef), "race")),
-                                new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(RaceProperties), "body")),
-                                new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(BodyDef), "corePart")),
-                                new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth"))
-                            };
-                            foreach (CodeInstruction command in insert)
-                            {
-                                FileLog.Log(command.ToString());
-                                yield return command;
-                            }
-
-                            suppressCount = 1;
-                            patchComplete = true;
-                        }
-                    }
-
-                    if (suppressCount > 0)
-                    {
-                        instruction.opcode = OpCodes.Nop;
-                        suppressCount--;
-                    }
-
-                    FileLog.Log(instruction.ToString());
                     yield return instruction;
                 }
             }
@@ -119,7 +98,6 @@ namespace EBF.Transpilations.Pawnmorpher
                     yield return instruction;
                 }
             }
-            // Harmony.DEBUG = false;
             yield break;
         }
     }
