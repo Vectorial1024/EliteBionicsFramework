@@ -11,8 +11,9 @@ namespace EBF.Patches
         [HarmonyPostfix]
         public static void ResetCacheSpecifically(Pawn ___pawn, Hediff hediff)
         {
-            if (hediff.Part != null)
+            if (hediff.Part == null)
             {
+                // we are not interested in full-body hediffs
                 return;
             }
             if (hediff is Hediff_Injury)
