@@ -98,6 +98,7 @@
     <Compile Include="Patches\Unification\DllProthesisHealth\Transpiler_DllProthesisHealth_CalcPartEfficiency.cs" />
     <Compile Include="Patches\Unification\DllProthesisHealth\Transpiler_DllProthesisHealth_GetPartHealth.cs" />
     <Compile Include="Patches\Unification\DllProthesisHealth\Transpiler_DllProthesisHealth_PartHealthTooltip.cs" />
+    <Compile Include="Transpilers\Immortals\Transpiler_ImmortalComp_TickLivingImmortal.cs" />
     <Compile Include="Transpilers\Pawnmorpher\Transpiler_DamageWorker_MutagenicBlunt.cs" />
     <Compile Include="Patches\Unification\Reverse_Pawn_HealthScale.cs" />
     <Compile Include="Patches\Unification\PostFix_Everyone_HediffWithComps_LabelBracket.cs" />

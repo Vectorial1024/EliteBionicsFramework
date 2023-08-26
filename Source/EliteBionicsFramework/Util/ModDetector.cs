@@ -65,5 +65,7 @@ namespace EBF.Util
         public static bool DllProthesisHealthisLoaded => CyberFaunaOfficialIsLoaded || MechalitCoreOfficialIsLoaded;
 
         public static bool VanillaPsycastsExpandedIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Vanilla Psycasts Expanded"));
+
+        public static bool ImmortalsIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Immortals"));
     }
 }
