@@ -361,6 +361,14 @@ The performance improvements in this update will be helpful when, e.g., you are 
 - Changed some of the hand-crafted transpilers to CodeMatcher transpilers (also special thanks to GitHub user delmain)|Now, go forth and spread the gospel of CodeMatcher transpilers.
 		</content>
 	</HugsLib.UpdateFeatureDef>
+	
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_1_6_0</defName>
+		<assemblyVersion>5.1.6.0</assemblyVersion>
+		<content>- Finally fixed "max HP does not update after installing a new bionic" (oops!)
+- Added compatibility with Immortals
+		</content>
+	</HugsLib.UpdateFeatureDef>
 
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
