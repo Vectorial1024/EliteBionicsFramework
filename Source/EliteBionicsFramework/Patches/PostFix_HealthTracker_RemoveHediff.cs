@@ -14,6 +14,7 @@ namespace EBF.Patches
         {
             if (hediff.Part == null)
             {
+                // we are not interested in full-body hediffs
                 return;
             }
             if (hediff is Hediff_Injury)
