@@ -20,7 +20,7 @@ namespace EBF.Transpilations.Moody
 
         public static MethodBase TargetMethod()
         {
-            return AccessTools.Method("Moody.Extensions.RimWorld.HealthCardUtility:GetTooltip");
+	        return AccessTools.Method("Moody.Extensions.RimWorld.HealthCardUtility:GetTooltip", new[] { typeof(IEnumerable<Hediff>), typeof(Pawn) });
         }
 
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
