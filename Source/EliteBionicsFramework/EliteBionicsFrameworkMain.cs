@@ -12,7 +12,7 @@ namespace EBF
     {
         public static string MODSHORTID => "V1024-EBF";
 
-        public override string LogIdentifier => MODSHORTID;
+        public override string ModIdentifier => MODSHORTID;
 
         /// <summary>
         /// Already includes a space character.
