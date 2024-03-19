@@ -484,13 +484,12 @@ namespace EBF.Util
 
         public static HediffCompProperties_MaxHPAdjust_Fake TryExtractPawnmorpherHediffToFakeHpComp(Pawn pawn, BodyPartRecord record)
         {
-            if (Pawnmorpher_Type_MutationUtilities == null)
+            if (Pawnmorpher_Type_MutationUtilities == null || pawn == null /* GetMutationTracker assumes it is not null, so better check */)
             {
                 // not loaded
                 return null;
             }
-            // we truly did something wrong: for optional parameters, we must insert a special value in order to shut the game up about "param count mismatch"
-            object mutationTracker = Pawnmorpher_Type_MutationUtilities.GetMethod("GetMutationTracker").Invoke(null, new object[] { pawn, Type.Missing });
+            object mutationTracker = Pawnmorpher_Type_MutationUtilities.GetMethod("GetMutationTracker").Invoke(null, new object[] { pawn });
             if (mutationTracker == null) 
             {
                 return null;
@@ -508,7 +507,8 @@ namespace EBF.Util
                     {
                         pmMultiplier += tempVal;
                     }
-                    BodyPartRecord tempObj = (BodyPartRecord)Pawnmorpher_Type_MutationStage.GetProperty("Part").GetGetMethod().Invoke(mutationStage, null);
+
+                    BodyPartRecord tempObj = ((Hediff)mutationHediff).Part ;// (BodyPartRecord)Pawnmorpher_Type_MutationStage.GetProperty("Part").GetGetMethod().Invoke(mutationHediff, null);
                     if (tempObj == record)
                     {
                         pmOffset += (float)Pawnmorpher_Type_MutationStage.GetField("healthOffset").GetValue(mutationStage);
