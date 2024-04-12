@@ -18,7 +18,7 @@ namespace EBF.Transpilations
         {
             /*
              * A total of 1 GetMaxHealth occurences detected;
-             * Patch at 2nd occurence
+             * Patch at 3rd occurence
              */
             short occurencesCallvirt = 0;
             short suppressCount = 0;
@@ -30,7 +30,7 @@ namespace EBF.Transpilations
                 {
                     occurencesCallvirt++;
 
-                    if (occurencesCallvirt == 2)
+                    if (occurencesCallvirt == 3)
                     {
                         yield return new CodeInstruction(OpCodes.Ldarg_0);
                         yield return new CodeInstruction(OpCodes.Call, typeof(Hediff).GetProperty("Part").GetGetMethod());

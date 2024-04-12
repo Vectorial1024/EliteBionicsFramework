@@ -25,7 +25,7 @@ namespace EBF.Transpilations
         {
             /*
              * A total of 1 GetMaxHealth occurences detected;
-             * Patch at 19th occurence
+             * Patch at 20th occurence
              */
             short occurencesCallvirt = 0;
             short suppressCount = 0;
@@ -37,7 +37,7 @@ namespace EBF.Transpilations
                 {
                     occurencesCallvirt++;
 
-                    if (occurencesCallvirt == 19)
+                    if (occurencesCallvirt == 20)
                     {
                         yield return new CodeInstruction(OpCodes.Ldarg_1);
                         yield return new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth_Cached"));

@@ -17,7 +17,7 @@ namespace EBF.Transpilations
         {
             /*
              * A total of 1 GetMaxHealth occurences detected;
-             * Patch at 5th occurence
+             * Patch at 6th occurence
              */
             short occurencesCallvirt = 0;
             short suppressCount = 0;
