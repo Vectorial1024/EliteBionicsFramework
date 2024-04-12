@@ -46,6 +46,18 @@ namespace EBF.Util
         static CommunityUnificationUtil()
         {
             RW_Hediff_TryGetComp = typeof(HediffUtility).GetMethod(nameof(HediffUtility.TryGetComp));
+
+            // we are splitting this into several functions so that debugging can give us meaningful stacktraces
+            TryPatchQualityBionics();
+            TryPatchCyberFauna();
+            TryPatchMechalitCore();
+            TryPatchPawnmorpher();
+        }
+
+        #region Community Unification Mod Patching
+
+        private static void TryPatchQualityBionics()
+        {
             if (ModDetector.QualityBionicsIsLoaded)
             {
                 try
@@ -59,13 +71,17 @@ namespace EBF.Util
                     QualityBionics_Type_CompQualityBionics = Type.GetType("QualityBionics.HediffCompQualityBionics, QualityBionics");
                     QualityBionics_TryGetRelevantComp = RW_Hediff_TryGetComp.MakeGenericMethod(new[] { QualityBionics_Type_CompQualityBionics });
                 }
-                catch (ArgumentNullException ex)
+                catch (ArgumentNullException)
                 {
                     // we failed to make a generic method
                     EliteBionicsFrameworkMain.LogError("Something about Quality Bionics changed; please report this to us.");
                 }
             }
-            // note: CONN has officially adopted EBF for the HP-increasing effects, so we no longer need to check for them.
+        }
+
+        private static void TryPatchCyberFauna()
+        {
+
             if (ModDetector.CyberFaunaIsLoaded)
             {
                 // test
@@ -80,12 +96,17 @@ namespace EBF.Util
                     CyberFauna_TryGetRelevantComp = RW_Hediff_TryGetComp.MakeGenericMethod(new[] { CyberFauna_Type_CompPartHitPoints });
                     HasLoadedProthesisHealth = true;
                 }
-                catch (ArgumentNullException ex)
+                catch (ArgumentNullException)
                 {
                     // we failed to make a generic method
                     EliteBionicsFrameworkMain.LogError("Something about CyberFauna changed; please report this to us.");
                 }
             }
+        }
+
+        private static void TryPatchMechalitCore()
+        {
+
             if (ModDetector.MechalitCoreIsLoaded)
             {
                 // it is infuriating that both cyber fauna and mechalit core is using the same dll for stuff yet there are two copies of it in total
@@ -103,12 +124,16 @@ namespace EBF.Util
                         HasLoadedProthesisHealth = true;
                     }
                 }
-                catch (ArgumentNullException ex)
+                catch (ArgumentNullException)
                 {
                     // we failed to make a generic method
                     EliteBionicsFrameworkMain.LogError("Something about MechalitCore changed; please report this to us.");
                 }
             }
+        }
+
+        private static void TryPatchPawnmorpher()
+        {
             if (ModDetector.PawnmorpherIsLoaded)
             {
                 try
@@ -118,13 +143,15 @@ namespace EBF.Util
                     Pawnmorpher_Type_HediffAddedMutation = AccessTools.TypeByName("Pawnmorph.Hediff_AddedMutation");
                     Pawnmorpher_Type_MutationStage = AccessTools.TypeByName("Pawnmorph.Hediffs.MutationStage");
                 }
-                catch (ArgumentNullException ex)
+                catch (ArgumentNullException)
                 {
                     // we failed to make a generic method
                     EliteBionicsFrameworkMain.LogError("Something about Pawnmorpher changed; please report this to us.");
                 }
             }
         }
+
+        #endregion
 
         public static string GetBodyPartSummaryTooltipStringDueToMaxHpAdjust(Pawn pawn, BodyPartRecord record)
         {
