@@ -45,7 +45,9 @@ namespace EBF.Util
 
         static CommunityUnificationUtil()
         {
-            RW_Hediff_TryGetComp = typeof(HediffUtility).GetMethod(nameof(HediffUtility.TryGetComp));
+            var methodSignature = new Type[] { typeof(Hediff) };
+            RW_Hediff_TryGetComp = typeof(HediffUtility).GetMethod(nameof(HediffUtility.TryGetComp), methodSignature);
+            methodSignature = null;
 
             // we are splitting this into several functions so that debugging can give us meaningful stacktraces
             TryPatchQualityBionics();
