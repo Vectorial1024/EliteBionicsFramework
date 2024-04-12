@@ -29,7 +29,7 @@ namespace EBF.Transpilations
                 {
                     occurencesCallvirt++;
 
-                    if (occurencesCallvirt == 5)
+                    if (occurencesCallvirt == 6)
                     {
                         yield return new CodeInstruction(OpCodes.Ldarg_2);
                         yield return new CodeInstruction(OpCodes.Callvirt, typeof(Hediff).GetProperty("Part").GetGetMethod());
