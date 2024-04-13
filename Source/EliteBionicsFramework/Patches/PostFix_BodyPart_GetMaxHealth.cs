@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using UnityEngine;
 using Verse;
 
 namespace EBF.Patches
@@ -48,41 +47,7 @@ namespace EBF.Patches
                 "The detected mod comes from: " + namespaceString;
                 EliteBionicsFrameworkMain.LogError(errorMessage);
             }
-            
-            /*
-            // RW 1.5 strange bug: sometimes some base game values are unexpectedly null, and then it won't work.
-            // here we try a workaround.
-            if (pawn.ageTracker?.CurLifeStage == null || pawn.RaceProps == null)
-            {
-                EliteBionicsFrameworkMain.LogWarning("CurLifeStage and/or RaceProps for GetMaxHealth unexpectedly null; bypassing original method to provide emergency workaround; this might break other mods.");
-                // this is how the formula looks like in RW 1.5
-                float lifeStageHealthScaleFactor = pawn.ageTracker?.CurLifeStage?.healthScaleFactor ?? 1;
-                Log.Error("SanCheck: lifeStageFactor " + lifeStageHealthScaleFactor);
-                float racePropsBaseHealthScale = pawn.RaceProps?.baseHealthScale ?? 1;
-                if (racePropsBaseHealthScale <= 0)
-                {
-                    racePropsBaseHealthScale = 1;
-                }
-                Log.Error("SanCheck: racePropsScale " + racePropsBaseHealthScale);
-                __result = Mathf.CeilToInt((float) __instance.hitPoints * (lifeStageHealthScaleFactor * racePropsBaseHealthScale));
-                // return false;
-                return;
-            }
-            */
-            // return true;
             return;
-        }
-
-        [HarmonyFinalizer]
-        public static void LogTheProblem(Exception __exception, BodyPartDef __instance, ref float __result, Pawn pawn)
-        {
-            // we are dealing with a cursed 1.5 reflection bug here; get the logs up!
-            Log.Error(__exception.Message);
-            Log.Error("SanCheck: agetracker " + pawn.ageTracker);
-            Log.Error("SanCheck: lifestage " + pawn.ageTracker?.CurLifeStage);
-            Log.Error("SanCheck: raceprops " + pawn.RaceProps);
-            Log.Error("SanCheck: typeof(raceprops) " + pawn.RaceProps.GetType());
-            Log.Error("SanCheck: instance HP " + __instance.hitPoints);
         }
     }
 }
