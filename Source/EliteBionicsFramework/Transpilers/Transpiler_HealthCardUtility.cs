@@ -33,7 +33,7 @@ namespace EBF.Transpilations
 
             foreach (CodeInstruction instruction in instructions)
             {
-                // Count for the 5th callvirt, convert it to a call, and suppress the original callvirt
+                // Count for the 4th callvirt, convert it to a call, and suppress the original callvirt
                 if (!patchIsComplete && instruction.opcode == OpCodes.Callvirt)
                 {
                     occurencesCallvirt++;

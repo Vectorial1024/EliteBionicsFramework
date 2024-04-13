@@ -27,7 +27,7 @@ namespace EBF.Transpilations
         {
             // (we will let this print error when it fails to detect things... somehow we cannot properly encapsulate the error correctly)
 
-            // RW v1.4, FQ name Verse.DamageWorker_Blunt+<>c.<StunChances>b__2_5
+            // RW v1.5, FQ name Verse.DamageWorker_Blunt+<>c.<StunChances>b__2_5
             // weak matching: this self-anon type has 9 fields
             var potentialSelfAnons = AccessTools.TypeByName("Verse.DamageWorker_Blunt").GetNestedTypes(BindingFlags.NonPublic).Where((Type type) => type.GetFields().Length == 9);
             if (potentialSelfAnons.Count() == 0)
