@@ -27,18 +27,11 @@ namespace EBF.Patches
         }
 
         [HarmonyPostfix]
-        public static void LogEbfProtocolViolation(BodyPartDef __instance, ref float __result, Pawn pawn)
+        public static void CheckEbfProtocolViolation(BodyPartDef __instance, ref float __result, Pawn pawn)
         {
             // change of strategy: if we are no longer preventing the vanilla usage, might as well do it in the post-fix.
             StackFrame investigateFrame = new StackFrame(2);
             string namespaceString = investigateFrame.GetMethod().ReflectedType.Namespace;
-            /*
-            Log.Error("SanCheck: agetracker " + pawn.ageTracker);
-            Log.Error("SanCheck: lifestage " + pawn.ageTracker?.CurLifeStage);
-            Log.Error("SanCheck: raceprops " + pawn.RaceProps);
-            Log.Error("SanCheck: namespace " + namespaceString);
-            Log.Error("SanCheck: instance HP " + __instance.hitPoints);
-            */
 
             if (shouldSupressNextWarning)
             {
@@ -78,6 +71,18 @@ namespace EBF.Patches
             */
             // return true;
             return;
+        }
+
+        [HarmonyFinalizer]
+        public static void LogTheProblem(Exception __exception, BodyPartDef __instance, ref float __result, Pawn pawn)
+        {
+            // we are dealing with a cursed 1.5 reflection bug here; get the logs up!
+            Log.Error(__exception.Message);
+            Log.Error("SanCheck: agetracker " + pawn.ageTracker);
+            Log.Error("SanCheck: lifestage " + pawn.ageTracker?.CurLifeStage);
+            Log.Error("SanCheck: raceprops " + pawn.RaceProps);
+            Log.Error("SanCheck: typeof(raceprops) " + pawn.RaceProps.GetType());
+            Log.Error("SanCheck: instance HP " + __instance.hitPoints);
         }
     }
 }
