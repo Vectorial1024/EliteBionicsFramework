@@ -28,7 +28,7 @@ namespace EBF.Patches
         {
             // the flow has changed
             // we approve of Pawnmorpher reading the original values, and then we modify their value to become an EBF-accepted value
-            Prefix_BodyPart_GetMaxHealth.SuppressNextWarning();
+            PostFix_BodyPart_GetMaxHealth.SuppressNextWarning();
         }
     }
 }

@@ -23,7 +23,7 @@ namespace EBF.Patches.Unification.Pawnmorpher
         public static bool ManuallyPatchTheMethod(ref float __result, BodyPartRecord record, Pawn p)
         {
             // tell the relevant side to ignore the next getMaxHealth warning
-            Prefix_BodyPart_GetMaxHealth.SuppressNextWarning();
+            PostFix_BodyPart_GetMaxHealth.SuppressNextWarning();
             return true;
         }
     }

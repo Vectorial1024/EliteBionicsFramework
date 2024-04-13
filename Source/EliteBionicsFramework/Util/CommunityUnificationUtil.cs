@@ -371,7 +371,7 @@ namespace EBF.Util
         public static float GetPartMaxHealthFromPawnmorpher(BodyPartRecord record, Pawn p)
         {
             // we assert that Pawnmorpher is loaded; dont call without checking that Pawnmorpher exists
-            Prefix_BodyPart_GetMaxHealth.SuppressNextWarning();
+            PostFix_BodyPart_GetMaxHealth.SuppressNextWarning();
             return Mixed_Pawnmorpher_GetPartMaxHealth.GetPartMaxHealthDueToPawnmorpher(record, p);
         }
 

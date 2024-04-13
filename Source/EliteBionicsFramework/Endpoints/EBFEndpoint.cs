@@ -31,7 +31,7 @@ namespace EBF
         /// <returns>def.GetMaxHealth(pawn)</returns>
         public static float GetMaxHealthUnmodified(BodyPartDef def, Pawn pawn)
         {
-            Prefix_BodyPart_GetMaxHealth.SuppressNextWarning();
+            PostFix_BodyPart_GetMaxHealth.SuppressNextWarning();
             return def.GetMaxHealth(pawn);
         }
 
