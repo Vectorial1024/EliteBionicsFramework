@@ -376,6 +376,7 @@ The performance improvements in this update will be helpful when, e.g., you are 
 		<content>After much delays, I am back with an update, unfortunately not for RimWorld 1.4.|- Compatibility with RimWorld 1.5
 - Compatibility with other mods will be checked one by one, as they are updated
 - Technical change: max HP after EBF is now rounded up to the nearest integer, just the same as vanilla calculations, so no more e.g. "42.6" max HP
+- Mod version is now provided in About.xml; this is v5.1.7.0 of the mod
 		</content>
 	</HugsLib.UpdateFeatureDef>
 
