@@ -12,7 +12,7 @@
 		<li>1.0</li>
 	</supportedVersions>
 	<modVersion IgnoreIfNoMatchingField="True">5.1.7.0</modVersion>
-	<description>A common framework to change body part max HP. Mod version now provided via RimWorld's native field; older versions may still need to use HugsLib for this.
+	<description>A common framework to change body part max HP. Mod version now provided via RimWorld's About.xml; older versions may still need to use HugsLib for this.
 
 This mod made use of the multi-version feature of RW, and therefore has compatibility with RW &lt; v1.5 in the same mod file.
 
