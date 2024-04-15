@@ -25,7 +25,7 @@ namespace EBF.Transpilations
                     new CodeInstruction(OpCodes.Ldloc_S, 4),
                     new CodeInstruction(OpCodes.Callvirt, typeof(List<Hediff_MissingPart>).GetProperty("Item").GetGetMethod()),
                     new CodeInstruction(OpCodes.Callvirt, typeof(Hediff).GetProperty("Part").GetGetMethod()),
-                    new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth"))
+                    new CodeInstruction(OpCodes.Call, VanillaExtender.ReflectionGetMaxHealth())
                 ) // insert extra code so that we use VanillaExtender.GetMaxHealth(); we do this out of convenience
                 .Set(OpCodes.Nop, null) // and ignore the original instruction
                 .InstructionEnumeration();

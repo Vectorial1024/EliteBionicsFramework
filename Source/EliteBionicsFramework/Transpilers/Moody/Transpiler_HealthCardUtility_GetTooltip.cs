@@ -1,11 +1,8 @@
 ﻿using EBF.Util;
 using HarmonyLib;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
-using System.Text;
 using Verse;
 
 namespace EBF.Transpilations.Moody
@@ -36,10 +33,9 @@ namespace EBF.Transpilations.Moody
                 .InsertAndAdvance(
                     new CodeInstruction(OpCodes.Ldloc_3),
                     new CodeInstruction(OpCodes.Callvirt, typeof(Hediff).GetProperty("Part").GetGetMethod()),
-                    new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth"))
+                    new CodeInstruction(OpCodes.Call, VanillaExtender.ReflectionGetMaxHealth())
                 ) // insert extra code so that we use VanillaExtender.GetMaxHealth(); we do this out of convenience
-                .Set(OpCodes.Nop, null)
-                // and ignore the original instruction
+                .Set(OpCodes.Nop, null) // and ignore the original instruction
                 .InstructionEnumeration();
         }
     }

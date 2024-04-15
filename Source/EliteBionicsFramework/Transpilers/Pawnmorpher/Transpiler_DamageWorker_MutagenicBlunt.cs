@@ -79,10 +79,9 @@ namespace EBF.Transpilations.Pawnmorpher
                         new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ThingDef), "race")),
                         new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(RaceProperties), "body")),
                         new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(BodyDef), "corePart")),
-                        new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth"))
+                        new CodeInstruction(OpCodes.Call, VanillaExtender.ReflectionGetMaxHealth())
                     ) // insert extra code so that we use VanillaExtender.GetMaxHealth(); we do this out of convenience
-                    .Set(OpCodes.Nop, null)
-                    // and ignore the original instruction
+                    .Set(OpCodes.Nop, null) // and ignore the original instruction
                     .InstructionEnumeration();
                 foreach (CodeInstruction instruction in patchedInstructions)
                 {

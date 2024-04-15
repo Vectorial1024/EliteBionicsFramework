@@ -32,7 +32,7 @@ namespace EBF.Transpilations
                 ) // find the only occurence of .GetMaxHealth()
                 .InsertAndAdvance(
                     new CodeInstruction(OpCodes.Ldarg_1),
-                    new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth"))
+                    new CodeInstruction(OpCodes.Call, VanillaExtender.ReflectionGetMaxHealth())
                 ) // insert extra code so that we use VanillaExtender.GetMaxHealth(); we do this out of convenience
                 .Set(OpCodes.Nop, null) // and ignore the original instruction
                 .InstructionEnumeration();

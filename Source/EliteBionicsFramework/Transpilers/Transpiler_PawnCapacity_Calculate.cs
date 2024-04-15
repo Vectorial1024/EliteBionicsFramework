@@ -32,7 +32,7 @@ namespace EBF.Transpilations
                     new CodeInstruction(OpCodes.Ldarg_1),
                     // Optimize yeah
                     // special note: this might create confusion because this is the value being displayed, which may be different from the real value for a short time due to the cache
-                    new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth_Cached"))
+                    new CodeInstruction(OpCodes.Call, VanillaExtender.ReflectionGetMaxHealth_Cached())
                 ) // insert extra code so that we use VanillaExtender.GetMaxHealth(); we do this out of convenience
                 .Set(OpCodes.Nop, null) // and ignore the original instruction
                 .InstructionEnumeration();
