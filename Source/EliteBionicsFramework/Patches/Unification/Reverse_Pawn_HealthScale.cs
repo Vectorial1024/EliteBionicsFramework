@@ -1,10 +1,5 @@
-﻿using EBF.Hediffs;
-using EBF.Util;
-using HarmonyLib;
-using RimWorld;
+﻿using HarmonyLib;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Verse;
 
 namespace EBF.Patches.Unification
@@ -13,7 +8,7 @@ namespace EBF.Patches.Unification
     /// This is used to detect whether the health-scale of a pawn has been modified by some other mods.
     /// </summary>
     [HarmonyPatch(typeof(Pawn))]
-    [HarmonyPatch("HealthScale", MethodType.Getter)]
+    [HarmonyPatch(nameof(Pawn.HealthScale), MethodType.Getter)]
     public class Reverse_Pawn_HealthScale
     {
         [HarmonyReversePatch]

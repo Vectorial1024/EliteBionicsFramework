@@ -3,15 +3,12 @@ using EBF.Util;
 using HarmonyLib;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Verse;
 
 namespace EBF.Patches
 {
     [HarmonyPatch(typeof(VerbProperties))]
-    [HarmonyPatch("AdjustedMeleeDamageAmount", MethodType.Normal)]
+    [HarmonyPatch(nameof(VerbProperties.AdjustedMeleeDamageAmount), MethodType.Normal)]
     [HarmonyPatch(new Type[] { typeof(Tool), typeof(Pawn), typeof(Thing), typeof(HediffComp_VerbGiver) })]
     public class PostFix_VerbProperties_AdjustedMeleeDamageAmount
     {

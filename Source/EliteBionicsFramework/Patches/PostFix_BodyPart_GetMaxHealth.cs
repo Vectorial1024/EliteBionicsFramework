@@ -1,15 +1,12 @@
 ﻿using HarmonyLib;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using Verse;
 
 namespace EBF.Patches
 {
     [HarmonyPatch(typeof(BodyPartDef))]
-    [HarmonyPatch("GetMaxHealth", MethodType.Normal)]
+    [HarmonyPatch(nameof(BodyPartDef.GetMaxHealth), MethodType.Normal)]
     public class PostFix_BodyPart_GetMaxHealth
     {
         private static List<string> reportedNamespaces = new List<string>();

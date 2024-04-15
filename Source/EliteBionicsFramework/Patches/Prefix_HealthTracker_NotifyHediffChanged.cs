@@ -5,7 +5,7 @@ namespace EBF.Patches
 {
 
     [HarmonyPatch(typeof(Pawn_HealthTracker))]
-    [HarmonyPatch("Notify_HediffChanged", MethodType.Normal)]
+    [HarmonyPatch(nameof(Pawn_HealthTracker.Notify_HediffChanged), MethodType.Normal)]
     public class Prefix_HealthTracker_NotifyHediffChanged
     {
         [HarmonyPrefix]

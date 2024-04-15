@@ -1,10 +1,7 @@
 ﻿using EBF.Util;
 using HarmonyLib;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection.Emit;
-using System.Text;
 using Verse;
 
 namespace EBF.Transpilations
@@ -13,7 +10,7 @@ namespace EBF.Transpilations
     // TODO
     [HarmonyPriority(Priority.High)]
     [HarmonyPatch(typeof(HediffSet))]
-    [HarmonyPatch("GetPartHealth", MethodType.Normal)]
+    [HarmonyPatch(nameof(HediffSet.GetPartHealth), MethodType.Normal)]
     public static class Transpiler_HediffSet_GetPartHealth
     {
         public static bool Prepare()

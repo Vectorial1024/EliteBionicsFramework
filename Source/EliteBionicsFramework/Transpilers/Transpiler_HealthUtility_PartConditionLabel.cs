@@ -7,7 +7,7 @@ using Verse;
 namespace EBF.Transpilations
 {
     [HarmonyPatch(typeof(HealthUtility))]
-    [HarmonyPatch("GetPartConditionLabel")]
+    [HarmonyPatch(nameof(HealthUtility.GetPartConditionLabel))]
     public static class Transpiler_HealthUtility_PartConditionLabel
     {
         /*

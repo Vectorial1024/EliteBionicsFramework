@@ -11,7 +11,7 @@ namespace EBF.Transpilations
      */
     [HarmonyPriority(Priority.First)]
     [HarmonyPatch(typeof(Hediff_MissingPart))]
-    [HarmonyPatch("PainOffset", MethodType.Getter)]
+    [HarmonyPatch(nameof(Hediff_MissingPart.PainOffset), MethodType.Getter)]
     public static class Transpiler_HediffMissingPart_PainOffset
     {
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)

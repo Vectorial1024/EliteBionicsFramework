@@ -8,7 +8,7 @@ namespace EBF.Transpilations
 {
     [HarmonyPriority(Priority.First)]
     [HarmonyPatch(typeof(PawnCapacityUtility))]
-    [HarmonyPatch("CalculatePartEfficiency", MethodType.Normal)]
+    [HarmonyPatch(nameof(PawnCapacityUtility.CalculatePartEfficiency), MethodType.Normal)]
     public static class Transpiler_PawnCapacity_Calculate
     {
         public static bool Prepare()

@@ -5,7 +5,7 @@ using Verse;
 namespace EBF.Patches
 {
     [HarmonyPatch(typeof(HediffSet))]
-    [HarmonyPatch("AddDirect", MethodType.Normal)]
+    [HarmonyPatch(nameof(HediffSet.AddDirect), MethodType.Normal)]
     public class PostFix_HediffSet_AddDirect
     {
         [HarmonyPostfix]

@@ -13,7 +13,7 @@ namespace EBF.Patches.Unification
     /// We will use brute force to check the type of each HediffComp, and apply the patches if the type matches known types.
     /// </summary>
     [HarmonyPatch(typeof(HediffComp))]
-    [HarmonyPatch("CompTipStringExtra", MethodType.Getter)]
+    [HarmonyPatch(nameof(HediffComp.CompTipStringExtra), MethodType.Getter)]
     public class PostFix_Everyone_CompPatches_TipString
     {
         [HarmonyPostfix]

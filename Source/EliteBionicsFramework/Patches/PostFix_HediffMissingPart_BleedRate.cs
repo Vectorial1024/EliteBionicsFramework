@@ -1,15 +1,10 @@
-﻿using EBF;
-using HarmonyLib;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using HarmonyLib;
 using Verse;
 
 namespace EBF.Patches
 {
     [HarmonyPatch(typeof(Hediff_MissingPart))]
-    [HarmonyPatch("BleedRate", MethodType.Getter)]
+    [HarmonyPatch(nameof(Hediff_MissingPart.BleedRate), MethodType.Getter)]
     public class PostFix_HediffMissingPart_BleedRate
     {
         [HarmonyPostfix]

@@ -7,7 +7,7 @@ namespace EBF.Transpilations
 {
     [HarmonyPriority(Priority.First)]
     [HarmonyPatch(typeof(HealthUtility))]
-    [HarmonyPatch("DamageLimbsUntilIncapableOfManipulation")]
+    [HarmonyPatch(nameof(HealthUtility.DamageLimbsUntilIncapableOfManipulation))]
     public static class Transpiler_HealthUtility_DamageLimbs
     {
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
