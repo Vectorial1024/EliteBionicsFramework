@@ -27,24 +27,20 @@ namespace EBF.Transpilations
         {
             /*
              * A total of 1 GetMaxHealth occurences detected;
-             * Patch at 1st occurence
+             * Patch with CodeMatcher
              */
-            bool patchComplete = false;
-
-            foreach (CodeInstruction instruction in instructions)
-            {
-                if (!patchComplete && instruction.opcode == OpCodes.Callvirt)
-                {
+            return new CodeMatcher(instructions)
+                .MatchStartForward(
+                    new CodeMatch(OpCodes.Callvirt, AccessTools.Method(typeof(BodyPartDef), nameof(BodyPartDef.GetMaxHealth)))
+                ) // find the only occurence of .GetMaxHealth()
+                .InsertAndAdvance(
+                    new CodeInstruction(OpCodes.Ldarg_1),
                     // Optimize yeah
-                    yield return new CodeInstruction(OpCodes.Ldarg_1);
-                    yield return new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth_Cached"));
-
-                    instruction.opcode = OpCodes.Nop;
-                    patchComplete = true;
-                }
-
-                yield return instruction;
-            }
+                    // special note: this might create confusion because this is the value being displayed, which may be different from the real value for a short time due to the cache
+                    new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth_Cached"))
+                ) // insert extra code so that we use VanillaExtender.GetMaxHealth(); we do this out of convenience
+                .Set(OpCodes.Nop, null) // and ignore the original instruction
+                .InstructionEnumeration();
         }
     }
 }

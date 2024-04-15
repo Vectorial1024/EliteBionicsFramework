@@ -1,9 +1,6 @@
 ﻿using HarmonyLib;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection.Emit;
-using System.Text;
 using Verse;
 
 namespace EBF.Transpilations
@@ -17,39 +14,21 @@ namespace EBF.Transpilations
         {
             /*
              * A total of 1 GetMaxHealth occurences detected;
-             * Patch at 11th occurence
+             * Patch with CodeMatcher
              */
-            short occurencesCallvirt = 0;
-            short suppressCount = 0;
-            bool patchComplete = false;
-
-            foreach (CodeInstruction instruction in instructions)
-            {
-                if (!patchComplete && instruction.opcode == OpCodes.Callvirt)
-                {
-                    occurencesCallvirt++;
-
-                    if (occurencesCallvirt == 11)
-                    {
-                        yield return new CodeInstruction(OpCodes.Ldloc_2);
-                        yield return new CodeInstruction(OpCodes.Ldloc_S, 4);
-                        yield return new CodeInstruction(OpCodes.Callvirt, typeof(List<Hediff_MissingPart>).GetProperty("Item").GetGetMethod());
-                        yield return new CodeInstruction(OpCodes.Callvirt, typeof(Hediff).GetProperty("Part").GetGetMethod());
-                        yield return new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth"));
-
-                        suppressCount = 1;
-                        patchComplete = true;
-                    }
-                }
-
-                if (suppressCount > 0)
-                {
-                    instruction.opcode = OpCodes.Nop;
-                    suppressCount--;
-                }
-
-                yield return instruction;
-            }
+            return new CodeMatcher(instructions)
+                .MatchStartForward(
+                    new CodeMatch(OpCodes.Callvirt, AccessTools.Method(typeof(BodyPartDef), nameof(BodyPartDef.GetMaxHealth)))
+                ) // find the only occurence of .GetMaxHealth()
+                .InsertAndAdvance(
+                    new CodeInstruction(OpCodes.Ldloc_2),
+                    new CodeInstruction(OpCodes.Ldloc_S, 4),
+                    new CodeInstruction(OpCodes.Callvirt, typeof(List<Hediff_MissingPart>).GetProperty("Item").GetGetMethod()),
+                    new CodeInstruction(OpCodes.Callvirt, typeof(Hediff).GetProperty("Part").GetGetMethod()),
+                    new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth"))
+                ) // insert extra code so that we use VanillaExtender.GetMaxHealth(); we do this out of convenience
+                .Set(OpCodes.Nop, null) // and ignore the original instruction
+                .InstructionEnumeration();
         }
     }
 }
