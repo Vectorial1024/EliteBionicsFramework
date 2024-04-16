@@ -8,16 +8,16 @@ using Verse;
 namespace EBF.Transpilations.Moody
 {
     [HarmonyPatch]
-    public static class Transpiler_HealthCardUtility_GetTooltip
+    public static class Transpiler_Patches_GetPartConditionLabel
     {
         public static bool Prepare()
         {
-            return ModDetector.MoodyIsLoaded;
+            return ModDetector.PawnQuickInfoIsLoaded;
         }
 
         public static MethodBase TargetMethod()
         {
-            return AccessTools.Method("Moody.Extensions.RimWorld.HealthCardUtility:GetTooltip", new[] { typeof(IEnumerable<Hediff>), typeof(Pawn) });
+            return AccessTools.Method("PawnQuickInfo.Patches:_GetPartConditionLabel");
         }
 
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
@@ -31,10 +31,10 @@ namespace EBF.Transpilations.Moody
                     new CodeMatch(OpCodes.Callvirt, AccessTools.Method(typeof(BodyPartDef), nameof(BodyPartDef.GetMaxHealth)))
                 ) // find the only occurence of .GetMaxHealth()
                 .InsertAndAdvance(
-                    new CodeInstruction(OpCodes.Ldloc_3),
+                    new CodeInstruction(OpCodes.Ldarg_1),
                     new CodeInstruction(OpCodes.Callvirt, typeof(Hediff).GetProperty("Part").GetGetMethod()),
-                    new CodeInstruction(OpCodes.Call, VanillaExtender.ReflectionGetMaxHealth())
-                ) // insert extra code so that we use VanillaExtender.GetMaxHealth(); we do this out of convenience
+                    new CodeInstruction(OpCodes.Call, VanillaExtender.ReflectionGetMaxHealth_Cached())
+                ) // insert extra code so that we use VanillaExtender.GetMaxHealth_Cached(); we do this out of convenience
                 .Set(OpCodes.Nop, null) // and ignore the original instruction
                 .InstructionEnumeration();
         }
