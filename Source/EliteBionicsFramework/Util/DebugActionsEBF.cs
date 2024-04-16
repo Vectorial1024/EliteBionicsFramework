@@ -24,6 +24,7 @@ namespace EBF.Util
             builder.AppendInNewLine($"Half Dragons: {ModDetector.HalfDragonsIsLoaded}");
             builder.AppendInNewLine($"Vanilla Psycasts Expanded: {ModDetector.VanillaPsycastsExpandedIsLoaded}");
             builder.AppendInNewLine($"Immortals: {ModDetector.ImmortalsIsLoaded}");
+            builder.AppendInNewLine($"Pawn Quick Info: {ModDetector.PawnQuickInfoIsLoaded}");
 
             builder.AppendInNewLine("-----------------------");
             builder.AppendInNewLine("All relevant mods checked.");
