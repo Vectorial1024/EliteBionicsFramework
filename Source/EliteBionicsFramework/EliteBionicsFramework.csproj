@@ -1,144 +1,28 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4DDC0761-5035-423E-9898-2442CA81EC8B}</ProjectGuid>
+    <TargetFramework>net472</TargetFramework>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EBF</RootNamespace>
-    <AssemblyName>EliteBionicsFramework</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
+    <DebugType>portable</DebugType>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <LangVersion>latest</LangVersion>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\v1.5\Assemblies\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;/debug:none</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
     <DebugType>none</DebugType>
+    <LangVersion>latest</LangVersion>
     <Optimize>true</Optimize>
     <OutputPath>..\..\v1.5\Assemblies\</OutputPath>
-    <DefineConstants>TRACE;/debug:none</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\workshop\content\294100\2009463077\1.4\Assemblies\0Harmony.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="HugsLib">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\workshop\content\294100\818773962\v1.4\Assemblies\HugsLib.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.5.4063" />
+    <PackageReference Include="Lib.Harmony" Version="2.3.3" />
+    <PackageReference Include="UnlimitedHugs.Rimworld.HugsLib" Version="11.0.3" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="EliteBionicsFrameworkMain.cs" />
-    <Compile Include="EliteBionicsFrameworkMod.cs" />
-    <Compile Include="Endpoints\EBFEndpoint.cs" />
-    <Compile Include="Extensions\VanillaExtender.cs" />
-    <Compile Include="Hediffs\HediffCompProperties_MaxHPAdjust_Fake.cs" />
-    <Compile Include="Hediffs\HediffCompProperties_MaxHPAdjust.cs" />
-    <Compile Include="Hediffs\HediffCompProperties_ToolPowerAdjust.cs" />
-    <Compile Include="Hediffs\HediffComp_MaxHPAdjust.cs" />
-    <Compile Include="Hediffs\HediffComp_ToolPowerAdjust.cs" />
-    <Compile Include="Patches\PostFix_AgeTracker_PostResolveLifeStageChange.cs" />
-    <Compile Include="Patches\PostFix_Corpse_PostCorpseDestroy.cs" />
-    <Compile Include="Patches\PostFix_Game_LoadGame.cs" />
-    <Compile Include="Patches\PostFix_HealthTracker_RemoveHediff.cs" />
-    <Compile Include="Patches\PostFix_HediffInjury_BleedRate.cs" />
-    <Compile Include="Patches\PostFix_HealthTracker_AddHediff.cs" />
-    <Compile Include="Patches\PostFix_HediffMissingPart_BleedRate.cs" />
-    <Compile Include="Patches\PostFix_HediffSet_AddDirect.cs" />
-    <Compile Include="Patches\PostFix_HediffSet_DirtyCache.cs" />
-    <Compile Include="Patches\PostFix_Pawnmorpher_HealthUtil.cs" />
-    <Compile Include="Patches\PostFix_VerbProperties_AdjustedMeleeDamageAmount.cs" />
-    <Compile Include="Patches\PostFix_Game_InitNewGame.cs" />
-    <Compile Include="Patches\PostFix_VerbProperties_GetDamageFactorFor.cs" />
-    <Compile Include="Patches\PostFix_WorldPawns_PawnDestroyed.cs" />
-    <Compile Include="Patches\PostFix_BodyPart_GetMaxHealth.cs" />
-    <Compile Include="Patches\Prefix_HealthTracker_NotifyHediffChanged.cs" />
-    <Compile Include="Patches\PreFix_PawnCapUtil_BodyPartHealth.cs" />
-    <Compile Include="Patches\Unification\HalfDragons\Transpiler_HalfDragons_DetermineHealing.cs" />
-    <Compile Include="Patches\Unification\HalfDragons\Transpiler_HalfDragons_RemoveHealedParts.cs" />
-    <Compile Include="Patches\Unification\Pawnmorpher\PostFix_Pawnmorpher_HediffStageChanges_Recache.cs" />
-    <Compile Include="Patches\Unification\Pawnmorpher\PreFix_Pawnmorpher_GetPartNormalizedHealth.cs" />
-    <Compile Include="Patches\Unification\Pawnmorpher\Mixed_Pawnmorpher_GetPartMaxHealth.cs" />
-    <Compile Include="Patches\Unification\CONN\PreFix_CONN_HealthStat.cs" />
-    <Compile Include="Patches\Unification\CONN\PreFix_CONN_GetMaxHealth.cs" />
-    <Compile Include="Patches\Unification\DllProthesisHealth\Transpiler_DllProthesisHealth_CalcPartEfficiency.cs" />
-    <Compile Include="Patches\Unification\DllProthesisHealth\Transpiler_DllProthesisHealth_GetPartHealth.cs" />
-    <Compile Include="Patches\Unification\DllProthesisHealth\Transpiler_DllProthesisHealth_PartHealthTooltip.cs" />
-    <Compile Include="Transpilers\Immortals\Transpiler_ImmortalComp_TickLivingImmortal.cs" />
-    <Compile Include="Transpilers\Pawnmorpher\Transpiler_DamageWorker_MutagenicBlunt.cs" />
-    <Compile Include="Patches\Unification\Reverse_Pawn_HealthScale.cs" />
-    <Compile Include="Patches\Unification\PostFix_Everyone_HediffWithComps_LabelBracket.cs" />
-    <Compile Include="Patches\Unification\PostFix_Everyone_BodyPartTooltip.cs" />
-    <Compile Include="Patches\Unification\QualityBionics\PreFix_QualityBionics_GetMaxHealth.cs" />
-    <Compile Include="Patches\Unification\PostFix_Everyone_CompPatches_TipString.cs" />
-    <Compile Include="Patches\Unification\QualityBionics\Reverse_QualityBionics_GetQualityMultiplier.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Transpilers\Callouts\Transpiler_DamageResult_ThrowMotes.cs" />
-    <Compile Include="Transpilers\Moody\Transpiler_HealthCardUtility_GetTooltip.cs" />
-    <Compile Include="Transpilers\PawnQuickInfo\Transpiler_Patches_GetPartConditionLabel.cs" />
-    <Compile Include="Transpilers\PrepareCarefully\Transpiler_Injury_InitializeTooltip.cs" />
-    <Compile Include="Transpilers\PrepareCarefully\Transpiler_PanelHealth_GetTooltipForPart.cs" />
-    <Compile Include="Transpilers\Transpiler_DamageWorker_Blunt_LambdaTwo.cs" />
-    <Compile Include="Transpilers\Transpiler_DamageWorker_Blunt_LambdaOne.cs" />
-    <Compile Include="Transpilers\Transpiler_DamageWorker_AddInjury.cs" />
-    <Compile Include="Transpilers\Transpiler_DamageWorker_Blunt.cs" />
-    <Compile Include="Transpilers\Transpiler_HealthCardUtility.cs" />
-    <Compile Include="Transpilers\Transpiler_HealthUtility_DamageLimbs.cs" />
-    <Compile Include="Transpilers\Transpiler_HealthUtility_DamageLegs.cs" />
-    <Compile Include="Transpilers\Transpiler_HealthUtility_PartConditionLabel.cs" />
-    <Compile Include="Transpilers\Transpiler_HealthUtility_SurgeryInjuries.cs" />
-    <Compile Include="Transpilers\Transpiler_HediffBrainInjury_OnHediffAdded.cs" />
-    <Compile Include="Transpilers\Transpiler_HediffMissingPart_BleedRate.cs" />
-    <Compile Include="Transpilers\Transpiler_HediffMissingPart_PainOffset.cs" />
-    <Compile Include="Transpilers\Transpiler_HediffPregnant_SeverelyWounded.cs" />
-    <Compile Include="Transpilers\Transpiler_HediffSet_GetPartHealth.cs" />
-    <Compile Include="Transpilers\Transpiler_PawnCapacityImpactor_BP.cs" />
-    <Compile Include="Transpilers\Transpiler_PawnCapacity_Calculate.cs" />
-    <Compile Include="Transpilers\VanillaExtended\Transpiler_VPE_HediffRegrowLimbs_PostTick.cs" />
-    <Compile Include="Util\AssertionUtil.cs" />
-    <Compile Include="Util\CommunityUnificationUtil.cs" />
-    <Compile Include="Util\DebugActionsEBF.cs" />
-    <Compile Include="Util\MaxHealthCache.cs" />
-    <Compile Include="Util\ModDetector.cs" />
-    <Compile Include="Util\ToolFinderUtils.cs" />
-    <Compile Include="Util\ToolPowerAdjuster.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
