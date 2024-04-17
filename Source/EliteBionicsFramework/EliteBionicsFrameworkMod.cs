@@ -18,7 +18,7 @@ namespace EBF
             // this is in response to Yayo's Animations doing their patches this early, and is an unfortunate conclusion of events.
             Log.Message(EliteBionicsFrameworkMain.MODPREFIX + "Super-early patching of DamageWorker_Blunt. This is to handle a known edge-case. " +
                 "Remaining patches of this mod will still be done at the usual, appropriate moments.");
-            Transpiler_DamageWorker_Blunt_SpecialEffects.Transpiler(new List<CodeInstruction>());
+            Transpiler_DamageWorker_Blunt_SpecialEffects.TranspileTheTarget(null);
             Transpiler_DamageWorker_MutagenicBlunt_SpecialEffects.Transpiler(new List<CodeInstruction>());
         }
     }
