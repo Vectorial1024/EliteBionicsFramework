@@ -21,7 +21,7 @@
     <OutputPath>..\..\v1.5\Assemblies\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.5.4063" />
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.5.4066" />
     <PackageReference Include="Lib.Harmony" Version="2.3.3" />
     <PackageReference Include="UnlimitedHugs.Rimworld.HugsLib" Version="11.0.3" />
   </ItemGroup>
