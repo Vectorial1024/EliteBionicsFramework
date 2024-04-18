@@ -43,11 +43,19 @@ namespace EBF.Transpilations.Pawnmorpher
                 AccessTools.Method(AccessTools.TypeByName("Pawnmorph.Damage.Worker_MutagenicBlunt"), "ApplySpecialEffectsToPart"), 
                 null,
                 null,
-                new HarmonyMethod(typeof(Transpiler_DamageWorker_MutagenicBlunt_SpecialEffects), nameof(Transpiler)));
+                new HarmonyMethod(typeof(Transpiler_DamageWorker_MutagenicBlunt_SpecialEffects), nameof(TranspileTheTarget)));
 		}
 
-        public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        public static IEnumerable<CodeInstruction> TranspileTheTarget(IEnumerable<CodeInstruction> instructions)
         {
+            if (instructions == null)
+            {
+                // we are simply touching this; don't actually do it
+                // we trust Harmony to never give us null
+                // check the method usage to see where we are touching this.
+                return instructions;
+            }
+
             /*
              * A total of 1 GetMaxHealth occurences detected;
              * Patch with CodeMatcher
