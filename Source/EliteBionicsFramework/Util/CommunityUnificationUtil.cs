@@ -529,8 +529,8 @@ namespace EBF.Util
                     {
                         pmMultiplier += tempVal;
                     }
-
-                    BodyPartRecord tempObj = ((Hediff)mutationHediff).Part ;// (BodyPartRecord)Pawnmorpher_Type_MutationStage.GetProperty("Part").GetGetMethod().Invoke(mutationHediff, null);
+                    // self-note: because mutationHediff extends Hediff (duh), we can cast directly back to Hediff instead of using reflection
+                    BodyPartRecord tempObj = ((Hediff) mutationHediff).Part;
                     if (tempObj == record)
                     {
                         pmOffset += (float)Pawnmorpher_Type_MutationStage.GetField("healthOffset").GetValue(mutationStage);
