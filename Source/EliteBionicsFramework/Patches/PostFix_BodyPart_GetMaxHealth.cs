@@ -1,16 +1,13 @@
 ﻿using HarmonyLib;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using Verse;
 
 namespace EBF.Patches
 {
     [HarmonyPatch(typeof(BodyPartDef))]
-    [HarmonyPatch("GetMaxHealth", MethodType.Normal)]
-    public class Prefix_BodyPart_GetMaxHealth
+    [HarmonyPatch(nameof(BodyPartDef.GetMaxHealth), MethodType.Normal)]
+    public class PostFix_BodyPart_GetMaxHealth
     {
         private static List<string> reportedNamespaces = new List<string>();
 
@@ -25,12 +22,13 @@ namespace EBF.Patches
             shouldSupressNextWarning = true;
         }
 
-        [HarmonyPrefix]
-        public static bool PreFix(BodyPartDef __instance, float __result, Pawn pawn)
+        [HarmonyPostfix]
+        public static void CheckEbfProtocolViolation(BodyPartDef __instance, ref float __result, Pawn pawn)
         {
+            // change of strategy: if we are no longer preventing the vanilla usage, might as well do it in the post-fix.
             StackFrame investigateFrame = new StackFrame(2);
             string namespaceString = investigateFrame.GetMethod().ReflectedType.Namespace;
-            
+
             if (shouldSupressNextWarning)
             {
                 shouldSupressNextWarning = false;
@@ -46,8 +44,7 @@ namespace EBF.Patches
                 "The detected mod comes from: " + namespaceString;
                 EliteBionicsFrameworkMain.LogError(errorMessage);
             }
-            
-            return true;
+            return;
         }
     }
 }

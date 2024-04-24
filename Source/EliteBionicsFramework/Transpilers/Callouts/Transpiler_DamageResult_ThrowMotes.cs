@@ -1,11 +1,8 @@
 ﻿using EBF.Util;
 using HarmonyLib;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
-using System.Text;
 using Verse;
 
 namespace EBF.Transpilations.Callouts
@@ -39,10 +36,9 @@ namespace EBF.Transpilations.Callouts
                     new CodeInstruction(OpCodes.Ldarg_1),
                     new CodeInstruction(OpCodes.Ldloc_S, 4),
                     new CodeInstruction(OpCodes.Callvirt, typeof(List<BodyPartRecord>).GetProperty("Item").GetGetMethod()),
-                    new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth"))
+                    new CodeInstruction(OpCodes.Call, VanillaExtender.ReflectionGetMaxHealth())
                 ) // insert extra code so that we use VanillaExtender.GetMaxHealth(); we do this out of convenience
-                .Set(OpCodes.Nop, null)
-                // and ignore the original instruction
+                .Set(OpCodes.Nop, null) // and ignore the original instruction
                 .InstructionEnumeration();
         }
     }

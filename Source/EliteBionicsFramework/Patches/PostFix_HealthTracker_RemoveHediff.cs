@@ -6,7 +6,7 @@ namespace EBF.Patches
 {
     // note: we are reverting to the add/remove dirtying method to help with perfomrnace
     [HarmonyPatch(typeof(Pawn_HealthTracker))]
-    [HarmonyPatch("RemoveHediff", MethodType.Normal)]
+    [HarmonyPatch(nameof(Pawn_HealthTracker.RemoveHediff), MethodType.Normal)]
     public class PostFix_HealthTracker_RemoveHediff
     {
         [HarmonyPostfix]

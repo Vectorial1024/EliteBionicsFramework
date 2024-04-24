@@ -68,6 +68,8 @@ Currently, these components are available:
 # Appendix: Adding HediffCompProperties to your Hediff
 In RimWorld, Hediffs may optionally carry HediffCompProperties to add flavour to the Hediff. Examples of HediffCompProperties already implemented in RimWorld are `HediffCompProperties_Immunizable` (used by most, if not all, diseases and infections), `HediffCompProperties_VerbGiver` (used by some bionics and other mods to e.g. increase body part melee damage; there may be other uses) and `HediffCompProperties_Disappears` (used by Fibrous/Sensory Mechanite Hediffs)
 
+**Important Notice**: RimWorld disallows adding multiple `HediffCompProperties` onto the same Hediff. This means, mods that try to add EBF HediffCompProperties to the same bionic (e.g. vanilla Bionic Arm) will get blocked by the game, and this is out of Elite Bionics Framework's control.
+
 `HediffCompProperties` are representatives of `HediffComps`. `HediffCompProperties` lets us define parameters for `HediffComps` to use, so `HediffComps` can show our intended effect.
 
 To add `HediffCompProperties` to your `Hediff`, open the XML file that contains your `Hediff`, and add an `li` entry to the `comps` node. If the `comps` node does not exist, add it first.

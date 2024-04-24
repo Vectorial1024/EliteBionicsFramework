@@ -5,7 +5,7 @@ using Verse;
 namespace EBF.Patches
 {
     [HarmonyPatch(typeof(Game))]
-    [HarmonyPatch("LoadGame")]
+    [HarmonyPatch(nameof(Game.LoadGame))]
     public class PostFix_Game_LoadGame
     {
         [HarmonyPostfix]

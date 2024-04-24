@@ -43,11 +43,19 @@ namespace EBF.Transpilations.Pawnmorpher
                 AccessTools.Method(AccessTools.TypeByName("Pawnmorph.Damage.Worker_MutagenicBlunt"), "ApplySpecialEffectsToPart"), 
                 null,
                 null,
-                new HarmonyMethod(typeof(Transpiler_DamageWorker_MutagenicBlunt_SpecialEffects), nameof(Transpiler)));
+                new HarmonyMethod(typeof(Transpiler_DamageWorker_MutagenicBlunt_SpecialEffects), nameof(TranspileTheTarget)));
 		}
 
-        public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        public static IEnumerable<CodeInstruction> TranspileTheTarget(IEnumerable<CodeInstruction> instructions)
         {
+            if (instructions == null)
+            {
+                // we are simply touching this; don't actually do it
+                // we trust Harmony to never give us null
+                // check the method usage to see where we are touching this.
+                return instructions;
+            }
+
             /*
              * A total of 1 GetMaxHealth occurences detected;
              * Patch with CodeMatcher
@@ -66,39 +74,27 @@ namespace EBF.Transpilations.Pawnmorpher
              * I am assuming there is only one such class among all the nested classes under DamageWorker_Blunt.
              */
             Type typeSelfAnon = AccessTools.TypeByName("Pawnmorph.Damage.Worker_MutagenicBlunt").GetNestedTypes(BindingFlags.NonPublic).Where((Type type) => type.GetField("pawn") != null).First();
-            if (typeSelfAnon != null)
-            {
-                IEnumerable<CodeInstruction> patchedInstructions = new CodeMatcher(instructions)
-                    .MatchStartForward(
-                        new CodeMatch(OpCodes.Callvirt, AccessTools.Method(typeof(BodyPartDef), nameof(BodyPartDef.GetMaxHealth)))
-                    ) // find the only occurence of .GetMaxHealth()
-                    .InsertAndAdvance(
-                        new CodeInstruction(OpCodes.Ldloc_0),
-                        new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeSelfAnon, "pawn")),
-                        new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Thing), "def")),
-                        new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ThingDef), "race")),
-                        new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(RaceProperties), "body")),
-                        new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(BodyDef), "corePart")),
-                        new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth"))
-                    ) // insert extra code so that we use VanillaExtender.GetMaxHealth(); we do this out of convenience
-                    .Set(OpCodes.Nop, null)
-                    // and ignore the original instruction
-                    .InstructionEnumeration();
-                foreach (CodeInstruction instruction in patchedInstructions)
-                {
-                    yield return instruction;
-                }
-            }
-            else
+            if (typeSelfAnon == null)
             {
                 EliteBionicsFrameworkMain.LogError("Patch failed: Pawnmorpher mutagenic blunt special effects, failed to find relevant self-anon type!");
                 // In the unlikely case of failing the search, modify nothing and return.
-                foreach (CodeInstruction instruction in instructions)
-                {
-                    yield return instruction;
-                }
+                return instructions;
             }
-            yield break;
+            return new CodeMatcher(instructions)
+                .MatchStartForward(
+                    new CodeMatch(OpCodes.Callvirt, AccessTools.Method(typeof(BodyPartDef), nameof(BodyPartDef.GetMaxHealth)))
+                ) // find the only occurence of .GetMaxHealth()
+                .InsertAndAdvance(
+                    new CodeInstruction(OpCodes.Ldloc_0),
+                    new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeSelfAnon, "pawn")),
+                    new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Thing), "def")),
+                    new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ThingDef), "race")),
+                    new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(RaceProperties), "body")),
+                    new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(BodyDef), "corePart")),
+                    new CodeInstruction(OpCodes.Call, VanillaExtender.ReflectionGetMaxHealth())
+                ) // insert extra code so that we use VanillaExtender.GetMaxHealth(); we do this out of convenience
+                .Set(OpCodes.Nop, null) // and ignore the original instruction
+                .InstructionEnumeration();
         }
     }
 }

@@ -1,10 +1,7 @@
 ﻿using EBF.Util;
 using HarmonyLib;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection.Emit;
-using System.Text;
 using Verse;
 
 namespace EBF.Transpilations
@@ -13,7 +10,7 @@ namespace EBF.Transpilations
     // TODO
     [HarmonyPriority(Priority.High)]
     [HarmonyPatch(typeof(HediffSet))]
-    [HarmonyPatch("GetPartHealth", MethodType.Normal)]
+    [HarmonyPatch(nameof(HediffSet.GetPartHealth), MethodType.Normal)]
     public static class Transpiler_HediffSet_GetPartHealth
     {
         public static bool Prepare()
@@ -27,24 +24,20 @@ namespace EBF.Transpilations
         {
             /*
              * A total of 1 GetMaxHealth occurences detected;
-             * Patch at 1st occurence
+             * Patch with CodeMatcher
              */
-            bool patchComplete = false;
-
-            foreach (CodeInstruction instruction in instructions)
-            {
-                if (!patchComplete && instruction.opcode == OpCodes.Callvirt)
-                {
+            return new CodeMatcher(instructions)
+                .MatchStartForward(
+                    new CodeMatch(OpCodes.Callvirt, AccessTools.Method(typeof(BodyPartDef), nameof(BodyPartDef.GetMaxHealth)))
+                ) // find the only occurence of .GetMaxHealth()
+                .InsertAndAdvance(
+                    new CodeInstruction(OpCodes.Ldarg_1),
                     // Optimize yeah
-                    yield return new CodeInstruction(OpCodes.Ldarg_1);
-                    yield return new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth_Cached"));
-
-                    instruction.opcode = OpCodes.Nop;
-                    patchComplete = true;
-                }
-
-                yield return instruction;
-            }
+                    // special note: this might create confusion because this is the value being displayed, which may be different from the real value for a short time due to the cache
+                    new CodeInstruction(OpCodes.Call, VanillaExtender.ReflectionGetMaxHealth_Cached())
+                ) // insert extra code so that we use VanillaExtender.GetMaxHealth(); we do this out of convenience
+                .Set(OpCodes.Nop, null) // and ignore the original instruction
+                .InstructionEnumeration();
         }
     }
 }

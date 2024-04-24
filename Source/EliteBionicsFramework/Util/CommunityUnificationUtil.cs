@@ -45,7 +45,21 @@ namespace EBF.Util
 
         static CommunityUnificationUtil()
         {
-            RW_Hediff_TryGetComp = typeof(HediffUtility).GetMethod(nameof(HediffUtility.TryGetComp));
+            var methodSignature = new Type[] { typeof(Hediff) };
+            RW_Hediff_TryGetComp = typeof(HediffUtility).GetMethod(nameof(HediffUtility.TryGetComp), methodSignature);
+            methodSignature = null;
+
+            // we are splitting this into several functions so that debugging can give us meaningful stacktraces
+            TryPatchQualityBionics();
+            TryPatchCyberFauna();
+            TryPatchMechalitCore();
+            TryPatchPawnmorpher();
+        }
+
+        #region Community Unification Mod Patching
+
+        private static void TryPatchQualityBionics()
+        {
             if (ModDetector.QualityBionicsIsLoaded)
             {
                 try
@@ -59,13 +73,17 @@ namespace EBF.Util
                     QualityBionics_Type_CompQualityBionics = Type.GetType("QualityBionics.HediffCompQualityBionics, QualityBionics");
                     QualityBionics_TryGetRelevantComp = RW_Hediff_TryGetComp.MakeGenericMethod(new[] { QualityBionics_Type_CompQualityBionics });
                 }
-                catch (ArgumentNullException ex)
+                catch (ArgumentNullException)
                 {
                     // we failed to make a generic method
                     EliteBionicsFrameworkMain.LogError("Something about Quality Bionics changed; please report this to us.");
                 }
             }
-            // note: CONN has officially adopted EBF for the HP-increasing effects, so we no longer need to check for them.
+        }
+
+        private static void TryPatchCyberFauna()
+        {
+
             if (ModDetector.CyberFaunaIsLoaded)
             {
                 // test
@@ -80,12 +98,17 @@ namespace EBF.Util
                     CyberFauna_TryGetRelevantComp = RW_Hediff_TryGetComp.MakeGenericMethod(new[] { CyberFauna_Type_CompPartHitPoints });
                     HasLoadedProthesisHealth = true;
                 }
-                catch (ArgumentNullException ex)
+                catch (ArgumentNullException)
                 {
                     // we failed to make a generic method
                     EliteBionicsFrameworkMain.LogError("Something about CyberFauna changed; please report this to us.");
                 }
             }
+        }
+
+        private static void TryPatchMechalitCore()
+        {
+
             if (ModDetector.MechalitCoreIsLoaded)
             {
                 // it is infuriating that both cyber fauna and mechalit core is using the same dll for stuff yet there are two copies of it in total
@@ -103,12 +126,16 @@ namespace EBF.Util
                         HasLoadedProthesisHealth = true;
                     }
                 }
-                catch (ArgumentNullException ex)
+                catch (ArgumentNullException)
                 {
                     // we failed to make a generic method
                     EliteBionicsFrameworkMain.LogError("Something about MechalitCore changed; please report this to us.");
                 }
             }
+        }
+
+        private static void TryPatchPawnmorpher()
+        {
             if (ModDetector.PawnmorpherIsLoaded)
             {
                 try
@@ -118,13 +145,15 @@ namespace EBF.Util
                     Pawnmorpher_Type_HediffAddedMutation = AccessTools.TypeByName("Pawnmorph.Hediff_AddedMutation");
                     Pawnmorpher_Type_MutationStage = AccessTools.TypeByName("Pawnmorph.Hediffs.MutationStage");
                 }
-                catch (ArgumentNullException ex)
+                catch (ArgumentNullException)
                 {
                     // we failed to make a generic method
                     EliteBionicsFrameworkMain.LogError("Something about Pawnmorpher changed; please report this to us.");
                 }
             }
         }
+
+        #endregion
 
         public static string GetBodyPartSummaryTooltipStringDueToMaxHpAdjust(Pawn pawn, BodyPartRecord record)
         {
@@ -247,102 +276,95 @@ namespace EBF.Util
 
         public static string GetCompLabelInBracketsDueToMaxHpAdjust(Pawn pawn, HediffWithComps hediffWithComps)
         {
-            if (EliteBionicsFrameworkMain.SettingHandle_DisplayHpDiffInHediffName.Value)
+            if (!EliteBionicsFrameworkMain.SettingHandle_DisplayHpDiffInHediffName)
             {
-                StringBuilder builder = new StringBuilder("HP: ");
-                StringBuilder innerBuilder = new StringBuilder();
-                BodyPartRecord record = hediffWithComps.Part;
-                List<HediffCompProperties_MaxHPAdjust> listHpProps = GetRealAndFakeHpPropsForUnification(pawn, record, hediffWithComps);
+                return "";
+            }
 
-                // summarize and print the stuff!
-                int totalLinearAdjustment = 0;
-                float totalScaledAdjustment = 1;
-                foreach (HediffCompProperties_MaxHPAdjust props in listHpProps)
-                {
-                    totalLinearAdjustment += props.linearAdjustment;
-                    if (props.scaleAdjustment + 1 > 0)
-                    {
-                        // Only allow positive scaling values.
-                        totalScaledAdjustment *= (props.scaleAdjustment + 1);
-                    }
-                }
+            StringBuilder builder = new StringBuilder("HP: ");
+            StringBuilder innerBuilder = new StringBuilder();
+            BodyPartRecord record = hediffWithComps.Part;
+            List<HediffCompProperties_MaxHPAdjust> listHpProps = GetRealAndFakeHpPropsForUnification(pawn, record, hediffWithComps);
 
-                // can print.
-                HediffCompProperties_MaxHPAdjust_Fake fakeProps = new HediffCompProperties_MaxHPAdjust_Fake()
+            // summarize and print the stuff!
+            int totalLinearAdjustment = 0;
+            float totalScaledAdjustment = 1;
+            foreach (HediffCompProperties_MaxHPAdjust props in listHpProps)
+            {
+                totalLinearAdjustment += props.linearAdjustment;
+                if (props.scaleAdjustment + 1 > 0)
                 {
-                    linearAdjustment = totalLinearAdjustment,
-                    scaleAdjustment = totalScaledAdjustment - 1,
-                    providerNamespace = null,
-                };
-                if (fakeProps.scaleAdjustment != 0)
-                {
-                    innerBuilder.Append(fakeProps.ScaledAdjustmentDisplayString);
+                    // Only allow positive scaling values.
+                    totalScaledAdjustment *= (props.scaleAdjustment + 1);
                 }
-                if (fakeProps.linearAdjustment != 0)
-                {
-                    if (innerBuilder.Length > 0)
-                    {
-                        innerBuilder.Append(", ");
-                    }
-                    innerBuilder.Append(fakeProps.LinearAdjustmentDisplayString);
-                }
+            }
 
+            // can print.
+            HediffCompProperties_MaxHPAdjust_Fake fakeProps = new HediffCompProperties_MaxHPAdjust_Fake()
+            {
+                linearAdjustment = totalLinearAdjustment,
+                scaleAdjustment = totalScaledAdjustment - 1,
+                providerNamespace = null,
+            };
+            if (fakeProps.scaleAdjustment != 0)
+            {
+                innerBuilder.Append(fakeProps.ScaledAdjustmentDisplayString);
+            }
+            if (fakeProps.linearAdjustment != 0)
+            {
                 if (innerBuilder.Length > 0)
                 {
-                    builder.Append(innerBuilder.ToString());
-                    return builder.ToString();
+                    innerBuilder.Append(", ");
                 }
-                // nothing to display
-                return "";
+                innerBuilder.Append(fakeProps.LinearAdjustmentDisplayString);
             }
-            else
+
+            if (innerBuilder.Length > 0)
             {
-                return "";
+                builder.Append(innerBuilder.ToString());
+                return builder.ToString();
             }
+            // nothing to display
             return "";
         }
 
         public static string GetCompLabelInBracketsDueToMaxHpAdjust(HediffCompProperties_MaxHPAdjust props)
         {
-            if (EliteBionicsFrameworkMain.SettingHandle_DisplayHpDiffInHediffName.Value)
+            if (!EliteBionicsFrameworkMain.SettingHandle_DisplayHpDiffInHediffName)
             {
-                StringBuilder builder = new StringBuilder("HP: ");
-                StringBuilder innerBuilder = new StringBuilder();
+                return "";
+            }
+            StringBuilder builder = new StringBuilder("HP: ");
+            StringBuilder innerBuilder = new StringBuilder();
 
-                // we can print directly
-                if (props.scaleAdjustment != 0)
-                {
-                    innerBuilder.Append(props.ScaledAdjustmentDisplayString);
-                }
-                if (props.linearAdjustment != 0)
-                {
-                    if (innerBuilder.Length > 0)
-                    {
-                        innerBuilder.Append(", ");
-                    }
-                    innerBuilder.Append(props.LinearAdjustmentDisplayString);
-                }
-
+            // we can print directly
+            if (props.scaleAdjustment != 0)
+            {
+                innerBuilder.Append(props.ScaledAdjustmentDisplayString);
+            }
+            if (props.linearAdjustment != 0)
+            {
                 if (innerBuilder.Length > 0)
                 {
-                    builder.Append(innerBuilder.ToString());
-                    return builder.ToString();
+                    innerBuilder.Append(", ");
                 }
+                innerBuilder.Append(props.LinearAdjustmentDisplayString);
+            }
 
-                // nothing to display
-                return "";
-            }
-            else
+            if (innerBuilder.Length > 0)
             {
-                return "";
+                builder.Append(innerBuilder.ToString());
+                return builder.ToString();
             }
+
+            // nothing to display
             return "";
         }
 
         public static float GetPartMaxHealthFromPawnmorpher(BodyPartRecord record, Pawn p)
         {
             // we assert that Pawnmorpher is loaded; dont call without checking that Pawnmorpher exists
-            Prefix_BodyPart_GetMaxHealth.SuppressNextWarning();
+            PostFix_BodyPart_GetMaxHealth.SuppressNextWarning();
             return Mixed_Pawnmorpher_GetPartMaxHealth.GetPartMaxHealthDueToPawnmorpher(record, p);
         }
 

@@ -1,15 +1,11 @@
 ﻿using HarmonyLib;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Verse;
 using static Verse.PawnCapacityUtility;
 
 namespace EBF.Patches
 {
     [HarmonyPatch(typeof(CapacityImpactorBodyPartHealth))]
-    [HarmonyPatch("Readable", MethodType.Normal)]
+    [HarmonyPatch(nameof(CapacityImpactorBodyPartHealth.Readable), MethodType.Normal)]
     public class PreFix_PawnCapUtil_BodyPartHealth
     {
         [HarmonyPrefix]

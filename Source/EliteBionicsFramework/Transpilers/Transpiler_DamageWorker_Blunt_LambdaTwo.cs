@@ -1,11 +1,9 @@
-﻿using EBF.Util;
-using HarmonyLib;
+﻿using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
-using System.Text;
 using Verse;
 
 namespace EBF.Transpilations
@@ -27,7 +25,7 @@ namespace EBF.Transpilations
         {
             // (we will let this print error when it fails to detect things... somehow we cannot properly encapsulate the error correctly)
 
-            // RW v1.4, FQ name Verse.DamageWorker_Blunt+<>c.<StunChances>b__2_5
+            // RW v1.5, FQ name Verse.DamageWorker_Blunt+<>c.<StunChances>b__2_5
             // weak matching: this self-anon type has 9 fields
             var potentialSelfAnons = AccessTools.TypeByName("Verse.DamageWorker_Blunt").GetNestedTypes(BindingFlags.NonPublic).Where((Type type) => type.GetFields().Length == 9);
             if (potentialSelfAnons.Count() == 0)
@@ -39,8 +37,9 @@ namespace EBF.Transpilations
             // and then, within these 9 fields, pick the one with signature (ThingDef) -> float32
             foreach (MethodInfo info in typeSelfAnon.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic))
             {
-                // weak match: this is the only method that has this many parameters
-                if (info.GetParameters().Length == 1 && info.ReturnType == typeof(float))
+                // strong match; this is the only function with this param-type and this return-type
+                ParameterInfo[] paramInfo = info.GetParameters();
+                if (paramInfo.Length == 1 && paramInfo[0].ParameterType == typeof(ThingDef) && info.ReturnType == typeof(float))
                 {
                     // is this one!
                     return info;
@@ -53,38 +52,23 @@ namespace EBF.Transpilations
 
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            short occurencesCallvirt = 0;
-            short suppressCount = 0;
-            bool patchComplete = false;
-
-            foreach (CodeInstruction instruction in instructions)
-            {
-                if (!patchComplete && instruction.opcode == OpCodes.Callvirt)
-                {
-                    occurencesCallvirt++;
-
-                    if (occurencesCallvirt == 4)
-                    {
-                        yield return new CodeInstruction(OpCodes.Ldarg_1);
-                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ThingDef), "race"));
-                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(RaceProperties), "body"));
-                        yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(BodyDef), "corePart"));
-                        yield return new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth"));
-
-                        suppressCount = 1;
-                        patchComplete = true;
-                    }
-                }
-
-                if (suppressCount > 0)
-                {
-                    instruction.opcode = OpCodes.Nop;
-                    suppressCount--;
-                }
-
-                //writer.WriteLine(instruction);
-                yield return instruction;
-            }
+            /*
+             * A total of 1 GetMaxHealth occurences detected;
+             * Patch with CodeMatcher
+             */
+            return new CodeMatcher(instructions)
+                .MatchStartForward(
+                    new CodeMatch(OpCodes.Callvirt, AccessTools.Method(typeof(BodyPartDef), nameof(BodyPartDef.GetMaxHealth)))
+                ) // find the only occurence of .GetMaxHealth()
+                .InsertAndAdvance(
+                    new CodeInstruction(OpCodes.Ldarg_1),
+                    new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ThingDef), "race")),
+                    new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(RaceProperties), "body")),
+                    new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(BodyDef), "corePart")),
+                    new CodeInstruction(OpCodes.Call, VanillaExtender.ReflectionGetMaxHealth())
+                ) // insert extra code so that we use VanillaExtender.GetMaxHealth(); we do this out of convenience
+                .Set(OpCodes.Nop, null) // and ignore the original instruction
+                .InstructionEnumeration();
         }
     }
 }

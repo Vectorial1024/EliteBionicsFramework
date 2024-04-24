@@ -1,12 +1,8 @@
 ﻿using EBF.Util;
 using HarmonyLib;
 using RimWorld;
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Reflection.Emit;
-using System.Text;
 using Verse;
 
 namespace EBF.Transpilations
@@ -26,43 +22,20 @@ namespace EBF.Transpilations
 
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            // StreamWriter writer = new StreamWriter(new FileStream("C:\\Users\\Vincent Wong\\Desktop\\output.txt", FileMode.Create));
-            bool patchIsComplete = false;
-            short occurencesCallvirt = 0;
-            short suppressCount = 0;
-
-            foreach (CodeInstruction instruction in instructions)
-            {
-                // Count for the 5th callvirt, convert it to a call, and suppress the original callvirt
-                if (!patchIsComplete && instruction.opcode == OpCodes.Callvirt)
-                {
-                    occurencesCallvirt++;
-
-                    if (occurencesCallvirt == 4)
-                    {
-                        /*
-                        writer.WriteLine("Patching!");
-                        writer.WriteLine(new CodeInstruction(OpCodes.Ldarg_2));
-                        writer.WriteLine(new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth")));
-                        */
-                        yield return new CodeInstruction(OpCodes.Ldarg_1);
-                        yield return new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth"));
-                        suppressCount = 1;
-                        patchIsComplete = true;
-                    }
-                }
-
-                if (suppressCount > 0)
-                {
-                    instruction.opcode = OpCodes.Nop;
-                    suppressCount--;
-                }
-
-                //writer.WriteLine(instruction);
-                yield return instruction;
-            }
-
-            //writer.Close();
+            /*
+             * A total of 1 GetMaxHealth occurences detected;
+             * Patch with CodeMatcher
+             */
+            return new CodeMatcher(instructions)
+                .MatchStartForward(
+                    new CodeMatch(OpCodes.Callvirt, AccessTools.Method(typeof(BodyPartDef), nameof(BodyPartDef.GetMaxHealth)))
+                ) // find the only occurence of .GetMaxHealth()
+                .InsertAndAdvance(
+                    new CodeInstruction(OpCodes.Ldarg_1),
+                    new CodeInstruction(OpCodes.Call, VanillaExtender.ReflectionGetMaxHealth())
+                ) // insert extra code so that we use VanillaExtender.GetMaxHealth(); we do this out of convenience
+                .Set(OpCodes.Nop, null) // and ignore the original instruction
+                .InstructionEnumeration();
         }
     }
 }

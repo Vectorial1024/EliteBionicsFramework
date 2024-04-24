@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using LudeonTK;
+using System.Text;
 using Verse;
 
 namespace EBF.Util
@@ -6,7 +7,7 @@ namespace EBF.Util
     public static class DebugActionsEBF
     {
         [DebugAction("Elite Bionics Framework", name = "Dump mod detection info")]
-        private static void DumpModDetectionInfo()
+        public static void DumpModDetectionInfo()
         {
             StringBuilder builder = new StringBuilder("Elite Bionics Framework: mod detection info");
             builder.AppendInNewLine("-----------------------");
@@ -21,6 +22,9 @@ namespace EBF.Util
             builder.AppendInNewLine($"Cyber Fauna (official): {ModDetector.CyberFaunaOfficialIsLoaded}");
             builder.AppendInNewLine($"Mechalit Core (official): {ModDetector.MechalitCoreIsLoaded}");
             builder.AppendInNewLine($"Half Dragons: {ModDetector.HalfDragonsIsLoaded}");
+            builder.AppendInNewLine($"Vanilla Psycasts Expanded: {ModDetector.VanillaPsycastsExpandedIsLoaded}");
+            builder.AppendInNewLine($"Immortals: {ModDetector.ImmortalsIsLoaded}");
+            builder.AppendInNewLine($"Pawn Quick Info: {ModDetector.PawnQuickInfoIsLoaded}");
 
             builder.AppendInNewLine("-----------------------");
             builder.AppendInNewLine("All relevant mods checked.");

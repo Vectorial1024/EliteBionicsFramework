@@ -1,8 +1,6 @@
-﻿using EBF.Hediffs;
-using EBF.Util;
+﻿using EBF.Util;
 using HarmonyLib;
 using RimWorld;
-using System.Collections.Generic;
 using System.Text;
 using Verse;
 

@@ -5,7 +5,7 @@ using Verse;
 namespace EBF.Patches
 {
     [HarmonyPatch(typeof(Pawn_AgeTracker))]
-    [HarmonyPatch("PostResolveLifeStageChange", MethodType.Normal)]
+    [HarmonyPatch(nameof(Pawn_AgeTracker.PostResolveLifeStageChange), MethodType.Normal)]
     public class PostFix_AgeTracker_PostResolveLifeStageChange
     {
         [HarmonyPostfix]

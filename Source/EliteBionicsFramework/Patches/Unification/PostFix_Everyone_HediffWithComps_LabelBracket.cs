@@ -8,7 +8,7 @@ using Verse;
 namespace EBF.Patches.Unification
 {
     [HarmonyPatch(typeof(HediffWithComps))]
-    [HarmonyPatch("LabelInBrackets", MethodType.Getter)]
+    [HarmonyPatch(nameof(HediffWithComps.LabelInBrackets), MethodType.Getter)]
     public class PostFix_Everyone_HediffWithComps_LabelBracket
     {
         [HarmonyPostfix]

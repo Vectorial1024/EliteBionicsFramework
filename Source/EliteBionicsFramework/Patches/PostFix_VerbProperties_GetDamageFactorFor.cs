@@ -1,18 +1,14 @@
-﻿using EBF;
-using EBF.Hediffs;
+﻿using EBF.Hediffs;
 using EBF.Util;
 using HarmonyLib;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Verse;
 
 namespace EBF.Patches
 {
     [HarmonyPatch(typeof(VerbProperties))]
-    [HarmonyPatch("GetDamageFactorFor", MethodType.Normal)]
+    [HarmonyPatch(nameof(VerbProperties.GetDamageFactorFor), MethodType.Normal)]
     [HarmonyPatch(new Type[] { typeof(Tool), typeof(Pawn), typeof(HediffComp_VerbGiver) })]
     // set a lower priority to let Vanilla Geentics Expanded patch first; let them affect the damage by hybrid quality first
     [HarmonyPriority(Priority.LowerThanNormal)]

@@ -1,21 +1,23 @@
 ﻿using EBF.Util;
 using HarmonyLib;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Reflection.Emit;
 using Verse;
 
-namespace EBF.Transpilations
+namespace EBF.Transpilations.Moody
 {
-    [HarmonyPriority(Priority.First)]
-    [HarmonyPatch(typeof(PawnCapacityUtility))]
-    [HarmonyPatch(nameof(PawnCapacityUtility.CalculatePartEfficiency), MethodType.Normal)]
-    public static class Transpiler_PawnCapacity_Calculate
+    [HarmonyPatch]
+    public static class Transpiler_Patches_GetPartConditionLabel
     {
         public static bool Prepare()
         {
-            // dont do this patch if Pawnmorpher is detected; there are race conditions
-            // if Pawnmorpher is loaded then we use PostFix_Pawnmorpher_HealthUtil instead.
-            return !ModDetector.PawnmorpherIsLoaded;
+            return ModDetector.PawnQuickInfoIsLoaded;
+        }
+
+        public static MethodBase TargetMethod()
+        {
+            return AccessTools.Method("PawnQuickInfo.Patches:_GetPartConditionLabel");
         }
 
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
@@ -30,10 +32,9 @@ namespace EBF.Transpilations
                 ) // find the only occurence of .GetMaxHealth()
                 .InsertAndAdvance(
                     new CodeInstruction(OpCodes.Ldarg_1),
-                    // Optimize yeah
-                    // special note: this might create confusion because this is the value being displayed, which may be different from the real value for a short time due to the cache
+                    new CodeInstruction(OpCodes.Callvirt, typeof(Hediff).GetProperty("Part").GetGetMethod()),
                     new CodeInstruction(OpCodes.Call, VanillaExtender.ReflectionGetMaxHealth_Cached())
-                ) // insert extra code so that we use VanillaExtender.GetMaxHealth(); we do this out of convenience
+                ) // insert extra code so that we use VanillaExtender.GetMaxHealth_Cached(); we do this out of convenience
                 .Set(OpCodes.Nop, null) // and ignore the original instruction
                 .InstructionEnumeration();
         }

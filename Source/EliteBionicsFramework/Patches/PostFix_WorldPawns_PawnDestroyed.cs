@@ -6,7 +6,7 @@ using Verse;
 namespace EBF.Patches
 {
     [HarmonyPatch(typeof(WorldPawns))]
-    [HarmonyPatch("Notify_PawnDestroyed", MethodType.Normal)]
+    [HarmonyPatch(nameof(WorldPawns.Notify_PawnDestroyed), MethodType.Normal)]
     public class PostFix_WorldPawns_PawnDestroyed
     {
         [HarmonyPostfix]

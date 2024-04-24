@@ -31,7 +31,7 @@ namespace EBF
         /// <returns>def.GetMaxHealth(pawn)</returns>
         public static float GetMaxHealthUnmodified(BodyPartDef def, Pawn pawn)
         {
-            Prefix_BodyPart_GetMaxHealth.SuppressNextWarning();
+            PostFix_BodyPart_GetMaxHealth.SuppressNextWarning();
             return def.GetMaxHealth(pawn);
         }
 
@@ -100,6 +100,8 @@ namespace EBF
             }
 
             float realMaxHP = Mathf.RoundToInt(baseMaxHP * totalScaledAdjustment) + totalLinearAdjustment;
+            // checked in RimWorld 1.5; also does CeilToInt because that is what the vanilla game is doing.
+            realMaxHP = Mathf.CeilToInt(realMaxHP);
             // must be at least 1
             float calculatedValue = Mathf.Max(realMaxHP, 1);
             if (useCache)

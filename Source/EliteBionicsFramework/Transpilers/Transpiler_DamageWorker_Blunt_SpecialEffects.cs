@@ -1,13 +1,10 @@
 ﻿using HarmonyLib;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
-using System.Text;
 using Verse;
-using static Verse.DamageWorker;
 
 namespace EBF.Transpilations
 {
@@ -28,7 +25,7 @@ namespace EBF.Transpilations
          * Update 2022-Nov:
          * 
          * The fix by RocketDelivery works when used with HAR, but we eventually discovered Yayo Animations doing their patches super-early,
-         * and therefore summonned Humanoid Alien Races too early without our consent. This therefore breaks our compatiility with HAR.
+         * and therefore summoned Humanoid Alien Races too early without our consent. This therefore breaks our compatiility with HAR.
          * To maintain parity against Yayo Animations, we must therefore call this static constructor in the constructor of a child class of Verse.Mod.
          * I have made a new fitting child class that, innu, touches this class, so that this static constructor is called.
          * And obviously, the [StaticConstructorOnStartup] becomes a decoration, but I am keeping that annotation to avoid confusion.
@@ -40,15 +37,23 @@ namespace EBF.Transpilations
                 AccessTools.Method(typeof(DamageWorker_Blunt), "ApplySpecialEffectsToPart"), 
                 null,
                 null,
-                new HarmonyMethod(typeof(Transpiler_DamageWorker_Blunt_SpecialEffects), nameof(Transpiler)));
+                new HarmonyMethod(typeof(Transpiler_DamageWorker_Blunt_SpecialEffects), nameof(TranspileTheTarget)));
 		}
 
-        public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        public static IEnumerable<CodeInstruction> TranspileTheTarget(IEnumerable<CodeInstruction> instructions)
         {
-            // Patch things up at the 11th occurence of callvirt
-            short occurencesCallvirt = 0;
-            short suppressCount = 0;
-            bool patchComplete = false;
+            if (instructions == null)
+            {
+                // we are simply touching this; don't actually do it
+                // we trust Harmony to never give us null
+                // check the method usage to see where we are touching this.
+                return instructions;
+            }
+
+            /*
+             * A total of 1 GetMaxHealth occurences detected;
+             * Patch with CodeMatcher
+             */
 
             /*
              * This is to patch for "get core part max health" in the function ApplySpecialEffectsToPart(...)
@@ -63,58 +68,29 @@ namespace EBF.Transpilations
              * I am assuming there is only one such class among all the nested classes under DamageWorker_Blunt.
              */
             Type typeSelfAnon = typeof(DamageWorker_Blunt).GetNestedTypes(BindingFlags.NonPublic).Where((Type type) => type.GetField("pawn") != null).First();
-            if (typeSelfAnon != null)
-            {
-                // Search successful.
-                foreach (CodeInstruction instruction in instructions)
-                {
-                    if (!patchComplete && instruction.opcode == OpCodes.Callvirt)
-                    {
-                        occurencesCallvirt++;
-
-                        if (occurencesCallvirt == 9)
-                        {
-
-                            List<CodeInstruction> insert = new List<CodeInstruction>()
-                            {
-                                new CodeInstruction(OpCodes.Ldloc_0),
-                                new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeSelfAnon, "pawn")),
-                                new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Thing), "def")),
-                                new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ThingDef), "race")),
-                                new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(RaceProperties), "body")),
-                                new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(BodyDef), "corePart")),
-                                new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth"))
-                            };
-                            foreach (CodeInstruction command in insert)
-                            {
-                                yield return command;
-                            }
-
-                            suppressCount = 1;
-                            patchComplete = true;
-                        }
-                    }
-
-                    if (suppressCount > 0)
-                    {
-                        instruction.opcode = OpCodes.Nop;
-                        suppressCount--;
-                    }
-
-                    yield return instruction;
-                }
-                yield break;
-            }
-            else
+            if (typeSelfAnon == null)
             {
                 EliteBionicsFrameworkMain.LogError("Patch failed: blunt special effects, failed to find relevant self-anon type!");
                 // In the unlikely case of failing the search, modify nothing and return.
-                foreach (CodeInstruction instruction in instructions)
-                {
-                    yield return instruction;
-                }
-                yield break;
+                return instructions;
             }
+
+            // Search successful.
+            return new CodeMatcher(instructions)
+                .MatchStartForward(
+                    new CodeMatch(OpCodes.Callvirt, AccessTools.Method(typeof(BodyPartDef), nameof(BodyPartDef.GetMaxHealth)))
+                ) // find the only occurence of .GetMaxHealth()
+                .InsertAndAdvance(
+                    new CodeInstruction(OpCodes.Ldloc_0),
+                    new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeSelfAnon, "pawn")),
+                    new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Thing), "def")),
+                    new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ThingDef), "race")),
+                    new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(RaceProperties), "body")),
+                    new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(BodyDef), "corePart")),
+                    new CodeInstruction(OpCodes.Call, VanillaExtender.ReflectionGetMaxHealth())
+                ) // insert extra code so that we use VanillaExtender.GetMaxHealth(); we do this out of convenience
+                .Set(OpCodes.Nop, null) // and ignore the original instruction
+                .InstructionEnumeration();
         }
     }
 }

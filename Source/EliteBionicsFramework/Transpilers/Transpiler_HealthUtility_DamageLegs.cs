@@ -1,49 +1,31 @@
 ﻿using HarmonyLib;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection.Emit;
-using System.Text;
 using Verse;
 
 namespace EBF.Transpilations
 {
     [HarmonyPriority(Priority.First)]
     [HarmonyPatch(typeof(HealthUtility))]
-    [HarmonyPatch("DamageLegsUntilIncapableOfMoving")]
+    [HarmonyPatch(nameof(HealthUtility.DamageLegsUntilIncapableOfMoving))]
     public static class Transpiler_HealthUtility_DamageLegs
     {
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            // Patch things up at the 2nd occurence of callvirt
-            short occurencesCallvirt = 0;
-            short suppressCount = 0;
-            bool patchComplete = false;
-
-            foreach (CodeInstruction instruction in instructions)
-            {
-                if (!patchComplete && instruction.opcode == OpCodes.Callvirt)
-                {
-                    occurencesCallvirt++;
-
-                    if (occurencesCallvirt == 2)
-                    {
-                        yield return new CodeInstruction(OpCodes.Ldloc_3);
-                        yield return new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth"));
-                        
-                        suppressCount = 1;
-                        patchComplete = true;
-                    }
-                }
-
-                if (suppressCount > 0)
-                {
-                    instruction.opcode = OpCodes.Nop;
-                    suppressCount--;
-                }
-
-                yield return instruction;
-            }
+            /*
+             * A total of 1 GetMaxHealth occurences detected;
+             * Patch with CodeMatcher
+             */
+            return new CodeMatcher(instructions)
+                .MatchStartForward(
+                    new CodeMatch(OpCodes.Callvirt, AccessTools.Method(typeof(BodyPartDef), nameof(BodyPartDef.GetMaxHealth)))
+                ) // find the only occurence of .GetMaxHealth()
+                .InsertAndAdvance(
+                    new CodeInstruction(OpCodes.Ldloc_3),
+                    new CodeInstruction(OpCodes.Call, VanillaExtender.ReflectionGetMaxHealth())
+                ) // insert extra code so that we use VanillaExtender.GetMaxHealth(); we do this out of convenience
+                .Set(OpCodes.Nop, null) // and ignore the original instruction
+                .InstructionEnumeration();
         }
     }
 }

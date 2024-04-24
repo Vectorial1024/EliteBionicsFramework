@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using UnityEngine;
 using Verse;
@@ -82,5 +83,33 @@ namespace EBF
             BodyPartRecord corePart = pawn.def.race.body.corePart;
             return EBFEndpoints.GetMaxHealthWithEBF(corePart, pawn);
         }
+
+        #region CodeMatcher util methods
+
+        /// <summary>
+        /// Returns the reflection method info for GetMaxHealth.
+        /// <para/>
+        /// This is mainly for CodeMatcher usage.
+        /// </summary>
+        /// <seealso cref="GetMaxHealth(BodyPartDef, Pawn, BodyPartRecord)"/>
+        /// <returns></returns>
+        internal static MethodInfo ReflectionGetMaxHealth()
+        {
+            return typeof(VanillaExtender).GetMethod(nameof(GetMaxHealth));
+        }
+
+        /// <summary>
+        /// Returns the reflection method info for GetMaxHealth_Cached.
+        /// <para/>
+        /// This is mainly for CodeMatcher usage.
+        /// </summary>
+        /// <seealso cref="GetMaxHealth_Cached(BodyPartDef, Pawn, BodyPartRecord)"/>
+        /// <returns></returns>
+        internal static MethodInfo ReflectionGetMaxHealth_Cached()
+        {
+            return typeof(VanillaExtender).GetMethod(nameof(GetMaxHealth_Cached));
+        }
+
+        #endregion
     }
 }

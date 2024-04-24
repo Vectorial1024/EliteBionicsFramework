@@ -1,12 +1,6 @@
 ﻿using EBF.Util;
 using HarmonyLib;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using Verse;
 
 namespace EBF.Patches
 {
@@ -28,7 +22,7 @@ namespace EBF.Patches
         {
             // the flow has changed
             // we approve of Pawnmorpher reading the original values, and then we modify their value to become an EBF-accepted value
-            Prefix_BodyPart_GetMaxHealth.SuppressNextWarning();
+            PostFix_BodyPart_GetMaxHealth.SuppressNextWarning();
         }
     }
 }

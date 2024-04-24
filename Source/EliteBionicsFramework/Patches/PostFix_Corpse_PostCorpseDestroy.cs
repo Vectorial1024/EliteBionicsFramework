@@ -5,7 +5,7 @@ using Verse;
 namespace EBF.Patches
 {
     [HarmonyPatch(typeof(Corpse))]
-    [HarmonyPatch("PostCorpseDestroy", MethodType.Normal)]
+    [HarmonyPatch(nameof(Corpse.PostCorpseDestroy), MethodType.Normal)]
     public class PostFix_Corpse_PostCorpseDestroy
     {
         [HarmonyPostfix]

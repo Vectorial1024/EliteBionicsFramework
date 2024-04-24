@@ -4,30 +4,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
-using System.Text;
 using Verse;
 
 namespace EBF.Transpilations
 {
     [HarmonyPriority(Priority.First)]
     [HarmonyPatch(typeof(HealthUtility))]
-    [HarmonyPatch("GiveRandomSurgeryInjuries")]
+    [HarmonyPatch(nameof(HealthUtility.GiveRandomSurgeryInjuries))]
     public static class Transpiler_HealthUtility_SurgeryInjuries
     {
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             /*
              * A total of 3 GetMaxHealth occurences detected;
-             * All 3 occurences are using the same code.
-             * 
-             * Patch the 1st one at 4th occurence
-             * Patch the 2nd one at 6th occurence
-             * Patch the 3rd one at 7th occurence
+             * Patch with CodeMatcher
+             * Fortunately all occurences have the same code patch
              */
-            short occurencesCallvirt = 0;
-            short suppressCount = 0;
-            bool patchComplete = false;
-            // FileLog.Log("Analyzing nested types under HealthUtility...");
+
             /*
              * This is to patch for "brain def max health" in the function GiveRandomSurgeryInjuries(...).
              * From what we know, RW generates a lot of nested compiler-generated class,
@@ -45,49 +38,27 @@ namespace EBF.Transpilations
              * (Back in B18 and B19, these generated nested types were usually named like "_AnonStorey" so I referred to them as self-anon types)
              */
             Type typeSelfAnon = typeof(HealthUtility).GetNestedTypes(BindingFlags.NonPublic).Where((Type type) => type.GetField("brain") != null).First();
-            if (typeSelfAnon != null)
-            {
-                // Successfully found the anon type
-                foreach (CodeInstruction instruction in instructions)
-                {
-                    if (!patchComplete && instruction.opcode == OpCodes.Callvirt)
-                    {
-                        occurencesCallvirt++;
-
-                        if (occurencesCallvirt == 4 || occurencesCallvirt == 6 || occurencesCallvirt == 7)
-                        {
-                            yield return new CodeInstruction(OpCodes.Ldloc_0);
-                            yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeSelfAnon, "brain"));
-                            yield return new CodeInstruction(OpCodes.Call, typeof(VanillaExtender).GetMethod("GetMaxHealth"));
-
-                            suppressCount = 1;
-
-                            if (occurencesCallvirt == 7)
-                            {
-                                patchComplete = true;
-                            }
-                        }
-                    }
-
-                    if (suppressCount > 0)
-                    {
-                        instruction.opcode = OpCodes.Nop;
-                        suppressCount--;
-                    }
-
-                    yield return instruction;
-                }
-                yield break;
-            }
-            else
+            if (typeSelfAnon == null)
             {
                 // In the unlikely case where the search failed, change nothing and return.
-                foreach (CodeInstruction instruction in instructions)
-                {
-                    yield return instruction;
-                }
-                yield break;
+                EliteBionicsFrameworkMain.LogError("Patch failed: surgery injuries, failed to find relevant self-anon type!");
+                return instructions;
             }
+            // Successfully found the anon type
+            return new CodeMatcher(instructions)
+                .MatchStartForward(
+                    new CodeMatch(OpCodes.Callvirt, AccessTools.Method(typeof(BodyPartDef), nameof(BodyPartDef.GetMaxHealth)))
+                ) // find the patterns of .GetMaxHealth()
+                .Repeat(delegate(CodeMatcher matcher)
+                {
+                    matcher.InsertAndAdvance(
+                        new CodeInstruction(OpCodes.Ldloc_0),
+                        new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeSelfAnon, "brain")),
+                        new CodeInstruction(OpCodes.Call, VanillaExtender.ReflectionGetMaxHealth())
+                    ); // insert extra code so that we use VanillaExtender.GetMaxHealth(); we do this out of convenience
+                    matcher.Set(OpCodes.Nop, null); // and ignore the original instruction
+                }) // repeat for all matches
+                .InstructionEnumeration();
         }
     }
 }
