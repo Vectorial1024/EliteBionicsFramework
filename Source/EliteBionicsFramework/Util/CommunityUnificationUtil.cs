@@ -511,7 +511,7 @@ namespace EBF.Util
                 // not loaded
                 return null;
             }
-            object mutationTracker = Pawnmorpher_Type_MutationUtilities.GetMethod("GetMutationTracker").Invoke(null, new object[] { pawn });
+            object mutationTracker = Pawnmorpher_Type_MutationUtilities.GetMethod("GetMutationTracker").Invoke(null, [pawn]);
             if (mutationTracker == null) 
             {
                 return null;
