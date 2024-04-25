@@ -33,7 +33,7 @@ namespace EBF.Transpilations.PrepareCarefully
                 .InsertAndAdvance(
                     new CodeInstruction(OpCodes.Ldarg_0),
                     // full name is required!!!
-                    new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(AccessTools.TypeByName("EdB.PrepareCarefully.Injury"), "hediff")),
+                    new CodeInstruction(OpCodes.Call, AccessTools.Property(AccessTools.TypeByName("EdB.PrepareCarefully.Injury"), "Hediff").GetGetMethod()),
                     new CodeInstruction(OpCodes.Callvirt, typeof(Hediff).GetProperty("Part").GetGetMethod()),
                     new CodeInstruction(OpCodes.Call, VanillaExtender.ReflectionGetMaxHealth())
                 ) // insert extra code so that we use VanillaExtender.GetMaxHealth(); we do this out of convenience
