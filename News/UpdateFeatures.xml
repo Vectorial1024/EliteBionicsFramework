@@ -390,6 +390,14 @@ The performance improvements in this update will be helpful when, e.g., you are 
 		</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_1_7_2</defName>
+		<assemblyVersion>5.1.7.2</assemblyVersion>
+		<content>Another cumulative bugfix update.|- Fixed broken compatibility with Pawnmorpher (overdue; special credits to GitHub user quicksilverfox)|Special Announcement:
+Support for Mechalit Core and Cyber Fauna may be dropped in the future depending on the situation, just as DaLLaN intended. Previous (RW 1.4-) versions will not be affected.
+		</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
