@@ -399,6 +399,12 @@ Support for Mechalit Core and Cyber Fauna may be dropped in the future depending
 		</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_1_7_3</defName>
+		<assemblyVersion>5.1.7.3</assemblyVersion>
+		<content>Removed compatibility with Pawn Quick Info (note: compatibility is now provided by them, so the feature is actually "moved" to their side).</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
