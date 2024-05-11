@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using Verse;
 
-namespace EBF.Transpilations.Callouts
+namespace EBF.Transpilations.Immortals
 {
     [HarmonyPatch]
     public static class Transpiler_ImmortalComp_TickLivingImmortal
