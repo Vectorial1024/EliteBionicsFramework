@@ -128,7 +128,7 @@ If you want to add in more `HediffCompProperties`, just add in additional `li` n
 ```
 
 # About "adopting the EBF protocol"
-Sometinmes, I am simply unavailable. And sometimes, some other mod gained enough popularity but I did not notice them. Such is the way of things, but this may result in broken compatibility. This may occur in the form of "EBF Protocol Violation" notices:
+Sometimes, I am simply unavailable. And sometimes, some other mod gained enough popularity but I did not notice them. Such is the way of things, but this may result in broken compatibility. This may occur in the form of "EBF Protocol Violation" notices:
 
 ```
 [V1024-EBF] Elite Bionics Framework has detected some mods using the unmodified GetMaxHealth() method, which violates the EBF protocol. 
@@ -140,8 +140,8 @@ The detected mod comes from: [name]
 This is mainly due to this mod adding extra information to body parts, so that only having a `BodyPartDef` is no longer enough to determine the max HP. You need to pass in a `BodyPartRecord` instance, so that EBF may know how to calculate the max HP.
 
 You should differentiate between the following:
-- Calculating the current max HP, which may be affected by EBF bionics (note: most use cases are this case)
-- Checking the base stats of the body part, which is never affected by EBF, and with which EBF bases its max HP calculation on
+- Calculating the current max HP, which may be affected by EBF bionics (note: most use cases are this case) (use `EBF.EBFEndpoints::GetMaxHealthWithEBF` or `EBF.EBFEndpoints::GetBodyPartMaxHealthWithEBF`)
+- Checking the base stats of the body part, which is never affected by EBF, and with which EBF bases its max HP calculation on (use `EBF.EBFEndpoints::GetMaxHealthUnmodified` or `EBF.EBFEndpoints.GetBodyPartMaxHealthUnmodified`)
 
 EBF has provided compatiblity by transpiling various other mods' DLLs via Harmony to use the EBF-compliant methods, but the best way to do this would be to write the correct code at those DLLs instead, so that the intention is the clearest.
 
