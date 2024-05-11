@@ -39,6 +39,11 @@ Currently, the following mods are supported, in no particular order:
 - EdB Prepare Carefully
 - CM Callouts
 - Moody
+- Compact Hediffs
+
+Notably, the following mods are providing code-level integration on their side:
+
+- Pawn Quick Info
 
 Note that this list does not include the mods that are using this framework to provide actual body part max HP manipulation.
 
