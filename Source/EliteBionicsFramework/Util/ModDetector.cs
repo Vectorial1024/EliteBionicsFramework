@@ -67,7 +67,5 @@ namespace EBF.Util
         public static bool VanillaPsycastsExpandedIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Vanilla Psycasts Expanded"));
 
         public static bool ImmortalsIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Immortals"));
-
-        public static bool PawnQuickInfoIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Pawn quick info"));
     }
 }
