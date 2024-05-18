@@ -405,6 +405,16 @@ Support for Mechalit Core and Cyber Fauna may be dropped in the future depending
 		<content>Removed compatibility with Pawn Quick Info (note: compatibility is now provided by them, so the feature is actually "moved" to their side).</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_1_8_0</defName>
+		<assemblyVersion>5.1.8.0</assemblyVersion>
+		<content>An update.|- Now requires another mod Visible Error Logs; this is required so the crowd-sourced compatibility checking can continue effectively
+- Fixed compatibility with Prepare Carefully
+- Negotiating compatibility with Save Our Ship 2 (new feature under discussion) (yes SOS2 is back!)
+- Negotiating compatibility with Quality Bionics (Continued) (existing feature under discussion)
+- Removed compatibility with Half Dragons (mod is discontinued); previous versions not affected by this change</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
