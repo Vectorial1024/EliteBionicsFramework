@@ -21,7 +21,6 @@ namespace EBF.Util
             builder.AppendInNewLine($"Cybernetic Organisms and Neural Networks (CONN): {ModDetector.CONNIsLoaded}");
             builder.AppendInNewLine($"Cyber Fauna (official): {ModDetector.CyberFaunaOfficialIsLoaded}");
             builder.AppendInNewLine($"Mechalit Core (official): {ModDetector.MechalitCoreIsLoaded}");
-            builder.AppendInNewLine($"Half Dragons: {ModDetector.HalfDragonsIsLoaded}");
             builder.AppendInNewLine($"Vanilla Psycasts Expanded: {ModDetector.VanillaPsycastsExpandedIsLoaded}");
             builder.AppendInNewLine($"Immortals: {ModDetector.ImmortalsIsLoaded}");
 

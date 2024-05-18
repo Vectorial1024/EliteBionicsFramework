@@ -54,7 +54,8 @@ namespace EBF.Util
 
         public static bool MechalitCoreOfficialIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.PackageId == PackageIdMechalitCoreOfficial.ToLower());
 
-        public static bool HalfDragonsIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Half dragons"));
+        // Half Dragons has been sunset.
+        // public static bool HalfDragonsIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Half dragons"));
 
         /// <summary>
         /// Determines whether the DLL "ProthesisHealth" has been loaded.
