@@ -25,6 +25,12 @@ As a rule of thumb, if Ludeon did not change much about the health system, then 
 			<downloadUrl>https://github.com/UnlimitedHugs/RimworldHugsLib/releases/latest</downloadUrl>
 			<steamWorkshopUrl>steam://url/CommunityFilePage/818773962</steamWorkshopUrl>
 		</li>
+		<li>
+			<packageId>V1024.VisibleErrorLogs</packageId>
+			<displayName>Visible Error Logs</displayName>
+			<downloadUrl>https://github.com/Vectorial1024/VisibleErrorLogs/releases</downloadUrl>
+			<steamWorkshopUrl>steam://url/CommunityFilePage/3248417388</steamWorkshopUrl>
+		</li>
 	</modDependencies>
 	<loadAfter>
 		<li>UnlimitedHugs.HugsLib</li>
