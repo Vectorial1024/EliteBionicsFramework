@@ -415,6 +415,14 @@ Support for Mechalit Core and Cyber Fauna may be dropped in the future depending
 - Removed compatibility with Half Dragons (mod is discontinued); previous versions not affected by this change|Hopefully, in the coming days, we will know how to deal with Quality Bionics (Continued).</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_1_8_1</defName>
+		<assemblyVersion>5.1.8.1</assemblyVersion>
+		<content>Negotiations with Quality Bionics (Continued) has concluded.|- Adjusted compatibility with Quality Bionics to not trigger with Quality Bionics (Continued)
+- Added compatibility with Quality Bionics (Continued)
+- Clarified mod requirements with Visible Error Logs in About.xml|Summary of what happened: in a confusing move, Quality Bionics (Continued) renamed some of their code, resulting in unexpected patch failures. This is very different from previous continuations where nothing was renamed or changed, so it counts as a new mod rather than an update of an old mod.</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
