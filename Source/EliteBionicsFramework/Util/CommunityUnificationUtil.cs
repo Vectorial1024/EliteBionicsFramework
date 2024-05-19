@@ -3,6 +3,7 @@ using EBF.Patches;
 using EBF.Patches.Unification;
 using EBF.Patches.Unification.Pawnmorpher;
 using EBF.Patches.Unification.QualityBionics;
+using EBF.Patches.Unification.QualityBionicsContinued;
 using HarmonyLib;
 using RimWorld;
 using System;
@@ -25,6 +26,9 @@ namespace EBF.Util
         private static MethodInfo QualityBionics_Method_GetQualityMultiplier = null;
         private static Type QualityBionics_Type_CompQualityBionics = null;
         private static MethodInfo QualityBionics_TryGetRelevantComp = null;
+
+        private static Type QualityBionicsContinued_Type_Settings = null;
+        private static MethodInfo QualityBionicsContinued_Method_GetQualityMultiplier = null;
 
         // note: due to CONN officially changing to use EBF directly, there is no longer any need to keep CONN-related fields
 
@@ -51,6 +55,7 @@ namespace EBF.Util
 
             // we are splitting this into several functions so that debugging can give us meaningful stacktraces
             TryPatchQualityBionics();
+            TryPatchQualityBionicsContinued();
             TryPatchCyberFauna();
             TryPatchMechalitCore();
             TryPatchPawnmorpher();
@@ -77,6 +82,28 @@ namespace EBF.Util
                 {
                     // we failed to make a generic method
                     EliteBionicsFrameworkMain.LogError("Something about Quality Bionics changed; please report this to us.");
+                }
+            }
+        }
+
+        private static void TryPatchQualityBionicsContinued()
+        {
+            // Quality Bionics (Continued) changed some of its namespace, so things have become confusing for a while
+            if (ModDetector.QualityBionicsContinuedIsLoaded)
+            {
+                // at least QB(C) aren't supposed to be used together with QB, so we need not check for mutual exclusion
+                try
+                {
+                    QualityBionicsContinued_Type_Settings = Type.GetType("QualityBionicsContinued.Settings, QualityBionicsContinued");
+                    QualityBionicsContinued_Method_GetQualityMultiplier = QualityBionicsContinued_Type_Settings.GetMethod("GetQualityMultipliersForHP");
+
+                    QualityBionics_Type_CompQualityBionics = Type.GetType("QualityBionics.HediffCompQualityBionics, QualityBionicsContinued");
+                    QualityBionics_TryGetRelevantComp = RW_Hediff_TryGetComp.MakeGenericMethod([QualityBionics_Type_CompQualityBionics]);
+                }
+                catch (ArgumentNullException)
+                {
+                    // we failed to make a generic method
+                    EliteBionicsFrameworkMain.LogError("Something about Quality Bionics (Continued) changed; please report this to us.");
                 }
             }
         }
@@ -402,6 +429,12 @@ namespace EBF.Util
                         realAndFakeProps.Add(hediffCompQualityBionics);
                         continue;
                     }
+                    var hediffCompQualityBionicsContinued = TryConvertQualityBionicsContinuedCompToFakeHpComp(hediffComp);
+                    if (hediffCompQualityBionicsContinued != null)
+                    {
+                        realAndFakeProps.Add(hediffCompQualityBionicsContinued);
+                        continue;
+                    }
                     // note: due to CONN officially changing to use EBF directly, we no longer need to check for CONN
                     var hediffCompCyberFauna = TryConvertCyberFaunaCompToFakeHpComp(hediffComp);
                     if (hediffCompCyberFauna != null)
@@ -440,6 +473,12 @@ namespace EBF.Util
                     list.Add(tempCheck);
                     continue;
                 }
+                tempCheck = TryConvertQualityBionicsContinuedCompToFakeHpComp(comp);
+                if (tempCheck != null)
+                {
+                    list.Add(tempCheck);
+                    continue;
+                }
                 // note: due to CONN officially changing to use EBF directly, we no longer need to check for CONN
                 tempCheck = TryConvertCyberFaunaCompToFakeHpComp(comp);
                 if (tempCheck != null)
@@ -473,6 +512,33 @@ namespace EBF.Util
                     linearAdjustment = 0,
                     scaleAdjustment = scalingMultiplier - 1,
                     providerNamespace = QualityBionics_Type_Main.Namespace
+                };
+                // EliteBionicsFrameworkMain.LogError("fakeComp " + fakeComp.ToStringSafe());
+                return fakeComp;
+            }
+            return null;
+        }
+
+        public static HediffCompProperties_MaxHPAdjust_Fake TryConvertQualityBionicsContinuedCompToFakeHpComp(HediffComp comp)
+        {
+            if (QualityBionicsContinued_Type_Settings == null)
+            {
+                // not loaded
+                return null;
+            }
+            if (QualityBionics_Type_CompQualityBionics.IsInstanceOfType(comp))
+            {
+                // is instance of comp
+                QualityCategory quality = (QualityCategory)QualityBionics_Type_CompQualityBionics.GetField("quality").GetValue(comp);
+                // EliteBionicsFrameworkMain.LogError("quality " + quality.ToStringSafe());
+                float scalingMultiplier = Reverse_QualityBionicsContinued_GetQualityMultiplier.GetQualityMultipliersForHP(quality);
+                // float scalingMultiplier = (float) QualityBionics_Method_GetQualityMultiplier.Invoke(qualityBionicsSettings, new object[] { quality });
+                // EliteBionicsFrameworkMain.LogError("scaler " + scalingMultiplier.ToStringSafe());
+                HediffCompProperties_MaxHPAdjust_Fake fakeComp = new HediffCompProperties_MaxHPAdjust_Fake
+                {
+                    linearAdjustment = 0,
+                    scaleAdjustment = scalingMultiplier - 1,
+                    providerNamespace = QualityBionics_Type_CompQualityBionics.Namespace
                 };
                 // EliteBionicsFrameworkMain.LogError("fakeComp " + fakeComp.ToStringSafe());
                 return fakeComp;

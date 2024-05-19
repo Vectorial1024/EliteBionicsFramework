@@ -18,6 +18,7 @@ namespace EBF.Util
             builder.AppendInNewLine($"Callouts: {ModDetector.CalloutsIsLoaded}");
             builder.AppendInNewLine($"Moody: {ModDetector.MoodyIsLoaded}");
             builder.AppendInNewLine($"Quality Bionics: {ModDetector.QualityBionicsIsLoaded}");
+            builder.AppendInNewLine($"Quality Bionics (Continued): {ModDetector.QualityBionicsContinuedIsLoaded}");
             builder.AppendInNewLine($"Cybernetic Organisms and Neural Networks (CONN): {ModDetector.CONNIsLoaded}");
             builder.AppendInNewLine($"Cyber Fauna (official): {ModDetector.CyberFaunaOfficialIsLoaded}");
             builder.AppendInNewLine($"Mechalit Core (official): {ModDetector.MechalitCoreIsLoaded}");

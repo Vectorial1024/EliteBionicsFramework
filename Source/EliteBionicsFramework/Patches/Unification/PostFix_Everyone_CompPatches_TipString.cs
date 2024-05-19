@@ -26,6 +26,12 @@ namespace EBF.Patches.Unification
                 __result = CommunityUnificationUtil.GetCompTipStringExtraDueToMaxHpAdjust(__instance.Pawn, __instance.parent.Part.def, fakeCompsQualityBionics);
                 return;
             }
+            HediffCompProperties_MaxHPAdjust_Fake fakeCompsQualityBionicsContinued = CommunityUnificationUtil.TryConvertQualityBionicsContinuedCompToFakeHpComp(__instance);
+            if (fakeCompsQualityBionicsContinued != null)
+            {
+                __result = CommunityUnificationUtil.GetCompTipStringExtraDueToMaxHpAdjust(__instance.Pawn, __instance.parent.Part.def, fakeCompsQualityBionicsContinued);
+                return;
+            }
             // notes: due to CONN officially changing to use EBF directly, we no longer need to check for CONN comps
             HediffCompProperties_MaxHPAdjust_Fake fakeCompsCyberFauna = CommunityUnificationUtil.TryConvertCyberFaunaCompToFakeHpComp(__instance);
             if (fakeCompsCyberFauna != null)
