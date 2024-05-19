@@ -19,19 +19,31 @@ This mod made use of the multi-version feature of RW, and therefore has compatib
 As a rule of thumb, if Ludeon did not change much about the health system, then this mod should still continue to work even though it may say "the version number does not match".</description>
 	<url>https://github.com/Vectorial1024/EliteBionicsFramework</url>
 	<modDependencies>
+		<!-- For pre-1.4 versions -->
 		<li>
 			<packageId>UnlimitedHugs.HugsLib</packageId>
 			<displayName>HugsLib</displayName>
 			<downloadUrl>https://github.com/UnlimitedHugs/RimworldHugsLib/releases/latest</downloadUrl>
 			<steamWorkshopUrl>steam://url/CommunityFilePage/818773962</steamWorkshopUrl>
 		</li>
-		<li>
-			<packageId>V1024.VisibleErrorLogs</packageId>
-			<displayName>Visible Error Logs</displayName>
-			<downloadUrl>https://github.com/Vectorial1024/VisibleErrorLogs/releases</downloadUrl>
-			<steamWorkshopUrl>steam://url/CommunityFilePage/3248417388</steamWorkshopUrl>
-		</li>
 	</modDependencies>
+	<modDependenciesByVersion>
+		<!-- We require Visible Error Logs, but it is only available for RW 1.5+ -->
+		<v1.5>
+			<li>
+				<packageId>UnlimitedHugs.HugsLib</packageId>
+				<displayName>HugsLib</displayName>
+				<downloadUrl>https://github.com/UnlimitedHugs/RimworldHugsLib/releases/latest</downloadUrl>
+				<steamWorkshopUrl>steam://url/CommunityFilePage/818773962</steamWorkshopUrl>
+			</li>
+			<li>
+				<packageId>V1024.VisibleErrorLogs</packageId>
+				<displayName>Visible Error Logs</displayName>
+				<downloadUrl>https://github.com/Vectorial1024/VisibleErrorLogs/releases</downloadUrl>
+				<steamWorkshopUrl>steam://url/CommunityFilePage/3248417388</steamWorkshopUrl>
+			</li>
+		</v1.5>
+	  </modDependenciesByVersion>
 	<loadAfter>
 		<li>UnlimitedHugs.HugsLib</li>
 		<li>rwmt.Multiplayer</li>
