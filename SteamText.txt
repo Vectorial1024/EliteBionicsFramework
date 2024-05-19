@@ -5,7 +5,7 @@ Package ID: V1024.EBFramework
 [h1]Quick Info and Compatibility[/h1]
 [list]
 [*]Requires HugsLib (warning should be given if you don't have HugsLib); place this mod below HugsLib
-[*]Strongly recommended requires Visible Error Logs to help with detecting bugs
+[*]Visible Error Logs is strongly recommended to help with detecting bugs ( https://steamcommunity.com/sharedfiles/filedetails/?id=3248417388 )
 [*]Place this mod above other mods that require this mod
 [*]Using auto-sort, place this mod above Humanoid Alien Races
 [*]Safe to add to existing saves
