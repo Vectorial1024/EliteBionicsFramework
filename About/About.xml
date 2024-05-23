@@ -11,15 +11,17 @@
 		<li>1.1</li>
 		<li>1.0</li>
 	</supportedVersions>
-	<modVersion IgnoreIfNoMatchingField="True">5.1.8.1</modVersion>
+	<modVersion IgnoreIfNoMatchingField="True">5.1.8.2</modVersion>
 	<description>A common framework to change body part max HP. Mod version now provided via RimWorld's About.xml; older versions may still need to use HugsLib for this.
 
 This mod made use of the multi-version feature of RW, and therefore has compatibility with RW &lt; v1.5 in the same mod file.
 
+We strongly recommend you get a mod that alerts you about errors, e.g. Visible Error Logs.
+
 As a rule of thumb, if Ludeon did not change much about the health system, then this mod should still continue to work even though it may say "the version number does not match".</description>
 	<url>https://github.com/Vectorial1024/EliteBionicsFramework</url>
 	<modDependencies>
-		<!-- For pre-1.4 versions -->
+		<!-- It was stupid to require Visible Error Logs because the entire premise was wrong on my side. -->
 		<li>
 			<packageId>UnlimitedHugs.HugsLib</packageId>
 			<displayName>HugsLib</displayName>
@@ -27,26 +29,10 @@ As a rule of thumb, if Ludeon did not change much about the health system, then 
 			<steamWorkshopUrl>steam://url/CommunityFilePage/818773962</steamWorkshopUrl>
 		</li>
 	</modDependencies>
-	<modDependenciesByVersion>
-		<!-- We require Visible Error Logs, but it is only available for RW 1.5+ -->
-		<v1.5>
-			<li>
-				<packageId>UnlimitedHugs.HugsLib</packageId>
-				<displayName>HugsLib</displayName>
-				<downloadUrl>https://github.com/UnlimitedHugs/RimworldHugsLib/releases/latest</downloadUrl>
-				<steamWorkshopUrl>steam://url/CommunityFilePage/818773962</steamWorkshopUrl>
-			</li>
-			<li>
-				<packageId>V1024.VisibleErrorLogs</packageId>
-				<displayName>Visible Error Logs</displayName>
-				<downloadUrl>https://github.com/Vectorial1024/VisibleErrorLogs/releases</downloadUrl>
-				<steamWorkshopUrl>steam://url/CommunityFilePage/3248417388</steamWorkshopUrl>
-			</li>
-		</v1.5>
-	  </modDependenciesByVersion>
 	<loadAfter>
 		<li>UnlimitedHugs.HugsLib</li>
 		<li>rwmt.Multiplayer</li>
+		<li>V1024.VisibleErrorLogs</li>
 	</loadAfter>
 	<loadBefore>
 		<li>erdelf.HumanoidAlienRaces</li>

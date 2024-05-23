@@ -423,6 +423,16 @@ Support for Mechalit Core and Cyber Fauna may be dropped in the future depending
 - Clarified mod requirements with Visible Error Logs in About.xml|Summary of what happened: in a confusing move, Quality Bionics (Continued) renamed some of their code, resulting in unexpected patch failures. This is very different from previous continuations where nothing was renamed or changed, so it counts as a new mod rather than an update of an old mod.</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_1_8_2</defName>
+		<assemblyVersion>5.1.8.2</assemblyVersion>
+		<content>Completely removed declared dependency on Visible Error Logs (VEL).
+
+In a confusing move, I have wrongly believed that error logs would appear even if dev-mode was off. It was never the case. Therefore, VEL was actually an unrelated "new feature", and there is/was no justification to suddenly require VEL to begin with.
+
+The mistake was to push VEL when it was unnecessary. I deeply appologize for that.</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
