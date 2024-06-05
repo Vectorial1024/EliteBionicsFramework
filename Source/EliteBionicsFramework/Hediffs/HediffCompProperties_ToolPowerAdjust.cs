@@ -8,7 +8,7 @@ using Verse;
 
 namespace EBF.Hediffs
 {
-    class HediffCompProperties_ToolPowerAdjust : HediffCompProperties
+    public class HediffCompProperties_ToolPowerAdjust : HediffCompProperties
     {
         /*
          * Self-note: base pawn DPS/tool is defined at Core/Defs/ThingDefs_Races/*

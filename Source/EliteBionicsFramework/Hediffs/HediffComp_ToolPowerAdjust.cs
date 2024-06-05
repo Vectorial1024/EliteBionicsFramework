@@ -7,7 +7,7 @@ using Verse;
 
 namespace EBF.Hediffs
 {
-    class HediffComp_ToolPowerAdjust: HediffComp
+    public class HediffComp_ToolPowerAdjust: HediffComp
     {
         public HediffCompProperties_ToolPowerAdjust Props => (HediffCompProperties_ToolPowerAdjust)props;
 
