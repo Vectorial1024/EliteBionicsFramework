@@ -19,6 +19,8 @@ namespace EBF
     /// </summary>
     public class EBFEndpoints
     {
+        #region MaxHP
+
         /// <summary>
         /// Returns the unmodified, raw max HP of this body part def. This returns def.GetMaxHealth(pawn); .
         /// <para/>
@@ -132,5 +134,49 @@ namespace EBF
         {
             return GetMaxHealthWithEBF(record, hediffSet.pawn);
         }
+
+        #endregion
+
+        #region ToolPower
+
+        /// <summary>
+        /// Returns the tool/verb power adjustment to be applied on the given (melee) attack by the pawn with the given body parts, etc under the effects of EBF-enabled hediffs.
+        /// </summary>
+        /// <param name="pawn">The pawn who is attacking</param>
+        /// <param name="tool">The tool which the pawn is using to attack</param>
+        /// <param name="source">The hediff source, if exists; this is used to identify between e.g. the left hand and the right hand, where both have the same tool "hand".</param>
+        /// <param name="useCache">Whether to use the max-health cache, for cases where max-health is constantly queried but unlikely to change.</param>
+        /// <returns>The appropriate (melee) attack power adjustment under the effects of EBF-enabled hediffs.</returns>
+        public static ToolPowerAdjustInfo? GetToolPowerAdjustInfoWithEbf(Pawn pawn, Tool tool, HediffComp_VerbGiver source, bool useCache = true)
+        {
+            VerbAttackInfo attackInfo = new(tool, source);
+            if (pawn == null || !attackInfo.IsValid)
+            {
+                // invalid; we should not give you any info
+                return null;
+            }
+
+            // basic info are valid; do it.
+            if (useCache)
+            {
+                ToolPowerAdjustInfo? cachedValue = ToolPowerInfoCache.GetCachedToolPowerInfo(pawn, attackInfo);
+                if (cachedValue != null)
+                {
+                    return cachedValue.Value;
+                }
+            }
+            // value does not exist; calculate it!
+            /*
+             * after code review, we are basically doing the following steps:
+             * - determine where to look for potential EBF hediffs in the pawn bodypart-hediff tree (this depends on the exact format of the VerbAttackInfo)
+             * - extract those hediffs
+             * - aggregate the effects
+             * - apply changes to ingame numbers
+             */
+            // wip
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }
