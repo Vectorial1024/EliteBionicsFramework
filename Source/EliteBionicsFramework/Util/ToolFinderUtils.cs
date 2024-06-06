@@ -51,6 +51,11 @@ namespace EBF.Util
 
         public static List<Tool> FindAllOriginalToolsUnderBodyPart(Pawn pawn, BodyPartRecord part)
         {
+            if (part == null)
+            {
+                // special case: abilities may create whole-body hediffs that grants new attack tools; in this case we do not have any original tools to base things on
+                return [];
+            }
             List<BodyPartGroupDef> listAllUniqueGroups = new List<BodyPartGroupDef>();
             FindUniqueBodyPartGroups(ref listAllUniqueGroups, part);
             List<Tool> listFoundTools = new List<Tool>();
