@@ -141,6 +141,8 @@ namespace EBF
 
         /// <summary>
         /// Returns the tool/verb power adjustment to be applied on the given (melee) attack by the pawn with the given body parts, etc under the effects of EBF-enabled hediffs.
+        /// <para/>
+        /// Note: this does not calculate the final tool power; those are to be calculated by the game itself.
         /// </summary>
         /// <param name="pawn">The pawn who is attacking</param>
         /// <param name="tool">The tool which the pawn is using to attack</param>
@@ -172,9 +174,22 @@ namespace EBF
              * - extract those hediffs
              * - aggregate the effects
              * - apply changes to ingame numbers
+             * some of those steps are not inside this method.
              */
-            // wip
-            throw new NotImplementedException();
+            List<HediffComp_ToolPowerAdjust> compList = attackInfo.ExtractRelevantHediffCompsFromPawn(pawn);
+            ToolPowerAdjustInfo calInfo = new();
+            foreach (HediffComp_ToolPowerAdjust theComp in compList)
+            {
+                HediffCompProperties_ToolPowerAdjust compProps = theComp.Props;
+                calInfo.scalingAdj *= compProps.ActualScalingFactor;
+                calInfo.linearAdj += compProps.linearAdjustment;
+            }
+            if (useCache)
+            {
+                // save to cache
+                ToolPowerInfoCache.SetCachedToolPowerInfo(pawn, attackInfo, calInfo);
+            }
+            return calInfo;
         }
 
         #endregion
