@@ -96,16 +96,16 @@ namespace EBF.Util
 
             List<HediffComp_ToolPowerAdjust> resultList = [];
             BodyPartRecord bodyPartSource = source.parent.Part;
-            // find implants on the exact part first
+            // find implants on the exact part first (and also whole-body hediffs)
             foreach (Hediff hediff in pawn.health.hediffSet.hediffs)
             {
-                if (hediff.Part == bodyPartSource && hediff is Hediff_Implant)
+                if (hediff.Part == null || (hediff.Part == bodyPartSource && hediff is Hediff_Implant))
                 {
-                    // Interested. Determine if it carries with it any VerbPowerAdjust components
+                    // it is a whole-body hediff OR an implant to the body part we want
+                    // we want this.
                     HediffComp_ToolPowerAdjust adjustmentComps = hediff.TryGetComp<HediffComp_ToolPowerAdjust>();
                     if (adjustmentComps != null)
                     {
-                        // Have adjustment comps
                         resultList.Add(adjustmentComps);
                     }
                 }
@@ -120,11 +120,11 @@ namespace EBF.Util
                 {
                     if (hediff.Part == bodyPartSource && hediff is not Hediff_Implant)
                     {
-                        // Interested. Determine if it carries with it any VerbPowerAdjust components
+                        // it is a regular hediff to the body part we want
+                        // we want this.
                         HediffComp_ToolPowerAdjust adjustmentComps = hediff.TryGetComp<HediffComp_ToolPowerAdjust>();
                         if (adjustmentComps != null)
                         {
-                            // Have adjustment comps
                             resultList.Add(adjustmentComps);
                         }
                     }
