@@ -14,7 +14,7 @@ namespace EBF.Hediffs
          * Self-note: base pawn DPS/tool is defined at Core/Defs/ThingDefs_Races/*
          */
 
-        public int linearAdjustment;
+        public float linearAdjustment;
         public float scaleAdjustment;
 
         public HediffCompProperties_ToolPowerAdjust()
@@ -39,7 +39,12 @@ namespace EBF.Hediffs
                 {
                     builder.Append("+");
                 }
-                builder.Append(linearAdjustment.ToStringCached());
+                // truncate it to 2dp and then print the value
+                int frontVal = (int)linearAdjustment;
+                builder.Append(frontVal.ToStringCached());
+                builder.Append('.');
+                int backVal = (int)(linearAdjustment * 100);
+                builder.Append(backVal.ToStringCached());
                 return builder.ToString();
             }
         }
