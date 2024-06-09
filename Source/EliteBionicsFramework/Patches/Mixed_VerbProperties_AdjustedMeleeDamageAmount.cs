@@ -56,14 +56,14 @@ namespace EBF.Patches
                 return;
             }
             // has valid upgrade; essentially, recalculate the thing.
-            float newVal = OriginalAdjustedMeleeDamageAmount(originalTool, attacker, equipment, null);
+            float newVal = OriginalAdjustedMeleeDamageAmount(__instance, originalTool, attacker, equipment, null);
             newVal *= adjustInfo.scalingAdj;
             newVal += adjustInfo.linearAdj;
             __result = newVal;
         }
 
         [HarmonyReversePatch]
-        public static float OriginalAdjustedMeleeDamageAmount(Tool tool, Pawn attacker, Thing equipment, HediffComp_VerbGiver hediffCOmpSource)
+        public static float OriginalAdjustedMeleeDamageAmount(VerbProperties __instance, Tool tool, Pawn attacker, Thing equipment, HediffComp_VerbGiver hediffCOmpSource)
         {
             // this gets the original AdjustedMeleeDamageAmount in case we want a recalculation
             throw new NotImplementedException("Called a stub before reverse patching is complete.");
