@@ -432,6 +432,25 @@ In a confusing move, I have wrongly believed that error logs would appear even i
 
 The mistake was to push VEL when it was unnecessary. I deeply appologize for that.</content>
 	</HugsLib.UpdateFeatureDef>
+	
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_2_0_0</defName>
+		<assemblyVersion>5.2.0.0</assemblyVersion>
+		<content>A rather large update to Elite Bionics Framework in recent months. The rarely-used tool-power-adjust module has been rewritten entirely, and after around 3 years inside the beta purgatory, it is now finally properly released.
+
+- Tool power calculation is now consistent with the mod docs
+- Whole-body hediffs now apply their tool power adjustment to all of the pawn's tools instead of throwing an exception (e.g.: infernal heart from Beliar Xenotype)
+- Fixed "tool upgrade power adjustment" not actually replacing the original tool
+- Tool power linear adjustment may now be a float instead of int
+- Optimized calculation of tool power adjustment (read: should reduce lag with e.g. shoulder turret from LTS Integrated Implants)
+
+This opens up some interesting ideas for other modders:
+
+- Animal bionics that scales up the animal's original attack power
+- Bionic knuckles that slightly boosts a pawn's attack power
+- Abilities that applies a temporary hediff to buff a pawn's melee attack power
+- etc etc</content>
+	</HugsLib.UpdateFeatureDef>
 
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
