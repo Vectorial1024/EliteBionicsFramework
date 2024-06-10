@@ -65,20 +65,16 @@ namespace EBF.Util
             List<HediffWithComps> hediffList = [];
             List<HediffComp_ToolPowerAdjust> resultList = [];
             pawn.health.hediffSet.GetHediffs(ref hediffList);
+            // find implants on the exact part (and also whole-body hediffs)
             foreach (HediffWithComps candidateHediff in hediffList)
             {
-                if (candidateHediff is not Hediff_Implant)
+                if (candidateHediff.Part == null || (candidateHediff is Hediff_Implant && candidateHediff.Part.IsInGroup(hostGroup)))
                 {
-                    // Normal hediff only.
-                    continue;
-                }
-                if (candidateHediff.Part.IsInGroup(hostGroup))
-                {
-                    // Relevant.
+                    // it is a whole-body hediff OR an implant to the body part we want
+                    // we want this.
                     HediffComp_ToolPowerAdjust adjustmentComps = candidateHediff.TryGetComp<HediffComp_ToolPowerAdjust>();
                     if (adjustmentComps != null)
                     {
-                        // Have adjustment comps
                         resultList.Add(adjustmentComps);
                     }
                 }
