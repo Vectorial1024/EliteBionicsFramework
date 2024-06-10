@@ -1,4 +1,4 @@
-A common framework to change body part max HP. Please check the changelog tab for the latest version.
+A common framework to change body part max HP, along with a bit of something else. Please check the changelog tab for the latest version.
 
 Package ID: V1024.EBFramework
 
