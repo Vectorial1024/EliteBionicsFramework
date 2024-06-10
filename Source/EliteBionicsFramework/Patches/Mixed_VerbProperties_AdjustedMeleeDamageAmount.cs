@@ -46,7 +46,7 @@ namespace EBF.Patches
                 // just apply the changes and then can finish
                 __result *= adjustInfo.scalingAdj;
                 __result += adjustInfo.linearAdj;
-                EliteBionicsFrameworkMain.LogError("Power: " + __result + " adjust info " + adjustInfo.ToString());
+                // EliteBionicsFrameworkMain.LogError("Power (no source): " + __result + " adjust info " + adjustInfo.ToString());
                 return;
             }
             // is from hediff; we need to check for tool upgrades.
@@ -57,18 +57,17 @@ namespace EBF.Patches
                 return;
             }
             // has valid upgrade; essentially, recalculate the thing.
-            float newVal = OriginalAdjustedMeleeDamageAmount(__instance, originalTool, attacker, equipment, null);
+            // since I can't seem to tell it to recalculate with the original tool as the parameter, we will have to physically look at the source code.
+            // we discover the original source code only does multiplication, so we can infer what should be the damage buff that was applied
+            float replacementBasePower = tool.power;
+            float powerScale = (__result / replacementBasePower);
+            // EliteBionicsFrameworkMain.LogError("Game calculates value as " + __result + "; therefore the ratio is " + powerScale);
+            float newVal = originalTool.power * powerScale;
+            // float newVal = OriginalAdjustedMeleeDamageAmount(__instance, originalTool, attacker, equipment, null);
             newVal *= adjustInfo.scalingAdj;
             newVal += adjustInfo.linearAdj;
             __result = newVal;
-            EliteBionicsFrameworkMain.LogError("Power: " + __result + " adjust info " + adjustInfo.ToString());
-        }
-
-        [HarmonyReversePatch]
-        public static float OriginalAdjustedMeleeDamageAmount(VerbProperties __instance, Tool tool, Pawn attacker, Thing equipment, HediffComp_VerbGiver hediffCOmpSource)
-        {
-            // this gets the original AdjustedMeleeDamageAmount in case we want a recalculation
-            throw new NotImplementedException("Called a stub before reverse patching is complete.");
+            // EliteBionicsFrameworkMain.LogError("Power (hediff upgrade): " + __result + " adjust info " + adjustInfo.ToString() + " newVal " + newVal);
         }
     }
 }
