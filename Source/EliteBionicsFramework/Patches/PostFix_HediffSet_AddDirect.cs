@@ -22,6 +22,7 @@ namespace EBF.Patches
                 return;
             }
             MaxHealthCache.ResetCacheSpecifically(___pawn, hediff.Part);
+            ToolPowerInfoCache.ResetCacheForPawn(___pawn);
         }
     }
 }

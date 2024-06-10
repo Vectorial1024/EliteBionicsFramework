@@ -13,6 +13,7 @@ namespace EBF.Patches
         public static void OnPawnDestroyed(Pawn p)
         {
             MaxHealthCache.ResetCacheForPawn(p);
+            ToolPowerInfoCache.ResetCacheForPawn(p);
         }
     }
 }

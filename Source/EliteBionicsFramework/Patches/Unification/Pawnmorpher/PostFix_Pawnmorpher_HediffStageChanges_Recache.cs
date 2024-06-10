@@ -23,6 +23,7 @@ namespace EBF.Patches.Unification.Pawnmorpher
         {
             // state changed; recalculate the health!
             MaxHealthCache.ResetCacheForPawn(__instance.pawn);
+            ToolPowerInfoCache.ResetCacheForPawn(__instance.pawn);
         }
     }
 }

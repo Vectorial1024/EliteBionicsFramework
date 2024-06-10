@@ -14,6 +14,7 @@ namespace EBF.Patches
             // max HP depends on body size, which then depends on the pawn's life stage
             // this listens for life stage changes, so that we can recalculate the cached max HP.
             MaxHealthCache.ResetCacheForPawn(__instance.pawn);
+            ToolPowerInfoCache.ResetCacheForPawn(__instance.pawn);
         }
     }
 }

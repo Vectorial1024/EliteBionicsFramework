@@ -14,6 +14,7 @@ namespace EBF.Patches
             LongEventHandler.ExecuteWhenFinished(delegate
             {
                 MaxHealthCache.ResetCache();
+                ToolPowerInfoCache.ResetCache();
                 AssertionUtil.GameStartAssertion();
             });
         }
