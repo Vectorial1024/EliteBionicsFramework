@@ -46,6 +46,7 @@ namespace EBF.Patches
                 // just apply the changes and then can finish
                 __result *= adjustInfo.scalingAdj;
                 __result += adjustInfo.linearAdj;
+                EliteBionicsFrameworkMain.LogError("Power: " + __result + " adjust info " + adjustInfo.ToString());
                 return;
             }
             // is from hediff; we need to check for tool upgrades.
@@ -60,6 +61,7 @@ namespace EBF.Patches
             newVal *= adjustInfo.scalingAdj;
             newVal += adjustInfo.linearAdj;
             __result = newVal;
+            EliteBionicsFrameworkMain.LogError("Power: " + __result + " adjust info " + adjustInfo.ToString());
         }
 
         [HarmonyReversePatch]
