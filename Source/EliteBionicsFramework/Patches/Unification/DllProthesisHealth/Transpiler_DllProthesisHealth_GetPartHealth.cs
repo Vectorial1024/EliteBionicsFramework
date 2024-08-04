@@ -16,7 +16,7 @@ namespace EBF.Patches.Unification.DllProthesisHealth
 
         public static MethodBase TargetMethod()
         {
-            return AccessTools.Method("ProthesisHealth.HediffSet_GetPartHealth_ParagonPatch:Prefix");
+            return AccessTools.Method("ProthesisHealth.HediffSet_GetPartHealth:Prefix");
         }
 
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)

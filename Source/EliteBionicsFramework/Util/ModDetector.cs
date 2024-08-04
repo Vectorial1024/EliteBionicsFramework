@@ -9,9 +9,9 @@ namespace EBF.Util
 {
     public class ModDetector
     {
-        internal static string PackageIdCyberFaunaOfficial = "Daniledman.CyberFauna";
+        internal static string PackageIdCyberFaunaOfficial = "Mlie.CyberFauna";
 
-        internal static string PackageIdMechalitCoreOfficial = "Daniledman.MechalitCore";
+        internal static string PackageIdMechalitCoreOfficial = "Mlie.MechalitCoreV2";
 
         internal static IEnumerable<ModContentPack> RunningActiveMods = LoadedModManager.RunningMods.Where((ModContentPack pack) => pack != null && pack.ModMetaData.Active);
 

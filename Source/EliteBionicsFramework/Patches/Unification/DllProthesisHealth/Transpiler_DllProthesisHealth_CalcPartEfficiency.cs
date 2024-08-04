@@ -16,7 +16,7 @@ namespace EBF.Patches.Unification.DllProthesisHealth
 
         public static MethodBase TargetMethod()
         {
-            return AccessTools.Method("ProthesisHealth.PawnCapacityUtility_CalculatePartEfficiency_ParagonPatch:Prefix");
+            return AccessTools.Method("ProthesisHealth.PawnCapacityUtility_CalculatePartEfficiency:Prefix");
         }
 
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)

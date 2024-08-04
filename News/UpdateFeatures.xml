@@ -452,6 +452,12 @@ This opens up some interesting ideas for other modders:
 - etc etc</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_2_0_1</defName>
+		<assemblyVersion>5.2.0.1</assemblyVersion>
+		<content>Retargetted ProthesisHealth (i.e., Mechalit Core and Cyber Fauna) to use Mlie's community service version for RW 1.5.</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>

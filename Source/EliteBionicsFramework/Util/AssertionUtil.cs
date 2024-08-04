@@ -40,7 +40,7 @@ namespace EBF.Util
                 builder.AppendLine();
                 builder.AppendLine("You are using Cyber Fauna, and we do support Cyber Fauna. But, you are using a version of Cyber Fauna that we do not support.");
                 builder.AppendLine();
-                builder.AppendLine("We expect to find Cyber Fauna (Mod ID " + ModDetector.PackageIdCyberFaunaOfficial + "; Steam ID 1548649032).");
+                builder.AppendLine("We expect to find Cyber Fauna (Mod ID " + ModDetector.PackageIdCyberFaunaOfficial + "; Steam ID 3263134806).");
                 builder.AppendLine();
                 builder.AppendLine("You should double check your mod list.");
                 MakeNewAssertionMessageBox(builder.ToString());
@@ -63,7 +63,7 @@ namespace EBF.Util
                 builder.AppendLine();
                 builder.AppendLine("You are using Mechalit Core, and we do support Mechalit Core. But, you are using a version of Mechalit Core that we do not support.");
                 builder.AppendLine();
-                builder.AppendLine("We expect to find Mechalit Core (Mod ID " + ModDetector.PackageIdMechalitCoreOfficial + "; Steam ID 2659987145).");
+                builder.AppendLine("We expect to find Mechalit Core (Mod ID " + ModDetector.PackageIdMechalitCoreOfficial + "; Steam ID 3263897519).");
                 builder.AppendLine();
                 builder.AppendLine("You should double check your mod list.");
                 MakeNewAssertionMessageBox(builder.ToString());
