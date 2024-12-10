@@ -75,5 +75,7 @@ namespace EBF.Util
         public static bool BetterInfoCardIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("BetterInfoCard"));
 
         public static bool SaveOurShips2IsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Save Our Ships 2"));
+
+        public static bool AlteredCarbon2IsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Altered Carbon 2"));
     }
 }
