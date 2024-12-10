@@ -8,7 +8,7 @@ using Verse;
 namespace EBF.Transpilers.AlteredCarbon
 {
     [HarmonyPatch]
-    public class Transpiler_AC2_StatWorker_BodyPart
+    public class Transpiler_AC2_NeuralStack_SpawnStack
     {
         public static bool Prepare()
         {
