@@ -3,7 +3,7 @@ using HarmonyLib;
 using System.Reflection;
 using Verse;
 
-namespace EBF.Patches.Unification
+namespace EBF.Patches.SOS2
 {
     [HarmonyPatch]
     public class PreFix_SOS2_HediffHologram_HealMissingPart
