@@ -68,7 +68,7 @@ namespace EBF.Util
             // find implants on the exact part (and also whole-body hediffs)
             foreach (HediffWithComps candidateHediff in hediffList)
             {
-                if (candidateHediff.Part == null || (candidateHediff is Hediff_Implant && candidateHediff.Part.IsInGroup(hostGroup)))
+                if (candidateHediff.Part == null || ((candidateHediff is Hediff_Implant && candidateHediff is not Hediff_AddedPart) && candidateHediff.Part.IsInGroup(hostGroup)))
                 {
                     // it is a whole-body hediff OR an implant to the body part we want
                     // we want this.
@@ -95,7 +95,7 @@ namespace EBF.Util
             // find implants on the exact part first (and also whole-body hediffs)
             foreach (Hediff hediff in pawn.health.hediffSet.hediffs)
             {
-                if (hediff.Part == null || (hediff.Part == bodyPartSource && hediff is Hediff_Implant))
+                if (hediff.Part == null || (hediff.Part == bodyPartSource && (hediff is Hediff_Implant && hediff is not Hediff_AddedPart)))
                 {
                     // it is a whole-body hediff OR an implant to the body part we want
                     // we want this.
@@ -114,7 +114,7 @@ namespace EBF.Util
                 // we do not check the base value here; we simply aggregate the adjustment
                 foreach (Hediff hediff in pawn.health.hediffSet.hediffs)
                 {
-                    if (hediff.Part == bodyPartSource && hediff is not Hediff_Implant)
+                    if (hediff.Part == bodyPartSource && (hediff is not Hediff_Implant || hediff is Hediff_AddedPart))
                     {
                         // it is a regular hediff to the body part we want
                         // we want this.
