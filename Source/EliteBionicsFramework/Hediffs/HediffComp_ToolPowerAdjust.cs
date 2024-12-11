@@ -29,11 +29,6 @@ namespace EBF.Hediffs
                     // other cases attempt to use original (base) power for adjustment
                     builder.Append("Adjusting original verb power");
                 }
-                /*
-                float rawMaxHP = parent.Part.def.GetRawMaxHealth(parent.pawn);
-                builder.Append("Base HP: ");
-                builder.Append(rawMaxHP);
-                */
 
                 // Scale adjustment tooltip
                 if (Props.scaleAdjustment != 0)
