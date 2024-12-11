@@ -19,7 +19,7 @@ namespace EBF.Hediffs
 
                 // Base verb power tooltip
                 // note: since there can be multiple possible tools that we are adjusting, we can only provide vague phrases here.
-                if (parent is Hediff_Implant)
+                if (parent is Hediff_Implant && parent is not Hediff_AddedPart)
                 {
                     // hediff-implant respects the existing base verb power
                     builder.Append("Adjusting existing verb power");
