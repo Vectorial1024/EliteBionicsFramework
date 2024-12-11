@@ -18,6 +18,17 @@ namespace EBF.Hediffs
                 StringBuilder builder = new StringBuilder("");
 
                 // Base verb power tooltip
+                // note: since there can be multiple possible tools that we are adjusting, we can only provide vague phrases here.
+                if (parent is Hediff_Implant)
+                {
+                    // hediff-implant respects the existing base verb power
+                    builder.Append("Adjusting existing verb power");
+                }
+                else
+                {
+                    // other cases attempt to use original (base) power for adjustment
+                    builder.Append("Adjusting original verb power");
+                }
                 /*
                 float rawMaxHP = parent.Part.def.GetRawMaxHealth(parent.pawn);
                 builder.Append("Base HP: ");
