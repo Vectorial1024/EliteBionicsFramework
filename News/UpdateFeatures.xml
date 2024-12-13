@@ -464,6 +464,20 @@ This opens up some interesting ideas for other modders:
 		<content>Added compatibility with BetterPawnInfo.</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_3_0_0</defName>
+		<assemblyVersion>5.3.0.0</assemblyVersion>
+		<content>Early season's greetings!
+
+- Fixed inconsistency with tool power calculation (basically, general bionic implants vs AddedPart bionics)
+- Added clarification tooltip on tool power adjustment effects
+- Added compatibility with Save Our Ships 2
+- Added compatibility with Altered Carbon 2
+
+With this, our RimWorld 1.5 update is complete.
+</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
