@@ -469,7 +469,7 @@ This opens up some interesting ideas for other modders:
 		<assemblyVersion>5.3.0.0</assemblyVersion>
 		<content>Early season's greetings!
 
-- Fixed inconsistency with tool power calculation (basically, general bionic implants vs AddedPart bionics)
+- Fixed inconsistency with tool power calculation (basically, general bionic implants vs AddedPart bionics); previously, this may result in unintended OP bionics
 - Added clarification tooltip on tool power adjustment effects
 - Added compatibility with Save Our Ships 2
 - Added compatibility with Altered Carbon 2
