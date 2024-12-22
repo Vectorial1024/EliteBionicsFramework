@@ -478,6 +478,12 @@ With this, our RimWorld 1.5 update is complete.
 </content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_3_0_1</defName>
+		<assemblyVersion>5.3.0.1</assemblyVersion>
+		<content>HotFix: fixed Altered Carbon compatibility not working.</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
