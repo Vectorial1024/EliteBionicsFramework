@@ -21,10 +21,10 @@ namespace EBF.Patches.AlteredCarbon
             // we need to find the 2 lambdas inlined by the compiler
             // first find the type...
             Type theType = AccessTools.TypeByName("AlteredCarbon.Building_SleeveGestator");
-            // then find the self-anon methods containing the name "PutCorpseForRepurposing" (we can't figure out a better way yet)
-            string targetName = "PutCorpseForRepurposing";
-            IEnumerable<MethodInfo> candidateMethods = theType.GetMethods(BindingFlags.NonPublic).Where((MethodInfo method) => {
-                return method.Name != targetName && method.Name.Contains(targetName);
+            // then find the methods with the signature func(Hediff_MissingPart)
+            IEnumerable<MethodInfo> candidateMethods = theType.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic).Where((MethodInfo method) => {
+                ParameterInfo[] parameters = method.GetParameters();
+                return parameters.Length == 1 && parameters[0].GetType() == typeof(Hediff_MissingPart);
             });
             // since Harmony can only target 1 method at a time, pick only one of them
             return candidateMethods.ElementAt(1);
