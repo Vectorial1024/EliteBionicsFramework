@@ -490,6 +490,15 @@ With this, our RimWorld 1.5 update is complete.
 		<content>HotFix2: fixed Altered Carbon compatibility not working. (I'm eyeballing it)</content>
 	</HugsLib.UpdateFeatureDef>
 
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_3_1_0</defName>
+		<assemblyVersion>5.3.1.0</assemblyVersion>
+		<content>Another season, another update for Elite Bionics Framework.
+
+- [BioTech] Fixed Xenotype-related body part max HP problems
+- Finally fixed Altered Carbon patching problems by using an alternative approach</content>
+	</HugsLib.UpdateFeatureDef>
+
     <!--
 	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
 		<defName>Desync_1_2_0</defName>
