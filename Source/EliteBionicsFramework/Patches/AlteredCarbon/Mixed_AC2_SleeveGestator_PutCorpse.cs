@@ -30,6 +30,7 @@ namespace EBF.Patches.AlteredCarbon
             PostFix_BodyPart_GetMaxHealth.TurnOffWarning();
         }
 
+        [HarmonyPostfix]
         public static void EndIgnoreEbf()
         {
             PostFix_BodyPart_GetMaxHealth.TurnOnWarning();
