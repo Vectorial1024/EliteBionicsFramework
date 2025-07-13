@@ -6,7 +6,7 @@ namespace EBF.Util
 {
     public static class DebugActionsEBF
     {
-        [DebugAction("Elite Bionics Framework", name = "Dump mod detection info")]
+        [DebugAction("Elite Bionics Framework", "Dump mod detection info")]
         public static void DumpModDetectionInfo()
         {
             StringBuilder builder = new StringBuilder("Elite Bionics Framework: mod detection info");
