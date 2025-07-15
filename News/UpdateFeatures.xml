@@ -499,11 +499,9 @@ With this, our RimWorld 1.5 update is complete.
 - Finally fixed Altered Carbon patching problems by using an alternative approach</content>
 	</HugsLib.UpdateFeatureDef>
 
-    <!--
-	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
-		<defName>Desync_1_2_0</defName>
-		<assemblyVersion>1.2.0</assemblyVersion>
-		<content>First paragraph.|img:Things/Item/Meal/Fine,Things/Item/Meal/Lavish,Things/Item/Meal/Simple|caption:This is a caption.|Another paragraph with &lt;b&gt;rich text&lt;/b&gt;.</content>
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v5_4_0</defName>
+		<assemblyVersion>5.4.0</assemblyVersion>
+		<content>This mod is now updated for RimWorld 1.6, with no code/feature changes. As usual, we will be semi-regularly rechecking for supported mod updates in the coming days/weeks/months.</content>
 	</HugsLib.UpdateFeatureDef>
-    -->
 </Defs>
