@@ -18,14 +18,14 @@
     <DebugType>none</DebugType>
     <LangVersion>latest</LangVersion>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\v1.5\Assemblies\</OutputPath>
+    <OutputPath>..\..\v1.6\Assemblies\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.5.4069" />
-    <PackageReference Include="Lib.Harmony" Version="2.3.3">
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4518" />
+    <PackageReference Include="Lib.Harmony" Version="2.3.6">
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
-    <PackageReference Include="UnlimitedHugs.Rimworld.HugsLib" Version="11.0.3">
+    <PackageReference Include="UnlimitedHugs.Rimworld.HugsLib" Version="12.0.0">
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
   </ItemGroup>
