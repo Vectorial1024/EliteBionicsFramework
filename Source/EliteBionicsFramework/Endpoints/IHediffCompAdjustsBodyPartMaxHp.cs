@@ -17,6 +17,6 @@ namespace EBF.Endpoints
         /// <para/>
         /// See the README for some examples.
         /// </summary>
-        public abstract HediffCompProperties_MaxHPAdjust_Fake MaxHpAdjustProp { get; }
+        public abstract HediffCompProperties_MaxHPAdjust_Fake EbfMaxHpAdjustProp { get; }
     }
 }
