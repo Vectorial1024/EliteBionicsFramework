@@ -1,6 +1,4 @@
-﻿using EBF.Hediffs;
-
-namespace EBF.Endpoints
+﻿namespace EBF.API
 {
     /// <summary>
     /// An outward-facing interface for the HediffComp classes of external mods:
@@ -10,13 +8,13 @@ namespace EBF.Endpoints
     /// <para/>
     /// This is the only approved place to notify EBF about C#-based body part max HP adjustment.
     /// </summary>
-    public interface IHediffCompAdjustsBodyPartMaxHp
+    public interface IHediffCompAdjustsMaxHp
     {
         /// <summary>
-        /// The fake HediffCompProperties that describes how this HediffComp should adjust the max HP of the affected body part.
+        /// The struct that describes how this HediffComp should adjust the max HP of the affected body part.
         /// <para/>
         /// See the README for some examples.
         /// </summary>
-        public abstract HediffCompProperties_MaxHPAdjust_Fake EbfMaxHpAdjustProp { get; }
+        public abstract BodyPartMaxHpAdjustment MaxHpAdjustment { get; }
     }
 }
