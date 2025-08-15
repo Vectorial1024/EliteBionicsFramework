@@ -5,7 +5,21 @@
     <RootNamespace>EBF.API</RootNamespace>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    
+    <!-- NuGet -->
+    <PackageId>Vectorial1024.EliteBionicsFrameworkAPI</PackageId>
+    <Authors>Vectorial1024</Authors>
+    <Company>Vectorial1024</Company>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0</FileVersion>
+    <Title>EliteBionicsFrameworkAPI</Title>
+    <Description>A minimal interface for other mods to provide EBF-compliant data to Elite Bionics Framework, a RimWorld mod that modifies body part max HP.</Description>
+    <PackageTags></PackageTags>
+    <RepositoryUrl>https://github.com/Vectorial1024/EliteBionicsFramework</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
