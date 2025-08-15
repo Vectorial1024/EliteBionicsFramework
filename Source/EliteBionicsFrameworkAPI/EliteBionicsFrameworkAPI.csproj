@@ -18,7 +18,7 @@
     <DebugType>none</DebugType>
     <LangVersion>latest</LangVersion>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\v1.6\Assemblies\</OutputPath>
+    <OutputPath>obj\Release</OutputPath>
   </PropertyGroup>
   <ItemGroup>
   </ItemGroup>

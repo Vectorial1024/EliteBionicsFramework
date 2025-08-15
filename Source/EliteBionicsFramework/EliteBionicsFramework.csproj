@@ -29,4 +29,9 @@
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EliteBionicsFrameworkAPI\EliteBionicsFrameworkAPI.csproj">
+      <Private>true</Private>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
