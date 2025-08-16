@@ -26,9 +26,6 @@ namespace EBF.Util
 
         // note: due to CONN officially changing to use EBF directly, there is no longer any need to keep CONN-related fields
 
-        private static Type CyberFauna_Type_CompPartHitPoints = null;
-        private static Type CyberFauna_Type_CompPropsPartHitPoints = null;
-
         private static Type Pawnmorpher_Type_MutationUtilities = null;
         private static Type Pawnmorpher_Type_MutationTracker = null;
         private static Type Pawnmorpher_Type_HediffAddedMutation = null;
