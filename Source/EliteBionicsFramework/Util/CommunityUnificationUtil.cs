@@ -73,7 +73,6 @@ namespace EBF.Util
 
         private static void TryPatchCyberFauna()
         {
-
             if (ModDetector.CyberFaunaIsLoaded)
             {
                 // we are hard-throwing the exception because we are not going to support a fishy mod maker,
@@ -84,7 +83,6 @@ namespace EBF.Util
 
         private static void TryPatchMechalitCore()
         {
-
             if (ModDetector.MechalitCoreIsLoaded)
             {
                 // we are hard-throwing the exception because we are not going to support a fishy mod maker,
