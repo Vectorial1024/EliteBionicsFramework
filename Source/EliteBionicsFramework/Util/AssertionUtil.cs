@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using Verse;
 
 namespace EBF.Util
@@ -32,21 +28,16 @@ namespace EBF.Util
             {
                 return false;
             }
-            if (ModDetector.CyberFaunaIsLoaded && !ModDetector.CyberFaunaOfficialIsLoaded)
-            {
-                StringBuilder builder = new StringBuilder();
-                builder.Append(EliteBionicsFrameworkMain.MODPREFIX);
-                builder.AppendLine("CHECK FAILED; REASON:");
-                builder.AppendLine();
-                builder.AppendLine("You are using Cyber Fauna, and we do support Cyber Fauna. But, you are using a version of Cyber Fauna that we do not support.");
-                builder.AppendLine();
-                builder.AppendLine("We expect to find Cyber Fauna (Mod ID " + ModDetector.PackageIdCyberFaunaOfficial + "; Steam ID 3263134806).");
-                builder.AppendLine();
-                builder.AppendLine("You should double check your mod list.");
-                MakeNewAssertionMessageBox(builder.ToString());
-                return true;
-            }
-            return false;
+
+            StringBuilder builder = new StringBuilder();
+            builder.Append(EliteBionicsFrameworkMain.MODPREFIX);
+            builder.AppendLine("CHECK FAILED; REASON:");
+            builder.AppendLine();
+            builder.AppendLine("You are using Cyber Fauna, but unfortunately, we do not feel comfortable supporting Cyber Fauna.");
+            builder.AppendLine();
+            builder.AppendLine("You should consider disusing it, or find alternatives to it.");
+            MakeNewAssertionMessageBox(builder.ToString());
+            return true;
         }
 
         private static bool AssertMechalitCore()
@@ -55,21 +46,16 @@ namespace EBF.Util
             {
                 return false;
             }
-            if (ModDetector.MechalitCoreIsLoaded && !ModDetector.MechalitCoreOfficialIsLoaded)
-            {
-                StringBuilder builder = new StringBuilder();
-                builder.Append(EliteBionicsFrameworkMain.MODPREFIX);
-                builder.AppendLine("CHECK FAILED; REASON:");
-                builder.AppendLine();
-                builder.AppendLine("You are using Mechalit Core, and we do support Mechalit Core. But, you are using a version of Mechalit Core that we do not support.");
-                builder.AppendLine();
-                builder.AppendLine("We expect to find Mechalit Core (Mod ID " + ModDetector.PackageIdMechalitCoreOfficial + "; Steam ID 3263897519).");
-                builder.AppendLine();
-                builder.AppendLine("You should double check your mod list.");
-                MakeNewAssertionMessageBox(builder.ToString());
-                return true;
-            }
-            return false;
+
+            StringBuilder builder = new StringBuilder();
+            builder.Append(EliteBionicsFrameworkMain.MODPREFIX);
+            builder.AppendLine("CHECK FAILED; REASON:");
+            builder.AppendLine();
+            builder.AppendLine("You are using Mechalit Core, but unfortunately, we do not feel comfortable supporting Mechalit Core.");
+            builder.AppendLine();
+            builder.AppendLine("You should consider disusing it, or find alternatives to it.");
+            MakeNewAssertionMessageBox(builder.ToString());
+            return true;
         }
 
         private static void MakeNewAssertionMessageBox(string text)

@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Verse;
 
 namespace EBF.Util
 {
     public class ModDetector
     {
-        internal static string PackageIdCyberFaunaOfficial = "Mlie.CyberFauna";
-
-        internal static string PackageIdMechalitCoreOfficial = "Mlie.MechalitCoreV2";
-
         internal static IEnumerable<ModContentPack> RunningActiveMods = LoadedModManager.RunningMods.Where((ModContentPack pack) => pack != null && pack.ModMetaData.Active);
 
         /// <summary>
@@ -51,22 +44,10 @@ namespace EBF.Util
 
         public static bool CyberFaunaIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Cyber Fauna"));
 
-        public static bool CyberFaunaOfficialIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.PackageId == PackageIdCyberFaunaOfficial.ToLower());
-
         public static bool MechalitCoreIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Mechalit Core"));
-
-        public static bool MechalitCoreOfficialIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.PackageId == PackageIdMechalitCoreOfficial.ToLower());
 
         // Half Dragons has been sunset.
         // public static bool HalfDragonsIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Half dragons"));
-
-        /// <summary>
-        /// Determines whether the DLL "ProthesisHealth" has been loaded.
-        /// <para/>
-        /// At this moment, both Cyber Fauna and Mechalit Core utilizes this dll, and a true value here indicates that at least one of the two mods are loaded. 
-        /// Whichever one is loaded, this you should ask in another query.
-        /// </summary>
-        public static bool DllProthesisHealthisLoaded => CyberFaunaOfficialIsLoaded || MechalitCoreOfficialIsLoaded;
 
         public static bool VanillaPsycastsExpandedIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Vanilla Psycasts Expanded"));
 

@@ -113,23 +113,9 @@ namespace EBF.Util
 
             if (ModDetector.CyberFaunaIsLoaded)
             {
-                // test
-                if (!ModDetector.CyberFaunaOfficialIsLoaded)
-                {
-                    throw new NotSupportedException(EliteBionicsFrameworkMain.MODPREFIX + "We do not support your version of Cyber Fauna.");
-                }
-                try
-                {
-                    CyberFauna_Type_CompPartHitPoints = AccessTools.TypeByName("ProthesisHealth.HediffComp_PartHitPoints");
-                    CyberFauna_Type_CompPropsPartHitPoints = AccessTools.TypeByName("ProthesisHealth.HediffCompProperties_PartHitPoints");
-                    CyberFauna_TryGetRelevantComp = RW_Hediff_TryGetComp.MakeGenericMethod(new[] { CyberFauna_Type_CompPartHitPoints });
-                    HasLoadedProthesisHealth = true;
-                }
-                catch (ArgumentNullException)
-                {
-                    // we failed to make a generic method
-                    EliteBionicsFrameworkMain.LogError("Something about CyberFauna changed; please report this to us.");
-                }
+                // we are hard-throwing the exception because we are not going to support a fishy mod maker,
+                // and previous builds are unaffected due to RimWorld's multi-version feature.
+                throw new NotSupportedException(EliteBionicsFrameworkMain.MODPREFIX + "We do not feel comfortable supporting Cyber Fauna. Consider disusing it or finding alternatives.");
             }
         }
 
@@ -138,26 +124,9 @@ namespace EBF.Util
 
             if (ModDetector.MechalitCoreIsLoaded)
             {
-                // it is infuriating that both cyber fauna and mechalit core is using the same dll for stuff yet there are two copies of it in total
-                if (!ModDetector.MechalitCoreOfficialIsLoaded)
-                {
-                    throw new NotSupportedException(EliteBionicsFrameworkMain.MODPREFIX + "We do not support your version of Mechalit Core.");
-                }
-                try
-                {
-                    if (!HasLoadedProthesisHealth)
-                    {
-                        CyberFauna_Type_CompPartHitPoints = AccessTools.TypeByName("ProthesisHealth.HediffComp_PartHitPoints");
-                        CyberFauna_Type_CompPropsPartHitPoints = AccessTools.TypeByName("ProthesisHealth.HediffCompProperties_PartHitPoints");
-                        CyberFauna_TryGetRelevantComp = RW_Hediff_TryGetComp.MakeGenericMethod(new[] { CyberFauna_Type_CompPartHitPoints });
-                        HasLoadedProthesisHealth = true;
-                    }
-                }
-                catch (ArgumentNullException)
-                {
-                    // we failed to make a generic method
-                    EliteBionicsFrameworkMain.LogError("Something about MechalitCore changed; please report this to us.");
-                }
+                // we are hard-throwing the exception because we are not going to support a fishy mod maker,
+                // and previous builds are unaffected due to RimWorld's multi-version feature.
+                throw new NotSupportedException(EliteBionicsFrameworkMain.MODPREFIX + "We do not feel comfortable supporting Mechalit Core V2. Consider disusing it or finding alternatives.");
             }
         }
 
