@@ -68,7 +68,7 @@ namespace EBF.Patches
                 "adopt the EBF to clarify their intentions.\n" +
                 "For now, the unmodified max HP is returned.\n" +
                 "The detected mod comes from: " + namespaceString;
-                EliteBionicsFrameworkMain.LogError(errorMessage);
+                EliteBionicsFrameworkMod.LogError(errorMessage);
             }
             return;
         }

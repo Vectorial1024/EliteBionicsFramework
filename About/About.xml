@@ -19,22 +19,105 @@ This mod made use of the multi-version feature of RW, and therefore has compatib
 
 We strongly recommend you get a mod that alerts you about errors, e.g. Visible Error Logs.
 
+We also strongly recommend you get HugsLib or "Log Publisher from HugsLib" for easier error log sharing.
+
 As a rule of thumb, if Ludeon did not change much about the health system, then this mod should still continue to work even though it may say "the version number does not match".</description>
 	<url>https://github.com/Vectorial1024/EliteBionicsFramework</url>
 	<modDependencies>
 		<!-- It was stupid to require Visible Error Logs because the entire premise was wrong on my side. -->
 		<li>
-			<packageId>UnlimitedHugs.HugsLib</packageId>
-			<displayName>HugsLib</displayName>
-			<downloadUrl>https://github.com/UnlimitedHugs/RimworldHugsLib/releases/latest</downloadUrl>
-			<steamWorkshopUrl>steam://url/CommunityFilePage/818773962</steamWorkshopUrl>
+			<packageId>brrainz.harmony</packageId>
+			<displayName>Harmony</displayName>
+			<steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
 		</li>
 	</modDependencies>
+	<modDependenciesByVersion>
+		<v1.0>
+			<li>
+				<packageId>UnlimitedHugs.HugsLib</packageId>
+				<displayName>HugsLib</displayName>
+				<downloadUrl>https://github.com/UnlimitedHugs/RimworldHugsLib/releases/latest</downloadUrl>
+				<steamWorkshopUrl>steam://url/CommunityFilePage/818773962</steamWorkshopUrl>
+			</li>
+		</v1.0>
+		<v1.1>
+			<li>
+				<packageId>UnlimitedHugs.HugsLib</packageId>
+				<displayName>HugsLib</displayName>
+				<downloadUrl>https://github.com/UnlimitedHugs/RimworldHugsLib/releases/latest</downloadUrl>
+				<steamWorkshopUrl>steam://url/CommunityFilePage/818773962</steamWorkshopUrl>
+			</li>
+		</v1.1>
+		<v1.2>
+			<li>
+				<packageId>UnlimitedHugs.HugsLib</packageId>
+				<displayName>HugsLib</displayName>
+				<downloadUrl>https://github.com/UnlimitedHugs/RimworldHugsLib/releases/latest</downloadUrl>
+				<steamWorkshopUrl>steam://url/CommunityFilePage/818773962</steamWorkshopUrl>
+			</li>
+		</v1.2>
+		<v1.3>
+			<li>
+				<packageId>UnlimitedHugs.HugsLib</packageId>
+				<displayName>HugsLib</displayName>
+				<downloadUrl>https://github.com/UnlimitedHugs/RimworldHugsLib/releases/latest</downloadUrl>
+				<steamWorkshopUrl>steam://url/CommunityFilePage/818773962</steamWorkshopUrl>
+			</li>
+		</v1.3>
+		<v1.4>
+			<li>
+				<packageId>UnlimitedHugs.HugsLib</packageId>
+				<displayName>HugsLib</displayName>
+				<downloadUrl>https://github.com/UnlimitedHugs/RimworldHugsLib/releases/latest</downloadUrl>
+				<steamWorkshopUrl>steam://url/CommunityFilePage/818773962</steamWorkshopUrl>
+			</li>
+		</v1.4>
+		<v1.5>
+			<li>
+				<packageId>UnlimitedHugs.HugsLib</packageId>
+				<displayName>HugsLib</displayName>
+				<downloadUrl>https://github.com/UnlimitedHugs/RimworldHugsLib/releases/latest</downloadUrl>
+				<steamWorkshopUrl>steam://url/CommunityFilePage/818773962</steamWorkshopUrl>
+			</li>
+		</v1.5>
+	</modDependenciesByVersion>
 	<loadAfter>
-		<li>UnlimitedHugs.HugsLib</li>
+		<li>brrainz.harmony</li>
 		<li>rwmt.Multiplayer</li>
 		<li>V1024.VisibleErrorLogs</li>
 	</loadAfter>
+	<loadAfterByVersion>
+		<v1.0>
+			<li>UnlimitedHugs.HugsLib</li>
+			<li>rwmt.Multiplayer</li>
+			<li>V1024.VisibleErrorLogs</li>
+		</v1.0>
+		<v1.1>
+			<li>UnlimitedHugs.HugsLib</li>
+			<li>rwmt.Multiplayer</li>
+			<li>V1024.VisibleErrorLogs</li>
+		</v1.1>
+		<v1.2>
+			<li>UnlimitedHugs.HugsLib</li>
+			<li>rwmt.Multiplayer</li>
+			<li>V1024.VisibleErrorLogs</li>
+		</v1.2>
+		<v1.3>
+			<li>UnlimitedHugs.HugsLib</li>
+			<li>rwmt.Multiplayer</li>
+			<li>V1024.VisibleErrorLogs</li>
+		</v1.3>
+		<v1.4>
+			<li>UnlimitedHugs.HugsLib</li>
+			<li>rwmt.Multiplayer</li>
+			<li>V1024.VisibleErrorLogs</li>
+		</v1.4>
+		<v1.5>
+			<li>UnlimitedHugs.HugsLib</li>
+			<li>rwmt.Multiplayer</li>
+			<li>V1024.VisibleErrorLogs</li>
+		</v1.5>
+	</loadAfterByVersion>
 	<loadBefore>
 		<li>erdelf.HumanoidAlienRaces</li>
 		<li>com.yayo.yayoAni</li>

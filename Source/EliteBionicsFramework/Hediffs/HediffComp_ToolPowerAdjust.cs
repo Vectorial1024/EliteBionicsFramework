@@ -53,7 +53,7 @@ namespace EBF.Hediffs
         {
             get
             {
-                if (EliteBionicsFrameworkMain.SettingHandle_DisplayHpDiffInHediffName.Value)
+                if (EliteBionicsFrameworkMod.Settings.showHpDiffInHediffName)
                 {
                     StringBuilder builder = new StringBuilder("Verb power: ");
                     StringBuilder innerBuilder = new StringBuilder();

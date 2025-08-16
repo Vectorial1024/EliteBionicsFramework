@@ -30,7 +30,7 @@ namespace EBF.Util
             }
 
             StringBuilder builder = new StringBuilder();
-            builder.Append(EliteBionicsFrameworkMain.MODPREFIX);
+            builder.Append(EliteBionicsFrameworkMod.MODPREFIX);
             builder.AppendLine("CHECK FAILED; REASON:");
             builder.AppendLine();
             builder.AppendLine("You are using Cyber Fauna, but unfortunately, we do not feel comfortable supporting Cyber Fauna.");
@@ -48,7 +48,7 @@ namespace EBF.Util
             }
 
             StringBuilder builder = new StringBuilder();
-            builder.Append(EliteBionicsFrameworkMain.MODPREFIX);
+            builder.Append(EliteBionicsFrameworkMod.MODPREFIX);
             builder.AppendLine("CHECK FAILED; REASON:");
             builder.AppendLine();
             builder.AppendLine("You are using Mechalit Core, but unfortunately, we do not feel comfortable supporting Mechalit Core.");

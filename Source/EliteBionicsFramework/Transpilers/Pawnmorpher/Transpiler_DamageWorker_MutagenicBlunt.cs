@@ -76,7 +76,7 @@ namespace EBF.Transpilations.Pawnmorpher
             Type typeSelfAnon = AccessTools.TypeByName("Pawnmorph.Damage.Worker_MutagenicBlunt").GetNestedTypes(BindingFlags.NonPublic).Where((Type type) => type.GetField("pawn") != null).First();
             if (typeSelfAnon == null)
             {
-                EliteBionicsFrameworkMain.LogError("Patch failed: Pawnmorpher mutagenic blunt special effects, failed to find relevant self-anon type!");
+                EliteBionicsFrameworkMod.LogError("Patch failed: Pawnmorpher mutagenic blunt special effects, failed to find relevant self-anon type!");
                 // In the unlikely case of failing the search, modify nothing and return.
                 return instructions;
             }

@@ -81,7 +81,7 @@ namespace EBF.Util
                 catch (ArgumentNullException)
                 {
                     // we failed to make a generic method
-                    EliteBionicsFrameworkMain.LogError("Something about Quality Bionics changed; please report this to us.");
+                    EliteBionicsFrameworkMod.LogError("Something about Quality Bionics changed; please report this to us.");
                 }
             }
         }
@@ -103,7 +103,7 @@ namespace EBF.Util
                 catch (ArgumentNullException)
                 {
                     // we failed to make a generic method
-                    EliteBionicsFrameworkMain.LogError("Something about Quality Bionics (Continued) changed; please report this to us.");
+                    EliteBionicsFrameworkMod.LogError("Something about Quality Bionics (Continued) changed; please report this to us.");
                 }
             }
         }
@@ -115,7 +115,7 @@ namespace EBF.Util
             {
                 // we are hard-throwing the exception because we are not going to support a fishy mod maker,
                 // and previous builds are unaffected due to RimWorld's multi-version feature.
-                throw new NotSupportedException(EliteBionicsFrameworkMain.MODPREFIX + "We do not feel comfortable supporting Cyber Fauna. Consider disusing it or finding alternatives.");
+                throw new NotSupportedException(EliteBionicsFrameworkMod.MODPREFIX + "We do not feel comfortable supporting Cyber Fauna. Consider disusing it or finding alternatives.");
             }
         }
 
@@ -126,7 +126,7 @@ namespace EBF.Util
             {
                 // we are hard-throwing the exception because we are not going to support a fishy mod maker,
                 // and previous builds are unaffected due to RimWorld's multi-version feature.
-                throw new NotSupportedException(EliteBionicsFrameworkMain.MODPREFIX + "We do not feel comfortable supporting Mechalit Core V2. Consider disusing it or finding alternatives.");
+                throw new NotSupportedException(EliteBionicsFrameworkMod.MODPREFIX + "We do not feel comfortable supporting Mechalit Core V2. Consider disusing it or finding alternatives.");
             }
         }
 
@@ -144,7 +144,7 @@ namespace EBF.Util
                 catch (ArgumentNullException)
                 {
                     // we failed to make a generic method
-                    EliteBionicsFrameworkMain.LogError("Something about Pawnmorpher changed; please report this to us.");
+                    EliteBionicsFrameworkMod.LogError("Something about Pawnmorpher changed; please report this to us.");
                 }
             }
         }
@@ -272,7 +272,7 @@ namespace EBF.Util
 
         public static string GetCompLabelInBracketsDueToMaxHpAdjust(Pawn pawn, HediffWithComps hediffWithComps)
         {
-            if (!EliteBionicsFrameworkMain.SettingHandle_DisplayHpDiffInHediffName)
+            if (!EliteBionicsFrameworkMod.Settings.showHpDiffInHediffName)
             {
                 return "";
             }
@@ -326,7 +326,7 @@ namespace EBF.Util
 
         public static string GetCompLabelInBracketsDueToMaxHpAdjust(HediffCompProperties_MaxHPAdjust props)
         {
-            if (!EliteBionicsFrameworkMain.SettingHandle_DisplayHpDiffInHediffName)
+            if (!EliteBionicsFrameworkMod.Settings.showHpDiffInHediffName)
             {
                 return "";
             }

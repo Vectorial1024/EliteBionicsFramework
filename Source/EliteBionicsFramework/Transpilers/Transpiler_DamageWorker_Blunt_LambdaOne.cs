@@ -18,7 +18,7 @@ namespace EBF.Transpilations
             bool available = TargetMethod() != null;
             if (!available)
             {
-                EliteBionicsFrameworkMain.LogError("Failed to detect target self-anon type for patching: blunt lambda one");
+                EliteBionicsFrameworkMod.LogError("Failed to detect target self-anon type for patching: blunt lambda one");
             }
             return available;
         }
@@ -32,7 +32,7 @@ namespace EBF.Transpilations
             var potentialSelfAnons = AccessTools.TypeByName("Verse.DamageWorker_Blunt").GetNestedTypes(BindingFlags.NonPublic).Where((Type type) => type.GetFields().Length == 9);
             if (potentialSelfAnons.Count() == 0)
             {
-                EliteBionicsFrameworkMain.LogError("field-count criteria fail");
+                EliteBionicsFrameworkMod.LogError("field-count criteria fail");
                 return null;
             }
             Type typeSelfAnon = potentialSelfAnons.First();
@@ -47,7 +47,7 @@ namespace EBF.Transpilations
                 }
             }
             // could not find it
-            EliteBionicsFrameworkMain.LogError("field-count criteria fit, signature check fail");
+            EliteBionicsFrameworkMod.LogError("field-count criteria fit, signature check fail");
             return null;
         }
 

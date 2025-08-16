@@ -70,7 +70,7 @@ namespace EBF.Transpilations
             Type typeSelfAnon = typeof(DamageWorker_Blunt).GetNestedTypes(BindingFlags.NonPublic).Where((Type type) => type.GetField("pawn") != null).First();
             if (typeSelfAnon == null)
             {
-                EliteBionicsFrameworkMain.LogError("Patch failed: blunt special effects, failed to find relevant self-anon type!");
+                EliteBionicsFrameworkMod.LogError("Patch failed: blunt special effects, failed to find relevant self-anon type!");
                 // In the unlikely case of failing the search, modify nothing and return.
                 return instructions;
             }

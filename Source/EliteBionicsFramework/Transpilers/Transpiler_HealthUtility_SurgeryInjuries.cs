@@ -41,7 +41,7 @@ namespace EBF.Transpilations
             if (typeSelfAnon == null)
             {
                 // In the unlikely case where the search failed, change nothing and return.
-                EliteBionicsFrameworkMain.LogError("Patch failed: surgery injuries, failed to find relevant self-anon type!");
+                EliteBionicsFrameworkMod.LogError("Patch failed: surgery injuries, failed to find relevant self-anon type!");
                 return instructions;
             }
             // Successfully found the anon type
