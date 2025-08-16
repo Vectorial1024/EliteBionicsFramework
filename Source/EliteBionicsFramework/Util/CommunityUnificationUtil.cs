@@ -2,7 +2,6 @@
 using EBF.Patches;
 using EBF.Patches.Unification;
 using EBF.Patches.Unification.Pawnmorpher;
-using EBF.Patches.Unification.QualityBionics;
 using EBF.Patches.Unification.QualityBionicsContinued;
 using HarmonyLib;
 using RimWorld;
@@ -10,7 +9,6 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
-using UnityEngine;
 using Verse;
 
 namespace EBF.Util
@@ -18,12 +16,8 @@ namespace EBF.Util
     [StaticConstructorOnStartup]
     public class CommunityUnificationUtil
     {
-        private static MethodInfo RW_Hediff_TryGetComp = null;
+        private static readonly MethodInfo RW_Hediff_TryGetComp = null;
 
-        private static Type QualityBionics_Type_Main = null;
-        private static FieldInfo QualityBionics_Field_MainSettings = null;
-        private static Type QualityBionics_Type_QualityBionicsSettings = null;
-        private static MethodInfo QualityBionics_Method_GetQualityMultiplier = null;
         private static Type QualityBionics_Type_CompQualityBionics = null;
         private static MethodInfo QualityBionics_TryGetRelevantComp = null;
 
@@ -34,7 +28,6 @@ namespace EBF.Util
 
         private static Type CyberFauna_Type_CompPartHitPoints = null;
         private static Type CyberFauna_Type_CompPropsPartHitPoints = null;
-        private static MethodInfo CyberFauna_TryGetRelevantComp = null;
 
         private static Type Pawnmorpher_Type_MutationUtilities = null;
         private static Type Pawnmorpher_Type_MutationTracker = null;
@@ -44,9 +37,6 @@ namespace EBF.Util
         // hmmm... would we allow for others to modify the indentation strength?
         private static string IndentationSpace = "    ";
 
-        // special handling for ProthesisHealth which powers CyberFauna and MechalitCore
-        private static bool HasLoadedProthesisHealth = false;
-
         static CommunityUnificationUtil()
         {
             var methodSignature = new Type[] { typeof(Hediff) };
@@ -54,7 +44,6 @@ namespace EBF.Util
             methodSignature = null;
 
             // we are splitting this into several functions so that debugging can give us meaningful stacktraces
-            TryPatchQualityBionics();
             TryPatchQualityBionicsContinued();
             TryPatchCyberFauna();
             TryPatchMechalitCore();
@@ -62,29 +51,6 @@ namespace EBF.Util
         }
 
         #region Community Unification Mod Patching
-
-        private static void TryPatchQualityBionics()
-        {
-            if (ModDetector.QualityBionicsIsLoaded)
-            {
-                try
-                {
-                    QualityBionics_Type_Main = Type.GetType("QualityBionics.QualityBionicsMod, QualityBionics");
-                    QualityBionics_Field_MainSettings = QualityBionics_Type_Main.GetField("settings");
-
-                    QualityBionics_Type_QualityBionicsSettings = Type.GetType("QualityBionics.QualityBionicsSettings, QualityBionics");
-                    QualityBionics_Method_GetQualityMultiplier = QualityBionics_Type_QualityBionicsSettings.GetMethod("GetQualityMultipliersForHP");
-
-                    QualityBionics_Type_CompQualityBionics = Type.GetType("QualityBionics.HediffCompQualityBionics, QualityBionics");
-                    QualityBionics_TryGetRelevantComp = RW_Hediff_TryGetComp.MakeGenericMethod(new[] { QualityBionics_Type_CompQualityBionics });
-                }
-                catch (ArgumentNullException)
-                {
-                    // we failed to make a generic method
-                    EliteBionicsFrameworkMod.LogError("Something about Quality Bionics changed; please report this to us.");
-                }
-            }
-        }
 
         private static void TryPatchQualityBionicsContinued()
         {
@@ -392,12 +358,6 @@ namespace EBF.Util
                         continue;
                     }
                     // try if we can convert them into our own types
-                    var hediffCompQualityBionics = TryConvertQualityBionicsCompToFakeHpComp(hediffComp);
-                    if (hediffCompQualityBionics != null)
-                    {
-                        realAndFakeProps.Add(hediffCompQualityBionics);
-                        continue;
-                    }
                     var hediffCompQualityBionicsContinued = TryConvertQualityBionicsContinuedCompToFakeHpComp(hediffComp);
                     if (hediffCompQualityBionicsContinued != null)
                     {
@@ -405,12 +365,6 @@ namespace EBF.Util
                         continue;
                     }
                     // note: due to CONN officially changing to use EBF directly, we no longer need to check for CONN
-                    var hediffCompCyberFauna = TryConvertCyberFaunaCompToFakeHpComp(hediffComp);
-                    if (hediffCompCyberFauna != null)
-                    {
-                        realAndFakeProps.Add(hediffCompCyberFauna);
-                        continue;
-                    }
                 }
             }
 
@@ -436,12 +390,6 @@ namespace EBF.Util
             foreach (HediffComp comp in hediffWithComps.comps)
             {
                 HediffCompProperties_MaxHPAdjust_Fake tempCheck = null;
-                tempCheck = TryConvertQualityBionicsCompToFakeHpComp(comp);
-                if (tempCheck != null)
-                {
-                    list.Add(tempCheck);
-                    continue;
-                }
                 tempCheck = TryConvertQualityBionicsContinuedCompToFakeHpComp(comp);
                 if (tempCheck != null)
                 {
@@ -449,43 +397,8 @@ namespace EBF.Util
                     continue;
                 }
                 // note: due to CONN officially changing to use EBF directly, we no longer need to check for CONN
-                tempCheck = TryConvertCyberFaunaCompToFakeHpComp(comp);
-                if (tempCheck != null)
-                {
-                    list.Add(tempCheck);
-                    continue;
-                }
             }
             return list;
-        }
-
-        public static HediffCompProperties_MaxHPAdjust_Fake TryConvertQualityBionicsCompToFakeHpComp(HediffComp comp)
-        {
-            if (QualityBionics_Type_Main == null)
-            {
-                // not loaded
-                return null;
-            }
-            if (QualityBionics_Type_CompQualityBionics.IsInstanceOfType(comp))
-            {
-                // is instance of comp
-                QualityCategory quality = (QualityCategory)QualityBionics_Type_CompQualityBionics.GetField("quality").GetValue(comp);
-                // EliteBionicsFrameworkMain.LogError("quality " + quality.ToStringSafe());
-                object qualityBionicsSettings = QualityBionics_Type_Main.GetField("settings").GetValue(null);
-                // EliteBionicsFrameworkMain.LogError("settings " + qualityBionicsSettings.ToStringSafe());
-                float scalingMultiplier = Reverse_QualityBionics_GetQualityMultiplier.GetQualityMultipliersForHP(qualityBionicsSettings, quality);
-                // float scalingMultiplier = (float) QualityBionics_Method_GetQualityMultiplier.Invoke(qualityBionicsSettings, new object[] { quality });
-                // EliteBionicsFrameworkMain.LogError("scaler " + scalingMultiplier.ToStringSafe());
-                HediffCompProperties_MaxHPAdjust_Fake fakeComp = new HediffCompProperties_MaxHPAdjust_Fake
-                {
-                    linearAdjustment = 0,
-                    scaleAdjustment = scalingMultiplier - 1,
-                    providerNamespace = QualityBionics_Type_Main.Namespace
-                };
-                // EliteBionicsFrameworkMain.LogError("fakeComp " + fakeComp.ToStringSafe());
-                return fakeComp;
-            }
-            return null;
         }
 
         public static HediffCompProperties_MaxHPAdjust_Fake TryConvertQualityBionicsContinuedCompToFakeHpComp(HediffComp comp)
@@ -510,30 +423,6 @@ namespace EBF.Util
                     providerNamespace = QualityBionics_Type_CompQualityBionics.Namespace
                 };
                 // EliteBionicsFrameworkMain.LogError("fakeComp " + fakeComp.ToStringSafe());
-                return fakeComp;
-            }
-            return null;
-        }
-
-        public static HediffCompProperties_MaxHPAdjust_Fake TryConvertCyberFaunaCompToFakeHpComp(HediffComp comp)
-        {
-            if (CyberFauna_Type_CompPartHitPoints == null)
-            {
-                // not loaded
-                return null;
-            }
-            if (CyberFauna_Type_CompPartHitPoints.IsInstanceOfType(comp))
-            {
-                // is instance of comp
-                object temp = CyberFauna_Type_CompPartHitPoints.GetProperty("Props").GetGetMethod().Invoke(comp, null);
-                float multiplier = (float)CyberFauna_Type_CompPropsPartHitPoints.GetField("multiplier").GetValue(temp);
-                HediffCompProperties_MaxHPAdjust_Fake fakeComp = new HediffCompProperties_MaxHPAdjust_Fake
-                {
-                    linearAdjustment = 0,
-                    scaleAdjustment = multiplier - 1,
-                    providerNamespace = CyberFauna_Type_CompPartHitPoints.Namespace
-                };
-
                 return fakeComp;
             }
             return null;
