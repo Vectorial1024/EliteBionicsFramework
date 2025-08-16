@@ -11,11 +11,11 @@ Still, advanced users and other modders may want to clone this repo with Git, to
 ## Third-party mod integrations/interactions
 There are several ways the Elite Bionics Framework ("EBF") interacts with mods made by others:
 - Some mods depend on the EBF to enhance their bionics
-  - See this Steam Collection for known items: https://steamcommunity.com/workshop/filedetails/?id=2016834921
+  - See this Steam Workshop Collection for known items: https://steamcommunity.com/workshop/filedetails/?id=2016834921
 - Some mods are patched to read updated statistics from EBF
-  - See this Steam Collection for known items: https://steamcommunity.com/workshop/filedetails/?id=2693300854
+  - See this Steam Workshop Collection for known items: https://steamcommunity.com/workshop/filedetails/?id=2693300854
 - Some mods are patched to make their max-HP boosts work correctly
-  - See this Steam Collection for known items: https://steamcommunity.com/workshop/filedetails/?id=2828792658
+  - See this Steam Workshop Collection for known items: https://steamcommunity.com/workshop/filedetails/?id=2828792658
   - EBF does not claim ownership to those mods; the patching is done only to fix bugs
 
 ------
