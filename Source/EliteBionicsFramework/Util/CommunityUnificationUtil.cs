@@ -1,4 +1,5 @@
-﻿using EBF.Hediffs;
+﻿using EBF.Extensions;
+using EBF.Hediffs;
 using EBF.Patches;
 using EBF.Patches.Unification;
 using EBF.Patches.Unification.Pawnmorpher;
@@ -360,6 +361,11 @@ namespace EBF.Util
                         continue;
                     }
                     // note: due to CONN officially changing to use EBF directly, we no longer need to check for CONN
+
+                    if (hediffComp.TryExtractEbfExternalCompProps(out var fakeComp))
+                    {
+                        realAndFakeProps.Add(fakeComp);
+                    }
                 }
             }
 
@@ -392,6 +398,11 @@ namespace EBF.Util
                     continue;
                 }
                 // note: due to CONN officially changing to use EBF directly, we no longer need to check for CONN
+
+                if (comp.TryExtractEbfExternalCompProps(out var fakeComp))
+                {
+                    list.Add(fakeComp);
+                }
             }
             return list;
         }

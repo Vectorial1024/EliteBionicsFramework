@@ -1,6 +1,9 @@
-﻿using EBF.Hediffs;
+﻿using EBF.API;
+using EBF.Extensions;
+using EBF.Hediffs;
 using EBF.Util;
 using HarmonyLib;
+using System.Collections.Generic;
 using Verse;
 
 namespace EBF.Patches.Unification
@@ -27,6 +30,11 @@ namespace EBF.Patches.Unification
             }
             // notes: due to CONN officially changing to use EBF directly, we no longer need to check for CONN comps
             // check other types as needed
+
+            if (__instance.TryExtractEbfExternalCompProps(out var ebfExternalComp))
+            {
+                __result = CommunityUnificationUtil.GetCompTipStringExtraDueToMaxHpAdjust(__instance.Pawn, __instance.parent.Part.def, ebfExternalComp);
+            }
         }
     }
 }
