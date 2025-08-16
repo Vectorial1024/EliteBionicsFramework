@@ -28,6 +28,7 @@ There are several ways to add compatibility with this mod, which corresponds to 
 
 > [!TIP]
 > The Elite Bionics Framework is most commonly used to buff bionics, but the framework works on basically any Hediff.
+>
 > One possible creative use is to make a Potion of Toughness that temporarily buffs the max HP of a given body part.
 
 ## Appendix 1: XML modders and buffing bionics/hediffs
@@ -37,6 +38,7 @@ The EBF is available as additional `HediffComp`s to your bionics/hediffs. This s
 > For XML patching, be aware that the game rejects the following:
 > - multiple `<comps>` nodes under the same `<HediffDef>` node
 > - multiple `<li>` nodes under the same `<comps>` node with the same `Class="..."` value
+>
 > These are the game's limitation/requirements, and have nothing to do with Elite Bionics Framework. Be defensive when writing XML patches!
 
 > [!TIP]
