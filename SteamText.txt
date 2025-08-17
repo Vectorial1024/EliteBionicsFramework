@@ -4,25 +4,23 @@ Package ID: V1024.EBFramework
 
 [h1]Quick Info and Compatibility[/h1]
 [list]
-[*]Requires HugsLib (warning should be given if you don't have HugsLib); place this mod below HugsLib
-[*]Visible Error Logs is strongly recommended to help with detecting bugs ( https://steamcommunity.com/sharedfiles/filedetails/?id=3248417388 )
-[*]Place this mod above other mods that require this mod
-[*]Using auto-sort, place this mod above Humanoid Alien Races
-[*]Safe to add to existing saves
-[*]Depending on whether there are any dependencies loaded, safe to be removed
+[*]Requires Harmony only!
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3248417388]Visible Error Logs[/url] is strongly recommended to help with detecting bugs
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=818773962]HugsLib[/url] or [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404]Log Publisher from HugsLib[/url] is strongly recommended to send bug reports
+[*]Safe to add to existing saves; might be unsafe to remove from saves (e.g. bionics will lose EBF effects)
 [*]Should have no problems with most other mods, see below for more info
 [*]Multiplayer compatibility: YES
-[*]RimThreaded compatibility: YES
 [*]GitHub repo link is here: https://github.com/Vectorial1024/EliteBionicsFramework
-[*]A mod for modders: modders can read adjusted max HP values for their calculations
-[*]A mod for all: unifies HP-boosting effects from various community bionics mods for compatibility reasons
+[*]XML/C# modders may want to read the README to see how to add compatibility with this mod
 [/list]
-[h1]Background, Overview, and Motto[/h1]
-Elite Bionics Framework is the child of the abandoned, never-released mod Elite Bionics (ELTE). In Fall 2018, the ELTE mod was drafted to bring competition into the bionics mod duopoly at that time: EPOE and RBSE. The selling point was that, while the ELTE bionics offer less body part efficiency, they instead provide max HP bonuses to them, mitigating the loss of HP caused by the usage of bionics (see https://ludeon.com/forums/index.php?topic=15704.0 for more details).
+[h1]Background and Overview[/h1]
+Elite Bionics Framework is the child of the abandoned, never-released mod Elite Bionics (ELTE). Originally drafted in Fall 2018, the idea was that, because installing bionics will make pawns weaker by reducing the HP pool ([url=https://ludeon.com/forums/index.php?topic=15704.0]Ludeon Forums[/link]), ELTE bionics would trade some of the bonus body part efficiency buff for max HP buff.
 
-Unfortunately, with the lack of both drawing skills and the confidence of finding cooperation, the ELTE mod was scrapped; but to not let the programming effort go to vain, I have decided to refactor ELTE and release this mod instead as a tribute to the ambitions that went unfulfilled: to shape the Big Three of the bionics mod "market", and to become one of them.
+This would make ELTE an interesting competitor to the bionics duopoly at the time (EPOE and RBSE), but due to the lack of art skills and general creativity, ELTE was scrapped.
 
-The motto of Elite Bionics: they might not be as effective as others, but at least they last much longer than others.
+To not let the programming effort go to waste, the underlying tech that buffs max HP was reorganized to become the Elite Bionics Framework.
+
+Cheers to the ambition of becoming the third greatest bionics mod after EPOE and RBSE!
 
 [h1]Framework Description[/h1]
 Other modders may manipulate body parts through this framework. Currently, these manipulations are supported:
@@ -34,16 +32,17 @@ Note that, normally, when body part max HP is increased, the pain and bleeding r
 
 However, pain levels are not touched to maintain balance. End users should aim for drugs, implants, or armor to reduce the pain of your soldiers/workers before and during battle.
 
-Modders (and perhaps end users too) may refer and subscribe to Elite Archotech ( https://steamcommunity.com/sharedfiles/filedetails/?id=1744648077 ), another mod under my name, for inspiration and immediate usage.
+Modders (and perhaps end users too) may refer and subscribe to [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1744648077]Elite Archotech[/url], another mod under my name, for inspiration and immediate usage.
 
 There are some documentation on GitHub for modders too.
 
 [h1]Known Issues and Latest News[/h1]
 [list]
-[*]This framework will throw errors if it detects any mod that tries to get the max HP of body parts without using this framework.
-[*]Uninstalling this mod may have problems: if, after uninstallation, your colonists have body parts where the injury magnitude is larger than the max HP (e.g. injury at 26, EBF part gives max HP = 35, but vanilla only gives max HP = 20), those body parts will very likely become destroyed. This is vanilla behavior.
+[*]This framework will emit warnings if it detects any mod that tries to get the max HP of body parts without using this framework.
+[*]Uninstalling this mod may have problems: if a body part sustains injury such that total severity exceeds the vanilla-allowed max HP, the body part is instantly destroyed. This is vanilla behavior.
 [*][b]24 Dec 2021: Compatibility with Humanoid Alien Races now fixed (only for RW >= 1.3); Special thanks to RocketDelivery![/b]
 [*][b]2 July 2022: Compatibility with a whole bunch of other mods (e.g. Qaulity Bionics, Pawnmorpher) now fixed via Community Unification; refer to the Community Unification collection for more details[/b]
+[*][b]17 Aug 2025: A new way for C# mods to provide compatibility with Elite Bionics Framework is now available
 [/list]
 [h1]The GitHub Repo[/h1]
 Many things, including changelogs, non-Steam downloads, and issues, are on the GitHub repo of this mod. Link: https://github.com/Vectorial1024/EliteBionicsFramework
@@ -52,7 +51,6 @@ Many things, including changelogs, non-Steam downloads, and issues, are on the G
 [list]
 [*]RimWorld belongs to Ludeon Studio. Some textures used as illustration above are from RimWorld assets.
 [*]Harmony is provided by pardeike.
-[*]HugsLib is made by UnlimitedHugs.
 [*]Mods in the Community Unification list are all made by someone else (except EBF, of course, EBF is made by me).
 [*]Thanks to Neceros and Bar0th for finding a patching bug and suggesting a more resilient solution to how this mod patches vanilla code
 [*]Thanks to RocketDelivery for solving the seemingly magical incompatibility with Humanoid Alien Races
