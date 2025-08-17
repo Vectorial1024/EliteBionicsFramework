@@ -14,7 +14,7 @@ Package ID: V1024.EBFramework
 [*]XML/C# modders may want to read the README to see how to add compatibility with this mod
 [/list]
 [h1]Background and Overview[/h1]
-Elite Bionics Framework is the child of the abandoned, never-released mod Elite Bionics (ELTE). Originally drafted in Fall 2018, the idea was that, because installing bionics will make pawns weaker by reducing the HP pool ([url=https://ludeon.com/forums/index.php?topic=15704.0]Ludeon Forums[/link]), ELTE bionics would trade some of the bonus body part efficiency buff for max HP buff.
+Elite Bionics Framework is the child of the abandoned, never-released mod Elite Bionics (ELTE). Originally drafted in Fall 2018, the idea was that, because installing bionics will make pawns weaker by reducing the HP pool ([url=https://ludeon.com/forums/index.php?topic=15704.0]Ludeon Forums[/url]), ELTE bionics would trade some of the bonus body part efficiency buff for max HP buff.
 
 This would make ELTE an interesting competitor to the bionics duopoly at the time (EPOE and RBSE), but due to the lack of art skills and general creativity, ELTE was scrapped.
 
