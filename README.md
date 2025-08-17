@@ -59,6 +59,8 @@ A `HediffDef` XML code excerpt that uses `MayRequire="..."` is as follows:
 </HediffDef>
 ```
 
+More information about available XML components are found inside the `/Docs` folder.
+
 ## Appendix 2: C# modders and reading statistics from EBF
 The updated statistics values can be read from the class `EBF.EBFEndpoints`. Please refer to the source code in this repo for the latest method details (they rarely change and can be safely accessed with reflection). 
 
