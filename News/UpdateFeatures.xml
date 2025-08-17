@@ -510,6 +510,8 @@ With this, our RimWorld 1.5 update is complete.
 		<assemblyVersion>6.0.0</assemblyVersion>
 		<content>A technical but milestone update.
 
+!!! IMPORTANT !!!
+
 - Decoupled from HugsLib; depends on Harmony instead
   - You should manually review the mod options!
   - We still recommend you use HugsLib to send bug reports
