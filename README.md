@@ -112,7 +112,7 @@ If you are a C# modder seeing this warning, then you should clarify your intenti
 - `EBF.EBFEndpoints:GetMaxHealthWithEBF(BodyPartRecord, Pawn)`: returns the EBF-calculated max HP value of a body part record
 
 ## Appendix 3: C# modders and writing effects to EBF
-This is advanced usage; it entails programmatically providing the max HP adjustment to EBF. Do review whether the same effect may be achieved by modifying XML files since that method is generally simpler.
+This is advanced usage; it entails programmatically providing the max HP adjustment to EBF. Do review whether the same effect may be achieved by modifying XML files since that method is usually simpler.
 
 Still, as of EBF 6.0, it is possible to programmatically provide max HP adjustment to EBF. EBF will then pick up the value, and include it in the max HP calculations.
 
@@ -123,4 +123,4 @@ At your `HediffComp`, implement `EBF.API.IHediffCompAdjustsMaxHp`. In particular
 > [!IMPORTANT]
 > Currently, EBF caches body part max HP values, so at the moment, it is not possible to dynamically change max HP adjustment based on custom events (hypothetical e.g. bionics from CyberNet losing the max HP bonus when the GlitterNet goes out).
 >
-> However, support for that is being considered.
+> However, support for dynamic HP max adjustment is being considered.
