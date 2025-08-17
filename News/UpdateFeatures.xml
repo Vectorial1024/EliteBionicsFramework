@@ -504,4 +504,23 @@ With this, our RimWorld 1.5 update is complete.
 		<assemblyVersion>5.4.0</assemblyVersion>
 		<content>This mod is now updated for RimWorld 1.6, with no code/feature changes. As usual, we will be semi-regularly rechecking for supported mod updates in the coming days/weeks/months.</content>
 	</HugsLib.UpdateFeatureDef>
+	
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v6_0_0</defName>
+		<assemblyVersion>6.0.0</assemblyVersion>
+		<content>A technical but milestone update.
+
+- Decoupled from HugsLib; depends on Harmony instead
+  - You should manually review the mod options!
+  - We still recommend you use HugsLib to send bug reports
+  - For these update news, your choice: they will go away if you disable/uninstall HugsLib
+- Added new way for C# modders to manage compatibility with EBF; see the GitHub README for more details
+  - The plan is to let Quality Bionics Remastered adopt this method of compatibility, to reduce the mess on both sides
+- Removed support for Cyber Fauna and Mechalit Core since they have unstable governance
+  - Previous builds for RW 1.5 are unaffected by this change
+
+EBF has become very mature and stable over the past 6 years. With this update, I can safely fade to the background to continue observing the modding community.
+
+Thank you all for continuing to use this mod!</content>
+	</HugsLib.UpdateFeatureDef>
 </Defs>
