@@ -6,7 +6,8 @@ namespace EBF.Util
 {
     public class ModDetector
     {
-        internal static IEnumerable<ModContentPack> RunningActiveMods = LoadedModManager.RunningMods.Where((ModContentPack pack) => pack != null && pack.ModMetaData.Active);
+        // ever since a certain RimWorld version, this IEnumerable no longer contains mods that are not loaded, so we can simplify this expression.
+        internal static IEnumerable<ModContentPack> RunningActiveMods = LoadedModManager.RunningMods;
 
         /// <summary>
         /// Note: if need to call this repeatedly (eg during regular ticking), then please consider using the cached version instead.
