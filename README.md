@@ -68,7 +68,7 @@ The updated statistics values can be read from the class `EBF.EBFEndpoints`. Ple
 > [!TIP]
 > As of Harmony 2 (i.e. RimWorld 1.2), You can make integration easier by utilizing reverse-patching.
 
-A sample C# code excerpt making use of reverse-patching from the trusty Harmony 2 is as follows:
+A sample C# code excerpt making use of reverse-patching from the trusty Harmony 2 for RimWorld 1.6 is as follows:
 
 ```c#
 [HarmonyPatch]
@@ -77,7 +77,7 @@ public class MaxHealthGetter
     public static bool Prepare()
     {
         // detect whether the EBF is loaded
-        return LoadedModManager.RunningMods.Where((ModContentPack pack) => pack != null && pack.ModMetaData.Active && pack.PackageId == "V1024.EBFramework");
+        return LoadedModManager.RunningMods.Where((ModContentPack pack) => pack.PackageId == "V1024.EBFramework");
     }
 
     public static MethodBase TargetMethod()
