@@ -16,6 +16,7 @@ There are several ways the Elite Bionics Framework ("EBF") interacts with mods m
   - See this Steam Workshop Collection for known items: https://steamcommunity.com/workshop/filedetails/?id=2693300854
 - Some mods are patched to make their max-HP boosts work correctly
   - See this Steam Workshop Collection for known items: https://steamcommunity.com/workshop/filedetails/?id=2828792658
+  - The main criteria of selecting mods to manually patch is their stability
   - EBF does not claim ownership to those mods; the patching is done only to fix bugs
 
 ------
