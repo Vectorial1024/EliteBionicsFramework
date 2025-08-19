@@ -370,8 +370,7 @@ namespace EBF.Util
         public static List<HediffCompProperties_MaxHPAdjust> GetFakeHpPropsForUnification(Hediff hediff)
         {
             List<HediffCompProperties_MaxHPAdjust> list = new List<HediffCompProperties_MaxHPAdjust>();
-            HediffWithComps hediffWithComps = hediff as HediffWithComps;
-            if (hediffWithComps == null)
+            if (hediff is not HediffWithComps hediffWithComps)
             {
                 return list;
             }
