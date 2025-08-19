@@ -19,10 +19,22 @@ namespace EBF.Util
     {
         private static readonly MethodInfo RW_Hediff_TryGetComp = null;
 
+        /// <summary>
+        /// Type.GetType("QualityBionics.HediffCompQualityBionics, QualityBionicsContinued");
+        /// </summary>
         private static Type QualityBionics_Type_CompQualityBionics = null;
+        /// <summary>
+        /// RW_Hediff_TryGetComp.MakeGenericMethod([QualityBionics_Type_CompQualityBionics]);
+        /// </summary>
         private static MethodInfo QualityBionics_TryGetRelevantComp = null;
 
+        /// <summary>
+        /// Type.GetType("QualityBionicsContinued.Settings, QualityBionicsContinued");
+        /// </summary>
         private static Type QualityBionicsContinued_Type_Settings = null;
+        /// <summary>
+        /// QualityBionicsContinued_Type_Settings.GetMethod("GetQualityMultipliersForHP");
+        /// </summary>
         private static MethodInfo QualityBionicsContinued_Method_GetQualityMultiplier = null;
 
         // note: due to CONN officially changing to use EBF directly, there is no longer any need to keep CONN-related fields
@@ -42,7 +54,6 @@ namespace EBF.Util
             methodSignature = null;
 
             // we are splitting this into several functions so that debugging can give us meaningful stacktraces
-            TryPatchQualityBionicsContinued();
             TryPatchCyberFauna();
             TryPatchMechalitCore();
             TryPatchPawnmorpher();
@@ -52,24 +63,8 @@ namespace EBF.Util
 
         private static void TryPatchQualityBionicsContinued()
         {
-            // Quality Bionics (Continued) changed some of its namespace, so things have become confusing for a while
-            if (ModDetector.QualityBionicsContinuedIsLoaded)
-            {
-                // at least QB(C) aren't supposed to be used together with QB, so we need not check for mutual exclusion
-                try
-                {
-                    QualityBionicsContinued_Type_Settings = Type.GetType("QualityBionicsContinued.Settings, QualityBionicsContinued");
-                    QualityBionicsContinued_Method_GetQualityMultiplier = QualityBionicsContinued_Type_Settings.GetMethod("GetQualityMultipliersForHP");
-
-                    QualityBionics_Type_CompQualityBionics = Type.GetType("QualityBionics.HediffCompQualityBionics, QualityBionicsContinued");
-                    QualityBionics_TryGetRelevantComp = RW_Hediff_TryGetComp.MakeGenericMethod([QualityBionics_Type_CompQualityBionics]);
-                }
-                catch (ArgumentNullException)
-                {
-                    // we failed to make a generic method
-                    EliteBionicsFrameworkMod.LogError("Something about Quality Bionics (Continued) changed; please report this to us.");
-                }
-            }
+            // note: Quality Bionics Remastered (for RW 1.6+) has backwards compatibility for Quality Bionics (Continued), but we are using the new "receptor" API for QBR compatibility
+            // as such, these codes are deprecated, but some traces of them are retained for future reference
         }
 
         private static void TryPatchCyberFauna()
@@ -354,14 +349,6 @@ namespace EBF.Util
                         continue;
                     }
                     // try if we can convert them into our own types
-                    var hediffCompQualityBionicsContinued = TryConvertQualityBionicsContinuedCompToFakeHpComp(hediffComp);
-                    if (hediffCompQualityBionicsContinued != null)
-                    {
-                        realAndFakeProps.Add(hediffCompQualityBionicsContinued);
-                        continue;
-                    }
-                    // note: due to CONN officially changing to use EBF directly, we no longer need to check for CONN
-
                     if (hediffComp.TryExtractEbfExternalCompProps(out var fakeComp))
                     {
                         realAndFakeProps.Add(fakeComp);
@@ -390,15 +377,6 @@ namespace EBF.Util
             }
             foreach (HediffComp comp in hediffWithComps.comps)
             {
-                HediffCompProperties_MaxHPAdjust_Fake tempCheck = null;
-                tempCheck = TryConvertQualityBionicsContinuedCompToFakeHpComp(comp);
-                if (tempCheck != null)
-                {
-                    list.Add(tempCheck);
-                    continue;
-                }
-                // note: due to CONN officially changing to use EBF directly, we no longer need to check for CONN
-
                 if (comp.TryExtractEbfExternalCompProps(out var fakeComp))
                 {
                     list.Add(fakeComp);
@@ -409,6 +387,7 @@ namespace EBF.Util
 
         public static HediffCompProperties_MaxHPAdjust_Fake TryConvertQualityBionicsContinuedCompToFakeHpComp(HediffComp comp)
         {
+            // note: the code is deprecated and will not trigger, but retained for future reference
             if (QualityBionicsContinued_Type_Settings == null)
             {
                 // not loaded

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Verse;
 
@@ -36,9 +37,8 @@ namespace EBF.Util
 
         public static bool MoodyIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Moody"));
 
-        public static bool QualityBionicsIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Quality Bionics") && pack.PackageId.Contains("rebelrabbit"));
-
         // Quality Bionics (Continued) changed some of its namespace so things have become confusing for a while
+        [Obsolete("DO NOT use; compatibility with Quality Bionics is now handled via the new minimal receptor API.")]
         public static bool QualityBionicsContinuedIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Quality Bionics") && pack.PackageId.Contains("ilyvion"));
 
         public static bool CONNIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Cybernetic Organism"));

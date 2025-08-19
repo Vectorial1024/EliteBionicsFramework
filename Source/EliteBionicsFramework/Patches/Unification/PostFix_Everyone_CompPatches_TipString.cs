@@ -13,7 +13,7 @@ namespace EBF.Patches.Unification
     /// <para/>
     /// However, this also means we can make a general patch that covers everything.
     /// <para/>
-    /// We will use brute force to check the type of each HediffComp, and apply the patches if the type matches known types.
+    /// We will use the new "receptor" API to check the type of each HediffComp, and apply the patches if the type matches known types.
     /// </summary>
     [HarmonyPatch(typeof(HediffComp))]
     [HarmonyPatch(nameof(HediffComp.CompTipStringExtra), MethodType.Getter)]
@@ -22,15 +22,6 @@ namespace EBF.Patches.Unification
         [HarmonyPostfix]
         public static void PostFix(HediffComp __instance, ref string __result)
         {
-            HediffCompProperties_MaxHPAdjust_Fake fakeCompsQualityBionicsContinued = CommunityUnificationUtil.TryConvertQualityBionicsContinuedCompToFakeHpComp(__instance);
-            if (fakeCompsQualityBionicsContinued != null)
-            {
-                __result = CommunityUnificationUtil.GetCompTipStringExtraDueToMaxHpAdjust(__instance.Pawn, __instance.parent.Part.def, fakeCompsQualityBionicsContinued);
-                return;
-            }
-            // notes: due to CONN officially changing to use EBF directly, we no longer need to check for CONN comps
-            // check other types as needed
-
             if (__instance.TryExtractEbfExternalCompProps(out var ebfExternalComp))
             {
                 __result = CommunityUnificationUtil.GetCompTipStringExtraDueToMaxHpAdjust(__instance.Pawn, __instance.parent.Part.def, ebfExternalComp);

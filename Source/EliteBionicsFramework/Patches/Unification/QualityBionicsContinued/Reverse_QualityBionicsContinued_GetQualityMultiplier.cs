@@ -11,7 +11,8 @@ namespace EBF.Patches.Unification.QualityBionicsContinued
     {
         public static bool Prepare()
         {
-            return ModDetector.QualityBionicsContinuedIsLoaded;
+            // patch deprecated, but we retain code for future reference
+            return false;
         }
 
         public static MethodBase TargetMethod()
