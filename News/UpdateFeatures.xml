@@ -542,4 +542,15 @@ This concludes the compatibility migration for Quality Bionics Remastered: inste
 Things should be much easier for everyone involved going forward.
 </content>
 	</HugsLib.UpdateFeatureDef>
+
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v6_0_2</defName>
+		<assemblyVersion>6.0.2</assemblyVersion>
+		<content>A minor technical update.
+
+- Adjusted support for Callouts (Continued)
+  - Compatibility now handled on their side
+  - Previous builds for RW 1.5- are patched to not detect Mlie's variant
+</content>
+	</HugsLib.UpdateFeatureDef>
 </Defs>
