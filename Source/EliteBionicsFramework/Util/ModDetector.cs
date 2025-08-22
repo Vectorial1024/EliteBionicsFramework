@@ -33,7 +33,8 @@ namespace EBF.Util
 
         public static bool PrepareCarefullyIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("EdB Prepare Carefully"));
 
-        public static bool CalloutsIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Callouts"));
+        [Obsolete("DO NOT use; compatibility with Callouts (continued by Mlie) is how handled on their side.")]
+        public static bool CalloutsIsLoaded => false;
 
         public static bool MoodyIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Moody"));
 

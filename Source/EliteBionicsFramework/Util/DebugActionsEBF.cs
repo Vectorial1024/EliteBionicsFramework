@@ -15,7 +15,6 @@ namespace EBF.Util
             // "foreach" the mod detection info
             builder.AppendInNewLine($"Pawnmorpher: {ModDetector.PawnmorpherIsLoaded}");
             builder.AppendInNewLine($"Prepare Carefully: {ModDetector.PrepareCarefullyIsLoaded}");
-            builder.AppendInNewLine($"Callouts: {ModDetector.CalloutsIsLoaded}");
             builder.AppendInNewLine($"Moody: {ModDetector.MoodyIsLoaded}");
             builder.AppendInNewLine($"Cybernetic Organisms and Neural Networks (CONN): {ModDetector.CONNIsLoaded}");
             builder.AppendInNewLine($"Vanilla Psycasts Expanded: {ModDetector.VanillaPsycastsExpandedIsLoaded}");
