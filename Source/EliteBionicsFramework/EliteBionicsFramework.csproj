@@ -31,4 +31,11 @@
       <Private>true</Private>
     </ProjectReference>
   </ItemGroup>
+
+  <!-- Create a copy of EliteBionicsFrameworkAPI to the common Assemblies folder for backwards compatibility -->
+  <!-- This is because Quality Bionics Remastered wants this for their 1.5 build. -->
+  <Target Name="ConfigureCommonAPI" AfterTargets="Build">
+	<Copy SourceFiles="$(OutputPath)EliteBionicsFrameworkAPI.dll" DestinationFiles="$(OutputPath)..\..\Assemblies\EliteBionicsFrameworkAPI.dll" />
+	<Message Text="Created backwards compatibility assembly: $(OutputPath)..\..\Assemblies\EliteBionicsFrameworkAPI.dll" Importance="high" />
+  </Target>
 </Project>
