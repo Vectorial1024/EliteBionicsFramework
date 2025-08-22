@@ -96,6 +96,26 @@ public class MaxHealthGetter
 }
 ```
 
+Then, usages of the vanilla `BodyPartDef.GetMaxHealth(Pawn)` in your code base should be replaced with the reverse-patched method:
+
+```c#
+// setup
+BodyPartRecord record = /* ... */;
+Pawn pawn = /* ... */;
+float maxHealth = 0;
+
+// replace this...
+maxHealth = record.def.GetMaxHealth(pawn);
+
+// with this:
+maxHealth = MaxHealthGetter.GetMaxHealth(record, pawn);
+```
+
+With this change, EBF will no longer warn about "adopting the EBF protocol" (explained below).
+
+> [!TIP]
+> You may use decompilers (e.g. ILSpy) to see usages of `BodyPartDef.GetMaxHealth(Pawn)` inside your compiled assembly, so that you know where your code needs to be replaced inside your code base.
+
 ### About "adopting the EBF protocol"
 Calling the vanilla `Verse.BodyPartDef:GetMaxHealth(Pawn)` method while this mod is active will emit a warning that looks like this:
 
@@ -106,7 +126,7 @@ For now, the unmodified max HP is returned.
 The detected mod comes from: [name]
 ```
 
-The reason for this warning is that, under EBF, only having a `BodyPartDef` is not enough to determine the correct body part max HP when bionics are installed or `Hediff`s are added. As an example, a colonist have two `BodyPartRecord`s (left shoulder and right shoulder) but these share the same `BodyPartDef`.
+The reason for this warning is that, under EBF, only having a `BodyPartDef` is not enough to determine the correct body part max HP when bionics are installed or `Hediff`s are added. As an example, a colonist have two `BodyPartRecord`s (left shoulder and right shoulder) but these share the same `BodyPartDef` (the shoulder).
 
 If you see this warning, do report this to both the EBF and to the mod authors involved, so that compatibility may be ensured.
 
