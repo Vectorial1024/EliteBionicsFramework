@@ -6,6 +6,7 @@ using Verse;
 
 namespace EliteBionicsFrameworkLegacy.Patches
 {
+    [HarmonyPatch]
     internal class EBF_CalloutsRedirect
     {
         internal static bool IsCorrectRimWorldVersion()
