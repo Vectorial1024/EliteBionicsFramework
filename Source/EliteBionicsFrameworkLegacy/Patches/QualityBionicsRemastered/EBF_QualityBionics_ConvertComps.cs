@@ -36,6 +36,7 @@ namespace EliteBionicsFrameworkLegacy.Patches.QualityBionicsRemastered
         public static bool ReplaceContinuedVariantUnification(ref HediffCompProperties_MaxHPAdjust_Fake __result, HediffComp comp)
         {
             // we detect the Remastered variant so that we no longer need to deal with the continued variant
+            __result = null;
             if (EBF_QualityBionics_CollectTypes.QualityBionicsRemastered_Type_CompQualityBionics.IsInstanceOfType(comp))
             {
                 // is instance of comp
