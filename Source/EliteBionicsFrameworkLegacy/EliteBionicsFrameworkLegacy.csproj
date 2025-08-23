@@ -39,6 +39,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EBFLegacy.cs" />
+    <Compile Include="ModDetector.cs" />
+    <Compile Include="Patches\QualityBionicsRemastered\EBF_QualityBionics_CollectTypes.cs" />
     <Compile Include="Patches\QualityBionicsRemastered\EBF_QualityBionics_GetMaxHealth.cs" />
     <Compile Include="Patches\EBF_CalloutsRedirect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

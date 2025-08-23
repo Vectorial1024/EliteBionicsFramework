@@ -18,7 +18,7 @@ namespace EliteBionicsFrameworkLegacy.Patches.QualityBionicsRemastered
 
         internal static bool HasCorrectLoadedMod()
         {
-            return LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("Quality Bionics") && pack.PackageId.Contains("assassinsbro"));
+            return ModDetector.QualityBionicsRemasteredIsLoaded;
         }
 
         public static bool Prepare()
