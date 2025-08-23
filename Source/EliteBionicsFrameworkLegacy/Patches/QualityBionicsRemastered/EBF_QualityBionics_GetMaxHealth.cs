@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Verse;
 
-namespace EliteBionicsFrameworkLegacy.Patches
+namespace EliteBionicsFrameworkLegacy.Patches.QualityBionicsRemastered
 {
     [HarmonyPatch]
     internal class EBF_QualityBionics_GetMaxHealth
