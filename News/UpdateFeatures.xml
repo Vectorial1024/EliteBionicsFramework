@@ -553,4 +553,14 @@ Things should be much easier for everyone involved going forward.
   - Previous builds for RW 1.5- are patched to not detect Mlie's variant
 </content>
 	</HugsLib.UpdateFeatureDef>
+
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v6_0_3</defName>
+		<assemblyVersion>6.0.3</assemblyVersion>
+		<content>A bugfix update.
+
+- Fixed legacy EBF compatibility for Callouts (Continued) not triggering
+- Fixed legacy EBF 1.5 compatibility with Quality Bionics Remastered
+</content>
+	</HugsLib.UpdateFeatureDef>
 </Defs>
