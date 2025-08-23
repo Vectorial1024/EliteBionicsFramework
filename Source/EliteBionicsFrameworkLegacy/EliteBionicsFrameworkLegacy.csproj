@@ -40,6 +40,9 @@
   <ItemGroup>
     <Compile Include="EBFLegacy.cs" />
     <Compile Include="ModDetector.cs" />
+    <Compile Include="Patches\QualityBionicsRemastered\EBF_QualityBionics_ConvertComps.cs" />
+    <Compile Include="Patches\QualityBionicsRemastered\EBF_QualityBionics_Suppress_Reverse_GetQualityMultipliers.cs" />
+    <Compile Include="Patches\QualityBionicsRemastered\EBF_QualityBionics_Reverse_GetQualityMultipliers.cs" />
     <Compile Include="Patches\QualityBionicsRemastered\EBF_QualityBionics_CollectTypes.cs" />
     <Compile Include="Patches\QualityBionicsRemastered\EBF_QualityBionics_GetMaxHealth.cs" />
     <Compile Include="Patches\EBF_CalloutsRedirect.cs" />
@@ -55,6 +58,12 @@
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\EliteBionicsFramework\EliteBionicsFramework.csproj">
+      <Project>{4ddc0761-5035-423e-9898-2442ca81ec8b}</Project>
+      <Name>EliteBionicsFramework</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
