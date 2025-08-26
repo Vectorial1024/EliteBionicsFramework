@@ -23,6 +23,8 @@ namespace EliteBionicsFrameworkLegacy.Patches.QualityBionicsRemastered
             var methodSignature = new Type[] { typeof(Hediff) };
             RW_Hediff_TryGetComp = typeof(HediffUtility).GetMethod(nameof(HediffUtility.TryGetComp), methodSignature);
             methodSignature = null;
+
+            TryPatchQualityBionicsRemastered();
         }
 
         internal static void TryPatchQualityBionicsRemastered()
