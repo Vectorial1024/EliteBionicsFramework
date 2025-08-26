@@ -569,4 +569,10 @@ Things should be much easier for everyone involved going forward.
 		<assemblyVersion>6.0.4</assemblyVersion>
 		<content>Fixed EBF Legacy error when Quality Bionics Remastered is not loaded. (ooof!)</content>
 	</HugsLib.UpdateFeatureDef>
+	
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v6_0_5</defName>
+		<assemblyVersion>6.0.5</assemblyVersion>
+		<content>Fixed EBF Legacy error spam when Quality Bionics Remastered is loaded. (ooof!)</content>
+	</HugsLib.UpdateFeatureDef>
 </Defs>
