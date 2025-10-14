@@ -39,9 +39,8 @@ There are some documentation on GitHub for modders too.
 [h1]Known Issues and Latest News[/h1]
 [list]
 [*]This framework will emit warnings if it detects any mod that tries to get the max HP of body parts without using this framework.
-[*]Uninstalling this mod may have problems: if a body part sustains injury such that total severity exceeds the vanilla-allowed max HP, the body part is instantly destroyed. This is vanilla behavior.
-[*][b]24 Dec 2021: Compatibility with Humanoid Alien Races now fixed (only for RW >= 1.3); Special thanks to RocketDelivery![/b]
-[*][b]2 July 2022: Compatibility with a whole bunch of other mods (e.g. Qaulity Bionics, Pawnmorpher) now fixed via Community Unification; refer to the Community Unification collection for more details[/b]
+[*]Uninstalling this mod may have problems: the game may destroy body parts that has sustained too much injury (total severity >= max HP) during game load. This is vanilla behavior.
+[*]Pawns are still too fragile? Consider using [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2657551690]No More Lethal Damage Threshold[/url]
 [*][b]17 Aug 2025: A new way for C# mods to provide compatibility with Elite Bionics Framework is now available[/b]
 [/list]
 [h1]The GitHub Repo[/h1]
