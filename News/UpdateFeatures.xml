@@ -581,4 +581,10 @@ Things should be much easier for everyone involved going forward.
 		<assemblyVersion>6.0.6</assemblyVersion>
 		<content>Added compatibility with Integrated Genes.</content>
 	</HugsLib.UpdateFeatureDef>
+
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v6_0_7</defName>
+		<assemblyVersion>6.0.7</assemblyVersion>
+		<content>Six-Seven. Ahem.\n\nAdded compatibility with the Hospital mod.</content>
+	</HugsLib.UpdateFeatureDef>
 </Defs>
