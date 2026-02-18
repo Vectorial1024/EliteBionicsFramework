@@ -62,5 +62,8 @@ namespace EBF.Util
         public static bool AlteredCarbon2IsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Altered Carbon 2"));
 
         public static bool IntegratedGenesIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Integrated Genes"));
+
+        // note: this is not the hospitality mod!
+        public static bool HospitalIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.PackageId == "adamas.hospital");
     }
 }
