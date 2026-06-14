@@ -53,7 +53,8 @@ namespace EBF.Util
 
         public static bool VanillaPsycastsExpandedIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Vanilla Psycasts Expanded"));
 
-        public static bool ImmortalsIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Immortals"));
+        // note: ambiguous with other mods e.g. "RI.RimImmortal.Core", so we detect it a bit more precisely.
+        public static bool ImmortalsIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Immortals") && pack.PackageId.EndsWith(".immortals"));
 
         public static bool BetterInfoCardIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("BetterInfoCard"));
 
