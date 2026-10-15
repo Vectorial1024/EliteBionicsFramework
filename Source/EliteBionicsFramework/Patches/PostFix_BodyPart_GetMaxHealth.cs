@@ -42,6 +42,11 @@ namespace EBF.Patches
             warningIsTurnedOff = false;
         }
 
+        private static string GetCallerNamespace(StackFrame frame)
+        {
+            return frame.GetMethod()?.ReflectedType?.Namespace;
+        }
+
         [HarmonyPostfix]
         public static void CheckEbfProtocolViolation(BodyPartDef __instance, ref float __result, Pawn pawn)
         {
@@ -51,15 +56,20 @@ namespace EBF.Patches
                 return;
             }
 
-            // change of strategy: if we are no longer preventing the vanilla usage, might as well do it in the post-fix.
-            StackFrame investigateFrame = new StackFrame(2);
-            string namespaceString = investigateFrame.GetMethod().ReflectedType.Namespace;
-
             if (shouldSupressNextWarning)
             {
                 shouldSupressNextWarning = false;
+                return;
             }
-            else if (!reportedNamespaces.Contains(namespaceString))
+
+            // Dynamic/patched callers may have no reflected method, type, or namespace.
+            string namespaceString = GetCallerNamespace(new StackFrame(2));
+            if (string.IsNullOrEmpty(namespaceString))
+            {
+                return;
+            }
+
+            if (!reportedNamespaces.Contains(namespaceString))
             {
                 reportedNamespaces.Add(namespaceString);
                 string errorMessage = "Elite Bionics Framework has detected some mods" +
