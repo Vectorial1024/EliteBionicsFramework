@@ -9,12 +9,12 @@ namespace EBF.Patches
     public class PostFix_AgeTracker_PostResolveLifeStageChange
     {
         [HarmonyPostfix]
-        public static void PostFix(HediffSet __instance)
+        public static void PostFix(Pawn ___pawn)
         {
             // max HP depends on body size, which then depends on the pawn's life stage
             // this listens for life stage changes, so that we can recalculate the cached max HP.
-            MaxHealthCache.ResetCacheForPawn(__instance.pawn);
-            ToolPowerInfoCache.ResetCacheForPawn(__instance.pawn);
+            MaxHealthCache.ResetCacheForPawn(___pawn);
+            ToolPowerInfoCache.ResetCacheForPawn(___pawn);
         }
     }
 }

@@ -12,7 +12,7 @@
 		<li>1.1</li>
 		<li>1.0</li>
 	</supportedVersions>
-	<modVersion IgnoreIfNoMatchingField="True">6.0.8</modVersion>
+	<modVersion IgnoreIfNoMatchingField="True">6.0.9</modVersion>
 	<description>A common framework to change body part max HP. Mod version now provided via RimWorld's About.xml.
 
 This mod made use of the multi-version feature of RW, and therefore has compatibility with RW &lt; v1.5 in the same mod file.
@@ -20,6 +20,8 @@ This mod made use of the multi-version feature of RW, and therefore has compatib
 We strongly recommend you get a mod that alerts you about errors, e.g. Visible Error Logs.
 
 We also strongly recommend you get HugsLib or "Log Publisher from HugsLib" for easier error log sharing.
+
+HugsLib is optional for displaying mod updates (associated red alerts can be safely ignored).
 
 As a rule of thumb, if Ludeon did not change much about the health system, then this mod should still continue to work even though it may say "the version number does not match".</description>
 	<url>https://github.com/Vectorial1024/EliteBionicsFramework</url>
