@@ -599,4 +599,11 @@ Things should be much easier for everyone involved going forward.
 		<assemblyVersion>6.0.9</assemblyVersion>
 		<content>Six-Nine. Nice.\n\nFixed Pawn_AgeTracker.PostResolveLifeStageChange patch mistake (unrelated to RimWorld 1.7).</content>
 	</HugsLib.UpdateFeatureDef>
+	
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v6_0_10</defName>
+		<assemblyVersion>6.0.10</assemblyVersion>
+		<content>- Added compatibility with Health Display (GTHealthDisplay)
+- Added compatibility with Elite Raid Plus</content>
+	</HugsLib.UpdateFeatureDef>
 </Defs>
