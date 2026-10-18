@@ -1,6 +1,8 @@
 ﻿using HarmonyLib;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using Verse;
 
 namespace EBF.Patches
@@ -9,15 +11,17 @@ namespace EBF.Patches
     [HarmonyPatch(nameof(BodyPartDef.GetMaxHealth), MethodType.Normal)]
     public class PostFix_BodyPart_GetMaxHealth
     {
-        private static List<string> reportedNamespaces = new List<string>();
+        private static readonly HashSet<string> reportedNamespaces = new HashSet<string>();
 
+        [ThreadStatic]
         internal static bool shouldSupressNextWarning = false;
 
+        [ThreadStatic]
         internal static bool warningIsTurnedOff = false;
 
         /// <summary>
         /// Suppresses the next "EBF Protocol violation" error message.
-        /// Because RimWorld is only single-threaded, we can do crazy things like this.
+        /// The next inquiry on this thread consumes the permission when it starts.
         /// </summary>
         internal static void SuppressNextWarning()
         {
@@ -42,35 +46,64 @@ namespace EBF.Patches
             warningIsTurnedOff = false;
         }
 
-        [HarmonyPostfix]
-        public static void CheckEbfProtocolViolation(BodyPartDef __instance, ref float __result, Pawn pawn)
+        [HarmonyPrefix]
+        [HarmonyPriority(Priority.First)]
+        public static void CaptureWarningSuppression(out bool __state)
         {
-            if (warningIsTurnedOff)
+            // Capture permission before other patches can make nested inquiries. A postfix
+            // must not consume permission intended for a different invocation or thread.
+            __state = warningIsTurnedOff || shouldSupressNextWarning;
+            shouldSupressNextWarning = false;
+        }
+
+        [HarmonyPostfix]
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static void CheckEbfProtocolViolation(BodyPartDef __instance, ref float __result, Pawn pawn, bool __state)
+        {
+            if (__state)
             {
-                // sometimes, we just need the system to shut up and trust the process...
                 return;
             }
 
-            // change of strategy: if we are no longer preventing the vanilla usage, might as well do it in the post-fix.
-            StackFrame investigateFrame = new StackFrame(2);
-            string namespaceString = investigateFrame.GetMethod().ReflectedType.Namespace;
+            string namespaceString = GetCallerNamespace(new StackTrace(1, false));
+            lock (reportedNamespaces)
+            {
+                if (!reportedNamespaces.Add(namespaceString))
+                {
+                    return;
+                }
+            }
 
-            if (shouldSupressNextWarning)
+            string errorMessage = "Elite Bionics Framework has detected some mods" +
+            " using the unmodified GetMaxHealth() method, which violates the" +
+            " EBF protocol. The author(s) of the involved mod(s) should " +
+            "adopt the EBF to clarify their intentions.\n" +
+            "For now, the unmodified max HP is returned.\n" +
+            "The detected mod comes from: " + namespaceString;
+            EliteBionicsFrameworkMod.LogError(errorMessage);
+        }
+
+        private static string GetCallerNamespace(StackTrace trace)
+        {
+            foreach (StackFrame frame in trace.GetFrames() ?? Array.Empty<StackFrame>())
             {
-                shouldSupressNextWarning = false;
+                // Harmony replacements are DynamicMethods on CoreCLR and do not have a
+                // reflected type. Resolve them to the original method before attribution.
+                var caller = Harmony.GetOriginalMethodFromStackframe(frame) ?? frame.GetMethod();
+                Type callerType = caller?.DeclaringType;
+                if (callerType == null || callerType == typeof(PostFix_BodyPart_GetMaxHealth))
+                {
+                    continue;
+                }
+                if (callerType == typeof(BodyPartDef) && caller.Name == nameof(BodyPartDef.GetMaxHealth))
+                {
+                    continue;
+                }
+                return callerType.Namespace ?? callerType.Assembly.GetName().Name;
             }
-            else if (!reportedNamespaces.Contains(namespaceString))
-            {
-                reportedNamespaces.Add(namespaceString);
-                string errorMessage = "Elite Bionics Framework has detected some mods" +
-                " using the unmodified GetMaxHealth() method, which violates the" +
-                " EBF protocol. The author(s) of the involved mod(s) should " +
-                "adopt the EBF to clarify their intentions.\n" +
-                "For now, the unmodified max HP is returned.\n" +
-                "The detected mod comes from: " + namespaceString;
-                EliteBionicsFrameworkMod.LogError(errorMessage);
-            }
-            return;
+
+            // Preserve a once-only diagnostic if a runtime cannot recover any caller.
+            return "<unresolved caller>";
         }
     }
 }
