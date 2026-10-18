@@ -66,5 +66,7 @@ namespace EBF.Util
 
         // note: this is not the hospitality mod!
         public static bool HospitalIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.PackageId == "adamas.hospital");
+
+        public static bool GTHealthDisplayIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Health Display"));
     }
 }
