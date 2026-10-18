@@ -1,7 +1,6 @@
 ﻿using EBF.Util;
 using HarmonyLib;
 using System.Reflection;
-using Verse;
 
 namespace EBF.Patches.Unification.EliteRaidPlus
 {
