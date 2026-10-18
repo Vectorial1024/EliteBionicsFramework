@@ -2,6 +2,7 @@
 using EBF.Hediffs;
 using EBF.Patches;
 using EBF.Patches.Unification;
+using EBF.Patches.Unification.EliteRaidPlus;
 using EBF.Patches.Unification.Pawnmorpher;
 using EBF.Patches.Unification.QualityBionicsContinued;
 using HarmonyLib;
@@ -456,6 +457,29 @@ namespace EBF.Util
             {
                 linearAdjustment = 0,
                 scaleAdjustment = (pmOffset + 1) * properMultiplier - 1,
+                providerNamespace = Pawnmorpher_Type_MutationUtilities.Namespace
+            };
+            return fakeComp;
+        }
+
+        public static HediffCompProperties_MaxHPAdjust_Fake TryExtractEliteRaidPlusFactorToFakeHpComp(Pawn pawn, BodyPartRecord record)
+        {
+            if (!ModDetector.EliteRaidPlusIsLoaded)
+            {
+                // not loaded
+                return null;
+            }
+
+            if (!Reverse_EliteRaidPlus_TryGetFactor.TryGetFactor(pawn, out float maxHpFactor))
+            {
+                // no factor
+                return null;
+            }
+
+            HediffCompProperties_MaxHPAdjust_Fake fakeComp = new HediffCompProperties_MaxHPAdjust_Fake
+            {
+                linearAdjustment = 0,
+                scaleAdjustment = maxHpFactor,
                 providerNamespace = Pawnmorpher_Type_MutationUtilities.Namespace
             };
             return fakeComp;

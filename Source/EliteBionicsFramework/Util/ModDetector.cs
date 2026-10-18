@@ -68,5 +68,7 @@ namespace EBF.Util
         public static bool HospitalIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.PackageId == "adamas.hospital");
 
         public static bool GTHealthDisplayIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Health Display"));
+
+        public static bool EliteRaidPlusIsLoaded => RunningActiveMods.Any((ModContentPack pack) => pack.Name.Contains("Elite Raid Plus"));
     }
 }
