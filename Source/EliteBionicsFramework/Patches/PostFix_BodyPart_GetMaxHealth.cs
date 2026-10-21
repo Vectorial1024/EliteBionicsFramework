@@ -43,7 +43,7 @@ namespace EBF.Patches
         }
 
         [HarmonyPostfix]
-        public static void CheckEbfProtocolViolation(BodyPartDef __instance, ref float __result, Pawn pawn)
+        public static void CheckEbfProtocolViolation()
         {
             if (warningIsTurnedOff)
             {
