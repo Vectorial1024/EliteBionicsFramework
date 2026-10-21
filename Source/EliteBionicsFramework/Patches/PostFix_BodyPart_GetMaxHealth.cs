@@ -69,6 +69,7 @@ namespace EBF.Patches
                 {
                     string innerNamespace = callerType.Namespace ?? null;
                     // regression: also check DynamicMethodDefinition for RimWorld 1.6!
+                    // todo delete this when have separate DLLs for RimWorld 1.7 or later
                     string callerFullName = callerType.FullName;
                     if (callerFullName != "MonoMod.Utils.DynamicMethodDefinition")
                     {
