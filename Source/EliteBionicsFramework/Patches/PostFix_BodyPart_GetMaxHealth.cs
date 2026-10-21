@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Verse;
@@ -63,11 +64,17 @@ namespace EBF.Patches
             while (stackLevel <= 10)
             {
                 StackFrame investigateFrame = new StackFrame(stackLevel);
-                string innerNamespace = investigateFrame.GetMethod()?.DeclaringType?.Namespace ?? null;
-                if (innerNamespace != null)
+                Type callerType = investigateFrame.GetMethod()?.DeclaringType;
+                if (callerType != null)
                 {
-                    namespaceString = innerNamespace;
-                    break;
+                    string innerNamespace = callerType.Namespace ?? null;
+                    // regression: also check DynamicMethodDefinition for RimWorld 1.6!
+                    string callerFullName = callerType.FullName;
+                    if (callerFullName != "MonoMod.Utils.DynamicMethodDefinition")
+                    {
+                        namespaceString = innerNamespace;
+                        break;
+                    }
                 }
                 // check the next level
                 stackLevel++;
