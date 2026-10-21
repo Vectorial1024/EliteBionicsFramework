@@ -52,14 +52,38 @@ namespace EBF.Patches
             }
 
             // change of strategy: if we are no longer preventing the vanilla usage, might as well do it in the post-fix.
-            StackFrame investigateFrame = new StackFrame(2);
-            string namespaceString = investigateFrame.GetMethod().ReflectedType.Namespace;
+            // we will also scan for an appropriate caller;.
+            // as of RimWorld 1.7 (Waylith Engine), transpiled methods are no longer assigned the `MonoMod.Utils.DynamicMethodDefinition` type, but are true null types.
+            // eventually, we should be able to reach a "solid" caller so to speak, but that's not guaranteed.
+            
+            // level 0 is here, so we start with level 2
+            // level 1 is presumed/known to be the dynamic method that is stitched together from the GetMaxHealth patches, so it will call this to check violation
+            int stackLevel = 2;
+            string namespaceString = null;
+            while (stackLevel <= 10)
+            {
+                StackFrame investigateFrame = new StackFrame(stackLevel);
+                string innerNamespace = investigateFrame.GetMethod()?.DeclaringType?.Namespace ?? null;
+                if (innerNamespace != null)
+                {
+                    namespaceString = innerNamespace;
+                    break;
+                }
+                // check the next level
+                stackLevel++;
+            }
+            bool logIt = true;
+            if (namespaceString == null)
+            {
+                logIt = false;
+                namespaceString = "(unknown; check stacktrace!)";
+            }
 
             if (shouldSupressNextWarning)
             {
                 shouldSupressNextWarning = false;
             }
-            else if (!reportedNamespaces.Contains(namespaceString))
+            else if (logIt && !reportedNamespaces.Contains(namespaceString))
             {
                 reportedNamespaces.Add(namespaceString);
                 string errorMessage = "Elite Bionics Framework has detected some mods" +
