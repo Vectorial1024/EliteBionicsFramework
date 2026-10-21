@@ -606,4 +606,13 @@ Things should be much easier for everyone involved going forward.
 		<content>- Added compatibility with Health Display (GTHealthDisplay)
 - Added compatibility with Elite Raid Plus</content>
 	</HugsLib.UpdateFeatureDef>
+
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_V1024_EBFramework">
+		<defName>EBF_v6_0_11</defName>
+		<assemblyVersion>6.0.11</assemblyVersion>
+		<content>General improvements that were motivated by RimWorld 1.7 compatibility.
+
+- Improved reading of C# method patch information
+- Improved traversal of C# method call stack</content>
+	</HugsLib.UpdateFeatureDef>
 </Defs>
