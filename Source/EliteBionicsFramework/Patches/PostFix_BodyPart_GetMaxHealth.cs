@@ -18,7 +18,7 @@ namespace EBF.Patches
 
         /// <summary>
         /// Suppresses the next "EBF Protocol violation" error message.
-        /// Because RimWorld is *mostly* single-threaded (limited peripheral multithreading in RW 1.6), we can do crazy things like this.
+        /// Because RimWorld is *mostly* single-threaded (limited peripheral multithreading as of RW 1.6), we can do crazy things like this.
         /// </summary>
         internal static void SuppressNextWarning()
         {
