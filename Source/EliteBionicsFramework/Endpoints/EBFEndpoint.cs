@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using EBF.Hediffs;
 using EBF.Patches;
-using EBF.Patches.Unification.EliteRaidPlus;
 using EBF.Util;
 using UnityEngine;
 using Verse;
@@ -65,14 +64,6 @@ namespace EBF
             else
             {
                 baseMaxHP = GetMaxHealthUnmodified(record.def, pawn);
-            }
-            if (ModDetector.EliteRaidPlusIsLoaded)
-            {
-                // Elite Raid Plus also applies the factor everywhere
-                if (Reverse_EliteRaidPlus_TryGetFactor.TryGetFactor(pawn, out float factor))
-                {
-                    baseMaxHP *= factor;
-                }
             }
             HediffSet hediffSet = pawn.health.hediffSet;
             float totalLinearAdjustment = 0;
