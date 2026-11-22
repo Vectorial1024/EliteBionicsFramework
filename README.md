@@ -19,6 +19,10 @@ There are several ways the Elite Bionics Framework ("EBF") interacts with mods m
   - The main criteria of selecting mods to manually patch is their stability
   - EBF does not claim ownership to those mods; the patching is done only to fix bugs
 
+Mod integrations maintained by EBF may be dropped on a per-mod basis if it becomes difficult to maintain them 
+(e.g. external mods releasing breaking changes with no pre-warning).
+This does not preclude external mod authors from providing EBF integration by themselves.
+
 ------
 
 # Appendix: Adding compatibility with this mod
