@@ -140,5 +140,9 @@ As a rule of thumb, if Ludeon did not change much about the health system, then 
 		<!-- This one is marked incompatible because it's modifying the codebase to the point that the stacktrace is unreliable. -->
 		<!-- Debugging and general comprehension seems impossible. -->
 		<li>Taranchuk.PerformanceOptimizer</li>
+
+		<!-- Elite Raid Plus released a breaking change without any pre-warning. -->
+		<!-- That was not a friendly gesture. There is no ethical burden to stop supporting it. -->
+		<li>trigger.eliteraidplus</li>
     </incompatibleWith>
 </ModMetaData>
