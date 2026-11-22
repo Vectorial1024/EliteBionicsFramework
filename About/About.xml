@@ -135,5 +135,10 @@ As a rule of thumb, if Ludeon did not change much about the health system, then 
 		<!-- Previous RW 1.5 compat are using Mlie's version, which is not listed here, and still retain old behaviors. -->
 		<li>Daniledman.CyberFauna</li>
 		<li>Daniledman.MechalitCore</li>
+
+		<!-- We got bug reports that eventually was suspected to have something to do with Performance Optimizer. -->
+		<!-- This one is marked incompatible because it's modifying the codebase to the point that the stacktrace is unreliable. -->
+		<!-- Debugging and general comprehension seems impossible. -->
+		<li>Taranchuk.PerformanceOptimizer</li>
     </incompatibleWith>
 </ModMetaData>
